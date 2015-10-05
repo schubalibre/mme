@@ -138,6 +138,29 @@ table td {
   border-color: #999;
 }
 
+.article-form .btn-group{
+  text-align: center;
+}
+
+.btn-group input[type=submit],
+.btn-group input[type=reset]{
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btn-group input[type=submit]:hover{
+  color:#fff;
+  background-color: green;
+}
+
+.btn-group input[type=reset]:hover{
+  color:#fff;
+  background-color: red;
+}
+
 /********************************footer css*************************************/
 
 footer{
