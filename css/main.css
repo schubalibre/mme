@@ -1,0 +1,145 @@
+html,
+body{
+  padding:0;
+  margin: 0;
+  height:100%;
+  width: 100%;
+}
+
+body{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857;
+  color: #333;
+  background-color: #FFF;
+}
+
+.container{
+  padding:0;
+  margin: 0;
+  width:100%;
+}
+
+.content{
+    width: 1200px;
+    margin:0 auto;
+    /* clearfix hack */
+    overflow: hidden;
+    zoom: 1;
+}
+
+header,
+footer{
+  display: block;
+  width:100%;
+  background-color: #e1e1e1;
+}
+
+header a{
+  color:#666;
+  display: inline-block;
+  line-height: 21px;
+  padding:15px;
+  text-decoration: none;
+}
+
+header a:hover{
+  color:#dedede;
+  background-color: #616161;
+}
+
+header .nav-name{
+  display: inline-block;
+}
+
+header .nav-name a{
+  font-size: 20px;
+}
+
+header nav{
+  display: inline-block;
+  float: right;
+}
+
+.left{
+  float: left;
+  width: 50%;
+}
+
+.right{
+  float: right;
+  width: 50%;
+}
+
+.wraper{
+  padding:40px 20px;
+}
+
+table{
+  width: 100%;
+  max-width: 100%;
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+
+table th{
+  vertical-align: bottom;
+  border-bottom: 2px solid #DDD;
+  padding: 8px 4px;
+}
+
+table td {
+  padding: 8px 4px;
+  vertical-align: top;
+  border-top: 1px solid #DDD;
+}
+
+.article img{
+  width:50%;
+  display: block;
+  margin: auto;
+}
+
+.article-form input[type=text],
+.article-form input[type=url],
+.article-form textarea
+{
+  display: block;
+  width: 98%;
+  border: 1px solid #efefef;
+  padding:10px 1%;
+  margin:15px 0;
+}
+
+.article-form p{
+  text-align: center;
+}
+
+.article-form input[type=text]:hover,
+.article-form input[type=url]:hover,
+.article-form textarea:hover,
+.article-form input[type=text]:focus,
+.article-form input[type=url]:focus,
+.article-form textarea:focus {
+  border-color: #999;
+}
+
+footer nav{
+  margin:0 auto;
+  width: auto;
+  display: inline-block;
+  float: right;
+}
+
+footer a{
+  color:#666;
+  display: inline-block;
+  line-height: 21px;
+  padding:15px;
+  text-decoration: none;
+}
+
+footer a:hover{
+  color:#dedede;
+  background-color: #616161;
+}
