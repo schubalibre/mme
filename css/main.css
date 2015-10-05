@@ -1,3 +1,6 @@
+
+/********************************general css*************************************/
+
 html,
 body{
   padding:0;
@@ -14,18 +17,28 @@ body{
   background-color: #FFF;
 }
 
+a{
+  outline: 0;
+}
+
 .container{
   padding:0;
   margin: 0;
   width:100%;
+  height:100%;
 }
 
 .content{
     width: 1200px;
     margin:0 auto;
-    /* clearfix hack */
-    overflow: hidden;
-    zoom: 1;
+}
+
+.content:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
 }
 
 header,
@@ -34,6 +47,8 @@ footer{
   width:100%;
   background-color: #e1e1e1;
 }
+
+/********************************header css*************************************/
 
 header a{
   color:#666;
@@ -61,6 +76,8 @@ header nav{
   float: right;
 }
 
+/********************************content css*************************************/
+
 .left{
   float: left;
   width: 50%;
@@ -74,6 +91,8 @@ header nav{
 .wraper{
   padding:40px 20px;
 }
+
+/********************************table css*************************************/
 
 table{
   width: 100%;
@@ -93,6 +112,8 @@ table td {
   vertical-align: top;
   border-top: 1px solid #DDD;
 }
+
+/********************************article css*************************************/
 
 .article img{
   width:50%;
@@ -122,6 +143,13 @@ table td {
 .article-form input[type=url]:focus,
 .article-form textarea:focus {
   border-color: #999;
+}
+
+/********************************footer css*************************************/
+
+footer{
+  position: absolute;
+  bottom: 0px;
 }
 
 footer nav{
