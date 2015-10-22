@@ -68,6 +68,15 @@ textarea:focus {
   border-color: #999;
 }
 
+input[type=submit],
+input[type=reset]{
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
 /********************************header css*************************************/
 
 header a{
@@ -120,8 +129,8 @@ header nav{
 
 #search input[type=submit]{
   position: absolute;
-  top: 4px;
-  right: 1px;
+  top: -1px;
+  right: -5px;
   line-height: 28px;
 }
 
@@ -160,15 +169,6 @@ table td {
 
 .article-form .btn-group{
   text-align: center;
-}
-
-.btn-group input[type=submit],
-.btn-group input[type=reset]{
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  border-radius: 4px;
 }
 
 .btn-group input[type=submit]:hover{
