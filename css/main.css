@@ -42,6 +42,32 @@ footer{
   border-bottom:1px solid #d1d1d1;
 }
 
+input[type=text],
+input[type=url],
+textarea,
+#map
+{
+  display: block;
+  width: 98%;
+  border: 1px solid #efefef;
+  padding:10px 1%;
+  margin:15px 0;
+}
+
+#map{
+  height:400px;
+}
+
+input[type=text]:hover,
+input[type=url]:hover,
+textarea:hover,
+#map:hover,
+input[type=text]:focus,
+input[type=url]:focus,
+textarea:focus {
+  border-color: #999;
+}
+
 /********************************header css*************************************/
 
 header a{
@@ -88,6 +114,17 @@ header nav{
 
 /********************************table css*************************************/
 
+#search {
+  position: relative;
+}
+
+#search input[type=submit]{
+  position: absolute;
+  top: 4px;
+  right: 1px;
+  line-height: 28px;
+}
+
 table{
   width: 100%;
   max-width: 100%;
@@ -107,28 +144,6 @@ table td {
   border-top: 1px solid #DDD;
 }
 
-/********************************form css*************************************/
-
-form input[type=text],
-form input[type=url],
-form textarea
-{
-  display: block;
-  width: 98%;
-  border: 1px solid #efefef;
-  padding:10px 1%;
-  margin:15px 0;
-}
-
-form input[type=text]:hover,
-form input[type=url]:hover,
-form textarea:hover,
-form input[type=text]:focus,
-form input[type=url]:focus,
-form textarea:focus {
-  border-color: #999;
-}
-
 /********************************article css*************************************/
 
 .article img{
@@ -137,28 +152,10 @@ form textarea:focus {
   margin: auto;
 }
 
-form input[type=text],
-form input[type=url],
-form textarea
-{
-  display: block;
-  width: 98%;
-  border: 1px solid #efefef;
-  padding:10px 1%;
-  margin:15px 0;
-}
+
 
 .article-form p{
   text-align: center;
-}
-
-form input[type=text]:hover,
-form input[type=url]:hover,
-form textarea:hover,
-form input[type=text]:focus,
-form input[type=url]:focus,
-form textarea:focus {
-  border-color: #999;
 }
 
 .article-form .btn-group{

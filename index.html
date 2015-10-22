@@ -9,7 +9,7 @@
       <header>
         <div class="content">
           <div class="nav-name">
-            <a href=""><img src="" alt="logo"></a>
+            <a href="">name</a>
           </div>
           <nav>
             <a href="#">home</a>
@@ -20,12 +20,12 @@
       <div class="content">
         <div class="left">
           <div class="wraper">
-            <form>
-              <fieldset>
-                <input type="text" name="searchterm" placeholder="suchen...">
-                <input type="submit" name="search" value="Suchen">
-              </fieldset>
+
+            <form id="search">
+              <input type="text" name="searchItem" placeholder="search your article" >
+              <input type="submit" value="search" name="search">
             </form>
+
             <table>
               <thead>
                 <tr>
@@ -113,13 +113,14 @@
         </div><!-- end left -->
         <div class="right">
           <div class="article wraper">
-            <form class="article-form" action="/includes/form_response.php">
-              <input id="name" name="name" type="text" value="this is my chair" placeholder="article name" required/>
+            <form class="article-form" action="">
+              <input name="name" type="text" value="this is my chair" placeholder="article name" required/>
               <img src="img/22813-stuhl-holzstuhl-eiche-massiv-gea.jpg" alt="stuhl">
               <p>22813-stuhl-holzstuhl-eiche-massiv-gea.jpg</p>
               <input name="img" type="file"/>
               <input name="url" type="url" value="www.google.de" placeholder="article url" required/>
               <textarea rows="10"  name="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur rutrum, orci ut tempor tincidunt, mi nibh pretium turpis, vitae suscipit nibh felis accumsan est. In quis nunc non ipsum sodales luctus. Etiam tempor nunc sit amet mauris lacinia, luctus sollicitudin sapien dictum. Integer efficitur rhoncus nisl eu bibendum. Fusce vel libero ut purus elementum consectetur non nec felis. Praesent et risus dui. Quisque eleifend arcu tortor, gravida vestibulum nibh posuere id. Nulla bibendum elit tellus, in blandit nibh ultrices sed. In felis nunc, ultricies sit amet commodo eget, feugiat et est. Duis fermentum maximus maximus. Suspendisse lobortis eros a libero hendrerit, ac dictum lacus varius. </textarea>
+              <div id="map"></div>
               <div class="btn-group">
                 <input type="submit" value="OK">
                 <input type="reset" value="Abrechen">
@@ -138,5 +139,19 @@
         </div><!-- end content -->
       </footer>
       <script src="js/main.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js"></script>
+      <script>
+        function initialize() {
+          var mapCanvas = document.getElementById('map');
+          var mapOptions = {
+            center: new google.maps.LatLng(44.5403, -78.5463),
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          }
+          var map = new google.maps.Map(mapCanvas, mapOptions)
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+      </script>
+
     </body>
 </html>
