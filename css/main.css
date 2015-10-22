@@ -184,11 +184,7 @@ table td {
 /********************************footer css*************************************/
 
 footer{
-<<<<<<< HEAD
   position: relative;
-=======
-  position: fixed;
->>>>>>> 16e483074b019271b04cfb479fb7c1b50057712c
   bottom: 0px;
 }
 
