@@ -107,6 +107,28 @@ table td {
   border-top: 1px solid #DDD;
 }
 
+/********************************form css*************************************/
+
+form input[type=text],
+form input[type=url],
+form textarea
+{
+  display: block;
+  width: 98%;
+  border: 1px solid #efefef;
+  padding:10px 1%;
+  margin:15px 0;
+}
+
+form input[type=text]:hover,
+form input[type=url]:hover,
+form textarea:hover,
+form input[type=text]:focus,
+form input[type=url]:focus,
+form textarea:focus {
+  border-color: #999;
+}
+
 /********************************article css*************************************/
 
 .article img{
@@ -115,9 +137,9 @@ table td {
   margin: auto;
 }
 
-.article-form input[type=text],
-.article-form input[type=url],
-.article-form textarea
+form input[type=text],
+form input[type=url],
+form textarea
 {
   display: block;
   width: 98%;
@@ -130,12 +152,12 @@ table td {
   text-align: center;
 }
 
-.article-form input[type=text]:hover,
-.article-form input[type=url]:hover,
-.article-form textarea:hover,
-.article-form input[type=text]:focus,
-.article-form input[type=url]:focus,
-.article-form textarea:focus {
+form input[type=text]:hover,
+form input[type=url]:hover,
+form textarea:hover,
+form input[type=text]:focus,
+form input[type=url]:focus,
+form textarea:focus {
   border-color: #999;
 }
 
@@ -165,7 +187,7 @@ table td {
 /********************************footer css*************************************/
 
 footer{
-  position: fixed;
+  position: relative;
   bottom: 0px;
 }
 

@@ -9,7 +9,7 @@
       <header>
         <div class="content">
           <div class="nav-name">
-            <a href="">name</a>
+            <a href=""><img src="" alt="logo"></a>
           </div>
           <nav>
             <a href="#">home</a>
@@ -20,6 +20,12 @@
       <div class="content">
         <div class="left">
           <div class="wraper">
+            <form>
+              <fieldset>
+                <input type="text" name="searchterm" placeholder="suchen...">
+                <input type="submit" name="search" value="Suchen">
+              </fieldset>
+            </form>
             <table>
               <thead>
                 <tr>
@@ -107,8 +113,8 @@
         </div><!-- end left -->
         <div class="right">
           <div class="article wraper">
-            <form class="article-form" action="">
-              <input name="name" type="text" value="this is my chair" placeholder="article name" required/>
+            <form class="article-form" action="/includes/form_response.php">
+              <input id="name" name="name" type="text" value="this is my chair" placeholder="article name" required/>
               <img src="img/22813-stuhl-holzstuhl-eiche-massiv-gea.jpg" alt="stuhl">
               <p>22813-stuhl-holzstuhl-eiche-massiv-gea.jpg</p>
               <input name="img" type="file"/>
