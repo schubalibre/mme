@@ -1,81 +1,165 @@
 <!doctype html>
 <html lang="de">
-	<head>
-		<meta charset="utf-8">
-		<title>Projekt</title>
-		<link rel="stylesheet" href="css/main.css">
-	</head>
-	<body>
+<head>
+    <meta charset="utf-8">
+    <title>Projekt</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<header>
+    <!-- content element, der den Kontent in die richtige Position bringt -->
+    <div class="content">
+        <!-- ul = unsortierte Liste -->
+        <nav>
+            <a href="#">
+                <img src="img/logo.jpg" alt="logo"/>
+            </a>
+            <ul>
+                <li>
+                    <a href="#article-form">Neuen Artikel hinzufügen</a>
+                </li>
+                <li>
+                    <a href="#article-table">Alle Artikel anzeigen</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="content">
+    <section id="article-form" class="clearfix">
+        <!--  required bedeutet, dass es ein Pflichtfeld ist (muss ausgefüllt werden)
+        id muss einmalig sein, dann kann man mit css und js darauf zugreifen
+        name ist speziell für input, wie eine variablenzuweisung, unter welchem namen werden die daten an den server geschickt.
+        value ist der Wert in einem Kontaktformular, der schon vorhanden ist (z.B. wenn man Daten editieren möchte)
+        placeholder ist der default-Text, der in dem Feld steht, oft als Hilfestellung, was in dieses Feld gehört.
+        form ist die große schachtel, input sind eingabefelder, textarea ist eingabefeld mit mehreren zeilen.
+        type ist html bestimmt, es gibt z.B. text, email...
+        -->
+        <form action="form_response.php" method="post">
+            <fieldset>
+                <img src="img/sofa.JPG" alt="sofa"/>
+                <input type="file">
 
-		<header>
-			<h1> Header <!-- <img src="img/einhorn_0001.gif" alt="logo"/> --></h1>
-		</header>
-		<div class="content">
-		<div class="left">
-			<table>
-				<tr>
-					<th>Feld 1</th>
-					<th>Feld 2</th>
-					<th>Feld 3</th>
-					<th>Feld 4</th>
-					<th>Feld 5</th>
-				</tr>
-				<tr>
-					<td>Hallo 1</td>
-					<td>Hallo 2</td>
-					<td>Hallo 3</td>
-					<td>Hallo 3</td>
-					<td>Hallo 4</td>
-				</tr>
-			</table>
+                <div class="form-group">
+                    <label for="name">Artikelname: </label>
+                    <input id="name" name="name" type="text" value="Eingabe"
+                           placeholder="Hier bitte den Artikelnamen eintragen" required/>
+                </div>
 
-			<img src="/img/sofa.jpg" alt="sofa" /> 
+                <div class="form-group">
+                    <label for="description">Artikelbeschreibung:</label>
+                    <textarea required id="description" name="description" cols="20">Hier steht ganz schön viel Text und man kann noch mehr dazuschreiben.</textarea>
+                </div>
 
-		</div>
+                <div class="form-group">
+                    <label for="category">Kategorie: </label>
+                    <select id="category" name="category" required>
+                        <option>Die Kategorie des Artikels</option>
+                    </select>
+                </div>
 
-		<!--  required bedeutet, dass es ein Pflichtfeld ist (muss ausgefüllt werden)
-		id muss einmalig sein, dann kann man mit css und js darauf zugreifen
-		name ist speziell für input, wie eine variablenzuweisung, unter welchem namen werden die daten an den server geschickt.
-		value ist der Wert in einem Kontaktformular, der schon vorhanden ist (z.B. wenn man Daten editieren möchte)
-		placeholder ist der default-Text, der in dem Feld steht, oft als Hilfestellung, was in dieses Feld gehört.
-		form ist die große schachtel, input sind eingabefelder, textarea ist eingabefeld mit mehreren zeilen.
-		type ist html bestimmt, es gibt z.B. text, email...
-		-->
+            </fieldset>
 
-		<div class="right">
-			<form action="form_response.php" method="post" >
-				<fieldset>
-					<label for="name">Artikelname: </label>
-					<input id="name" name="name" type="text" value="Eingabe" placeholder="Hier bitte den Artikelnamen eintragen" required />
-				</fieldset>
-				<fieldset>
-					<label for="description">Artikelbeschreibung: </label>
-					<input id="description" name="description" type="text" value="Eingabe" placeholder="Hier bitte den Artikelbeschreibung eintragen" />
-				</fieldset>
-				<fieldset>
-					<label for="email">Email-Adresse: </label>
-					<input id="email" name="email" type="email" value="" placeholder="Hier bitte die Email-Adresse eintragen" required/>
-				</fieldset>
-				<fieldset>
-					<label for="textfeld">Hier deine Kritik eingeben.</label>
-					<textarea required id="textfeld" name="textfeld" cols="20" >Hier steht ganz schön viel Text und man kann noch mehr dazuschreiben.</textarea>
-				</fieldset>
-				
-				<fieldset class="form-buttons">
-					<input type="submit" value="Speichern" />
-					<input type="reset" value="Abbrechen" />
-				</fieldset>
-			</form>
+            <fieldset>
 
-		</div>
-		</div>
-		<footer>
+                <div class="form-group">
+                    <label for="link">Shop:</label>
+                    <input id="link" name="link" type="url" value=""
+                           placeholder="Bitte hier den Link zum Shop eintragen" required/>
+                </div>
 
-			<h1> Footer <!-- <img src="img/einhorn_0013.gif" alt="logo"/> --></h1>
+                <div class="form-group">
+                    <label for="address">Adresse:</label>
+                    <input id="address" name="address" type="text" value=""
+                           placeholder="Die Adresse des Shops angeben"/>
+                </div>
 
-		</footer>
+                <div id="map"></div>
 
-		<!--  Das hier ist ein Kommentar -->
-		<script src="js/main.js"></script>
-	</body>
+                <div class="form-group">
+                    <label for="width">Breite: </label>
+                    <input id="width" name="width" type="number" placeholder="Bitte das Breitenmaß in cm angeben"
+                           required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="height">Höhe: </label>
+                    <input id="height" name="height" type="number" placeholder="Bitte das Höhenmaß in cm angeben"
+                           required/>
+                </div>
+                <div class="form-group">
+                    <label for="deepth">Tiefe: </label>
+                    <input id="deepth" name="deepth" type="number" placeholder="Bitte das Tiefenmaß in cm angeben"
+                           required/>
+                </div>
+                <div class="form-group">
+                    <label for="price">Preis: </label>
+                    <input id="price" name="price" type="number" placeholder="Bitte den Preis in € angeben"/>
+                </div>
+
+                <div class="btn-group">
+                    <input type="submit" name="save" value="Speichern"/>
+                    <input type="reset" name="reset" value="Abbrechen"/>
+                    <input type="submit" name="delete" value="Löschen"/>
+                </div>
+            </fieldset>
+        </form>
+    </section>
+
+    <section id="article-table">
+        <table>
+            <tr>
+                <th>Feld 1</th>
+                <th>Feld 2</th>
+                <th>Feld 3</th>
+                <th>Feld 4</th>
+                <th>Feld 5</th>
+            </tr>
+            <tr>
+                <td>Hallo 1</td>
+                <td>Hallo 2</td>
+                <td>Hallo 3</td>
+                <td>Hallo 3</td>
+                <td>Hallo 4</td>
+            </tr>
+        </table>
+    </section>
+</div>
+<footer>
+    <!-- content element, der den Kontent in die richtige Position bringt -->
+    <div class="content">
+        <!-- ul = unsortierte Liste -->
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">Kontakt</a>
+                </li>
+                <li>
+                    <a href="#">Impressum</a>
+                </li>
+                <li>
+                    <a href="#">AGB's</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+<!--  Das hier ist ein Kommentar -->
+<script src="js/main.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+    function initialize() {
+        var mapCanvas = document.getElementById('map');
+        var mapOptions = {
+            center: new google.maps.LatLng(44.5403, -78.5463),
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+</body>
 </html>

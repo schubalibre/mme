@@ -1,104 +1,162 @@
-html, body{
-	background-color: #ffffff;	
-	font-family: Helvetica;
-	font-size: 18px;
-	color: #5f6e7d;
-	height: 100%;
-	width: 100%;
-	padding: 0;
-	margin: 0;
+/************** general css **************/
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-header, footer{
-	width: 100%;
-	display: block;
-
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #333;
+    background-color: #FFF;;
 }
 
-header h1{
-	text-align: center;
-	border: none;
-	position: relative;
-	line-height: 118px;
-	background-color: #ead8eb;
-	padding: 0;
-	margin: 0;
+header, footer {
+    margin: 0;
+    padding: 0;
+    background-color: #ead8eb;
 }
 
-/*header h1 img{
-	position: absolute;
-	right: 0px;
-}*/
-
-.content{
-	margin: 30px 0;
-	overflow: hidden;
-	both: clear;
+nav ul, nav li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-.left{
-	float: left;
-	width: 50%;
+.content {
+    width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    clear: both;
 }
 
-.left table{
-	width: 80%;
-	margin: 0 auto;
-	
+section{
+    margin: 50px 0;
 }
 
-.left table td{
-	text-align: center;
+/************** header/footer css **************/
+
+nav a {
+    color: #333333;
+    font-weight: lighter;
+    text-decoration: none;
+    margin: 10px 30px 10px 0;
 }
 
-.left img{
-	display: block;
-	width: 50%;
-	margin: 0 auto;
-
+nav li:last-child a {
+    margin-right: 0;
 }
 
-.right{
-	float: right;
-	width: 50%;
+nav a:hover {
+    border-bottom: 1px solid #333333;
 }
 
-.right form label{
-	display: inline-block;
-	width: 300px;
-	vertical-align: top;
+nav li {
+    float: left;
 }
 
-.right form fieldset{
-	margin: 10px 0;
-	border: none;
+nav ul {
+    float: right;
 }
 
-.right form textarea{
-	height: 300px;
+nav {
+    overflow: hidden;
+    padding: 20px 0;
 }
 
-.right form .form-buttons{
-	padding-left: 318px;
+footer {
+    position: relative;
+    bottom: 0;
 }
 
-footer{
-	bottom: 0px;
-	position: relative;
-	width: 100%;
+/************** article-form css **************/
+
+#article-form fieldset {
+    border: none;
+    float: left;
+    width: 45%;
+    padding:0;
+    margin:0;
 }
 
-footer h1{
-	text-align: center;
-	border: none;
-	line-height:144px;
-	background-color: #ead8eb;
-	padding: 0;
-	margin: 0;
+#article-form fieldset:last-child{
+    padding-right:0;
+    float: right;
 }
 
+#article-form img{
+    width: 50%;
+    margin: 50px auto;
+    display: block;
+}
 
-/*footer h1 img{
-	position: absolute;
-	right: 0px;
-}*/
+#article-form .form-group{
+    margin: 10px 0;
+}
+
+#article-form .form-group label{
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+
+#article-form .form-group input,
+#article-form .form-group textarea
+{
+    display: inline-block;
+    width: 66.9%;
+}
+
+#article-form .form-group select {
+    -ms-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    -webkit-box-sizing:content-box;
+    box-sizing:content-box;
+    width: 64.2%;
+}
+
+#article-form textarea {
+    height: 150px;
+}
+
+#map
+{
+    display: block;
+    width: 99.9%;
+    height:200px;
+}
+
+#article-form .btn-group{
+    text-align: right;
+}
+
+/************** helpers css **************/
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+/* start commented backslash hack \*/
+* html .clearfix {
+    height: 1%;
+}
+
+.clearfix {
+    display: block;
+}
+
+/* close commented backslash hack */
+
