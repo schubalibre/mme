@@ -12,7 +12,7 @@ body {
     font-size: 14px;
     line-height: 1.42857;
     color: #333;
-    background-color: #FFF;;
+    background-color: #FFF;
 }
 
 header, footer {
@@ -35,7 +35,7 @@ nav ul, nav li {
 }
 
 section{
-    margin: 50px 0;
+    padding: 50px 0;
 }
 
 /************** header/footer css **************/
@@ -95,21 +95,31 @@ footer {
 }
 
 #article-form .form-group{
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
 #article-form .form-group label{
     display: inline-block;
     width: 30%;
     vertical-align: top;
+    line-height: 29px;
 }
-
 
 #article-form .form-group input,
 #article-form .form-group select,
 #article-form .form-group textarea{
     border: 1px solid #999;
     padding: 1%;
+}
+
+#article-form .form-group input:focus,
+#article-form .form-group select:focus,
+#article-form .form-group textarea:focus,
+#article-form .form-group input:hover,
+#article-form .form-group select:hover,
+#article-form .form-group textarea:hover{
+    border: 1px solid #666;
+    box-shadow: inset 0 0 3px #999;
 }
 
 #article-form .form-group input,
@@ -139,30 +149,53 @@ footer {
 }
 
 #article-form .btn-group{
+    margin: 15px 0;
     text-align: right;
 }
 
 /************** article-table css **************/
 
-table{
+#article-table form{
+    margin-bottom: 20px;
+}
+
+#article-table input{
+    display:inline-block;
+
+}
+
+#article-table #search-bar{
+    border: 1px solid #999;
+    width:88%;
+    padding:1%;
+}
+
+#article-table #search-btn{
+    width:8%;
+    line-height: 36px;
+}
+
+#article-table table{
     width: 100%;
     max-width: 100%;
     border-spacing: 0px;
-    border-collapse: collapse;
-    table-layout: fixed;
 }
 
-table th{
+#article-table  table th{
     vertical-align: bottom;
     border-bottom: 2px solid #DDD;
     padding: 8px 4px;
 }
 
-table td {
+#article-table  table td {
     padding: 8px 4px;
     vertical-align: top;
     border-top: 1px solid #DDD;
-    white-space: -o-pre-wrap;
+    min-width: 80px;
+}
+
+#article-table table td:first-child{
+    min-width: unset;
 }
 
 /************** helpers css **************/
