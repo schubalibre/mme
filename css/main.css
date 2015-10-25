@@ -104,11 +104,19 @@ footer {
     vertical-align: top;
 }
 
+
+#article-form .form-group input,
+#article-form .form-group select,
+#article-form .form-group textarea{
+    border: 1px solid #999;
+    padding: 1%;
+}
+
 #article-form .form-group input,
 #article-form .form-group textarea
 {
     display: inline-block;
-    width: 66.9%;
+    width: 64.9%;
 }
 
 #article-form .form-group select {
@@ -116,7 +124,7 @@ footer {
     -moz-box-sizing:content-box;
     -webkit-box-sizing:content-box;
     box-sizing:content-box;
-    width: 64.2%;
+    width: 62.2%;
 }
 
 #article-form textarea {
@@ -132,6 +140,27 @@ footer {
 
 #article-form .btn-group{
     text-align: right;
+}
+
+/************** article-table css **************/
+
+table{
+    width: 100%;
+    max-width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+table th{
+    vertical-align: bottom;
+    border-bottom: 2px solid #DDD;
+    padding: 8px 4px;
+}
+
+table td {
+    padding: 8px 4px;
+    vertical-align: top;
+    border-top: 1px solid #DDD;
 }
 
 /************** helpers css **************/
