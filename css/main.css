@@ -124,7 +124,7 @@ footer {
     -moz-box-sizing:content-box;
     -webkit-box-sizing:content-box;
     box-sizing:content-box;
-    width: 62.2%;
+    width: 65.2%;
 }
 
 #article-form textarea {
@@ -149,6 +149,7 @@ table{
     max-width: 100%;
     border-spacing: 0px;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 table th{
@@ -161,6 +162,7 @@ table td {
     padding: 8px 4px;
     vertical-align: top;
     border-top: 1px solid #DDD;
+    white-space: -o-pre-wrap;
 }
 
 /************** helpers css **************/
