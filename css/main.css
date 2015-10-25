@@ -194,7 +194,8 @@ footer {
     min-width: 80px;
 }
 
-#article-table table td:first-child{
+#article-table table td:first-child,
+#article-table table td:last-child{
     min-width: unset;
 }
 
