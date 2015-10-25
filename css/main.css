@@ -196,7 +196,7 @@ footer {
 }
 
 
-#article-table  #article-description{
+#article-table table td.article-description{
 	text-align: left;
 }
 
