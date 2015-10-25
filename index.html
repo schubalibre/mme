@@ -1,12 +1,81 @@
 <!doctype html>
 <html lang="de">
-    <head>
-        <meta charset="utf-8">
-        <title>my first html site</title>
-        <link rel="stylesheet" href="css/main.css">
-    </head>
-    <body>
-        <p>Hello world! This is HTML5 Boilerplate.</p>
-        <script src="js/main.js"></script>
-    </body>
+	<head>
+		<meta charset="utf-8">
+		<title>Projekt</title>
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+
+		<header>
+			<h1> Header <!-- <img src="img/einhorn_0001.gif" alt="logo"/> --></h1>
+		</header>
+		<div class="content">
+		<div class="left">
+			<table>
+				<tr>
+					<th>Feld 1</th>
+					<th>Feld 2</th>
+					<th>Feld 3</th>
+					<th>Feld 4</th>
+					<th>Feld 5</th>
+				</tr>
+				<tr>
+					<td>Hallo 1</td>
+					<td>Hallo 2</td>
+					<td>Hallo 3</td>
+					<td>Hallo 3</td>
+					<td>Hallo 4</td>
+				</tr>
+			</table>
+
+			<img src="/img/sofa.jpg" alt="sofa" /> 
+
+		</div>
+
+		<!--  required bedeutet, dass es ein Pflichtfeld ist (muss ausgefüllt werden)
+		id muss einmalig sein, dann kann man mit css und js darauf zugreifen
+		name ist speziell für input, wie eine variablenzuweisung, unter welchem namen werden die daten an den server geschickt.
+		value ist der Wert in einem Kontaktformular, der schon vorhanden ist (z.B. wenn man Daten editieren möchte)
+		placeholder ist der default-Text, der in dem Feld steht, oft als Hilfestellung, was in dieses Feld gehört.
+		form ist die große schachtel, input sind eingabefelder, textarea ist eingabefeld mit mehreren zeilen.
+		type ist html bestimmt, es gibt z.B. text, email...
+		-->
+
+		<div class="right">
+			<form action="form_response.php" method="post" >
+				<fieldset>
+					<label for="name">Artikelname: </label>
+					<input id="name" name="name" type="text" value="Eingabe" placeholder="Hier bitte den Artikelnamen eintragen" required />
+				</fieldset>
+				<fieldset>
+					<label for="description">Artikelbeschreibung: </label>
+					<input id="description" name="description" type="text" value="Eingabe" placeholder="Hier bitte den Artikelbeschreibung eintragen" />
+				</fieldset>
+				<fieldset>
+					<label for="email">Email-Adresse: </label>
+					<input id="email" name="email" type="email" value="" placeholder="Hier bitte die Email-Adresse eintragen" required/>
+				</fieldset>
+				<fieldset>
+					<label for="textfeld">Hier deine Kritik eingeben.</label>
+					<textarea required id="textfeld" name="textfeld" cols="20" >Hier steht ganz schön viel Text und man kann noch mehr dazuschreiben.</textarea>
+				</fieldset>
+				
+				<fieldset class="form-buttons">
+					<input type="submit" value="Speichern" />
+					<input type="reset" value="Abbrechen" />
+				</fieldset>
+			</form>
+
+		</div>
+		</div>
+		<footer>
+
+			<h1> Footer <!-- <img src="img/einhorn_0013.gif" alt="logo"/> --></h1>
+
+		</footer>
+
+		<!--  Das hier ist ein Kommentar -->
+		<script src="js/main.js"></script>
+	</body>
 </html>
