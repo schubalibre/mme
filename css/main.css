@@ -126,7 +126,7 @@ footer {
 #article-form .form-group textarea
 {
     display: inline-block;
-    width: 64.9%;
+    width: 66.5%;
 }
 
 #article-form .form-group select {
@@ -134,7 +134,7 @@ footer {
     -moz-box-sizing:content-box;
     -webkit-box-sizing:content-box;
     box-sizing:content-box;
-    width: 65.2%;
+    width: 66.6%;
 }
 
 #article-form textarea {
@@ -171,7 +171,7 @@ footer {
 }
 
 #article-table #search-btn{
-    width:8%;
+    width:9%;
     line-height: 36px;
 }
 
