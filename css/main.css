@@ -192,6 +192,12 @@ footer {
     vertical-align: top;
     border-top: 1px solid #DDD;
     min-width: 80px;
+    text-align: center;
+}
+
+
+#article-table  #article-description{
+	text-align: left;
 }
 
 #article-table table td:first-child,

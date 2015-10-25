@@ -40,13 +40,12 @@
             <fieldset>
                 <div class="form-group">
                     <label for="name">Artikelname: </label>
-                    <input id="name" name="name" type="text" value="Eingabe"
-                           placeholder="Hier bitte den Artikelnamen eintragen" required/>
+                    <input id="name" name="name" type="text" placeholder="Hier bitte den Artikelnamen eintragen" required/>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Artikelbeschreibung:</label>
-                    <textarea required id="description" name="description" cols="20">Hier steht ganz schön viel Text und man kann noch mehr dazuschreiben.</textarea>
+                    <textarea required id="description" name="description" cols="20">Bitte hier eine Artikelbeschreibung hinzufügen.</textarea>
                 </div>
 
                 <div class="form-group">
@@ -119,7 +118,7 @@
 
         <table>
             <tr>
-                <th>#</th>
+                <th>ID</th>
                 <th>Artikelname</th>
                 <th>Artikelbeschreibung</th>
                 <th>Kategorie</th>
@@ -132,8 +131,8 @@
             </tr>
             <tr>
                 <td>1</td>
-                <td>Super Stuhl</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
+                <td>Stuhl Jens</td>
+                <td id="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
                 <td>Wohnzimmer</td>
                 <td>IKEA</td>
                 <td>143 cm</td>
@@ -147,8 +146,8 @@
 
             <tr>
                 <td>2</td>
-                <td>Super Schrank</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
+                <td>Schrank Pippa</td>
+                <td id="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
                 <td>Schlafzimmer</td>
                 <td>IKEA</td>
                 <td>80 cm</td>
@@ -162,8 +161,8 @@
 
             <tr>
                 <td>3</td>
-                <td>Super Sofa</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
+                <td>Sessel Kordula</td>
+                <td id="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
                 <td>Wohnzimmer</td>
                 <td>IKEA</td>
                 <td>250 cm</td>
@@ -177,14 +176,14 @@
 
             <tr>
                 <td>4</td>
-                <td>Super Stuhl</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
-                <td>Küche</td>
+                <td>Sofa Inga</td>
+                <td id="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
+                <td>Wohnzimmer</td>
                 <td>IKEA</td>
-                <td>143 cm</td>
-                <td>58 cm</td>
+                <td>230 cm</td>
+                <td>545 cm</td>
                 <td>78 cm</td>
-                <td>126.00 €</td>
+                <td>1200.00 €</td>
                 <td>
                     <a href="#article-form">edit</a>
                 </td>
@@ -192,14 +191,14 @@
 
             <tr>
                 <td>5</td>
-                <td>Super Stuhl</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
+                <td>Hocker Claudia</td>
+                <td id="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
                 <td>Küche</td>
                 <td>IKEA</td>
-                <td>143 cm</td>
-                <td>58 cm</td>
+                <td>75 cm</td>
+                <td>51 cm</td>
                 <td>78 cm</td>
-                <td>126.00 €</td>
+                <td>129.00 €</td>
                 <td>
                     <a href="#article-form">edit</a>
                 </td>
@@ -207,14 +206,14 @@
 
             <tr>
                 <td>6</td>
-                <td>Super Stuhl</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
+                <td>Stuhl Miriam</td>
+                <td id="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
                 <td>Küche</td>
                 <td>IKEA</td>
-                <td>143 cm</td>
-                <td>58 cm</td>
+                <td>45 cm</td>
+                <td>35 cm</td>
                 <td>78 cm</td>
-                <td>126.00 €</td>
+                <td>95.00 €</td>
                 <td>
                     <a href="#article-form">edit</a>
                 </td>
@@ -222,14 +221,14 @@
 
             <tr>
                 <td>7</td>
-                <td>Super Stuhl</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
+                <td>Hocker Robert</td>
+                <td id="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
                 <td>Küche</td>
                 <td>IKEA</td>
-                <td>143 cm</td>
+                <td>90 cm</td>
                 <td>58 cm</td>
-                <td>78 cm</td>
-                <td>126.00 €</td>
+                <td>52 cm</td>
+                <td>85.00 €</td>
                 <td>
                     <a href="#article-form">edit</a>
                 </td>
@@ -237,14 +236,14 @@
 
             <tr>
                 <td>8</td>
-                <td>Super Stuhl</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
-                <td>Küche</td>
+                <td>Sessel Mario</td>
+                <td id="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
+                <td>Wohnzimmer</td>
                 <td>IKEA</td>
                 <td>143 cm</td>
                 <td>58 cm</td>
                 <td>78 cm</td>
-                <td>126.00 €</td>
+                <td>176.00 €</td>
                 <td>
                     <a href="#article-form">edit</a>
                 </td>
@@ -252,14 +251,14 @@
 
             <tr>
                 <td>9</td>
-                <td>Super Stuhl</td>
-                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
+                <td>Stuhl Karen</td>
+                <td id="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit amet augue diam. </td>
                 <td>Küche</td>
                 <td>IKEA</td>
-                <td>143 cm</td>
-                <td>58 cm</td>
-                <td>78 cm</td>
-                <td>126.00 €</td>
+                <td>123 cm</td>
+                <td>46 cm</td>
+                <td>61 cm</td>
+                <td>35.00 €</td>
                 <td>
                     <a href="#article-form">edit</a>
                 </td>
