@@ -28,11 +28,12 @@
 <div id="article-top">
     <div class="content">
         <h1>Seitenerklärung</h1>
+
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
             metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
             Aliquam sit amet augue diam.
-            <a href="#article-form">Neuen Artikel hinzufügen</a>
         </p>
+        <a href="#article-form" class="btn">Neuen Artikel hinzufügen</a>
     </div>
 </div>
 <div class="content">
@@ -45,268 +46,278 @@
         form ist die große schachtel, input sind eingabefelder, textarea ist eingabefeld mit mehreren zeilen.
         type ist html bestimmt, es gibt z.B. text, email...
         -->
-        <h2>Artikel bearbeiten</h2>
+        <h1>Artikel bearbeiten</h1>
 
         <form action="form_response.php" method="post">
             <div class="fieldset-wrapper">
                 <fieldset>
-                    <div class="form-group">
-                        <label for="name">Artikelname: </label>
-                        <input id="name" name="name" type="text" placeholder="Hier bitte den Artikelnamen eintragen"
-                               required/>
-                    </div>
+                    <h3>Artikel</h3>
 
-                    <div class="form-group">
-                        <label for="description">Artikelbeschreibung:</label>
+                    <div class="form-help">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
+                            venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
+                            amet augue diam.</p>
+                    </div>
+                    <div class="input-group">
+                        <div class="form-group">
+                            <input id="name" name="name" type="text" placeholder="Hier bitte den Artikelnamen eintragen"
+                                   required/>
+                            <label for="name">Artikelname</label>
+                        </div>
+
+
+                        <div class="form-group">
                         <textarea required id="description" name="description" cols="20"
                                   placeholder="Bitte hier eine Artikelbeschreibung hinzufügen."></textarea>
+                            <label for="description">Artikelbeschreibung</label>
+                        </div>
+
+                        <div class="form-group">
+                            <input id="price" name="price" type="number" placeholder="Bitte den Preis in € angeben"/>
+                            <label for="price">Preis</label>
+                        </div>
+
+                        <div class="form-group">
+                            <select id="category" name="category" required>
+                                <option>Die Kategorie des Artikels</option>
+                                <option>Wohnzimmer</option>
+                                <option>Küche</option>
+                                <option>Schlafzimmer</option>
+                            </select>
+                            <label for="category">Kategorie</label>
+                        </div>
                     </div>
+                </fieldset>
+                <fieldset>
+                    <h3>Artikel Bild</h3>
 
-                    <div class="form-group">
-                        <label for="category">Kategorie:</label>
-                        <select id="category" name="category" required>
-                            <option>Die Kategorie des Artikels</option>
-                            <option>Wohnzimmer</option>
-                            <option>Küche</option>
-                            <option>Schlafzimmer</option>
-                        </select>
+                    <div class="form-help">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
+                            venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
+                            amet augue diam.</p>
                     </div>
+                    <div class="input-group">
+                        <img src="img/sofa.JPG" alt="sofa"/>
 
-                    <img src="img/sofa.JPG" alt="sofa"/>
+                        <div class="form-group file">
 
-                    <div class="form-group file">
-                        <label for="file">Artikelbild:</label>
-                        <input id="file" type="file">
+                            <input id="file" type="file" value="Upload">
+                            <label for="file">Artikelbild</label>
+                        </div>
                     </div>
+                </fieldset>
 
+                <fieldset>
+                    <h3>Artikel Maße</h3>
+
+                    <div class="form-help">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
+                            venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
+                            amet augue diam.</p>
+                    </div>
+                    <div class="input-group">
+                        <div class="form-group">
+                            <div class="col3">
+                                <input id="width" name="width" type="number"
+                                       placeholder="Maß in cm"
+                                       required/>
+
+                                <label for="width">Breite</label>
+                            </div>
+                            <div class="col3">
+                                <input id="height" name="height" type="number"
+                                       placeholder="Maß in cm"
+                                       required/>
+
+                                <label for="height">Höhe</label>
+                            </div>
+                            <div class="col3">
+                                <input id="deepth" name="deepth" type="number"
+                                       placeholder="Maß in cm"
+                                       required/>
+                                <label for="deepth">Tiefe</label>
+                            </div>
+                        </div>
+                    </div>
                 </fieldset>
 
                 <fieldset>
 
-                    <div class="form-group">
-                        <label for="width">Breite:</label>
-                        <input id="width" name="width" type="number" placeholder="Bitte das Breitenmaß in cm angeben"
-                               required/>
-                    </div>
+                    <h3>Artikel Shop</h3>
 
-                    <div class="form-group">
-                        <label for="height">Höhe:</label>
-                        <input id="height" name="height" type="number" placeholder="Bitte das Höhenmaß in cm angeben"
-                               required/>
+                    <div class="form-help">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
+                            venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
+                            amet augue diam.</p>
                     </div>
-                    <div class="form-group">
-                        <label for="deepth">Tiefe:</label>
-                        <input id="deepth" name="deepth" type="number" placeholder="Bitte das Tiefenmaß in cm angeben"
-                               required/>
-                    </div>
-                    <div class="form-group">
-                        <label for="price">Preis:</label>
-                        <input id="price" name="price" type="number" placeholder="Bitte den Preis in € angeben"/>
-                    </div>
+                    <div class="input-group">
+                        <div class="form-group">
 
-                    <div class="form-group">
-                        <label for="link">Shop:</label>
-                        <input id="link" name="link" type="url" value=""
-                               placeholder="Bitte hier den Link zum Shop eintragen" required/>
-                    </div>
+                            <input id="link" name="link" type="url" value=""
+                                   placeholder="Bitte hier den Link zum Shop eintragen" required/>
+                            <label for="link">Shop</label>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="address">Adresse:</label>
-                        <input id="address" name="address" type="text" value=""
-                               placeholder="Die Adresse des Shops angeben"/>
-                    </div>
+                        <div class="form-group">
+                            <input id="address" name="address" type="text" value=""
+                                   placeholder="Die Adresse des Shops angeben"/>
+                            <label for="address">Adresse</label>
+                        </div>
+                        <div id="map"></div>
 
-                    <div id="map"></div>
+                        <div class="btn-group">
+                            <input type="submit" class="btn submit" name="save" value="Speichern"/>
+                            <input type="reset" class="btn reset" name="reset" value="Abbrechen"/>
+                            <input type="submit" class="btn delete" name="delete" value="Löschen"/>
+                        </div>
+                    </div>
                 </fieldset>
             </div>
-            <div class="btn-group">
-                <input type="submit" name="save" value="Speichern"/>
-                <input type="reset" name="reset" value="Abbrechen"/>
-                <input type="submit" name="delete" value="Löschen"/>
-            </div>
+
         </form>
     </section>
 
     <section id="article-table">
-        <h2>Artikelübersicht</h2>
+        <h1>Artikelübersicht</h1>
 
         <form>
             <input id="search-bar" type="text" name="query" placeholder="Artikelsuche"/>
-            <input id="search-btn" type="submit" name="search" value="Suchen">
+            <input id="search-btn" type="submit" name="search" class="btn" value="Suchen">
         </form>
 
         <table>
             <tr>
-                <th>ID</th>
-                <th>Artikelname</th>
-                <th>Artikelbeschreibung</th>
-                <th>Kategorie</th>
-                <th>Shop</th>
-                <th>Breite</th>
-                <th>Höhe</th>
-                <th>Tiefe</th>
-                <th>Preis</th>
-                <th>&nbsp;</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Stuhl Jens</td>
+                <td>
+                    <img src="img/holzstuhl.jpg" alt="sofa"/>
+                </td>
+                <td><h2>Stuhl Jens</h2></td>
+                <td><h3>126.00 €</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
                 </td>
-                <td>Wohnzimmer</td>
-                <td>IKEA</td>
-                <td>143 cm</td>
-                <td>58 cm</td>
-                <td>78 cm</td>
-                <td>126.00 €</td>
                 <td>
-                    <a href="#article-form">edit</a>
+                    <a href="#article-form" class="btn edit" >edit</a>
                 </td>
             </tr>
 
             <tr>
-                <td>2</td>
-                <td>Schrank Pippa</td>
+                <td>
+                    <img src="img/sofa.JPG" alt="sofa"/>
+                </td>
+                <td><h2>Schrank Pippa</h2></td>
+                <td><h3>600.00 €</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
                 </td>
-                <td>Schlafzimmer</td>
-                <td>IKEA</td>
-                <td>80 cm</td>
-                <td>230 cm</td>
-                <td>70 cm</td>
-                <td>600.00 €</td>
                 <td>
-                    <a href="#article-form">edit</a>
+                    <a href="#article-form" class="btn edit" >edit</a>
                 </td>
             </tr>
 
             <tr>
-                <td>3</td>
-                <td>Sessel Kordula</td>
+                <td>
+                    <img src="img/holzstuhl.jpg" alt="sofa"/>
+                </td>
+                <td><h2>Sessel Kordula</h2></td>
+                <td><h3>1000.00 €</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
                 </td>
-                <td>Wohnzimmer</td>
-                <td>IKEA</td>
-                <td>250 cm</td>
-                <td>58 cm</td>
-                <td>80 cm</td>
-                <td>1000.00 €</td>
                 <td>
-                    <a href="#article-form">edit</a>
+                    <a href="#article-form" class="btn edit">edit</a>
                 </td>
             </tr>
 
             <tr>
-                <td>4</td>
-                <td>Sofa Inga</td>
+                <td>
+                    <img src="img/sofa.JPG" alt="sofa"/>
+                </td>
+                <td><h2>Sofa Inga</h2></td>
+                <td><h3>1200.00 €</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
                 </td>
-                <td>Wohnzimmer</td>
-                <td>IKEA</td>
-                <td>230 cm</td>
-                <td>545 cm</td>
-                <td>78 cm</td>
-                <td>1200.00 €</td>
                 <td>
-                    <a href="#article-form">edit</a>
+                    <a href="#article-form" class="btn edit">edit</a>
                 </td>
             </tr>
 
             <tr>
-                <td>5</td>
-                <td>Hocker Claudia</td>
+                <td>
+                    <img src="img/holzstuhl.jpg" alt="sofa"/>
+                </td>
+                <td><h2>Hocker Claudia</h2></td>
+                <td><h3>129.00 €</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
                 </td>
-                <td>Küche</td>
-                <td>IKEA</td>
-                <td>75 cm</td>
-                <td>51 cm</td>
-                <td>78 cm</td>
-                <td>129.00 €</td>
                 <td>
-                    <a href="#article-form">edit</a>
+                    <a href="#article-form" class="btn edit">edit</a>
                 </td>
             </tr>
 
             <tr>
-                <td>6</td>
-                <td>Stuhl Miriam</td>
+                <td>
+                    <img src="img/holzstuhl.jpg" alt="sofa"/>
+                </td>
+                <td><h2>Stuhl Miriam</h2></td>
+                <td><h3>95.00 €</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
                 </td>
-                <td>Küche</td>
-                <td>IKEA</td>
-                <td>45 cm</td>
-                <td>35 cm</td>
-                <td>78 cm</td>
-                <td>95.00 €</td>
                 <td>
-                    <a href="#article-form">edit</a>
+                    <a href="#article-form" class="btn edit">edit</a>
                 </td>
             </tr>
 
             <tr>
-                <td>7</td>
-                <td>Hocker Robert</td>
+                <td>
+                    <img src="img/holzstuhl.jpg" alt="sofa"/>
+                </td>
+                <td><h2>Hocker Robert</h2></td>
+                <td><h3>85.00 €</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
                 </td>
-                <td>Küche</td>
-                <td>IKEA</td>
-                <td>90 cm</td>
-                <td>58 cm</td>
-                <td>52 cm</td>
-                <td>85.00 €</td>
                 <td>
-                    <a href="#article-form">edit</a>
+                    <a href="#article-form" class="btn edit">edit</a>
                 </td>
             </tr>
 
             <tr>
-                <td>8</td>
-                <td>Sessel Mario</td>
+                <td>
+                    <img src="img/sofa.JPG" alt="sofa"/>
+                </td>
+                <td><h2>Sessel Mario</h2></td>
+                <td><h3>176.00 €</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
                 </td>
-                <td>Wohnzimmer</td>
-                <td>IKEA</td>
-                <td>143 cm</td>
-                <td>58 cm</td>
-                <td>78 cm</td>
-                <td>176.00 €</td>
                 <td>
-                    <a href="#article-form">edit</a>
+                    <a href="#article-form" class="btn edit">edit</a>
                 </td>
             </tr>
 
             <tr>
-                <td>9</td>
-                <td>Stuhl Karen</td>
+                <td>
+                    <img src="img/holzstuhl.jpg" alt="sofa"/>
+                </td>
+                <td><h2>Stuhl Karen</h2></td>
+                <td><h3>35.00 €</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
                 </td>
-                <td>Küche</td>
-                <td>IKEA</td>
-                <td>123 cm</td>
-                <td>46 cm</td>
-                <td>61 cm</td>
-                <td>35.00 €</td>
                 <td>
-                    <a href="#article-form">edit</a>
+                    <a href="#article-form" class="btn edit">edit</a>
                 </td>
             </tr>
         </table>
