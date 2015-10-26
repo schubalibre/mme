@@ -80,7 +80,6 @@ footer {
     float: left;
     width: 45%;
     padding:0;
-    margin:0;
 }
 
 #article-form fieldset:last-child{
@@ -89,7 +88,7 @@ footer {
 }
 
 #article-form img{
-    width: 50%;
+    width: 80%;
     margin: 50px auto;
     display: block;
 }
@@ -103,6 +102,10 @@ footer {
     width: 30%;
     vertical-align: top;
     line-height: 29px;
+}
+
+#article-form .form-group.file label{
+    line-height: 39px;
 }
 
 #article-form .form-group input,
@@ -130,27 +133,29 @@ footer {
 }
 
 #article-form .form-group select {
-    -ms-box-sizing:content-box;
-    -moz-box-sizing:content-box;
-    -webkit-box-sizing:content-box;
     box-sizing:content-box;
     width: 66.6%;
 }
 
 #article-form textarea {
     height: 150px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
 }
 
 #map
 {
     display: block;
     width: 99.9%;
-    height:200px;
+    height:240px;
+    margin-top:28px;
 }
 
 #article-form .btn-group{
-    margin: 15px 0;
-    text-align: right;
+    width: 100%;
+    margin: 30px 0;
+    text-align: center;
+    float:left;
 }
 
 /************** article-table css **************/
