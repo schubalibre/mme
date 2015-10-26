@@ -12,7 +12,7 @@ body {
     font-size: 14px;
     line-height: 1.42857;
     color: #333;
-    background-color: #FFF;
+    background-color: #FFF;;
 }
 
 header, footer {
@@ -40,6 +40,13 @@ section{
 }
 
 /************** header/footer css **************/
+
+header{
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    top:0;
+}
 
 nav a {
     color: #333333;
@@ -76,10 +83,12 @@ footer {
 
 /************** article-top css **************/
 
-
 #article-top{
+    margin-top:60px;
     position: relative;
-    height: 70vh;
+    height: 90vh;
+    padding:20px;
+    background-color: #efefef;
 }
 
 #article-top h1{
