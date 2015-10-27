@@ -25,11 +25,11 @@ header, footer {
 }
 
 header {
-    background: rgba(186,117,115, 0.5);
+    background: rgba(72,183,172, 0.5);
 }
 
 footer {
-    background-color: #ead8eb;
+    background-color: #48B7AC;
 }
 
 nav ul, nav li {
@@ -163,7 +163,7 @@ footer {
     padding:40px;
     left: -500px;
     background:#ba7573;
-    background: rgba(186,117,115, 0.5);
+    background: rgba(72,183,172, 0.3);
     color:white;
 }
 
@@ -178,7 +178,7 @@ footer {
 
 #article-top .caption-image{
     height:100vh;
-    background: url('../img/room.jpg') no-repeat center center;
+    background: url('../img/2015-03-01_1512.png') no-repeat center center;
     background-size: cover;
 }
 
