@@ -58,13 +58,12 @@ section h1{
 .btn{
     padding: 10px 20px;
     border-radius: 2px;
-    border:1px solid #666;
+    border:1px solid #999;
     background: transparent;
     color:#666;
     font-weight: bold;
     text-decoration: none;
-    transition: background 0.2s ease 0s;
-    transition: color 0.2s ease 0s;
+    transition: background 0.2s ease 0s, color 0.2s ease 0s;
     display: inline-block;
 }
 
@@ -179,9 +178,7 @@ footer {
 
 #article-top .caption-image{
     height:100vh;
-    background-image: url('/img/room.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
+    background: url('../img/room.jpg') no-repeat center center;
     background-size: cover;
 }
 
@@ -244,9 +241,7 @@ footer {
     padding:5px;
     font-size: 24px;
     width: 100%;
-    transition: background 0.3s ease 0.3s;
-    transition: color 0.3s ease 0.3s;
-
+    transition: background 0.3s ease 0.3s,  color 0.3s ease 0.3s;
 }
 
 #article-form .form-group input:focus,
@@ -303,7 +298,7 @@ footer {
 #article-table table{
     width: 100%;
     max-width: 100%;
-    border-spacing: 0px;
+    border-spacing: 0;
 }
 
 #article-table table td {
