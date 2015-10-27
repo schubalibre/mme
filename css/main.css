@@ -21,6 +21,14 @@ body {
 header, footer {
     margin: 0;
     padding: 0;
+
+}
+
+header {
+    background: rgba(186,117,115, 0.5);
+}
+
+footer {
     background-color: #ead8eb;
 }
 
@@ -42,7 +50,7 @@ section{
     padding: 68px 0;
 }
 
-h1{
+section h1{
     text-align: center;
 }
 
@@ -51,7 +59,7 @@ h1{
     padding: 10px 20px;
     border-radius: 2px;
     border:1px solid #666;
-    background: #ededed;
+    background: transparent;
     color:#666;
     font-weight: bold;
     text-decoration: none;
@@ -60,9 +68,21 @@ h1{
     display: inline-block;
 }
 
+
+.btn.caption{
+    color:white;
+    border-color:white;
+}
+
 .btn:hover{
     background: #dedede;
     color:#333;
+}
+
+.btn.caption:hover{
+    background: transparent;
+    color:#333;
+    border-color:#333;
 }
 
 .btn.submit:hover{
@@ -134,20 +154,35 @@ footer {
 /************** article-top css **************/
 
 #article-top{
-    margin-top:60px;
     position: relative;
-    height: 90vh;
-    padding:20px;
-    background-color: #efefef;
-    text-align: center;
+    height:100vh;
 }
 
-#article-top h1{
+#article-top .content{
+    position: absolute;
+    margin: 200px 50%;
+    padding:40px;
+    left: -500px;
+    background:#ba7573;
+    background: rgba(186,117,115, 0.5);
+    color:white;
+}
+
+#article-top .caption-box h1{
     font-size: 45px;
 }
 
-#article-top a{
-    margin-top: 100px;
+#article-top .caption-box p:last-child{
+    margin-top: 30px;
+    text-align: center;
+}
+
+#article-top .caption-image{
+    height:100vh;
+    background-image: url('/img/room.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /************** article-form css **************/
