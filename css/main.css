@@ -118,8 +118,8 @@ header{
 }
 
 nav a {
-    color: #333333;
-    font-weight: lighter;
+    color: #fff;
+    font-weight: bold;
     text-decoration: none;
     margin: 10px 30px 10px 0;
 }
@@ -129,7 +129,7 @@ nav li:last-child a {
 }
 
 nav a:hover {
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid #FFF;
 }
 
 nav li {
