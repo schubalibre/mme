@@ -1,373 +1,340 @@
 <!doctype html>
 <html lang="de">
-<head>
-    <meta charset="utf-8">
-    <title>Projekt</title>
-    <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
-<header>
-    <!-- content element, der den Kontent in die richtige Position bringt -->
-    <div class="content">
-        <!-- ul = unsortierte Liste -->
-        <nav>
-            <a href="#">
-                <img src="img/logo.jpg" alt="logo"/>
-            </a>
-            <ul>
-                <li>
-                    <a href="#article-form">Neuen Artikel hinzufügen</a>
-                </li>
-                <li>
-                    <a href="#article-table">Alle Artikel anzeigen</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
-<div id="article-top">
-    <div class="caption-box">
-        <div class="content">
-            <h1>bits and bobs</h1>
+	<head>
+		<meta charset="utf-8">
+		<title>Projekt</title>
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<header>
+			<!-- content element, der den Kontent in die richtige Position bringt -->
+			<div class="content">
+				<!-- ul = unsortierte Liste -->
+				<nav>
+					<a href="#"> <img src="img/logo.jpg" alt="logo"/> </a>
+					<ul>
+						<li>
+							<a href="#article-form">Neuen Artikel hinzufügen</a>
+						</li>
+						<li>
+							<a href="#article-table">Alle Artikel anzeigen</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<div id="article-top">
+			<div class="caption-box">
+				<div class="content">
+					<h1>BITS & BOBS</h1>
+					<p>
+						Herzlich Willkommen bei bits & bobs!
+					</p>
+					<p>
+						<a href="#article-form" class="btn caption">Neuen Artikel hinzufügen</a>
+					</p>
+				</div>
+			</div>
+			<div class="caption-image"></div>
+		</div>
+		<div class="content">
+			<section id="article-form" class="clearfix">
+				<!--  required bedeutet, dass es ein Pflichtfeld ist (muss ausgefüllt werden)
+				id muss einmalig sein, dann kann man mit css und js darauf zugreifen
+				name ist speziell für input, wie eine variablenzuweisung, unter welchem namen werden die daten an den server geschickt.
+				value ist der Wert in einem Kontaktformular, der schon vorhanden ist (z.B. wenn man Daten editieren möchte)
+				placeholder ist der default-Text, der in dem Feld steht, oft als Hilfestellung, was in dieses Feld gehört.
+				form ist die große schachtel, input sind eingabefelder, textarea ist eingabefeld mit mehreren zeilen.
+				type ist html bestimmt, es gibt z.B. text, email...
+				-->
+				<h1>Artikel bearbeiten</h1>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
-                metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
-                Aliquam sit amet augue diam.
-            </p>
-            <p>
-                <a href="#article-form" class="btn caption">Neuen Artikel hinzufügen</a>
-            </p>
-        </div>
-    </div>
-    <div class="caption-image">
-    </div>
-</div>
-<div class="content">
-    <section id="article-form" class="clearfix">
-        <!--  required bedeutet, dass es ein Pflichtfeld ist (muss ausgefüllt werden)
-        id muss einmalig sein, dann kann man mit css und js darauf zugreifen
-        name ist speziell für input, wie eine variablenzuweisung, unter welchem namen werden die daten an den server geschickt.
-        value ist der Wert in einem Kontaktformular, der schon vorhanden ist (z.B. wenn man Daten editieren möchte)
-        placeholder ist der default-Text, der in dem Feld steht, oft als Hilfestellung, was in dieses Feld gehört.
-        form ist die große schachtel, input sind eingabefelder, textarea ist eingabefeld mit mehreren zeilen.
-        type ist html bestimmt, es gibt z.B. text, email...
-        -->
-        <h1>Artikel bearbeiten</h1>
+				<form action="form_response.php" method="post">
+					<div class="fieldset-wrapper">
+						<fieldset>
+							<legend>
+								Artikel
+							</legend>
 
-        <form action="form_response.php" method="post">
-            <div class="fieldset-wrapper">
-                <fieldset>
-                    <legend>Artikel</legend>
+							<div class="form-help">
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
+									venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
+									amet augue diam.
+								</p>
+							</div>
+							<div class="input-group">
+								<div class="form-group">
+									<label for="name">Artikelname</label>
+									<input id="name" name="name" type="text" placeholder="Hier bitte den Artikelnamen eintragen" required/>
 
-                    <div class="form-help">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
-                            venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
-                            amet augue diam.</p>
-                    </div>
-                    <div class="input-group">
-                        <div class="form-group">
-                            <label for="name">Artikelname</label>
-                            <input id="name" name="name" type="text" placeholder="Hier bitte den Artikelnamen eintragen" required/>
+								</div>
 
-                        </div>
+								<div class="form-group">
+									<label for="description">Artikelbeschreibung</label>
+									<textarea required id="description" name="description" cols="20" placeholder="Bitte hier eine Artikelbeschreibung hinzufügen."></textarea>									
 
 
-                        <div class="form-group">
-                            <label for="description">Artikelbeschreibung</label>
-                            <textarea required id="description" name="description" cols="20" placeholder="Bitte hier eine Artikelbeschreibung hinzufügen."></textarea>
+								</div>
 
-                        </div>
+								<div class="form-group">
+									<label for="price">Preis</label>
+									<input id="price" name="price" type="number" placeholder="Bitte den Preis in € angeben"/>
 
-                        <div class="form-group">
-                            <label for="price">Preis</label>
-                            <input id="price" name="price" type="number" placeholder="Bitte den Preis in € angeben"/>
+								</div>
 
-                        </div>
+								<div class="form-group">
+									<label for="category">Kategorie</label>
+									<select id="category" name="category" required>
+										<option>Die Kategorie des Artikels</option>
+										<option>Wohnzimmer</option>
+										<option>Küche</option>
+										<option>Schlafzimmer</option>
+									</select>
 
-                        <div class="form-group">
-                            <label for="category">Kategorie</label>
-                            <select id="category" name="category" required>
-                                <option>Die Kategorie des Artikels</option>
-                                <option>Wohnzimmer</option>
-                                <option>Küche</option>
-                                <option>Schlafzimmer</option>
-                            </select>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>
+								Artikel Bild
+							</legend>
 
-                        </div>
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <legend>Artikel Bild</legend>
+							<div class="form-help">
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
+									venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
+									amet augue diam.
+								</p>
+							</div>
+							<div class="input-group">
+								<img src="img/sofa.JPG" alt="sofa"/>
 
-                    <div class="form-help">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
-                            venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
-                            amet augue diam.</p>
-                    </div>
-                    <div class="input-group">
-                        <img src="img/sofa.JPG" alt="sofa"/>
+								<div class="form-group file">
+									<label for="file">Artikelbild</label>
+									<input id="file" type="file" value="Upload">
+								</div>
+							</div>
+						</fieldset>
 
-                        <div class="form-group file">
-                            <label for="file">Artikelbild</label>
-                            <input id="file" type="file" value="Upload">
-                        </div>
-                    </div>
-                </fieldset>
+						<fieldset>
+							<legend>
+								Artikel Maße
+							</legend>
 
-                <fieldset>
-                    <legend>Artikel Maße</legend>
+							<div class="form-help">
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
+									venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
+									amet augue diam.
+								</p>
+							</div>
+							<div class="input-group">
+								<div class="form-group">
+									<div class="col3">
+										<label for="width">Breite</label>
+										<input id="width" name="width" type="number" placeholder="Maß in cm" required/>
+									</div>
+									<div class="col3">
+										<label for="height">Höhe</label>
+										<input id="height" name="height" type="number" placeholder="Maß in cm" required/>
+									</div>
+									<div class="col3">
+										<label for="deepth">Tiefe</label>
+										<input id="deepth" name="deepth" type="number" placeholder="Maß in cm" required/>
+									</div>
+								</div>
+							</div>
+						</fieldset>
 
-                    <div class="form-help">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
-                            venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
-                            amet augue diam.</p>
-                    </div>
-                    <div class="input-group">
-                        <div class="form-group">
-                            <div class="col3">
-                                <label for="width">Breite</label>
-                                <input id="width" name="width" type="number" placeholder="Maß in cm" required/>
-                            </div>
-                            <div class="col3">
-                                <label for="height">Höhe</label>
-                                <input id="height" name="height" type="number" placeholder="Maß in cm" required/>
-                            </div>
-                            <div class="col3">
-                                <label for="deepth">Tiefe</label>
-                                <input id="deepth" name="deepth" type="number" placeholder="Maß in cm" required/>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
+						<fieldset>
 
-                <fieldset>
+							<legend>
+								Artikel Shop
+							</legend>
 
-                    <legend>Artikel Shop</legend>
+							<div class="form-help">
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
+									venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
+									amet augue diam.
+								</p>
+								<div class="help-wrapper">
+									<span class="help-icon">?</span>
+								</div>
+							</div>
+							<div class="input-group">
+								<div class="form-group">
+									<label for="link">Shop</label>
+									<input id="link" name="link" type="url" value="" placeholder="Bitte hier den Link zum Shop eintragen" required/>
+								</div>
 
-                    <div class="form-help">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
-                            venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
-                            amet augue diam.
-                        </p>
-                        <div class="help-wrapper">
-                            <span class="help-icon">?</span>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <div class="form-group">
-                            <label for="link">Shop</label>
-                            <input id="link" name="link" type="url" value="" placeholder="Bitte hier den Link zum Shop eintragen" required/>
-                        </div>
+								<div class="form-group">
+									<label for="address">Adresse</label>
+									<input id="address" name="address" type="text" value="" placeholder="Die Adresse des Shops angeben"/>
 
-                        <div class="form-group">
-                            <label for="address">Adresse</label>
-                            <input id="address" name="address" type="text" value="" placeholder="Die Adresse des Shops angeben"/>
+								</div>
+								<div id="map"></div>
 
-                        </div>
-                        <div id="map"></div>
+								<div class="btn-group">
+									<input type="submit" class="btn submit" name="save" value="Speichern"/>
+									<input type="reset" class="btn reset" name="reset" value="Abbrechen"/>
+									<input type="submit" class="btn delete" name="delete" value="Löschen"/>
+								</div>
+							</div>
+						</fieldset>
+					</div>
 
-                        <div class="btn-group">
-                            <input type="submit" class="btn submit" name="save" value="Speichern"/>
-                            <input type="reset" class="btn reset" name="reset" value="Abbrechen"/>
-                            <input type="submit" class="btn delete" name="delete" value="Löschen"/>
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
+				</form>
+			</section>
 
-        </form>
-    </section>
+			<section id="article-table">
+				<h1>Artikelübersicht</h1>
 
-    <section id="article-table">
-        <h1>Artikelübersicht</h1>
+				<form>
+					<input id="search-bar" type="text" name="query" placeholder="Artikelsuche"/>
+					<input id="search-btn" type="submit" name="search" class="btn" value="Suchen">
+				</form>
 
-        <form>
-            <input id="search-bar" type="text" name="query" placeholder="Artikelsuche"/>
-            <input id="search-btn" type="submit" name="search" class="btn" value="Suchen">
-        </form>
+				<table>
+					<tr>
+						<td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
+						<td><h2>Stuhl Jens</h2></td>
+						<td><h3>126.00 €</h3></td>
+						<td><h3>133 / 144 / 255</h3></td>
+						<td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+						metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+						Aliquam sit amet augue diam. </td>
+						<td><a href="#article-form" class="btn edit">edit</a></td>
+					</tr>
 
-        <table>
-            <tr>
-                <td>
-                    <img src="img/holzstuhl.jpg" alt="sofa"/>
-                </td>
-                <td><h2>Stuhl Jens</h2></td>
-                <td><h3>126.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
-                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
-                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
-                    Aliquam sit amet augue diam.
-                </td>
-                <td>
-                    <a href="#article-form" class="btn edit">edit</a>
-                </td>
-            </tr>
+					<tr>
+						<td><img src="img/sofa.JPG" alt="sofa"/></td>
+						<td><h2>Schrank Pippa</h2></td>
+						<td><h3>600.00 €</h3></td>
+						<td><h3>133 / 144 / 255</h3></td>
+						<td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+						metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+						Aliquam sit amet augue diam. </td>
+						<td><a href="#article-form" class="btn edit">edit</a></td>
+					</tr>
 
-            <tr>
-                <td>
-                    <img src="img/sofa.JPG" alt="sofa"/>
-                </td>
-                <td><h2>Schrank Pippa</h2></td>
-                <td><h3>600.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
-                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
-                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
-                    Aliquam sit amet augue diam.
-                </td>
-                <td>
-                    <a href="#article-form" class="btn edit">edit</a>
-                </td>
-            </tr>
+					<tr>
+						<td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
+						<td><h2>Sessel Kordula</h2></td>
+						<td><h3>1000.00 €</h3></td>
+						<td><h3>133 / 144 / 255</h3></td>
+						<td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+						metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+						Aliquam sit amet augue diam. </td>
+						<td><a href="#article-form" class="btn edit">edit</a></td>
+					</tr>
 
-            <tr>
-                <td>
-                    <img src="img/holzstuhl.jpg" alt="sofa"/>
-                </td>
-                <td><h2>Sessel Kordula</h2></td>
-                <td><h3>1000.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
-                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
-                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
-                    Aliquam sit amet augue diam.
-                </td>
-                <td>
-                    <a href="#article-form" class="btn edit">edit</a>
-                </td>
-            </tr>
+					<tr>
+						<td><img src="img/sofa.JPG" alt="sofa"/></td>
+						<td><h2>Sofa Inga</h2></td>
+						<td><h3>1200.00 €</h3></td>
+						<td><h3>133 / 144 / 255</h3></td>
+						<td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+						metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+						Aliquam sit amet augue diam. </td>
+						<td><a href="#article-form" class="btn edit">edit</a></td>
+					</tr>
 
-            <tr>
-                <td>
-                    <img src="img/sofa.JPG" alt="sofa"/>
-                </td>
-                <td><h2>Sofa Inga</h2></td>
-                <td><h3>1200.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
-                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
-                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
-                    Aliquam sit amet augue diam.
-                </td>
-                <td>
-                    <a href="#article-form" class="btn edit">edit</a>
-                </td>
-            </tr>
+					<tr>
+						<td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
+						<td><h2>Hocker Claudia</h2></td>
+						<td><h3>129.00 €</h3></td>
+						<td><h3>133 / 144 / 255</h3></td>
+						<td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+						metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+						Aliquam sit amet augue diam. </td>
+						<td><a href="#article-form" class="btn edit">edit</a></td>
+					</tr>
 
-            <tr>
-                <td>
-                    <img src="img/holzstuhl.jpg" alt="sofa"/>
-                </td>
-                <td><h2>Hocker Claudia</h2></td>
-                <td><h3>129.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
-                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
-                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
-                    Aliquam sit amet augue diam.
-                </td>
-                <td>
-                    <a href="#article-form" class="btn edit">edit</a>
-                </td>
-            </tr>
+					<tr>
+						<td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
+						<td><h2>Stuhl Miriam</h2></td>
+						<td><h3>95.00 €</h3></td>
+						<td><h3>133 / 144 / 255</h3></td>
+						<td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+						metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+						Aliquam sit amet augue diam. </td>
+						<td><a href="#article-form" class="btn edit">edit</a></td>
+					</tr>
 
-            <tr>
-                <td>
-                    <img src="img/holzstuhl.jpg" alt="sofa"/>
-                </td>
-                <td><h2>Stuhl Miriam</h2></td>
-                <td><h3>95.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
-                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
-                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
-                    Aliquam sit amet augue diam.
-                </td>
-                <td>
-                    <a href="#article-form" class="btn edit">edit</a>
-                </td>
-            </tr>
+					<tr>
+						<td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
+						<td><h2>Hocker Robert</h2></td>
+						<td><h3>85.00 €</h3></td>
+						<td><h3>133 / 144 / 255</h3></td>
+						<td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+						metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+						Aliquam sit amet augue diam. </td>
+						<td><a href="#article-form" class="btn edit">edit</a></td>
+					</tr>
 
-            <tr>
-                <td>
-                    <img src="img/holzstuhl.jpg" alt="sofa"/>
-                </td>
-                <td><h2>Hocker Robert</h2></td>
-                <td><h3>85.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
-                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
-                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
-                    Aliquam sit amet augue diam.
-                </td>
-                <td>
-                    <a href="#article-form" class="btn edit">edit</a>
-                </td>
-            </tr>
+					<tr>
+						<td><img src="img/sofa.JPG" alt="sofa"/></td>
+						<td><h2>Sessel Mario</h2></td>
+						<td><h3>176.00 €</h3></td>
+						<td><h3>133 / 144 / 255</h3></td>
+						<td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+						metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+						Aliquam sit amet augue diam. </td>
+						<td><a href="#article-form" class="btn edit">edit</a></td>
+					</tr>
 
-            <tr>
-                <td>
-                    <img src="img/sofa.JPG" alt="sofa"/>
-                </td>
-                <td><h2>Sessel Mario</h2></td>
-                <td><h3>176.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
-                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
-                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
-                    Aliquam sit amet augue diam.
-                </td>
-                <td>
-                    <a href="#article-form" class="btn edit">edit</a>
-                </td>
-            </tr>
+					<tr>
+						<td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
+						<td><h2>Stuhl Karen</h2></td>
+						<td><h3>35.00 €</h3></td>
+						<td><h3>133 / 144 / 255</h3></td>
+						<td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+						metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+						Aliquam sit amet augue diam. </td>
+						<td><a href="#article-form" class="btn edit">edit</a></td>
+					</tr>
+				</table>
+			</section>
+		</div>
+		<footer>
+			<!-- content element, der den Kontent in die richtige Position bringt -->
+			<div class="content">
+				<!-- ul = unsortierte Liste -->
+				<nav>
+					<ul>
+						<li>
+							<a href="#">Kontakt</a>
+						</li>
+						<li>
+							<a href="#">Impressum</a>
+						</li>
+						<li>
+							<a href="#">AGB's</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</footer>
 
-            <tr>
-                <td>
-                    <img src="img/holzstuhl.jpg" alt="sofa"/>
-                </td>
-                <td><h2>Stuhl Karen</h2></td>
-                <td><h3>35.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
-                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
-                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
-                    Aliquam sit amet augue diam.
-                </td>
-                <td>
-                    <a href="#article-form" class="btn edit">edit</a>
-                </td>
-            </tr>
-        </table>
-    </section>
-</div>
-<footer>
-    <!-- content element, der den Kontent in die richtige Position bringt -->
-    <div class="content">
-        <!-- ul = unsortierte Liste -->
-        <nav>
-            <ul>
-                <li>
-                    <a href="#">Kontakt</a>
-                </li>
-                <li>
-                    <a href="#">Impressum</a>
-                </li>
-                <li>
-                    <a href="#">AGB's</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</footer>
+		<!--  Das hier ist ein Kommentar -->
+		<script src="js/main.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js"></script>
+		<script>
+			function initialize() {
+				var mapCanvas = document.getElementById('map');
+				var mapOptions = {
+					center : new google.maps.LatLng(52.5167, 13.3833),
+					zoom : 11,
+					mapTypeId : google.maps.MapTypeId.ROADMAP
+				}
+				var map = new google.maps.Map(mapCanvas, mapOptions)
+			}
 
-<!--  Das hier ist ein Kommentar -->
-<script src="js/main.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
-<script>
-    function initialize() {
-        var mapCanvas = document.getElementById('map');
-        var mapOptions = {
-            center: new google.maps.LatLng(52.5167, 13.3833),
-            zoom: 11,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        var map = new google.maps.Map(mapCanvas, mapOptions)
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-</script>
 
-</body>
+			google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
+
+	</body>
 </html>
