@@ -57,7 +57,7 @@
         <form action="form_response.php" method="post">
             <div class="fieldset-wrapper">
                 <fieldset>
-                    <h3>Artikel</h3>
+                    <legend>Artikel</legend>
 
                     <div class="form-help">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
@@ -66,36 +66,38 @@
                     </div>
                     <div class="input-group">
                         <div class="form-group">
-                            <input id="name" name="name" type="text" placeholder="Hier bitte den Artikelnamen eintragen"
-                                   required/>
                             <label for="name">Artikelname</label>
+                            <input id="name" name="name" type="text" placeholder="Hier bitte den Artikelnamen eintragen" required/>
+
                         </div>
 
 
                         <div class="form-group">
-                        <textarea required id="description" name="description" cols="20"
-                                  placeholder="Bitte hier eine Artikelbeschreibung hinzufügen."></textarea>
                             <label for="description">Artikelbeschreibung</label>
+                            <textarea required id="description" name="description" cols="20" placeholder="Bitte hier eine Artikelbeschreibung hinzufügen."></textarea>
+
                         </div>
 
                         <div class="form-group">
-                            <input id="price" name="price" type="number" placeholder="Bitte den Preis in € angeben"/>
                             <label for="price">Preis</label>
+                            <input id="price" name="price" type="number" placeholder="Bitte den Preis in € angeben"/>
+
                         </div>
 
                         <div class="form-group">
+                            <label for="category">Kategorie</label>
                             <select id="category" name="category" required>
                                 <option>Die Kategorie des Artikels</option>
                                 <option>Wohnzimmer</option>
                                 <option>Küche</option>
                                 <option>Schlafzimmer</option>
                             </select>
-                            <label for="category">Kategorie</label>
+
                         </div>
                     </div>
                 </fieldset>
                 <fieldset>
-                    <h3>Artikel Bild</h3>
+                    <legend>Artikel Bild</legend>
 
                     <div class="form-help">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
@@ -106,15 +108,14 @@
                         <img src="img/sofa.JPG" alt="sofa"/>
 
                         <div class="form-group file">
-
-                            <input id="file" type="file" value="Upload">
                             <label for="file">Artikelbild</label>
+                            <input id="file" type="file" value="Upload">
                         </div>
                     </div>
                 </fieldset>
 
                 <fieldset>
-                    <h3>Artikel Maße</h3>
+                    <legend>Artikel Maße</legend>
 
                     <div class="form-help">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
@@ -124,24 +125,16 @@
                     <div class="input-group">
                         <div class="form-group">
                             <div class="col3">
-                                <input id="width" name="width" type="number"
-                                       placeholder="Maß in cm"
-                                       required/>
-
                                 <label for="width">Breite</label>
+                                <input id="width" name="width" type="number" placeholder="Maß in cm" required/>
                             </div>
                             <div class="col3">
-                                <input id="height" name="height" type="number"
-                                       placeholder="Maß in cm"
-                                       required/>
-
                                 <label for="height">Höhe</label>
+                                <input id="height" name="height" type="number" placeholder="Maß in cm" required/>
                             </div>
                             <div class="col3">
-                                <input id="deepth" name="deepth" type="number"
-                                       placeholder="Maß in cm"
-                                       required/>
                                 <label for="deepth">Tiefe</label>
+                                <input id="deepth" name="deepth" type="number" placeholder="Maß in cm" required/>
                             </div>
                         </div>
                     </div>
@@ -149,25 +142,27 @@
 
                 <fieldset>
 
-                    <h3>Artikel Shop</h3>
+                    <legend>Artikel Shop</legend>
 
                     <div class="form-help">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
                             venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
-                            amet augue diam.</p>
+                            amet augue diam.
+                        </p>
+                        <div class="help-wrapper">
+                            <span class="help-icon">?</span>
+                        </div>
                     </div>
                     <div class="input-group">
                         <div class="form-group">
-
-                            <input id="link" name="link" type="url" value=""
-                                   placeholder="Bitte hier den Link zum Shop eintragen" required/>
                             <label for="link">Shop</label>
+                            <input id="link" name="link" type="url" value="" placeholder="Bitte hier den Link zum Shop eintragen" required/>
                         </div>
 
                         <div class="form-group">
-                            <input id="address" name="address" type="text" value=""
-                                   placeholder="Die Adresse des Shops angeben"/>
                             <label for="address">Adresse</label>
+                            <input id="address" name="address" type="text" value="" placeholder="Die Adresse des Shops angeben"/>
+
                         </div>
                         <div id="map"></div>
 
@@ -198,6 +193,7 @@
                 </td>
                 <td><h2>Stuhl Jens</h2></td>
                 <td><h3>126.00 €</h3></td>
+                <td><h3>133 / 144 / 255</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -213,6 +209,7 @@
                 </td>
                 <td><h2>Schrank Pippa</h2></td>
                 <td><h3>600.00 €</h3></td>
+                <td><h3>133 / 144 / 255</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -228,6 +225,7 @@
                 </td>
                 <td><h2>Sessel Kordula</h2></td>
                 <td><h3>1000.00 €</h3></td>
+                <td><h3>133 / 144 / 255</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -243,6 +241,7 @@
                 </td>
                 <td><h2>Sofa Inga</h2></td>
                 <td><h3>1200.00 €</h3></td>
+                <td><h3>133 / 144 / 255</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -258,6 +257,7 @@
                 </td>
                 <td><h2>Hocker Claudia</h2></td>
                 <td><h3>129.00 €</h3></td>
+                <td><h3>133 / 144 / 255</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -273,6 +273,7 @@
                 </td>
                 <td><h2>Stuhl Miriam</h2></td>
                 <td><h3>95.00 €</h3></td>
+                <td><h3>133 / 144 / 255</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -288,6 +289,7 @@
                 </td>
                 <td><h2>Hocker Robert</h2></td>
                 <td><h3>85.00 €</h3></td>
+                <td><h3>133 / 144 / 255</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -303,6 +305,7 @@
                 </td>
                 <td><h2>Sessel Mario</h2></td>
                 <td><h3>176.00 €</h3></td>
+                <td><h3>133 / 144 / 255</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -318,6 +321,7 @@
                 </td>
                 <td><h2>Stuhl Karen</h2></td>
                 <td><h3>35.00 €</h3></td>
+                <td><h3>133 / 144 / 255</h3></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
