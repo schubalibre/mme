@@ -1,4 +1,4 @@
-/************** general css **************/
+/************** general CSS **************/
 
 html, body {
     width: 100%;
@@ -39,6 +39,7 @@ nav ul, nav li {
     clear: both;
 }
 
+
 section {
     display: block;
     padding: 60px 0 0;
@@ -67,38 +68,8 @@ section h1 {
 }
 
 .btn:hover {
-    background: #dedede;
-    color: #333;
-}
-
-.btn.caption:hover {
-    background: transparent;
-    color: #333;
-    border-color: #333;
-}
-
-.btn.submit:hover {
-    border-color: #3f7f3f;
-    background: #5CB85C;
-    color: #fff;
-}
-
-.btn.reset:hover {
-    border-color: #c08b3d;
-    background: #F0AD4E;
-    color: #fff;
-}
-
-.btn.delete:hover {
-    border-color: #A72A29;
-    background: #C9302C;
-    color: #fff;
-}
-
-.btn.edit:hover {
-    border-color: #1f496f;
-    background: #337AB7;
-    color: #fff;
+    background: #48B7AC;
+    color: #FFF;
 }
 
 /************** header/footer css **************/
@@ -114,18 +85,12 @@ nav a {
     color: #fff;
     font-weight: bold;
     text-decoration: none;
-    margin: 0 30px 0 0;
-    display:inline-block;
-
-    ...........................................................................................................................................
+    margin: 0px 30px 0 0;
+    display: inline-block; 
 }
 
 nav ul li a{
-    line-height: 35.8px;
-}
-
-nav ul li a:hover {
-    border-bottom: 1px solid #FFF;
+	line-height: 35.8px;
 }
 
 nav a img{
@@ -134,6 +99,10 @@ nav a img{
 
 nav li:last-child a {
     margin-right: 0;
+}
+
+nav ul li a:hover {
+    border-bottom: 1px solid #FFF;
 }
 
 nav li {
@@ -169,10 +138,16 @@ footer {
     background: #ba7573;
     background: rgba(72, 183, 172, 0.6);
     color: white;
+    text-align: center;
 }
 
 #article-top .caption-box h1 {
     font-size: 45px;
+    margin-top: 0;
+}
+
+#article-top .caption-box .welcome-text{
+	font-size: 16px;
 }
 
 #article-top .caption-box p:last-child {
@@ -209,52 +184,15 @@ footer {
     width: 30%;
     height:150px;
     position: relative;
-    overflow: hidden;
 }
 
-#article-form fieldset .form-help .help-wrapper{
-    width: 600px;
-    height:175px;
-    position: absolute;
-    left: 0;
-    transition: 0.6s;
+#article-form fieldset .form-help p{
+	width: 100%;
+	height: 150px;
+	margin: 0;
+	padding: 0 100px 0 0;
 }
-
-#article-form fieldset .form-help .help-wrapper:hover  {
-    transition: 0.6s;
-    left: -300px;
-}
-
-#article-form fieldset .form-help .help-text{
-    width: 40%;
-    float:left;
-    height:100%;
-}
-
-#article-form fieldset .form-help .help-text p{
-    padding:0;
-    margin:0;
-}
-
-.form-help .help-icon{
-    width:50%;
-    float:left;
-    height:100%;
-}
-
-.form-help .help-wrapper .help.icon{
-    margin:10px 0 0 30px;
-    display: block;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #fff;
-    background: #48B7AC;
-    border-radius: 50%;
-    text-align: center;
-}
+	
 
 #article-form fieldset .input-group {
     float: right;
@@ -294,8 +232,11 @@ footer {
 
 #article-form .form-group input:focus,
 #article-form .form-group select:focus,
-#article-form .form-group textarea:focus {
-    border: 1px solid #48B7AC;
+#article-form .form-group textarea:focus,
+#article-form .form-group input:active,
+#article-form .form-group select:active,
+#article-form .form-group textarea:active {
+    border-color: #48B7AC;
     color: #333;
 }
 
@@ -345,6 +286,14 @@ footer {
     width: 100%;
     max-width: 100%;
     border-spacing: 0;
+    margin: 100px 0 50px 0;
+}
+
+#article-table table th{
+	border-bottom: 3px solid #efefef;
+	padding-bottom: 10px;
+	font-size: 18px;
+	font-weight: bold;
 }
 
 #article-table table td {
@@ -355,14 +304,17 @@ footer {
 
 #article-table table tr td:nth-child(2) {
     min-width: 170px;
+    text-align: center;
 }
 
 #article-table table tr td:nth-child(3) {
     min-width: 120px;
+    text-align: center;
 }
 
 #article-table table tr td:nth-child(4) {
     min-width: 150px;
+    text-align: center;
 }
 
 #article-table table tr td:first-child {
@@ -375,11 +327,7 @@ footer {
     padding-right: 0;
 }
 
-#article-table table td h2 {
-    font-size: 18px;
-}
-
-#article-table table td h3 {
+#article-table table td b {
     color: #999999;
     font-size: 16px;
 }

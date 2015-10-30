@@ -28,8 +28,10 @@
         <div class="content">
             <h1>ODDS & ENDS</h1>
 
-            <p>
-                Herzlich Willkommen bei odds & ends!
+            <p class="welcome-text">
+                Herzlich Willkommen bei <b>odds & ends</b>, dem Einrichtungsportal für dein individuelles Zuhause!<br>
+                Auf dieser Seite kannst du neue Artikel in die Datenbank einfügen und alle gespeicherten Artikel verwalten.<br><br>
+                Viel Spaß wünscht das Team von odds & ends!
             </p>
 
             <p>
@@ -60,9 +62,9 @@
 
                     <div class="form-help">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
-                            venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
-                            amet augue diam.
+                            An dieser Stelle werden alle notwendigen Informationen zum neuen Artikel eingetragen:
+                            Artikelname, Beschreibung, Preis und Produkt-Kategorie.
+                            Alle Felder müssen ausgefüllt sein, um ein Produkt zu speichern.
                         </p>
                     </div>
                     <div class="input-group">
@@ -106,16 +108,14 @@
 
                     <div class="form-help">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
-                            venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
-                            amet augue diam.
+                            Bitte lade hier ein Freisteller-Foto von dem abzubildenden Artikel hoch.
                         </p>
                     </div>
                     <div class="input-group">
                         <img src="img/sofa.JPG" alt="sofa"/>
 
                         <div class="form-group file">
-                            <label for="file">Artikelbild</label>
+                            <label for="file">Bild hochladen</label>
                             <input id="file" type="file" value="Upload">
                         </div>
                     </div>
@@ -128,9 +128,7 @@
 
                     <div class="form-help">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus, ultricies non
-                            venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique. Aliquam sit
-                            amet augue diam.
+                            Um dem Kunden eine exakte Informationen zum Produkt zu liefern, müssen hier genaue Werte der Produktmaße in cm eingegeben werden.
                         </p>
                     </div>
                     <div class="input-group">
@@ -158,19 +156,11 @@
                     </legend>
 
                     <div class="form-help">
-                        <div class="help-wrapper">
-                            <div class="help-icon">
-                                <span class="icon help">?</span>
-                            </div>
-                            <div class="help-text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus metus,
-                                    ultricies non
-                                    venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
-                                    Aliquam sit
-                                    amet augue diam.
-                                </p>
-                            </div>
-                        </div>
+                        <p>
+                            Ein Produkt benötigt zusätzlich noch einen Hinweis für den Kunden, wo er den Artikel kaufen kann.
+                            Bitte an dieser Stelle einen Link zum jeweiligen Shop und die dazugehörige Adresse eintragen.
+                            Wenn alle Angaben stimmen, wird der Shop auf der Karte angezeigt.
+                        </p>
                     </div>
                     <div class="input-group">
                         <div class="form-group">
@@ -207,11 +197,32 @@
         </form>
 
         <table>
+        	<tr>
+        		<th>
+        			Bild
+        		</th>
+        		<th>
+        			Name
+        		</th>
+        		<th>
+        			Preis
+        		</th>
+        		<th>
+        			<small>H x B x T<br>
+        			Maßangaben in cm</small>
+        		</th>
+        		<th>
+        			Beschreibung
+        		</th>
+        		<th>
+        			&nbsp;
+        		</th>
+        	</tr>
             <tr>
                 <td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
-                <td><h2>Stuhl Jens</h2></td>
-                <td><h3>126.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
+                <td>Stuhl Jens</td>
+                <td><b>126.00 €</b></td>
+                <td><b>133 / 144 / 255</b></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -221,9 +232,9 @@
 
             <tr>
                 <td><img src="img/sofa.JPG" alt="sofa"/></td>
-                <td><h2>Schrank Pippa</h2></td>
-                <td><h3>600.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
+                <td>Schrank Pippa</td>
+                <td><b>600.00 €</b></td>
+                <td><b>133 / 144 / 255</b></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -233,9 +244,9 @@
 
             <tr>
                 <td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
-                <td><h2>Sessel Kordula</h2></td>
-                <td><h3>1000.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
+                <td>Sessel Kordula</td>
+                <td><b>1000.00 €</b></td>
+                <td><b>133 / 144 / 255</b></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -245,9 +256,9 @@
 
             <tr>
                 <td><img src="img/sofa.JPG" alt="sofa"/></td>
-                <td><h2>Sofa Inga</h2></td>
-                <td><h3>1200.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
+                <td>Sofa Inga</td>
+                <td><b>1200.00 €</b></td>
+                <td><b>133 / 144 / 255</b></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -257,9 +268,9 @@
 
             <tr>
                 <td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
-                <td><h2>Hocker Claudia</h2></td>
-                <td><h3>129.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
+                <td>Hocker Claudia</td>
+                <td><b>129.00 €</b></td>
+                <td><b>133 / 144 / 255</b></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -269,9 +280,9 @@
 
             <tr>
                 <td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
-                <td><h2>Stuhl Miriam</h2></td>
-                <td><h3>95.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
+                <td>Stuhl Miriam</td>
+                <td><b>95.00 €</b></td>
+                <td><b>133 / 144 / 255</b></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -281,9 +292,9 @@
 
             <tr>
                 <td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
-                <td><h2>Hocker Robert</h2></td>
-                <td><h3>85.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
+                <td>Hocker Robert</td>
+                <td><b>85.00 €</b></td>
+                <td><b>133 / 144 / 255</b></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -293,9 +304,9 @@
 
             <tr>
                 <td><img src="img/sofa.JPG" alt="sofa"/></td>
-                <td><h2>Sessel Mario</h2></td>
-                <td><h3>176.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
+                <td>Sessel Mario</td>
+                <td><b>176.00 €</b></td>
+                <td><b>133 / 144 / 255</b></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
@@ -305,9 +316,9 @@
 
             <tr>
                 <td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
-                <td><h2>Stuhl Karen</h2></td>
-                <td><h3>35.00 €</h3></td>
-                <td><h3>133 / 144 / 255</h3></td>
+                <td>Stuhl Karen</td>
+                <td><b>35.00 €</b></td>
+                <td><b>133 / 144 / 255</b></td>
                 <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
                     metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
                     Aliquam sit amet augue diam.
