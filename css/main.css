@@ -232,8 +232,11 @@ footer {
 
 #article-form .form-group input:focus,
 #article-form .form-group select:focus,
-#article-form .form-group textarea:focus {
-    border: 1px solid #48B7AC;
+#article-form .form-group textarea:focus,
+#article-form .form-group input:active,
+#article-form .form-group select:active,
+#article-form .form-group textarea:active {
+    border-color: #48B7AC;
     color: #333;
 }
 
@@ -286,6 +289,13 @@ footer {
     margin: 100px 0 50px 0;
 }
 
+#article-table table th{
+	border-bottom: 3px solid #efefef;
+	padding-bottom: 10px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
 #article-table table td {
     padding: 20px;
     text-align: left;
@@ -294,14 +304,17 @@ footer {
 
 #article-table table tr td:nth-child(2) {
     min-width: 170px;
+    text-align: center;
 }
 
 #article-table table tr td:nth-child(3) {
     min-width: 120px;
+    text-align: center;
 }
 
 #article-table table tr td:nth-child(4) {
     min-width: 150px;
+    text-align: center;
 }
 
 #article-table table tr td:first-child {
@@ -314,11 +327,7 @@ footer {
     padding-right: 0;
 }
 
-#article-table table td h2 {
-    font-size: 18px;
-}
-
-#article-table table td h3 {
+#article-table table td b {
     color: #999999;
     font-size: 16px;
 }
