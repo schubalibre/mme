@@ -1,209 +1,359 @@
-/********************************general css*************************************/
+/************** general CSS **************/
 
-html,
-body{
-  padding:0;
-  margin: 0;
-  height:100%;
-  width: 100%;
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-  font-family: Helvetica,Arial,sans-serif;
-  font-size: 14px;
-  line-height: 1.42857;
-  color: #333;
-  background-color: #FFF;
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    background-color: #FFF;
+    /*margin-top: 60px;*/
 }
 
-a{
-  outline: 0;
+*, *::after, *::before {
+    box-sizing: border-box;
 }
 
-.content{
-    width: 1200px;
-    margin:0 auto;
-}
-/* claer fix für float */
-.content:after {
-   content: " "; /* Older browser do not support empty content */
-   visibility: hidden;
-   display: block;
-   height: 0;
-   clear: both;
+header, footer {
+    margin: 0;
+    padding: 0;
+    /*background: rgba(72,183,172, 0.5);*/
+    background-color: #48B7AC;
 }
 
-header,
-footer{
-  display: block;
-  width:100%;
-  background-color: #e1e1e1;
-  border-top: 1px solid #d1d1d1;
-  border-bottom:1px solid #d1d1d1;
+nav ul, nav li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-input[type=text],
-input[type=url],
-textarea,
-#map
-{
-  display: block;
-  width: 98%;
-  border: 1px solid #efefef;
-  padding:10px 1%;
-  margin:15px 0;
-}
-
-#map{
-  height:400px;
-}
-
-input[type=text]:hover,
-input[type=url]:hover,
-textarea:hover,
-#map:hover,
-input[type=text]:focus,
-input[type=url]:focus,
-textarea:focus {
-  border-color: #999;
-}
-
-input[type=submit],
-input[type=reset]{
-  display: inline-block;
-  padding: 6px 12px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  border-radius: 4px;
-}
-
-/********************************header css*************************************/
-
-header a{
-  color:#666;
-  display: inline-block;
-  line-height: 21px;
-  padding:15px;
-  text-decoration: none;
-}
-
-header a:hover{
-  color:#dedede;
-  background-color: #616161;
-}
-
-header .nav-name{
-  display: inline-block;
-}
-
-header .nav-name a{
-  font-size: 20px;
-}
-
-header nav{
-  display: inline-block;
-  float: right;
-}
-
-/********************************content css*************************************/
-
-.left{
-  float: left;
-  width: 50%;
-}
-
-.right{
-  float: right;
-  width: 50%;
-}
-
-.wraper{
-  padding:40px 20px;
-}
-
-/********************************table css*************************************/
-
-#search {
-  position: relative;
-}
-
-#search input[type=submit]{
-  position: absolute;
-  top: -1px;
-  right: -5px;
-  line-height: 28px;
-}
-
-table{
-  width: 100%;
-  max-width: 100%;
-  border-spacing: 0px;
-  border-collapse: collapse;
-}
-
-table th{
-  vertical-align: bottom;
-  border-bottom: 2px solid #DDD;
-  padding: 8px 4px;
-}
-
-table td {
-  padding: 8px 4px;
-  vertical-align: top;
-  border-top: 1px solid #DDD;
-}
-
-/********************************article css*************************************/
-
-.article img{
-  width:50%;
-  display: block;
-  margin: auto;
+.content {
+    width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    clear: both;
 }
 
 
-
-.article-form p{
-  text-align: center;
+section {
+    display: block;
+    padding: 60px 0 0;
 }
 
-.article-form .btn-group{
-  text-align: center;
+section h1 {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.btn-group input[type=submit]:hover{
-  color:#fff;
-  background-color: green;
+.btn {
+    padding: 10px 20px;
+    border-radius: 2px;
+    border: 1px solid #999;
+    background: transparent;
+    color: #666;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.2s ease 0s, color 0.2s ease 0s;
+    display: inline-block;
 }
 
-.btn-group input[type=reset]:hover{
-  color:#fff;
-  background-color: red;
+.btn.caption {
+    color: white;
+    border-color: white;
 }
 
-/********************************footer css*************************************/
-
-footer{
-  position: relative;
-  bottom: 0px;
+.btn:hover {
+    background: #48B7AC;
+    color: #FFF;
 }
 
-footer nav{
-  margin:0 auto;
-  width: auto;
-  display: inline-block;
-  float: right;
+/************** header/footer css **************/
+
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    top: 0;
 }
 
-footer a{
-  color:#666;
-  display: inline-block;
-  line-height: 21px;
-  padding:15px;
-  text-decoration: none;
+nav a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0px 30px 0 0;
+    display: inline-block; 
 }
 
-footer a:hover{
-  color:#dedede;
-  background-color: #616161;
+nav ul li a{
+	line-height: 35.8px;
 }
+
+nav a img{
+	width: 120px;
+}
+
+nav li:last-child a {
+    margin-right: 0;
+}
+
+nav ul li a:hover {
+    border-bottom: 1px solid #FFF;
+}
+
+nav li {
+    float: left;
+}
+
+nav ul {
+    float: right;
+}
+
+nav {
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+}
+
+/************** article-top css **************/
+
+#article-top {
+    position: relative;
+    height: 100vh;
+}
+
+#article-top .content {
+    position: absolute;
+    margin: 200px 50%;
+    padding: 40px;
+    left: -500px;
+    background: #ba7573;
+    background: rgba(72, 183, 172, 0.6);
+    color: white;
+    text-align: center;
+}
+
+#article-top .caption-box h1 {
+    font-size: 45px;
+    margin-top: 0;
+}
+
+#article-top .caption-box .welcome-text{
+	font-size: 16px;
+}
+
+#article-top .caption-box p:last-child {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#article-top .caption-image {
+    height: 100vh;
+    background: url('../img/2015-03-01_1512.png') no-repeat center center;
+    background-size: cover;
+}
+
+/************** article-form css **************/
+
+#article-form fieldset {
+    border: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+#article-form fieldset legend {
+    font-size: 20px;
+    width:100%;
+    display: block;
+    font-weight: bolder;
+    padding:0;
+    margin:20px 0 50px;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.3);
+}
+
+#article-form fieldset .form-help {
+    float: left;
+    width: 30%;
+    height:150px;
+    position: relative;
+}
+
+#article-form fieldset .form-help p{
+	width: 100%;
+	height: 150px;
+	margin: 0;
+	padding: 0 100px 0 0;
+}
+	
+
+#article-form fieldset .input-group {
+    float: right;
+    width: 70%;
+    overflow: hidden;
+}
+
+#article-form fieldset .form-group {
+    margin: 0 0 30px 0;
+}
+
+#article-form fieldset .form-group:last-child {
+    margin: 0;
+}
+
+#article-form .form-group .col3 {
+    float: left;
+    width: 33%;
+    padding: 0 0 0 15px;
+}
+
+#article-form .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+#article-form .form-group input,
+#article-form .form-group select,
+#article-form .form-group textarea {
+    font-size: 1.2em;
+    background-color: white;
+    border: 1px solid #999;
+    padding: 5px;
+    width: 100%;
+}
+
+#article-form .form-group input:focus,
+#article-form .form-group select:focus,
+#article-form .form-group textarea:focus,
+#article-form .form-group input:active,
+#article-form .form-group select:active,
+#article-form .form-group textarea:active {
+    border-color: #48B7AC;
+    color: #333;
+}
+
+#article-form textarea {
+    height: 155px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+#article-form img {
+    width: auto;
+    margin: 50px auto;
+    display: block;
+}
+
+#map {
+    display: block;
+    width: 100%;
+    height: 340px;
+    margin-top: 28px;
+}
+
+#article-form .btn-group {
+    width: 100%;
+    margin: 30px 0;
+    text-align: center;
+    float: left;
+}
+
+/************** article-table css **************/
+
+#article-table form {
+    margin-bottom: 20px;
+}
+
+#article-table input {
+    vertical-align: middle;
+}
+
+#article-table #search-bar {
+    border: 1px solid #999;
+    width: 90%;
+    padding: 1%;
+}
+
+#article-table table {
+    width: 100%;
+    max-width: 100%;
+    border-spacing: 0;
+    margin: 100px 0 50px 0;
+}
+
+#article-table table th{
+	border-bottom: 3px solid #efefef;
+	padding-bottom: 10px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#article-table table td {
+    padding: 20px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+#article-table table tr td:nth-child(2) {
+    min-width: 170px;
+    text-align: center;
+}
+
+#article-table table tr td:nth-child(3) {
+    min-width: 120px;
+    text-align: center;
+}
+
+#article-table table tr td:nth-child(4) {
+    min-width: 160px;
+    text-align: center;
+}
+
+#article-table table tr td:first-child {
+    min-width: unset;
+    padding-left: 0;
+}
+
+#article-table table tr td:last-child {
+    min-width: unset;
+    padding-right: 0;
+}
+
+#article-table table td img {
+    width: 100px;
+}
+
+/************** helpers css **************/
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+/* start commented backslash hack \*/
+* html .clearfix {
+    height: 1%;
+}
+
+.clearfix {
+    display: block;
+}
+
+/* close commented backslash hack */
+
