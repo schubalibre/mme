@@ -12,7 +12,7 @@ body {
     font-size: 14px;
     color: #333;
     background-color: #FFF;
-    margin-top: 60px;
+    /*margin-top: 60px;*/
 }
 
 *, *::after, *::before {
@@ -38,7 +38,6 @@ nav ul, nav li {
     overflow: hidden;
     clear: both;
 }
-
 
 section {
     display: block;
@@ -115,19 +114,26 @@ nav a {
     color: #fff;
     font-weight: bold;
     text-decoration: none;
-    margin: 10px 30px 10px 0;
+    margin: 0 30px 0 0;
+    display:inline-block;
+
+    ...........................................................................................................................................
 }
 
-.content nav a img{
-	width: 80px;
+nav ul li a{
+    line-height: 35.8px;
+}
+
+nav ul li a:hover {
+    border-bottom: 1px solid #FFF;
+}
+
+nav a img{
+	width: 120px;
 }
 
 nav li:last-child a {
     margin-right: 0;
-}
-
-nav a:hover {
-    border-bottom: 1px solid #FFF;
 }
 
 nav li {
@@ -140,7 +146,7 @@ nav ul {
 
 nav {
     overflow: hidden;
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 footer {
