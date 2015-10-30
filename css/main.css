@@ -22,7 +22,21 @@ body {
 header, footer {
     margin: 0;
     padding: 0;
-    /*background: rgba(72,183,172, 0.5);*/
+    background-color: transparent;
+}
+
+header.active{
+    background: rgba(72,183,172, 1);
+    transition: background 0.4s;
+}
+
+header.transparent{
+    background-color: transparent;
+    transition: background 0.4s;
+}
+
+footer{
+    background-color: transparent;
     background-color: #48B7AC;
 }
 
