@@ -313,7 +313,7 @@ footer {
 }
 
 #article-table table tr td:nth-child(4) {
-    min-width: 150px;
+    min-width: 160px;
     text-align: center;
 }
 
@@ -325,11 +325,6 @@ footer {
 #article-table table tr td:last-child {
     min-width: unset;
     padding-right: 0;
-}
-
-#article-table table td b {
-    color: #999999;
-    font-size: 16px;
 }
 
 #article-table table td img {
