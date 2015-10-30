@@ -39,6 +39,7 @@ nav ul, nav li {
     clear: both;
 }
 
+
 section {
     display: block;
     padding: 60px 0 0;
@@ -115,6 +116,10 @@ nav a {
     font-weight: bold;
     text-decoration: none;
     margin: 10px 30px 10px 0;
+}
+
+.content nav a img{
+	width: 80px;
 }
 
 nav li:last-child a {
