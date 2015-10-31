@@ -107,26 +107,12 @@ nav a img{
 }
 
 nav ul li a{
+    line-height: 51px;
     padding:10px;
 }
 
-header nav ul li a{
-    border-bottom: 5px solid transparent;
-	line-height: 46px;
-}
-
-header nav ul li a:hover {
+nav ul li a:hover {
     background: #398075;
-    border-bottom: 5px solid #2c584d;
-}
-
-footer nav ul li a{
-    border-top: 5px solid transparent;
-}
-
-footer nav ul li a:hover {
-    background: #398075;
-    border-top: 5px solid #2c584d;
 }
 
 nav li:last-child a {
