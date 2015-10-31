@@ -1,55 +1,56 @@
-window.onscroll = function(){
-
-    if (document.body.scrollTop || document.documentElement.scrollTop > 10) {
-        document.getElementsByTagName("header")[0].className = "active";
-    } else {
-        document.getElementsByTagName("header")[0].className = "transparent";
-    }
-};
-
-setTimeout(function(){
-    document.getElementById("helper-modal").style.display = "block";
-}, 500);
-
-(function(document) {
+(function (document) {
     'use strict';
 
-    var LightTableFilter = (function(Arr) {
+    window.onscroll = function () {
 
-        var _input;
+        var height = document.getElementById('article-top').offsetHeight;
 
-        function _onInputEvent(e) {
-            _input = e.target;
-            console.log(_input);
-            console.log("sgogj");
-            var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-            Arr.forEach.call(tables, function(table) {
-                Arr.forEach.call(table.tBodies, function(tbody) {
-                    Arr.forEach.call(tbody.rows, _filter);
-                });
-            });
+        if (document.body.scrollTop || document.documentElement.scrollTop > height) {
+            document.getElementsByTagName("header")[0].className = "active";
+        } else if (document.body.scrollTop || document.documentElement.scrollTop > 10) {
+            document.getElementsByTagName("header")[0].className = "transparent-active";
+        } else {
+            document.getElementsByTagName("header")[0].className = "transparent";
         }
+    };
 
-        function _filter(row) {
-            var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-            row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-        }
+    /*setTimeout(function () {
+        document.getElementById("helper-modal").style.display = "block";
+    }, 500);*/
 
-        return {
-            init: function() {
-                var inputs = document.getElementById('search-bar');
+    var tablefilter = new function() {
 
-                Arr.forEach.call(inputs, function(input) {
-                    input.oninput = _onInputEvent;
-                });
+        this.filter = function(){
+
+            var words = this.value.toLowerCase().split(" ");
+            var table = document.getElementsByClassName(this.dataset.table);
+            var ele;
+
+            for (var r = 1; r < table[0].rows.length; r++){
+                ele = table[0].rows[r].innerHTML.replace(/<[^>]+>/g,"");
+                var className = 'hide';
+
+                for (var i = 0; i < words.length; i++) {
+                    if (ele.toLowerCase().indexOf(words[i])>=0)
+                        className = 'show';
+                    else {
+                        className = 'hide';
+                        break;
+                    }
+                }
+                table[0].rows[r].className = className;
             }
-        };
-    })(Array.prototype);
+        },
 
-    document.addEventListener('readystatechange', function() {
-        if (document.readyState === 'complete') {
-            LightTableFilter.init();
+        this.init = function(elementId){
+            var input =  document.getElementById(elementId);
+            input.addEventListener("keyup", this.filter, true);
         }
-    });
+
+    };
+
+    tablefilter.init("search-bar");
+
+
 
 })(document);

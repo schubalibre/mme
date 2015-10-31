@@ -25,8 +25,13 @@ header, footer {
     background-color: transparent;
 }
 
-header.active{
+header.transparent-active{
     background: rgba(72,183,172, 0.6);
+    transition: background 0.4s;
+}
+
+header.active{
+    background: rgba(72,183,172, 1);
     transition: background 0.4s;
 }
 
@@ -104,12 +109,25 @@ nav a {
 }
 
 nav ul li a{
-	line-height: 35.8px;
+	line-height: 46px;
+    transition: line-height 0.2s ease 0s;
 }
 
 nav a img{
 	width: 120px;
+    transition: width 0.2s ease 0s;
 }
+
+header.active nav a img{
+    width: 60px;
+
+}
+
+header.active nav ul li a{
+    line-height: 23px;
+}
+
+
 
 nav li:last-child a {
     margin-right: 0;
@@ -310,6 +328,15 @@ footer {
 	font-weight: bold;
 }
 
+#article-table table tbody tr.hide td{
+    display:none;
+}
+
+#article-table table tbody tr.show{
+    display:table-row;
+}
+
+
 #article-table table td {
     padding: 20px;
     text-align: left;
@@ -354,11 +381,11 @@ footer {
     margin: -300px;
     left: 50%;
     border: 1px solid #dedede;
-    background: #fff;
-    border-radius: 8px;
+    background: rgba(255,255,255, 0.6);
+    border-radius: 2px;
     padding:10px 50px;
 
-    box-shadow: 6px 7px 9px #888;
+    box-shadow: 6px 7px 9px #666;
     display: none;
 }
 
