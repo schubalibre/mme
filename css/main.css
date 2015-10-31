@@ -26,7 +26,7 @@ header, footer {
 }
 
 header.active{
-    background: rgba(72,183,172, 1);
+    background: rgba(72,183,172, 0.6);
     transition: background 0.4s;
 }
 
@@ -343,6 +343,23 @@ footer {
 
 #article-table table td img {
     width: 100px;
+}
+
+/************** modal css **************/
+
+.modal{
+    position:fixed;
+    top:500px;
+    width: 600px;
+    margin: -300px;
+    left: 50%;
+    border: 1px solid #dedede;
+    background: #fff;
+    border-radius: 8px;
+    padding:10px 50px;
+
+    box-shadow: 6px 7px 9px #888;
+    display: none;
 }
 
 /************** helpers css **************/

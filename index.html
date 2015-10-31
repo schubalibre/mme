@@ -43,14 +43,6 @@
 </div>
 <div class="content">
     <section id="article-form" class="clearfix">
-        <!--  required bedeutet, dass es ein Pflichtfeld ist (muss ausgefüllt werden)
-        id muss einmalig sein, dann kann man mit css und js darauf zugreifen
-        name ist speziell für input, wie eine variablenzuweisung, unter welchem namen werden die daten an den server geschickt.
-        value ist der Wert in einem Kontaktformular, der schon vorhanden ist (z.B. wenn man Daten editieren möchte)
-        placeholder ist der default-Text, der in dem Feld steht, oft als Hilfestellung, was in dieses Feld gehört.
-        form ist die große schachtel, input sind eingabefelder, textarea ist eingabefeld mit mehreren zeilen.
-        type ist html bestimmt, es gibt z.B. text, email...
-        -->
         <h1>Artikel bearbeiten</h1>
 
         <form action="form_response.php" method="post">
@@ -192,11 +184,11 @@
         <h1>Artikelübersicht</h1>
 
         <form>
-            <input id="search-bar" type="text" name="query" placeholder="Artikelsuche"/>
+            <input id="search-bar" type="text" name="query" data-table="order-table" placeholder="Artikelsuche"/>
             <input id="search-btn" type="submit" name="search" class="btn" value="Suchen">
         </form>
 
-        <table>
+        <table class="order-table">
         	<tr>
         		<th>
         			Bild
@@ -347,6 +339,20 @@
         </nav>
     </div>
 </footer>
+
+<div id="helper-modal" class="modal">
+    <div class="modal-header">
+        <h1>Benötigen Sie Hilfe?</h1>
+        <a href="">schließen</a>
+    </div>
+    <div class="model-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum neque pulvinar lobortis fermentum. Aliquam et auctor purus, a malesuada orci. Fusce vel dolor sed ipsum dapibus facilisis nec vel risus. Mauris cursus at nulla aliquet congue. Cras ut nulla tellus. Proin vel eros tristique, dignissim diam in, consequat dolor. Pellentesque lobortis accumsan nunc vitae dignissim. Sed mollis hendrerit mi, ut convallis metus pulvinar at. Vivamus sit amet orci tincidunt, posuere quam eu, dapibus elit. Aenean varius orci non lacus dapibus,</p>
+    </div>
+    <div class="modal-footer">
+        <button>OK</button>
+    </div>
+
+</div>
 
 <!--  Das hier ist ein Kommentar -->
 <script src="js/main.js"></script>
