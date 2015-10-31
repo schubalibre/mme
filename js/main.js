@@ -4,10 +4,11 @@
     window.onscroll = function () {
 
         var height = document.getElementById('article-top').offsetHeight;
+        var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
 
-        if (document.body.scrollTop || document.documentElement.scrollTop > height) {
+        if (scrollTop > height) {
             document.getElementsByTagName("header")[0].className = "active";
-        } else if (document.body.scrollTop || document.documentElement.scrollTop > 10) {
+        } else if (scrollTop > 10) {
             document.getElementsByTagName("header")[0].className = "transparent-active";
         } else {
             document.getElementsByTagName("header")[0].className = "transparent";
