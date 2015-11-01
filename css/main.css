@@ -41,7 +41,6 @@ header.transparent{
 }
 
 footer{
-    background-color: transparent;
     background-color: #48B7AC;
 }
 
@@ -132,38 +131,26 @@ header.active nav a img{
 
 nav ul li a{
     padding:10px;
-}
-
-header nav ul li a{
-    border-bottom: 5px solid transparent;
-	line-height: 46px;
+	line-height: 51px;
     transition: line-height 0.2s ease 0s;
 }
 
-header.active nav ul li a{
-    line-height: 23px;
+footer nav ul li a{
+    line-height: 35px;
 }
 
-header nav ul li a:hover {
+nav ul li a:hover {
     background: #398075;
-    border-bottom: 5px solid #2c584d;
+}
+
+header.active nav ul li a{
+    line-height: 28px;
 }
 
 header.transparent nav ul li a:hover{
     background: transparent;
     border-bottom: 5px solid #FFF;
 }
-
-footer nav ul li a{
-    line-height: 46px;
-    border-top: 5px solid transparent;
-}
-
-footer nav ul li a:hover {
-    background: #398075;
-    border-top: 5px solid #2c584d;
-}
-
 nav li:last-child a {
     margin-right: 0;
 }
