@@ -22,8 +22,15 @@ body {
 header, footer {
     margin: 0;
     padding: 0;
-    /*background: rgba(72,183,172, 0.5);*/
     background-color: #48B7AC;
+}
+
+header{
+    background: rgba(72,183,172, 0.6);
+}
+
+header.small{
+    background: rgba(72,183,172, 1.0);
 }
 
 nav ul, nav li {
@@ -38,7 +45,6 @@ nav ul, nav li {
     overflow: hidden;
     clear: both;
 }
-
 
 section {
     display: block;
@@ -104,11 +110,21 @@ nav a {
 
 nav a img{
     width: 120px;
+    transition: width 0.2s ease;
+}
+
+header.small nav a img{
+    width: 60px;
 }
 
 nav ul li a{
     line-height: 51px;
     padding:10px;
+    transition: line-height 0.2s ease;
+}
+
+header.small nav ul li a{
+    line-height: 23px;
 }
 
 nav ul li a:hover {
