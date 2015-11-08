@@ -39,7 +39,16 @@
             </p>
         </div>
     </div>
-    <div class="caption-image"></div>
+    <div id="background-carousel" class="clearfix">
+        <ul>
+            <li style="background-image: url('/img/2015-03-01_1512.png')"></li>
+            <li style="background-image: url('/img/room.jpg')"></li>
+            <li style="background-image: url('/img/2015-03-01_1512.png')"></li>
+            <li style="background-image: url('/img/room.jpg')"></li>
+            <li style="background-image: url('/img/2015-03-01_1512.png')"></li>
+            <li style="background-image: url('/img/room.jpg')"></li>
+        </ul>
+    </div>
 </div>
 <div class="content">
     <section id="article-form" class="clearfix">
@@ -168,13 +177,14 @@
                             <input id="shop" name="shop" type="url" value=""
                                    placeholder="Bitte hier den Link zum Shop eintragen" required/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group address-wrapper">
                             <label for="address">Adresse</label>
-                            <input id="address" name="address" type="text" value=""
-                                   placeholder="Die Adresse des Shops angeben"/>
+                            <input id="address" name="address" type="text" value="" placeholder="Die Adresse des Shops angeben" autocomplete="off" />
+
+                            <div id="mapResult" style="display:none;"></div>
 
                         </div>
-                        <div id="map"></div>
+                        <ul id="map"></ul>
 
                         <div class="btn-group">
                             <input type="submit" class="btn submit" name="save" value="Speichern"/>
@@ -188,15 +198,15 @@
         </form>
     </section>
 
-    <section id="article-table">
+    <section id="table">
         <h1>Artikelübersicht</h1>
 
         <form>
-            <input id="search-bar" type="text" name="query" placeholder="Artikelsuche"/>
+            <input id="search-bar" type="text" name="query" data-table="article-table" placeholder="Artikelsuche"/>
             <input id="search-btn" type="submit" name="search" class="btn" value="Suchen">
         </form>
 
-        <table>
+        <table id="article-table">
         	<tr>
         		<th>
         			Bild
@@ -218,7 +228,7 @@
         			&nbsp;
         		</th>
         	</tr>
-            <tr>
+            <tr class="show">
                 <td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
                 <td>Stuhl Jens</td>
                 <td>126.00 €</td>
@@ -230,7 +240,7 @@
                 <td><a href="#article-form" class="btn edit">edit</a></td>
             </tr>
 
-            <tr>
+            <tr class="show">
                 <td><img src="img/sofa.JPG" alt="sofa"/></td>
                 <td>Schrank Pippa</td>
                 <td>600.00 €</td>
@@ -242,7 +252,7 @@
                 <td><a href="#article-form" class="btn edit">edit</a></td>
             </tr>
 
-            <tr>
+            <tr class="show">
                 <td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
                 <td>Sessel Kordula</td>
                 <td>1000.00 €</td>
@@ -254,7 +264,7 @@
                 <td><a href="#article-form" class="btn edit">edit</a></td>
             </tr>
 
-            <tr>
+            <tr class="show">
                 <td><img src="img/sofa.JPG" alt="sofa"/></td>
                 <td>Sofa Inga</td>
                 <td>1200.00 €</td>
@@ -266,7 +276,7 @@
                 <td><a href="#article-form" class="btn edit">edit</a></td>
             </tr>
 
-            <tr>
+            <tr class="show">
                 <td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
                 <td>Hocker Claudia</td>
                 <td>129.00 €</td>
@@ -278,7 +288,7 @@
                 <td><a href="#article-form" class="btn edit">edit</a></td>
             </tr>
 
-            <tr>
+            <tr class="show">
                 <td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
                 <td>Stuhl Miriam</td>
                 <td>95.00 €</td>
@@ -290,7 +300,7 @@
                 <td><a href="#article-form" class="btn edit">edit</a></td>
             </tr>
 
-            <tr>
+            <tr class="show">
                 <td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
                 <td>Hocker Robert</td>
                 <td>85.00 €</td>
@@ -302,7 +312,7 @@
                 <td><a href="#article-form" class="btn edit">edit</a></td>
             </tr>
 
-            <tr>
+            <tr class="show">
                 <td><img src="img/sofa.JPG" alt="sofa"/></td>
                 <td>Sessel Mario</td>
                 <td>176.00 €</td>
@@ -314,7 +324,7 @@
                 <td><a href="#article-form" class="btn edit">edit</a></td>
             </tr>
 
-            <tr>
+            <tr class="show">
                 <td><img src="img/holzstuhl.jpg" alt="sofa"/></td>
                 <td>Stuhl Karen</td>
                 <td>35.00 €</td>
