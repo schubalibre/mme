@@ -14,7 +14,7 @@ function backgroundCarousel(){
         lis = ul[0].getElementsByTagName("li");
 
     var x = 0;
-    var interval = setInterval(function() {
+    setInterval(function() {
 
         var i = div.scrollLeft;
         var scrollLeft = setInterval(function() {
