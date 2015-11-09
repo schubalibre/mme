@@ -4,9 +4,6 @@ window.onscroll = function(){
     var height = document.getElementById("article-top").offsetHeight;
     var header = document.getElementsByTagName("header")[0];
 
-    console.log(scrollTop);
-    console.log(height);
-
     if(scrollTop > height){
         header.className = "small";
     }else {
