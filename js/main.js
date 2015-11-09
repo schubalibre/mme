@@ -67,35 +67,37 @@ function initMap() {
 function geocodeAddress(geocoder, resultsMap) {
 
     var input = document.getElementById('address'),
-        address = input.value, ul = document.getElementById("mapResult");
+        address = input.value,
+        datalist = document.getElementById("mapResult");
 
     if (address.length > 3) {
         geocoder.geocode({'address': address}, function (results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
 
                 input.style.borderColor = "#999";
-
+console.log(datalist);
                 // reset all list elements
-                ul.innerHTML = '';
-                ul.style.display = "block";
+                datalist.innerHTML = '';
+                datalist.style.display = "block";
 
                 for (var i = 0; i < results.length; i++) {
-                    var li = document.createElement("li");
-                    li.setAttribute('data-id', i);
-                    li.appendChild(document.createTextNode(results[i].formatted_address));
-                    li.addEventListener('click', function (target) {
+                    var option = document.createElement("option");
+                    option.setAttribute('data-id', i);
+                    option.value=results[i].formatted_address;
+                    option.appendChild(document.createTextNode(results[i].formatted_address));
+                    option.addEventListener('click', function (target) {
                         var id = this.dataset.id;
                         setMarker(resultsMap, results[id]);
                         input.value = results[id].formatted_address;
-                        ul.style.display = "none";
+                        datalist.style.display = "none";
                     }, false);
 
-                    ul.appendChild(li);
+                    datalist.appendChild(option);
 
                     if (i >= 10) break; // not more than 10
                 }
             } else {
-                ul.style.display = "none";
+                datalist.style.display = "none";
                 input.style.borderColor = "red";
             }
         });

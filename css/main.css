@@ -293,27 +293,26 @@ footer {
     border: 1px solid #999;
     border-top:none;
     width:100%;
-    list-style: none;
     margin:0;
     padding:0;
 }
 
-#mapResult li{
+#mapResult option{
     border-top:1px solid #999;
     margin: 0;
     padding:5px 10px;
     list-style: none;
 }
 
-#mapResult li:first-child{
+/*#mapResult option:first-child{
     border-top:none;
 }
 
-#mapResult li:hover{
+#mapResult option:hover{
     color:white;
     background: #999;
     cursor: pointer;
-}
+}*/
 
 #article-form img {
     width: auto;
