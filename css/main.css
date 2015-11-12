@@ -156,6 +156,7 @@ footer {
     background: rgba(72, 183, 172, 0.6);
     color: white;
     text-align: center;
+    z-index: 100;
 }
 
 #article-top .caption-box h1 {
@@ -176,25 +177,74 @@ footer {
     height: 100vh;
     width: 100%;
     overflow: hidden;
+    position: relative;
 }
 
-#article-top #background-carousel ul{
-    width: 100000px;
-    height:100%;
-    padding: 0;
-    margin:0;
+/************** slider-carousel *******************/
+
+.slider-carousel img{
+    display: none;
 }
 
-#article-top #background-carousel ul li{
-    padding: 0;
-    margin:0;
-    list-style: none;
-    float: left;
-    width: 100vw;
-    height:100vh;
+.slider-carousel a.slider{
+    height: 100%;
+    width:100%;
+    display: block;
+    bottom: 0;
+    text-decoration: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 0;
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: 50% 50%;
     background-size: cover;
+    text-indent: -9999px;
+    transition: transform 2000ms ease-out;
+    transform: translateX(0px);
+}
+
+.slider-carousel a.active{
+    opacity: 1;
+    z-index: 1;
+}
+
+.slider-carousel a.prev{
+    transform: translateX(-100%);
+}
+
+.slider-carousel a.next{
+    transform: translateX(100%);
+}
+
+.slider-carousel.nextSlide a.prev{
+    opacity:1;
+}
+
+.slider-carousel.prevSlide a.next{
+    opacity:1;
+}
+
+.slider-carousel a.nav-next,
+.slider-carousel a.nav-prev{
+    position: absolute;
+    z-index: 1000;
+    top:50%;
+    cursor: pointer;;
+}
+
+.slider-carousel a.nav-next{
+    right: 0;
+}
+
+.slider-carousel a.nav-prev{
+    left: 0;
+}
+
+.slider-carousel a.nav-next:hover,
+.slider-carousel a.nav-prev:hover{
+    color:white;
 }
 
 /************** article-form css **************/
@@ -304,7 +354,7 @@ footer {
     list-style: none;
 }
 
-/*#mapResult option:first-child{
+#mapResult option:first-child{
     border-top:none;
 }
 
@@ -312,7 +362,7 @@ footer {
     color:white;
     background: #999;
     cursor: pointer;
-}*/
+}
 
 #article-form img {
     width: auto;

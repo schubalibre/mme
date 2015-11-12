@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slider</title>
+    <style>
+
+        html, body{
+            margin:0;
+            padding:0;
+        }
+
+        #slider-carousel{
+            width:100%;
+            height:100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider-carousel img{
+            display: none;
+        }
+
+        .slider-carousel a.slider{
+            height: 100%;
+            width:100%;
+            display: block;
+            bottom: 0;
+            text-decoration: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            z-index: 0;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: cover;
+            text-indent: -9999px;
+            transition: transform 2000ms ease-out;
+            transform: translateX(0px);
+        }
+
+        .slider-carousel a.active{
+            opacity: 1;
+            z-index: 10;
+        }
+
+        .slider-carousel a.prev{
+            transform: translateX(-100%);
+        }
+
+        .slider-carousel a.next{
+            transform: translateX(100%);
+        }
+
+        .slider-carousel.nextSlide a.prev{
+            opacity:1;
+        }
+
+        .slider-carousel.prevSlide a.next{
+            opacity:1;
+        }
+
+        .slider-carousel a.nav-next,
+        .slider-carousel a.nav-prev{
+            position: absolute;
+            z-index: 1000;
+            top:50%;
+            cursor: pointer;;
+        }
+
+        .slider-carousel a.nav-next{
+            right: 0;
+        }
+
+        .slider-carousel a.nav-prev{
+            left: 0;
+        }
+
+        .slider-carousel a.nav-next:hover,
+        .slider-carousel a.nav-prev:hover{
+            color:white;
+        }
+
+    </style>
+</head>
+<body>
+<div id="slider-carousel" class="clearfix">
+    <img src="img/room.jpg"/>
+    <img src="img/room2.jpg"/>
+    <img src="img/room3.jpg"/>
+    <img src="img/room4.jpg"/>
+    <img src="img/room5.jpg"/>
+    <img src="img/room6.jpg"/>
+</div>
+<script>
+    window.addEventListener('load', init, false);
+
+    function init(){
+        sliderCarousel.init("slider-carousel");
+    }
+
+
+
+
+    var sliderCarousel = new function(){
+
+        var carousel = null,
+                carouselClass,
+                ankers = [],
+                activeSlide,
+                nextSlide,
+                prevSlide,
+                clickable = true;
+
+        this.init = function(elementId){
+            carousel = document.getElementById(elementId);
+            carousel.className = carousel.className + " slider-carousel"
+            carouselClass = carousel.className;
+            this.generateCarousel();
+        }
+
+        this.nextSlideAction = function(){
+
+            if (!clickable) return false;
+
+            clickable = false;
+
+            carousel.className = carouselClass + " nextSlide";
+
+            var active = ankers[activeSlide];
+            active.className = "slider prev";
+            active.addEventListener('transitionend', function (event) {
+                carousel.className = carouselClass;
+                clickable = true;
+            }, false);
+
+            var next = ankers[nextSlide];
+            next.className = "slider active";
+
+            var prev = ankers[prevSlide];
+            prev.className = "slider";
+
+            var newNext = ankers[(nextSlide + 1 >= ankers.length) ? 0 : nextSlide + 1];
+            newNext.className = "slider next";
+
+            prevSlide = activeSlide;
+            activeSlide = nextSlide;
+            nextSlide = (nextSlide + 1 >= ankers.length) ? 0 : nextSlide + 1;
+
+            return false
+        }
+
+        this.prevSlideAction = function() {
+
+            if (!clickable) return false;
+
+            clickable = false;
+
+            carousel.className = carouselClass + " prevSlide";
+
+            var active = ankers[activeSlide];
+            active.className = "slider next";
+            active.addEventListener('transitionend', function (event) {
+                carousel.className = carouselClass;
+                clickable = true;
+            }, false);
+
+            var next = ankers[nextSlide];
+            next.className = "slider";
+
+            var prev = ankers[prevSlide];
+            prev.className = "slider active";
+
+            var newPrev = ankers[(prevSlide - 1 < 0 ) ? ankers.length - 1 : prevSlide - 1];
+            newPrev.className = "slider prev";
+
+            nextSlide = activeSlide;
+            activeSlide = prevSlide;
+            prevSlide = (prevSlide - 1 < 0 ) ? ankers.length - 1 : prevSlide - 1;
+
+            return false
+        }
+
+        this.generateCarousel = function(){
+            var carouselChildren = this._toArray(carousel.children);
+            carousel.innerHTML = null;
+
+            var prev = document.createElement("a");
+            prev.className = "nav-prev";
+            prev.appendChild(document.createTextNode("prev"));
+            prev.addEventListener('click',this.prevSlideAction,false);
+
+            var next = document.createElement("a");
+            next.className = "nav-next";
+            next.appendChild(document.createTextNode("next"));
+            next.addEventListener('click',this.nextSlideAction,false);
+
+            carousel.appendChild(prev);
+
+            Array.prototype.forEach.call(carouselChildren, function(children, i) {
+                var anker = document.createElement("a"),
+                        img = new Image(),
+                        transX = carousel.offsetWidth * i;
+
+                img.setAttribute('src', children.getAttribute('src'));
+                img.onload = function() {
+
+                    anker.style.backgroundImage = 'url(' + children.getAttribute('src') + ')';
+
+                    anker.className = "slider";
+
+                    if(i == 0) {
+                        anker.className = anker.className + " active";
+                        activeSlide = i;
+                    }else if(i == 1){
+                        anker.className = anker.className + " next";
+                        nextSlide = i;
+                    }else if(i == carouselChildren.length - 1){
+                        anker.className = anker.className + " prev";
+                        prevSlide = i;
+                    }
+                }
+
+                carousel.appendChild(anker);
+                ankers.push(anker);
+            });
+
+            carousel.appendChild(next);
+        }
+
+        this._toArray = function(obj) {
+            return Array.prototype.slice.call(obj);
+        }
+    }
+
+</script>
+</body>
+</html>

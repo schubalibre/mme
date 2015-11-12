@@ -1,37 +1,16 @@
+// ruf die Funktion init nach dem fertigen Laden der Seite auf
 window.addEventListener('load', init, false);
 
+// rut alle weiteren Funktionen auf
 function init() {
-    backgroundCarousel();
+    sliderCarousel.init("background-carousel");
     scrollNav();
     initMap();
     tablefilter.init("search-bar");
+
 }
 
-function backgroundCarousel(){
-
-    var div = document.getElementById("background-carousel"),
-        ul = div.getElementsByTagName("ul"),
-        lis = ul[0].getElementsByTagName("li");
-
-    var x = 0;
-    setInterval(function() {
-
-        var i = div.scrollLeft;
-        var scrollLeft = setInterval(function() {
-            div.scrollLeft = i;
-            i += 10;
-            if(i >= lis[x].offsetLeft) clearInterval(scrollLeft)
-        },1);
-
-        x++;
-        if(x>=lis.length){
-            x=0;
-            i=0;
-        }
-
-    }, 3000);
-}
-
+// wenn wir über unser Titelbild herausscrollen wird die nav Leiste verkleinert
 function scrollNav() {
 
     var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
@@ -52,6 +31,7 @@ function scrollNav() {
     });
 }
 
+// initialisiert unsere Karte
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 11,
@@ -64,6 +44,7 @@ function initMap() {
     });
 }
 
+// ermöglicht das uchen von Adressen und gibt Vorschläge
 function geocodeAddress(geocoder, resultsMap) {
 
     var input = document.getElementById('address'),
@@ -75,7 +56,6 @@ function geocodeAddress(geocoder, resultsMap) {
             if (status === google.maps.GeocoderStatus.OK) {
 
                 input.style.borderColor = "#999";
-console.log(datalist);
                 // reset all list elements
                 datalist.innerHTML = '';
                 datalist.style.display = "block";
@@ -105,7 +85,7 @@ console.log(datalist);
 }
 
 var marker;
-
+// setzt den Marker auf der GoogleKarte
 function setMarker(resultsMap, result) {
 
     if(typeof marker != "undefined") marker.setMap(null);
@@ -118,6 +98,7 @@ function setMarker(resultsMap, result) {
     });
 }
 
+// filtert die Tabele nach gesuchten Begriffe
 var tablefilter = new function () {
 
     this.filter = function () {
@@ -144,8 +125,149 @@ var tablefilter = new function () {
 
     this.init = function (elementId) {
         var input = document.getElementById(elementId);
+
+        var form = input.parentElement;
+
+        if(form.nodeName === "FORM"){
+            form.addEventListener('submit',function(event){
+                event.preventDefault();
+                return false;
+            },false);
+        }
+
         input.addEventListener("keyup", this.filter, true);
     }
+};
 
+// generiert das SilderCarousel
+var sliderCarousel = new function(){
+
+    var carousel = null,
+        carouselClass,
+        ankers = [],
+        activeSlide,
+        nextSlide,
+        prevSlide,
+        clickable = true;
+
+    this.init = function(elementId){
+        carousel = document.getElementById(elementId);
+        carousel.className = carousel.className + " slider-carousel"
+        carouselClass = carousel.className;
+        this.generateCarousel();
+    }
+
+    this.nextSlideAction = function(){
+
+        if (!clickable) return false;
+
+        clickable = false;
+
+        carousel.className = carouselClass + " nextSlide";
+
+        var active = ankers[activeSlide];
+        active.className = "slider prev";
+        active.addEventListener('transitionend', function (event) {
+            carousel.className = carouselClass;
+            clickable = true;
+        }, false);
+
+        var next = ankers[nextSlide];
+        next.className = "slider active";
+
+        var prev = ankers[prevSlide];
+        prev.className = "slider";
+
+        var newNext = ankers[(nextSlide + 1 >= ankers.length) ? 0 : nextSlide + 1];
+        newNext.className = "slider next";
+
+        prevSlide = activeSlide;
+        activeSlide = nextSlide;
+        nextSlide = (nextSlide + 1 >= ankers.length) ? 0 : nextSlide + 1;
+
+        return false
+    }
+
+    this.prevSlideAction = function() {
+
+        if (!clickable) return false;
+
+        clickable = false;
+
+        carousel.className = carouselClass + " prevSlide";
+
+        var active = ankers[activeSlide];
+        active.className = "slider next";
+        active.addEventListener('transitionend', function (event) {
+            carousel.className = carouselClass;
+            clickable = true;
+        }, false);
+
+        var next = ankers[nextSlide];
+        next.className = "slider";
+
+        var prev = ankers[prevSlide];
+        prev.className = "slider active";
+
+        var newPrev = ankers[(prevSlide - 1 < 0 ) ? ankers.length - 1 : prevSlide - 1];
+        newPrev.className = "slider prev";
+
+        nextSlide = activeSlide;
+        activeSlide = prevSlide;
+        prevSlide = (prevSlide - 1 < 0 ) ? ankers.length - 1 : prevSlide - 1;
+
+        return false
+    }
+
+    this.generateCarousel = function(){
+        var carouselChildren = this._toArray(carousel.children);
+        carousel.innerHTML = null;
+
+        var prev = document.createElement("a");
+        prev.className = "nav-prev";
+        prev.appendChild(document.createTextNode("prev"));
+        prev.addEventListener('click',this.prevSlideAction,false);
+
+        var next = document.createElement("a");
+        next.className = "nav-next";
+        next.appendChild(document.createTextNode("next"));
+        next.addEventListener('click',this.nextSlideAction,false);
+
+        carousel.appendChild(prev);
+
+        Array.prototype.forEach.call(carouselChildren, function(children, i) {
+            var anker = document.createElement("a"),
+                img = new Image(),
+                transX = carousel.offsetWidth * i;
+
+            img.setAttribute('src', children.getAttribute('src'));
+            img.onload = function() {
+
+                anker.style.backgroundImage = 'url(' + children.getAttribute('src') + ')';
+
+                anker.className = "slider";
+
+                if(i == 0) {
+                    anker.className = anker.className + " active";
+                    activeSlide = i;
+                }else if(i == 1){
+                    anker.className = anker.className + " next";
+                    nextSlide = i;
+                }else if(i == carouselChildren.length - 1){
+                    anker.className = anker.className + " prev";
+                    prevSlide = i;
+                }
+            }
+
+            carousel.appendChild(anker);
+            ankers.push(anker);
+        });
+
+        carousel.appendChild(next);
+    }
+
+    this._toArray = function(obj) {
+        return Array.prototype.slice.call(obj);
+    }
 };
 
