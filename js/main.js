@@ -225,12 +225,12 @@ var sliderCarousel = new function(){
 
         var prev = document.createElement("a");
         prev.className = "nav-prev";
-        prev.appendChild(document.createTextNode("prev"));
+        prev.appendChild(document.createTextNode(""));
         prev.addEventListener('click',this.prevSlideAction,false);
 
         var next = document.createElement("a");
         next.className = "nav-next";
-        next.appendChild(document.createTextNode("next"));
+        next.appendChild(document.createTextNode(""));
         next.addEventListener('click',this.nextSlideAction,false);
 
         carousel.appendChild(prev);
