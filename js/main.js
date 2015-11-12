@@ -121,7 +121,7 @@ var tablefilter = new function () {
             }
             table.rows[r].className = className;
         }
-    },
+    };
 
     this.init = function (elementId) {
         var input = document.getElementById(elementId);
@@ -152,10 +152,10 @@ var sliderCarousel = new function(){
 
     this.init = function(elementId){
         carousel = document.getElementById(elementId);
-        carousel.className = carousel.className + " slider-carousel"
+        carousel.className = carousel.className + " slider-carousel";
         carouselClass = carousel.className;
         this.generateCarousel();
-    }
+    };
 
     this.nextSlideAction = function(){
 
@@ -167,7 +167,7 @@ var sliderCarousel = new function(){
 
         var active = ankers[activeSlide];
         active.className = "slider prev";
-        active.addEventListener('transitionend', function (event) {
+        active.addEventListener('transitionend', function () {
             carousel.className = carouselClass;
             clickable = true;
         }, false);
@@ -186,7 +186,7 @@ var sliderCarousel = new function(){
         nextSlide = (nextSlide + 1 >= ankers.length) ? 0 : nextSlide + 1;
 
         return false
-    }
+    };
 
     this.prevSlideAction = function() {
 
@@ -198,7 +198,7 @@ var sliderCarousel = new function(){
 
         var active = ankers[activeSlide];
         active.className = "slider next";
-        active.addEventListener('transitionend', function (event) {
+        active.addEventListener('transitionend', function () {
             carousel.className = carouselClass;
             clickable = true;
         }, false);
@@ -217,7 +217,7 @@ var sliderCarousel = new function(){
         prevSlide = (prevSlide - 1 < 0 ) ? ankers.length - 1 : prevSlide - 1;
 
         return false
-    }
+    };
 
     this.generateCarousel = function(){
         var carouselChildren = this._toArray(carousel.children);
@@ -237,8 +237,7 @@ var sliderCarousel = new function(){
 
         Array.prototype.forEach.call(carouselChildren, function(children, i) {
             var anker = document.createElement("a"),
-                img = new Image(),
-                transX = carousel.offsetWidth * i;
+                img = new Image();
 
             img.setAttribute('src', children.getAttribute('src'));
             img.onload = function() {
@@ -257,17 +256,17 @@ var sliderCarousel = new function(){
                     anker.className = anker.className + " prev";
                     prevSlide = i;
                 }
-            }
+            };
 
             carousel.appendChild(anker);
             ankers.push(anker);
         });
 
         carousel.appendChild(next);
-    }
+    };
 
     this._toArray = function(obj) {
         return Array.prototype.slice.call(obj);
-    }
+    };
 };
 
