@@ -15,7 +15,7 @@ function init() {
 
 }
 
-// wenn wir über unser Titelbild herausscrollen wird die nav Leiste verkleinert
+// wenn wir ï¿½ber unser Titelbild herausscrollen wird die nav Leiste verkleinert
 function scrollNav() {
 
     var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
@@ -49,7 +49,7 @@ function initMap() {
     });
 }
 
-// ermöglicht das Suchen von Adressen und gibt Vorschläge
+// ermï¿½glicht das Suchen von Adressen und gibt Vorschlaege
 function geocodeAddress(geocoder, resultsMap) {
 
     var input = document.getElementById('address'),
