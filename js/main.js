@@ -3,7 +3,13 @@ window.addEventListener('load', init, false);
 
 // rut alle weiteren Funktionen auf
 function init() {
-    sliderCarousel.init("background-carousel");
+    var slider =  new sliderCarousel();
+    slider.init("background-carousel");
+
+    var article =  new sliderCarousel();
+    article.init("article-carousel");
+
+
     scrollNav();
     initMap();
     tablefilter.init("search-bar");
@@ -140,7 +146,7 @@ var tablefilter = new function () {
 };
 
 // generiert das SilderCarousel
-var sliderCarousel = new function(){
+function sliderCarousel(){
 
     var carousel = null,
         carouselClass,

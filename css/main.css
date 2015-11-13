@@ -411,6 +411,12 @@ footer {
     display: block;
 }
 
+#article-carousel {
+    width: auto;
+    height: 200px;
+    position: relative;
+}
+
 #map {
     display: block;
     width: 100%;
