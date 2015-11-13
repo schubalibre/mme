@@ -5,7 +5,6 @@ window.addEventListener('load', init, false);
 function init() {
     var slider =  new sliderCarousel();
     slider.init("background-carousel");
-
     var article =  new sliderCarousel();
     article.init("article-carousel");
 
@@ -142,7 +141,7 @@ var tablefilter = new function () {
         }
 
         input.addEventListener("keyup", this.filter, true);
-    }
+    };
 };
 
 // generiert das SilderCarousel
@@ -157,7 +156,7 @@ function sliderCarousel(){
         clickable = true;
 
     this.init = function(elementId){
-        carousel = document.getElementById(elementId);
+        carousel = document.getElementById(elementId); // 
         carousel.className = carousel.className + " slider-carousel";
         carouselClass = carousel.className;
         this.generateCarousel();

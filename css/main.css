@@ -201,7 +201,7 @@ footer {
     background-position: 50%;
     background-size: cover;
     text-indent: -9999px;
-    transition: transform 700ms ease-out;
+    transition: transform 2000ms ease-out;
     transform: translateX(0px);
 }
 
@@ -234,8 +234,6 @@ footer {
     cursor: pointer;
     height:50px;
     width:50px;
-    background-color: rgba(72, 183, 172, 0.6);
-    border-radius: 25px;
     transition: opacity 700ms ease-out;
     opacity: 0.2;
 }
@@ -255,23 +253,23 @@ footer {
 
 .slider-carousel a.nav-next:before{
     content : "\203A";
-    color: white;
+    color: rgba(72, 183, 172, 1);
     display: block;
     position: relative;
     text-align: center;
     vertical-align: middle;
-    font-size: 80px;
+    font-size: 60px;
     top: -46px;
 }
 
 .slider-carousel a.nav-prev:before{
     content : "\2039";
-    color: white;
+    color: rgba(72, 183, 172, 1);
     display: block;
     position: relative;
     text-align: center;
     vertical-align: middle;
-    font-size: 80px;
+    font-size: 60px;
     top: -46px;
 }
 
