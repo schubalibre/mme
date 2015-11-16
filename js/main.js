@@ -3,10 +3,16 @@ window.addEventListener('load', init, false);
 
 // rut alle weiteren Funktionen auf
 function init() {
-    var slider =  new sliderCarousel();
-    slider.init("background-carousel");
-    var article =  new sliderCarousel();
-    article.init("article-carousel");
+
+    var article = new SliderCarousel({
+        elementId: "background-carousel",
+        autoSlide: true
+    });
+
+    var slider = new SliderCarousel({
+        elementId: "article-carousel",
+        autoSlide: false
+    });
 
 
     scrollNav();
@@ -145,133 +151,193 @@ var tablefilter = new function () {
 };
 
 // generiert das SilderCarousel
-function sliderCarousel(){
+(function () {
 
-    var carousel = null,
-        carouselClass,
-        ankers = [],
-        activeSlide,
-        nextSlide,
-        prevSlide,
-        clickable = true;
+    this.SliderCarousel = function () {
 
-    this.init = function(elementId){
-        carousel = document.getElementById(elementId); // 
-        carousel.className = carousel.className + " slider-carousel";
-        carouselClass = carousel.className;
-        this.generateCarousel();
+        // Create global element references
+        this.carousel = null;
+        this.carouselClass = null;
+        this.ankers = [];
+        this.activeSlide = null;
+        this.nextSlide = null;
+        this.prevSlide = null;
+        this.clickable = true;
+        this.interval;
+
+        // Define option defaults
+        var defaults = {
+            elementId: "slider-carousel",
+            autoSlide: false,
+            autoDelay: 5000
+        };
+
+        // Create options by extending defaults with the passed in arugments
+        if (arguments[0] && typeof arguments[0] === "object") {
+            this.options = extendDefaults(defaults, arguments[0]);
+        }
+
+        this.start();
+
     };
 
-    this.nextSlideAction = function(){
+    SliderCarousel.prototype.start = function () {
+        this.carousel = document.getElementById(this.options.elementId);
+        this.carousel.className = this.carousel.className + " slider-carousel";
+        this.carouselClass = this.carousel.className;
+        generateCarousel.call(this);
 
-        if (!clickable) return false;
+        if(this.options.autoSlide) autoStart.call(this);
+    };
 
-        clickable = false;
+    function autoStart() {
+        var _self = this;
+        _self.interval = window.setInterval(nextSlideAction.bind(_self),_self.options.autoDelay);
+    }
 
-        carousel.className = carouselClass + " nextSlide";
+    function nextSlideClick() {
+        var _self = this;
+        clearInterval(_self.interval);
+        nextSlideAction.call(_self);
+        if(this.options.autoSlide) autoStart.call(this);
+    }
 
-        var active = ankers[activeSlide];
+    function prevSlideClick() {
+        var _self = this;
+        clearInterval(_self.interval);
+        prevSlideAction.call(_self);
+        if(this.options.autoSlide) autoStart.call(this);
+    }
+
+    function nextSlideAction() {
+        var _self = this;
+
+        if (!_self.clickable) return false;
+
+        _self.clickable = false;
+
+        _self.carousel.className = _self.carouselClass + " nextSlide";
+
+        var active = _self.ankers[_self.activeSlide];
         active.className = "slider prev";
         active.addEventListener('transitionend', function () {
-            carousel.className = carouselClass;
-            clickable = true;
+            _self.carousel.className = _self.carouselClass;
+            _self.clickable = true;
+
         }, false);
 
-        var next = ankers[nextSlide];
+        var next = _self.ankers[_self.nextSlide];
         next.className = "slider active";
 
-        var prev = ankers[prevSlide];
+        var prev = _self.ankers[_self.prevSlide];
         prev.className = "slider";
 
-        var newNext = ankers[(nextSlide + 1 >= ankers.length) ? 0 : nextSlide + 1];
+        var newNext = _self.ankers[(_self.nextSlide + 1 >= _self.ankers.length) ? 0 : _self.nextSlide + 1];
         newNext.className = "slider next";
 
-        prevSlide = activeSlide;
-        activeSlide = nextSlide;
-        nextSlide = (nextSlide + 1 >= ankers.length) ? 0 : nextSlide + 1;
+        _self.prevSlide = _self.activeSlide;
+        _self.activeSlide = _self.nextSlide;
+        _self.nextSlide = (_self.nextSlide + 1 >= _self.ankers.length) ? 0 : _self.nextSlide + 1;
 
-        return false
-    };
+        return _self;
+    }
 
-    this.prevSlideAction = function() {
+    function prevSlideAction() {
+        var _self = this;
 
-        if (!clickable) return false;
+        if (!_self.clickable) return false;
 
-        clickable = false;
+        _self.clickable = false;
 
-        carousel.className = carouselClass + " prevSlide";
+        _self.carousel.className = _self.carouselClass + " prevSlide";
 
-        var active = ankers[activeSlide];
+        var active = _self.ankers[_self.activeSlide];
         active.className = "slider next";
         active.addEventListener('transitionend', function () {
-            carousel.className = carouselClass;
-            clickable = true;
+            _self.carousel.className = _self.carouselClass;
+            _self.clickable = true;
         }, false);
 
-        var next = ankers[nextSlide];
+        var next = _self.ankers[_self.nextSlide];
         next.className = "slider";
 
-        var prev = ankers[prevSlide];
+        var prev = _self.ankers[_self.prevSlide];
         prev.className = "slider active";
 
-        var newPrev = ankers[(prevSlide - 1 < 0 ) ? ankers.length - 1 : prevSlide - 1];
+        var newPrev = _self.ankers[(_self.prevSlide - 1 < 0 ) ? _self.ankers.length - 1 : _self.prevSlide - 1];
         newPrev.className = "slider prev";
 
-        nextSlide = activeSlide;
-        activeSlide = prevSlide;
-        prevSlide = (prevSlide - 1 < 0 ) ? ankers.length - 1 : prevSlide - 1;
+        _self.nextSlide = _self.activeSlide;
+        _self.activeSlide = _self.prevSlide;
+        _self.prevSlide = (_self.prevSlide - 1 < 0 ) ? _self.ankers.length - 1 : _self.prevSlide - 1;
 
-        return false
-    };
+        return _self;
+    }
 
-    this.generateCarousel = function(){
-        var carouselChildren = this._toArray(carousel.children);
-        carousel.innerHTML = null;
+    function generateCarousel() {
+        var _self = this;
+
+        var carouselChildren = _toArray(_self.carousel.children);
+        _self.carousel.innerHTML = null;
 
         var prev = document.createElement("a");
         prev.className = "nav-prev";
         prev.appendChild(document.createTextNode(""));
-        prev.addEventListener('click',this.prevSlideAction,false);
+        prev.addEventListener('click', prevSlideClick.bind(_self), false);
+
 
         var next = document.createElement("a");
         next.className = "nav-next";
         next.appendChild(document.createTextNode(""));
-        next.addEventListener('click',this.nextSlideAction,false);
+        next.addEventListener('click', nextSlideClick.bind(_self), false);
 
-        carousel.appendChild(prev);
+        _self.carousel.appendChild(prev);
 
-        Array.prototype.forEach.call(carouselChildren, function(children, i) {
+        Array.prototype.forEach.call(carouselChildren, function (children, i) {
+
             var anker = document.createElement("a"),
                 img = new Image();
 
             img.setAttribute('src', children.getAttribute('src'));
-            img.onload = function() {
-
+            img.onload = function () {
                 anker.style.backgroundImage = 'url(' + children.getAttribute('src') + ')';
 
-                anker.className = "slider";
+                var className = anker.className = "slider";
 
-                if(i == 0) {
-                    anker.className = anker.className + " active";
-                    activeSlide = i;
-                }else if(i == 1){
-                    anker.className = anker.className + " next";
-                    nextSlide = i;
-                }else if(i == carouselChildren.length - 1){
-                    anker.className = anker.className + " prev";
-                    prevSlide = i;
+                if (i == 0) {
+                    anker.className = className + " active";
+                    _self.activeSlide = i;
+                } else if (i == 1) {
+                    anker.className = className + " next";
+                    _self.nextSlide = i;
+                } else if (i == carouselChildren.length - 1) {
+                    anker.className = className + " prev";
+                    _self.prevSlide = i;
                 }
-            };
+            }.call(_self);
 
-            carousel.appendChild(anker);
-            ankers.push(anker);
+            _self.carousel.appendChild(anker);
+            _self.ankers.push(anker);
         });
 
-        carousel.appendChild(next);
-    };
+        _self.carousel.appendChild(next);
 
-    this._toArray = function(obj) {
+        return _self;
+    }
+
+    function _toArray(obj) {
         return Array.prototype.slice.call(obj);
-    };
-};
+    }
+
+    function extendDefaults(source, properties) {
+        var property;
+        for (property in properties) {
+            if (properties.hasOwnProperty(property)) {
+                source[property] = properties[property];
+            }
+        }
+        return source;
+    }
+
+}());
 

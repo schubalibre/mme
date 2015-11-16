@@ -18,6 +18,15 @@
             position: relative;
         }
 
+        #slider-carousel2 {
+            width: 600px;
+            height: 400px;
+            margin: 10% auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+
         .slider-carousel img {
             display: none;
         }
@@ -43,7 +52,7 @@
             background-position: 50%;
             background-size: cover;
             text-indent: -9999px;
-            transition: transform 2000ms ease-out;
+            transition: transform 1000ms ease-out;
             transform: translateX(0px);
         }
 
@@ -154,19 +163,21 @@
         this.SliderCarousel = function () {
 
             // Create global element references
-            this.carousel = null,
-            this.carouselClass = null,
-            this.ankers = [],
-            this.activeSlide = null,
-            this.nextSlide = null,
-            this.prevSlide = null,
+            this.carousel = null;
+            this.carouselClass = null;
+            this.ankers = [];
+            this.activeSlide = null;
+            this.nextSlide = null;
+            this.prevSlide = null;
             this.clickable = true;
+            this.interval;
 
             // Define option defaults
             var defaults = {
                 elementId: "slider-carousel",
-                autoSlide: false
-            }
+                autoSlide: false,
+                autoDelay: 5000
+            };
 
             // Create options by extending defaults with the passed in arugments
             if (arguments[0] && typeof arguments[0] === "object") {
@@ -186,22 +197,27 @@
             if(this.options.autoSlide) autoStart.call(this);
         };
 
-        function autoStart(){
+        function autoStart() {
             var _self = this;
-console.log(_self);
-            nextSlideAction().bind(_self);
+            _self.interval = window.setInterval(nextSlideAction.bind(_self),_self.options.autoDelay);
+        }
 
-            /*var _self = this;
-            var method = function() {
-                nextSlideAction().call(_self);
-            };
-            setInterval(method, 1000);*/
+        function nextSlideClick() {
+            var _self = this;
+            clearInterval(_self.interval);
+            nextSlideAction.call(_self);
+            if(this.options.autoSlide) autoStart.call(this);
+        }
+
+        function prevSlideClick() {
+            var _self = this;
+            clearInterval(_self.interval);
+            prevSlideAction.call(_self);
+            if(this.options.autoSlide) autoStart.call(this);
         }
 
         function nextSlideAction() {
             var _self = this;
-
-            console.log(_self);
 
             if (!_self.clickable) return false;
 
@@ -214,6 +230,7 @@ console.log(_self);
             active.addEventListener('transitionend', function () {
                 _self.carousel.className = _self.carouselClass;
                 _self.clickable = true;
+
             }, false);
 
             var next = _self.ankers[_self.nextSlide];
@@ -229,7 +246,7 @@ console.log(_self);
             _self.activeSlide = _self.nextSlide;
             _self.nextSlide = (_self.nextSlide + 1 >= _self.ankers.length) ? 0 : _self.nextSlide + 1;
 
-            return false
+            return _self;
         }
 
         function prevSlideAction() {
@@ -261,7 +278,7 @@ console.log(_self);
             _self.activeSlide = _self.prevSlide;
             _self.prevSlide = (_self.prevSlide - 1 < 0 ) ? _self.ankers.length - 1 : _self.prevSlide - 1;
 
-            return false
+            return _self;
         }
 
         function generateCarousel() {
@@ -273,13 +290,13 @@ console.log(_self);
             var prev = document.createElement("a");
             prev.className = "nav-prev";
             prev.appendChild(document.createTextNode(""));
-            prev.addEventListener('click', prevSlideAction.bind(_self), false);
+            prev.addEventListener('click', prevSlideClick.bind(_self), false);
 
 
             var next = document.createElement("a");
             next.className = "nav-next";
             next.appendChild(document.createTextNode(""));
-            next.addEventListener('click', nextSlideAction.bind(_self), false);
+            next.addEventListener('click', nextSlideClick.bind(_self), false);
 
             _self.carousel.appendChild(prev);
 
@@ -311,6 +328,8 @@ console.log(_self);
             });
 
             _self.carousel.appendChild(next);
+
+            return _self;
         }
 
         function _toArray(obj) {
