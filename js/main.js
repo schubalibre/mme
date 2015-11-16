@@ -4,12 +4,12 @@ window.addEventListener('load', init, false);
 // rut alle weiteren Funktionen auf
 function init() {
 
-    var article = new SliderCarousel({
+    var slider = new SliderCarousel({
         elementId: "background-carousel",
         autoSlide: true
     });
 
-    var slider = new SliderCarousel({
+    var article = new SliderCarousel({
         elementId: "article-carousel",
         autoSlide: false
     });
@@ -163,7 +163,7 @@ var tablefilter = new function () {
         this.nextSlide = null;
         this.prevSlide = null;
         this.clickable = true;
-        this.interval;
+        this.interval = null;
 
         // Define option defaults
         var defaults = {
@@ -178,6 +178,8 @@ var tablefilter = new function () {
         }
 
         this.start();
+
+        return this;
 
     };
 
