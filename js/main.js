@@ -19,10 +19,9 @@ function init() {
     initMap();
     tablefilter.init("search-bar");
 
+    var elem = document.getElementById('los');
+    elem.addEventListener('click', checkFormular);
 }
-
-var elem = document.getElementById('los');
-elem.addEventListener('click', checkFormular);
 
 function checkFormular() {
 	if (document.Formular.User.value == "") {
@@ -61,7 +60,7 @@ function checkFormular() {
 	}
 }
 
-// wenn wir über unser Titelbild herausscrollen wird die nav Leiste verkleinert
+// wenn wir ï¿½ber unser Titelbild herausscrollen wird die nav Leiste verkleinert
 function scrollNav() {
 
     var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
