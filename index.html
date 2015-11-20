@@ -76,32 +76,29 @@
                         <div class="form-group">
                             <label for="name">Artikelname</label>
                             <input id="name" name="name" type="text" placeholder="Hier bitte den Artikelnamen eintragen"
-                                   required/>
+                                   required />
 
                         </div>
 
                         <div class="form-group">
                             <label for="description">Artikelbeschreibung</label>
-                            <textarea required id="description" name="description" cols="20"
-                                      placeholder="Bitte hier eine Artikelbeschreibung hinzufügen."></textarea>
-
-
+                            <textarea required pattern="[a-z]{1,30}(,[a-z]{1,30})*" id="description" name="description" cols="20" placeholder="Bitte hier eine Artikelbeschreibung hinzufügen."></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="price">Preis</label>
-                            <input id="price" name="price" type="number" placeholder="Bitte den Preis in € angeben"/>
+                            <input required id="price" name="price" type="number" placeholder="Bitte den Preis in € angeben"/>
 
                         </div>
 
                         <div class="form-group">
                             <label for="category">Kategorie</label>
                             <select id="category" name="category" required>
-                                <option>Die Kategorie des Artikels</option>
+                                <option value="" disabled selected>Die Kategorie des Artikels</option>
                                 <option>Wohnzimmer</option>
                                 <option>Küche</option>
                                 <option>Schlafzimmer</option>
-                            </select>
+                            </select> 
 
                         </div>
                     </div>
@@ -127,7 +124,7 @@
 
                         <div class="form-group file">
                             <label for="file">Bild hochladen</label>
-                            <input id="file" type="file" value="Upload">
+                            <input required id="file" type="file" value="Upload">
                         </div>
                     </div>
                 </fieldset>
@@ -181,7 +178,7 @@
                         </div>
                         <div class="form-group address-wrapper">
                             <label for="address">Adresse</label>
-                            <input id="address" name="address" list="mapResult" autocomplete="off" type="text" value="" placeholder="Die Adresse des Shops angeben" />
+                            <input required id="address" name="address" list="mapResult" autocomplete="off" type="text" value="" placeholder="Die Adresse des Shops angeben" />
 
                             <datalist id="mapResult"></datalist>
 
