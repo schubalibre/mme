@@ -540,3 +540,9 @@ footer {
 
 /* close commented backslash hack */
 
+/* error classes */
+
+.error {
+	border: 2px solid red !important;
+}
+
