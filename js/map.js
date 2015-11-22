@@ -45,7 +45,7 @@ var map = (function () {
             if ((index + step >= 0) && (index + step < listItems.length)) {
                 selected.className = "";
                 listItems[index + step].className = "active";
-                list.scrollTop = (listItems[index + step].offsetTop - 174);
+                list.scrollTop = (listItems[index + step].offsetTop - (list.offsetHeight - listItems[0].offsetHeight));
             }
 
         },
