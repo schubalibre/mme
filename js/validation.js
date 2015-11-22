@@ -74,6 +74,7 @@ function validateForm(event) {
 
 			if (!scrolling) { // Sprung zum ersten fehlerhaften Feld
 				window.scroll(0, field.offsetTop - 120); // nicht zu hoch (Header)
+				field.focus(); // setzt den Coirser in das betroffene Feld
 				scrolling = true;
 			}
 
