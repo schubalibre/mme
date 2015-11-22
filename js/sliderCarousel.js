@@ -25,21 +25,21 @@
             this.options = extendDefaults(defaults, arguments[0]);
         }
 
-        this.start();
+        start.call(this);
 
         return this;
-
     };
 
-    SliderCarousel.prototype.start = function () {
-        this.carousel = document.getElementById(this.options.elementId);
-        this.carousel.className = this.carousel.className + " slider-carousel";
-        this.carouselClass = this.carousel.className;
-        generateCarousel.call(this);
+    function start () {
+        var _self = this;
+        _self.carousel = document.getElementById(_self.options.elementId);
+        _self.carousel.className = this.carousel.className + " slider-carousel";
+        _self.carouselClass = _self.carousel.className;
+        generateCarousel.call(_self);
 
         if (this.options.autoSlide)
             autoStart.call(this);
-    };
+    }
 
     function autoStart() {
         var _self = this;

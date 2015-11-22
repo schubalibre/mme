@@ -33,7 +33,7 @@ function validateForm(event) {
 		if (span == undefined) { // noch kein span im Label
 			span = document.createElement("span"); // neues span kreieren
 			span.className = "error"; // bekommt class-name error
-			field.label.appendChild(span) // ins Label reinpacken
+			field.label.appendChild(span); // ins Label reinpacken
 		}
 
 		span.innerHTML = ""; // span wird als leer überschrieben, weil evt. Validierung korrekt

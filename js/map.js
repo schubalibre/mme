@@ -5,9 +5,7 @@ var map = (function () {
         geocoder,
         list,
         listItems,
-        marker,
-        geoEvent,
-        clickEvent;
+        marker;
 
 	// Adressvorschläge werden generiert
 	// Klasse active in CSS füllt Feld grau aus & macht Schrift weiß
@@ -28,6 +26,8 @@ var map = (function () {
                 list.appendChild(li); // Mit in die Liste packen
                 active = ""; 
             }
+            // wir rufen unsere ListNavigation erst beim erstellen der Liste
+            input.addEventListener('keydown', callbacks.onClickInput,false);
         },
 
         clickListener: function (event) {
@@ -37,18 +37,22 @@ var map = (function () {
         listNavigator: function (step) {
 
             var selected =  helpers._getSelectedItem();
+
+            if(selected == null) return;
+
             var index = selected.myIndex;
 
             if ((index + step >= 0) && (index + step < listItems.length)) {
                 selected.className = "";
                 listItems[index + step].className = "active";
-                list.scrollTop = (listItems[index + step].offsetTop -174);
+                list.scrollTop = (listItems[index + step].offsetTop - 174);
             }
+
         },
 
         selectedItemHandler: function (event) {
 
-            var li;
+            var li = null;
 
             if(event == undefined){
                 li =  helpers._getSelectedItem();
@@ -57,25 +61,28 @@ var map = (function () {
                 li = event.target;
             }
 
-            var liResult = li.result;
-            var selected =  helpers._getSelectedItem();
+            if(li == undefined || li == null ) return null;
 
+            var liResult = li.result;
             callbacks.setMarker(map, liResult);
             input.value = liResult.formatted_address;
             list.style.display = "none";
+
         },
 
         closeList: function () {
             list.style.display = "none";
             list.textContent = '';
             listItems = [];
+            input.removeEventListener('keydown', callbacks.onClickInput,false);
         },
 
         _getSelectedItem : function(){
-            var selected;
-            Array.prototype.forEach.call(listItems, function (item, i) {
+            var selected = null;
+            Array.prototype.forEach.call(listItems, function (item) {
                 if (item.className == "active") {
-                    selected = item;            }
+                    selected = item;
+                }
             });
 
             return selected;
@@ -160,8 +167,15 @@ var map = (function () {
             geocoder = new google.maps.Geocoder();
             input = document.getElementById('address');
             list = document.getElementById("mapResult");
-            geoEvent = input.addEventListener('keyup', callbacks.geocodeAddress,false);
-            clickEvent = input.addEventListener('keydown', callbacks.onClickInput,false);
+
+            input.addEventListener("focus",function(event){
+                event.target.addEventListener('keyup', callbacks.geocodeAddress,false);
+            },false);
+
+            input.addEventListener("blur",function(event){
+                event.target.removeEventListener('keyup', callbacks.geocodeAddress,false);
+                helpers.closeList();
+            },false);
         }
     };
 
