@@ -75,25 +75,30 @@
                     <div class="input-group">
                         <div class="form-group">
                             <label for="name">Artikelname</label>
-                            <input id="name" name="name" type="text" placeholder="Hier bitte den Artikelnamen eintragen"
+                            <input id="name" name="name" pattern=".{3,100}"
+                                   data-error-value-missing="Bitte einen Artikelnamen eingeben."
+                                   data-error-pattern-mismatch="Artikelnamen muss aus min. 3 Buchstaben bestehen."
+                                   type="text" placeholder="Hier bitte den Artikelnamen eintragen"
                                    required />
-
                         </div>
 
                         <div class="form-group">
                             <label for="description">Artikelbeschreibung</label>
-                            <textarea required pattern="[a-z]{1,30}(,[a-z]{1,30})*" id="description" name="description" cols="20" placeholder="Bitte hier eine Artikelbeschreibung hinzufügen."></textarea>
+                            <textarea pattern="[a-z]{1,30}(,[a-z]{1,30})*" id="description" name="description" cols="20" placeholder="Bitte hier eine Artikelbeschreibung hinzufügen."></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="price">Preis</label>
-                            <input required id="price" name="price" type="number" placeholder="Bitte den Preis in € angeben"/>
+                            <input required id="price" name="price" min="0.01" step="0.01" type="number" placeholder="Bitte den Preis in € angeben"
+                                   data-error-value-missing="Bitte einen Preis in Euro eingeben."
+                                   data-error-range-underflow="Die Preis muss größer als Null sein."
+                                   data-error-step-mismatch="Den Preis in der Form Euro.Cent angeben (zb. 3.45)."/>
 
                         </div>
 
                         <div class="form-group">
                             <label for="category">Kategorie</label>
-                            <select id="category" name="category" required>
+                            <select id="category" name="category" required data-error-value-missing="Es muss eine Kategorie ausgewählt sein." >
                                 <option value="" disabled selected>Die Kategorie des Artikels</option>
                                 <option>Wohnzimmer</option>
                                 <option>Küche</option>
@@ -113,18 +118,19 @@
                             Bitte lade hier ein Freisteller-Foto von dem abzubildenden Artikel hoch.
                         </p>
                     </div>
+
                     <div class="input-group">
 
                         <div id="article-carousel">
                             <img src="img/sofa.JPG" alt="sofa"/>
-                            <img src="img/holzstuhl.jpg" alt="sofa"/>
+                            <img src="img/sofa2.JPG" alt="sofa"/>
                             <img src="img/sofa.JPG" alt="sofa"/>
-                            <img src="img/holzstuhl.jpg" alt="sofa"/>
+                            <img src="img/sofa2.JPG" alt="sofa"/>
                         </div>
 
                         <div class="form-group file">
                             <label for="file">Bild hochladen</label>
-                            <input required id="file" type="file" value="Upload">
+                            <input id="file" type="file" value="Upload">
                         </div>
                     </div>
                 </fieldset>
@@ -143,15 +149,23 @@
                         <div class="form-group">
                             <div class="col3">
                                 <label for="width">Breite</label>
-                                <input id="width" name="width" type="number" placeholder="Maß in cm" required/>
+                                <input id="width" name="width" type="number" min="0.01" step="0.01" placeholder="Maß in cm" required
+                                       data-error-value-missing="Bitte die Breite des Produkts in cm angeben."
+                                       data-error-range-underflow="Die Breite muss größer als Null sein."
+                                       data-error-step-mismatch="Die Maße in der Form cm.mm angeben (zb. 3.45)."/>
                             </div>
                             <div class="col3">
                                 <label for="height">Höhe</label>
-                                <input id="height" name="height" type="number" placeholder="Maß in cm" required/>
+                                <input id="height" name="height" type="number" min="0.01" step="0.01" placeholder="Maß in cm" required
+                                       data-error-value-missing="Bitte die Höhe des Produkts in cm angeben."
+                                       data-error-range-underflow="Die Höhe muss größer als Null sein."
+                                       data-error-step-mismatch="Die Maße in der Form cm.mm angeben (zb. 3.45)."/>
                             </div>
                             <div class="col3">
                                 <label for="deepth">Tiefe</label>
-                                <input id="deepth" name="deepth" type="number" placeholder="Maß in cm" required/>
+                                <input id="deepth" name="deepth" type="number" min="0.01" step="0.01" placeholder="Maß in cm"
+                                       data-error-range-underflow="Die Tiefe muss größer als Null sein."
+                                       data-error-step-mismatch="Die Maße in der Form cm.mm angeben (zb. 3.45)."/>
                             </div>
                         </div>
                     </div>
@@ -173,22 +187,24 @@
                     <div class="input-group">
                         <div class="form-group">
                             <label for="shop">Shop</label>
-                            <input id="shop" name="shop" type="url" value=""
-                                   placeholder="Bitte hier den Link zum Shop eintragen" required/>
+                            <input id="shop" name="shop" type="url" value="" placeholder="Bitte hier den Link zum Shop eintragen" required
+                                   data-error-value-missing="Bitte einen gültigen Link zum Shop eingeben."
+                                   data-error-type-mismatch="Bitte den Link in der Form http://www.domain.com angeben."
+                            />
                         </div>
                         <div class="form-group address-wrapper">
                             <label for="address">Adresse</label>
-                            <input required id="address" name="address" list="mapResult" autocomplete="off" type="text" value="" placeholder="Die Adresse des Shops angeben" />
+                            <input required data-error-value-missing="Bitte eine gültige Adresse des Shops eingeben." id="address" list="mapResult" name="address" autocomplete="off" type="text" value="" placeholder="Die Adresse des Shops angeben" />
 
-                            <datalist id="mapResult"></datalist>
+                            <ul id="mapResult"></ul>
 
                         </div>
                         <ul id="map"></ul>
 
                         <div class="btn-group">
-                            <input type="submit" class="btn submit" name="save" value="Speichern"/>
-                            <input type="reset" class="btn reset" name="reset" value="Abbrechen"/>
-                            <input type="submit" class="btn delete" name="delete" value="Löschen"/>
+                            <button type="submit" class="btn submit">Speichern</button>
+                            <button type="reset" class="btn reset">Abbrechen</button>
+                            <button type="submit" class="btn delete">Löschen</button>
                         </div>
                     </div>
                 </fieldset>
@@ -358,6 +374,10 @@
 </footer>
 
 <script src="https://maps.googleapis.com/maps/api/js"></script>
+<!-- Die Funktionen werden in der main.js aufgerufen aber müssen aus unterschiedlichen Dateien geladen werden -->
+<script src="js/validation.js"></script>
+<script src="js/map.js"></script>
+<script src="js/sliderCarousel.js"></script>
 <script src="js/main.js"></script>
 
 </body>

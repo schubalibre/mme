@@ -124,7 +124,7 @@ nav ul li a{
 }
 
 header.small nav ul li a{
-    line-height: 23px;
+    line-height: 26px;
 }
 
 nav ul li a:hover {
@@ -378,6 +378,7 @@ footer {
 }
 
 #mapResult{
+    display:none;
     position: absolute;
     z-index: 10000;
     background: #fff;
@@ -386,20 +387,24 @@ footer {
     width:100%;
     margin:0;
     padding:0;
+    max-height: 200px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
-#mapResult option{
+#mapResult li{
     border-top:1px solid #999;
     margin: 0;
     padding:5px 10px;
     list-style: none;
 }
 
-#mapResult option:first-child{
+#mapResult li:first-child{
     border-top:none;
 }
 
-#mapResult option:hover{
+#mapResult li:hover,
+#mapResult li.active{
     color:white;
     background: #999;
     cursor: pointer;
@@ -413,7 +418,7 @@ footer {
 
 #article-carousel {
     width: auto;
-    height: 200px;
+    height: 280px;
     position: relative;
 }
 
@@ -544,5 +549,11 @@ footer {
 
 .error {
 	border: 2px solid red !important;
+}
+
+span.error {
+    border-width: 0 !important;
+    color:red;
+    font-weight: bolder;
 }
 
