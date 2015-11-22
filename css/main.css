@@ -124,7 +124,7 @@ nav ul li a{
 }
 
 header.small nav ul li a{
-    line-height: 26px;
+    line-height: 28px;
 }
 
 nav ul li a:hover {
@@ -165,7 +165,7 @@ footer {
 }
 
 #article-top .caption-box .welcome-text{
-	font-size: 16px;
+	font-size: 20px;
 }
 
 #article-top .caption-box p:last-child {
