@@ -15,7 +15,7 @@ function init() {
     });
 
     scrollNav();
-    map.init();
+
     tablefilter.init("search-bar");
 
     //wir holen uns unser Formular
@@ -25,6 +25,8 @@ function init() {
 
     // beim Abschicken des Formulares wird unsere Funktion validateForm ausgeführt - um die eigenen Kontrollen durchzuführen
     form.addEventListener("submit", validateForm);
+
+    map.init();
 }
 
 // wenn wir über unser Titelbild herausscrollen wird die nav Leiste verkleinert

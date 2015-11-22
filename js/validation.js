@@ -56,8 +56,6 @@ function validateForm(event) {
 
             field.className = "error";
 
-            console.log(field.validity);
-
             if (!scrolling) {
                 window.scroll(0, field.offsetTop - 120);
                 scrolling = true;
@@ -91,9 +89,13 @@ function validateForm(event) {
             formvalid = false;
         }
 
-    }
 
-    console.log("-********************************");
+        field.addEventListener("change",(function(event){
+            event.target.className = "";
+            event.target.label.getElementsByClassName("error")[0].innerHTML = "";
+        }),false);
+
+    }
 
     // cancel form submit if validation fails
     if (!formvalid) {

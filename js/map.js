@@ -4,18 +4,20 @@ var map = (function () {
         map,
         geocoder,
         list,
-        listItems = [],
-        marker;
+        listItems,
+        marker,
+        geoEvent,
+        clickEvent;
 
     var helpers = {
         generateList: function (results) {
             var active = "active";
+            listItems = [];
             for (var i = 0; i < results.length; i++) {
-                console.log(i);
-                console.log(results[i]);
                 var li = document.createElement('li');
                 li.className = active;
                 li.appendChild(document.createTextNode(results[i].formatted_address));
+                li.addEventListener("click", helpers.clickListener,false);
                 li.result = results[i];
                 li.myIndex = i;
                 listItems.push(li);
@@ -24,42 +26,45 @@ var map = (function () {
             }
         },
 
-        clickListener: function (option, result) {
-            option.addEventListener('click', function (e) {
-                e.preventDefault();
-                callbacks.setMarker(map, result);
-                input.value = result.formatted_address;
-            }, false);
+        clickListener: function (event) {
+            helpers.selectedItemHandler(event);
         },
 
         listNavigator: function (step) {
 
             var selected =  helpers._getSelectedItem();
-
-            selected.className = "";
-
             var index = selected.myIndex;
 
-            console.log(listItems[index]);
-
-            if ((index + step) > 0 && (index + step) < listItems.length) {
+            if ((index + step >= 0) && (index + step < listItems.length)) {
+                selected.className = "";
                 listItems[index + step].className = "active";
-                listItems[index + step].focus();
+                list.scrollTop = (listItems[index + step].offsetTop -174);
             }
-
-            return;
         },
 
-        selectListItem: function () {
+        selectedItemHandler: function (event) {
 
+            var li;
+
+            if(event == undefined){
+                li =  helpers._getSelectedItem();
+            }else{
+                event.preventDefault();
+                li = event.target;
+            }
+
+            var liResult = li.result;
             var selected =  helpers._getSelectedItem();
 
-            callbacks.setMarker(map, selected.result);
-            input.value = selected.result.formatted_address;
+            callbacks.setMarker(map, liResult);
+            input.value = liResult.formatted_address;
+            list.style.display = "none";
         },
 
         closeList: function () {
             list.style.display = "none";
+            list.textContent = '';
+            listItems = [];
         },
 
         _getSelectedItem : function(){
@@ -76,30 +81,32 @@ var map = (function () {
     var callbacks = {
         onClickInput: function (event) {
 
-            event.preventDefault();
-
             switch (event.keyCode) {
                 case 38: // up
                     helpers.listNavigator(-1);
-                    return;
+                    event.preventDefault();
+                    return false;
                 case 40: // down
                     helpers.listNavigator(+1);
-                    return;
+                    event.preventDefault();
+                    return false;
                 case 13: // enter
-                    helpers.selectListItem();
-                    return;
+                    helpers.selectedItemHandler();
+                    event.preventDefault();
+                    return false;
                 case 27: // esc
                     helpers.closeList();
-                    return;
+                    return false;
             }
-
-            callbacks.geocodeAddress();
-
-            return false;
         },
 
         // ermöglicht das Suchen von Adressen und gibt Vorschlaege
-        geocodeAddress: function () {
+        geocodeAddress: function (event) {
+
+            var key = event.keyCode;
+
+            if(key == 38 || key == 40|| key == 13 || key == 27 ) return;
+
             var address = input.value;
 
             if (address.length > 3) {
@@ -107,13 +114,13 @@ var map = (function () {
                     'address': address
                 }, function (results, status) {
                     if (status === google.maps.GeocoderStatus.OK) {
-                        input.className = input.className.replace(" error", "");
+                        input.className = "";
                         list.textContent = '';
                         list.style.display = "block";
                         helpers.generateList(results);
                     } else {
-                        list.style.display = "none";
-                        input.className = input.className + " error";
+                        input.className = "error";
+                        helpers.closeList();
                     }
                 });
             }
@@ -148,7 +155,8 @@ var map = (function () {
             geocoder = new google.maps.Geocoder();
             input = document.getElementById('address');
             list = document.getElementById("mapResult");
-            input.addEventListener('keyup', callbacks.onClickInput);
+            geoEvent = input.addEventListener('keyup', callbacks.geocodeAddress,false);
+            clickEvent = input.addEventListener('keydown', callbacks.onClickInput,false);
         }
     };
 
