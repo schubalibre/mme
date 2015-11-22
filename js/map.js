@@ -7,20 +7,23 @@ var map = (function () {
         listItems = [],
         marker;
 
+	// Adressvorschläge werden generiert
+	// Klasse active in CSS füllt Feld grau aus & macht Schrift weiß
+	// Reagiert auf alle Tasteneingaben außer: oben, unten, esc, enter
     var helpers = {
         generateList: function (results) {
-            var active = "active";
-            for (var i = 0; i < results.length; i++) {
+            var active = "active"; // erstes Element grau hinterlegt
+            for (var i = 0; i < results.length; i++) { // Results durchlaufen
                 console.log(i);
                 console.log(results[i]);
-                var li = document.createElement('li');
-                li.className = active;
-                li.appendChild(document.createTextNode(results[i].formatted_address));
-                li.result = results[i];
+                var li = document.createElement('li'); // List Element
+                li.className = active; // bekommt Klasse
+                li.appendChild(document.createTextNode(results[i].formatted_address)); // bekommt Eintrag von Google
+                li.result = results[i]; // Objekt mit Google-Referenz Index zuweisen
                 li.myIndex = i;
-                listItems.push(li);
-                list.appendChild(li);
-                active = "";
+                listItems.push(li); // list Elemente zwischenspeichern
+                list.appendChild(li); // Mit in die Liste packen
+                active = ""; 
             }
         },
 
@@ -106,12 +109,12 @@ var map = (function () {
                 geocoder.geocode({
                     'address': address
                 }, function (results, status) {
-                    if (status === google.maps.GeocoderStatus.OK) {
-                        input.className = input.className.replace(" error", "");
-                        list.textContent = '';
+                    if (status === google.maps.GeocoderStatus.OK) { // Typvergleich ===
+                        input.className = input.className.replace(" error", ""); // Error rausnehmen
+                        list.textContent = ''; 
                         list.style.display = "block";
-                        helpers.generateList(results);
-                    } else {
+                        helpers.generateList(results); // Liste zur Eingabe von Google, Adress Ergebnisse
+                    } else { // Google findet Adresse nicht, Vorschläge werden ausgeblendet, InputFeld bekommt error (CSS)
                         list.style.display = "none";
                         input.className = input.className + " error";
                     }
