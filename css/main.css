@@ -8,8 +8,8 @@ html, body {
 }
 
 body {
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+    font-size: 16px;
     color: #333;
     background-color: #FFF;
     /*margin-top: 60px;*/
@@ -350,7 +350,7 @@ footer {
 #form-section .form-group input,
 #form-section .form-group select,
 #form-section .form-group textarea {
-    font-size: 1.2em;
+    font-size: 1.01em;
     background-color: white;
     border: 1px solid #999;
     padding: 5px;
@@ -548,7 +548,7 @@ footer {
 /* error classes */
 
 .error {
-	border: 2px solid red !important;
+	border: 2px dotted red !important;
 }
 
 span.error {
