@@ -35,7 +35,7 @@ function init() {
             // Wir holen uns das passende Input Feld
             if (elem)// Gibt es Input Feld mit dieser ID?
                 elem.label = labels[i];
-            // Wenn ja: Wir erfahren, welches Label zu welchem Input Feld gehört
+            // Wenn ja: Wir erfahren, welches Label zu welchem Input Feld gehört -> Verbindung
         }
     }
 

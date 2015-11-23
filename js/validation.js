@@ -9,7 +9,7 @@ function validateForm(event) {
 	var form = (event.target ? event.target : event.srcElement), f, field, formvalid = true;
 
 	// Alle Input-Felder, Select, Textarea werden durchlaufen, für späteren Zugriff
-
+	// Elemente des Formulars
 	for ( f = 0; f < form.elements.length; f++) {
 
 		// Holt sich das Feld an Stelle f
