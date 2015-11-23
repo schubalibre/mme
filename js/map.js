@@ -172,10 +172,13 @@ var map = (function () {
                 event.target.addEventListener('keyup', callbacks.geocodeAddress,false);
             },false);
 
-            input.addEventListener("blur",function(event){
-                event.target.removeEventListener('keyup', callbacks.geocodeAddress,false);
-                helpers.closeList();
-            },false);
+            /*input.addEventListener("blur",function(event){
+                document.addEventListener('click', function(e) {
+                    if(e.target.parentNode.id == "mapResult") return;
+                    event.target.removeEventListener('keyup', callbacks.geocodeAddress,false);
+                    helpers.closeList();
+                });
+            },false);*/
         }
     };
 
