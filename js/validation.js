@@ -83,7 +83,7 @@ function validateForm(event) {
 		}
 
 		// Sobald zur Laufzeit erneut ins Feld geklickt wird, wird error-klasse und error-Nachricht gelöscht
-		field.addEventListener("change", (function(event) {
+		field.addEventListener("focus", (function(event) {
 			event.target.className = "";
 			event.target.label.getElementsByClassName("error")[0].innerHTML = "";
 		}), false);
