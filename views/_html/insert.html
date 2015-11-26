@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <title>ODDS & ENDS</title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+<header>
+    <!-- content element, der den Kontent in die richtige Position bringt -->
+    <div class="content">
+        <!-- ul = unsortierte Liste -->
+        <nav>
+            <a href=""> <img src="../img/logoneu.png" alt="logo"/> </a>
+            <ul>
+                <li>
+                    <a href="#article-form">Neuen Artikel hinzufügen</a>
+                </li>
+                <li>
+                    <a href="#article-table">Alle Artikel anzeigen</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div id="article-top">
+    <div class="caption-box">
+        <div class="content">
+            <h1>ODDS & ENDS</h1>
+
+            <p class="welcome-text">
+                Herzlich Willkommen bei odds & ends, dem Einrichtungsportal für dein individuelles Zuhause!<br>
+                Auf dieser Seite kannst du neue Artikel in die Datenbank einfügen und alle gespeicherten Artikel verwalten.<br><br>
+                Viel Spaß wünscht das Team von odds & ends!
+            </p>
+
+            <p>
+                <a href="#article-form" class="btn caption">Neuen Artikel hinzufügen</a>
+            </p>
+        </div>
+    </div>
+    <div id="background-carousel" class="clearfix">
+        <img src="../img/room3.jpg"/>
+        <img src="../img/room4.jpg"/>
+        <img src="../img/room5.jpg"/>
+        <img src="../img/room6.jpg"/>
+    </div>
+</div>
+<div class="content">
+    <section id="form-section" class="clearfix">
+        <!--  required bedeutet, dass es ein Pflichtfeld ist (muss ausgefüllt werden)
+        id muss einmalig sein, dann kann man mit css und js darauf zugreifen
+        name ist speziell für input, wie eine variablenzuweisung, unter welchem namen werden die daten an den server geschickt.
+        value ist der Wert in einem Kontaktformular, der schon vorhanden ist (z.B. wenn man Daten editieren möchte)
+        placeholder ist der default-Text, der in dem Feld steht, oft als Hilfestellung, was in dieses Feld gehört.
+        form ist die große schachtel, input sind eingabefelder, textarea ist eingabefeld mit mehreren zeilen.
+        type ist html bestimmt, es gibt z.B. text, email...
+        -->
+        <h1>Artikel bearbeiten</h1>
+
+        <form id="article-form" action="../form_response.php" method="post">
+            <div class="fieldset-wrapper">
+                <fieldset>
+                    <legend>
+                        Artikel
+                    </legend>
+
+                    <div class="form-help">
+                        <p>
+                            An dieser Stelle werden alle notwendigen Informationen zum neuen Artikel eingetragen:
+                            Artikelname, Beschreibung, Preis und Produkt-Kategorie.
+                            Alle Felder müssen ausgefüllt sein, um ein Produkt zu speichern.
+                        </p>
+                    </div>
+                    <div class="input-group">
+                        <div class="form-group">
+                            <label for="name">Artikelname</label>
+                            <input id="name" name="name" pattern=".{3,100}"
+                                   data-error-value-missing="Bitte einen Artikelnamen eingeben."
+                                   data-error-pattern-mismatch="Artikelnamen muss aus min. 3 Buchstaben bestehen."
+                                   type="text" placeholder="Hier bitte den Artikelnamen eintragen"
+                                   required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Artikelbeschreibung</label>
+                            <textarea pattern="[a-z]{1,30}(,[a-z]{1,30})*" id="description" name="description" cols="20" placeholder="Bitte hier eine Artikelbeschreibung hinzufügen."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Preis</label>
+                            <input required id="price" name="price" min="0.01" step="0.01" type="number" placeholder="Bitte den Preis in € angeben"
+                                   data-error-value-missing="Bitte einen Preis in Euro eingeben."
+                                   data-error-range-underflow="Die Preis muss größer als Null sein."
+                                   data-error-step-mismatch="Den Preis in der Form Euro.Cent angeben (zb. 3.45)."/>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Kategorie</label>
+                            <select id="category" name="category" required data-error-value-missing="Es muss eine Kategorie ausgewählt sein." >
+                                <option value="" disabled selected>Die Kategorie des Artikels</option>
+                                <option>Wohnzimmer</option>
+                                <option>Küche</option>
+                                <option>Schlafzimmer</option>
+                            </select> 
+
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        Artikel Bild
+                    </legend>
+
+                    <div class="form-help">
+                        <p>
+                            Bitte lade hier ein Freisteller-Foto von dem abzubildenden Artikel hoch.
+                        </p>
+                    </div>
+
+                    <div class="input-group">
+
+                        <div id="article-carousel">
+                            <img src="../img/sofa.JPG" alt="sofa"/>
+                            <img src="../img/sofa2.JPG" alt="sofa"/>
+                            <img src="../img/sofa.JPG" alt="sofa"/>
+                            <img src="../img/sofa2.JPG" alt="sofa"/>
+                        </div>
+
+                        <div class="form-group file">
+                            <label for="file">Bild hochladen</label>
+                            <input id="file" type="file" value="Upload">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>
+                        Artikel Maße
+                    </legend>
+
+                    <div class="form-help">
+                        <p>
+                            Um dem Kunden eine exakte Informationen zum Produkt zu liefern, müssen hier genaue Werte der Produktmaße in cm eingegeben werden.
+                        </p>
+                    </div>
+                    <div class="input-group">
+                        <div class="form-group">
+                            <div class="col3">
+                                <label for="width">Breite</label>
+                                <input id="width" name="width" type="number" min="0.01" step="0.01" placeholder="Maß in cm" required
+                                       data-error-value-missing="Bitte die Breite des Produkts in cm angeben."
+                                       data-error-range-underflow="Die Breite muss größer als Null sein."
+                                       data-error-step-mismatch="Die Maße in der Form cm.mm angeben (zb. 3.45)."/>
+                            </div>
+                            <div class="col3">
+                                <label for="height">Höhe</label>
+                                <input id="height" name="height" type="number" min="0.01" step="0.01" placeholder="Maß in cm" required
+                                       data-error-value-missing="Bitte die Höhe des Produkts in cm angeben."
+                                       data-error-range-underflow="Die Höhe muss größer als Null sein."
+                                       data-error-step-mismatch="Die Maße in der Form cm.mm angeben (zb. 3.45)."/>
+                            </div>
+                            <div class="col3">
+                                <label for="deepth">Tiefe</label>
+                                <input id="deepth" name="deepth" type="number" min="0.01" step="0.01" placeholder="Maß in cm"
+                                       data-error-range-underflow="Die Tiefe muss größer als Null sein."
+                                       data-error-step-mismatch="Die Maße in der Form cm.mm angeben (zb. 3.45)."/>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+
+                    <legend>
+                        Artikel Shop
+                    </legend>
+
+                    <div class="form-help">
+                        <p>
+                            Ein Produkt benötigt zusätzlich noch einen Hinweis für den Kunden, wo er den Artikel kaufen kann.
+                            Bitte an dieser Stelle einen Link zum jeweiligen Shop und die dazugehörige Adresse eintragen.
+                            Wenn alle Angaben stimmen, wird der Shop auf der Karte angezeigt.
+                        </p>
+                    </div>
+                    <div class="input-group">
+                        <div class="form-group">
+                            <label for="shop">Shop</label>
+                            <input id="shop" name="shop" type="url" value="" placeholder="Bitte hier den Link zum Shop eintragen" required
+                                   data-error-value-missing="Bitte einen gültigen Link zum Shop eingeben."
+                                   data-error-type-mismatch="Bitte den Link in der Form http://www.domain.com angeben."
+                            />
+                        </div>
+                        <div class="form-group address-wrapper">
+                            <label for="address">Adresse</label>
+                            <input required data-error-value-missing="Bitte eine gültige Adresse des Shops eingeben." id="address" list="mapResult" name="address" autocomplete="off" type="text" value="" placeholder="Die Adresse des Shops angeben" />
+
+                            <ul id="mapResult"></ul>
+
+                        </div>
+                        <ul id="map"></ul>
+
+                        <div class="btn-group">
+                            <button type="submit" class="btn submit">Speichern</button>
+                            <button type="reset" class="btn reset">Abbrechen</button>
+                            <button type="submit" class="btn delete">Löschen</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+        </form>
+    </section>
+
+    <section id="table">
+        <h1>Artikelübersicht</h1>
+
+        <form>
+            <input id="search-bar" type="text" name="query" data-table="article-table" placeholder="Artikelsuche"/>
+            <input id="search-btn" type="submit" name="search" class="btn" value="Suchen">
+        </form>
+
+        <table id="article-table">
+        	<tr>
+        		<th>
+        			Bild
+        		</th>
+        		<th>
+        			Name
+        		</th>
+        		<th>
+        			Preis
+        		</th>
+        		<th>
+        			<small>H x B x T<br>
+        			Maßangaben in cm</small>
+        		</th>
+        		<th>
+        			Beschreibung
+        		</th>
+        		<th>
+        			&nbsp;
+        		</th>
+        	</tr>
+            <tr class="show">
+                <td><img src="../img/holzstuhl.jpg" alt="sofa"/></td>
+                <td>Stuhl Jens</td>
+                <td>126.00 €</td>
+                <td>133 x 144 x 255</td>
+                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+                    Aliquam sit amet augue diam.
+                </td>
+                <td><a href="#article-form" class="btn edit">edit</a></td>
+            </tr>
+
+            <tr class="show">
+                <td><img src="../img/sofa.JPG" alt="sofa"/></td>
+                <td>Schrank Pippa</td>
+                <td>600.00 €</td>
+                <td>133 x 144 x 255</td>
+                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+                    Aliquam sit amet augue diam.
+                </td>
+                <td><a href="#article-form" class="btn edit">edit</a></td>
+            </tr>
+
+            <tr class="show">
+                <td><img src="../img/holzstuhl.jpg" alt="sofa"/></td>
+                <td>Sessel Kordula</td>
+                <td>1000.00 €</td>
+                <td>133 x 144 x 255</td>
+                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+                    Aliquam sit amet augue diam.
+                </td>
+                <td><a href="#article-form" class="btn edit">edit</a></td>
+            </tr>
+
+            <tr class="show">
+                <td><img src="../img/sofa.JPG" alt="sofa"/></td>
+                <td>Sofa Inga</td>
+                <td>1200.00 €</td>
+                <td>133 x 144 x 255</td>
+                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+                    Aliquam sit amet augue diam.
+                </td>
+                <td><a href="#article-form" class="btn edit">edit</a></td>
+            </tr>
+
+            <tr class="show">
+                <td><img src="../img/holzstuhl.jpg" alt="sofa"/></td>
+                <td>Hocker Claudia</td>
+                <td>129.00 €</td>
+                <td>133 x 144 x 255</td>
+                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+                    Aliquam sit amet augue diam.
+                </td>
+                <td><a href="#article-form" class="btn edit">edit</a></td>
+            </tr>
+
+            <tr class="show">
+                <td><img src="../img/holzstuhl.jpg" alt="sofa"/></td>
+                <td>Stuhl Miriam</td>
+                <td>95.00 €</td>
+                <td>133 x 144 x 255</td>
+                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+                    Aliquam sit amet augue diam.
+                </td>
+                <td><a href="#article-form" class="btn edit">edit</a></td>
+            </tr>
+
+            <tr class="show">
+                <td><img src="../img/holzstuhl.jpg" alt="sofa"/></td>
+                <td>Hocker Robert</td>
+                <td>85.00 €</td>
+                <td>133 x 144 x 255</td>
+                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+                    Aliquam sit amet augue diam.
+                </td>
+                <td><a href="#article-form" class="btn edit">edit</a></td>
+            </tr>
+
+            <tr class="show">
+                <td><img src="../img/sofa.JPG" alt="sofa"/></td>
+                <td>Sessel Mario</td>
+                <td>176.00 €</td>
+                <td>133 x 144 x 255</td>
+                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+                    Aliquam sit amet augue diam.
+                </td>
+                <td><a href="#article-form" class="btn edit">edit</a></td>
+            </tr>
+
+            <tr class="show">
+                <td><img src="../img/holzstuhl.jpg" alt="sofa"/></td>
+                <td>Stuhl Karen</td>
+                <td>35.00 €</td>
+                <td>133 x 144 x 255</td>
+                <td class="article-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lectus
+                    metus, ultricies non venenatis nec, interdum sit amet mi. Duis eleifend faucibus ante non tristique.
+                    Aliquam sit amet augue diam.
+                </td>
+                <td><a href="#article-form" class="btn edit">edit</a></td>
+            </tr>
+        </table>
+    </section>
+</div>
+<footer>
+    <!-- content element, der den Kontent in die richtige Position bringt -->
+    <div class="content">
+        <!-- ul = unsortierte Liste -->
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">Kontakt</a>
+                </li>
+                <li>
+                    <a href="#">Impressum</a>
+                </li>
+                <li>
+                    <a href="#">AGB's</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</footer>
+<!-- Javascript immer erst am Ende der HTML Datei laden: Browser liest von oben nach unten, HTML zuerst lesen! --> 
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<!-- Die Funktionen werden in der main.js aufgerufen aber müssen aus unterschiedlichen Dateien geladen werden -->
+<script src="../js/validation.js"></script>
+<script src="../js/map.js"></script>
+<script src="../js/sliderCarousel.js"></script>
+<script src="../js/main.js"></script>
+
+</body>
+</html>
