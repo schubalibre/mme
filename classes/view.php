@@ -1,9 +1,9 @@
 <?php
 /* 
- * Project: Nathan MVC
+ * Project: ODDS & ENDS
  * File: /classes/view.php
  * Purpose: class for the view object.
- * Author: Nathan Davison
+ * Author: Robert Dziuba
  */
 
 class View {    
@@ -27,7 +27,7 @@ class View {
                 if (file_exists($templateFile)) {
                     require($templateFile);
                 } else {
-                    require(__DIR__."/../views/error/badtemplate.php");
+                    require(__DIR__."/../views/Error/badtemplate.php");
                 }
             } else {
                 //we're not using a template view so just output the method's view directly

@@ -1,17 +1,17 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: roberto
- * Date: 25.11.15
- * Time: 18:14
+/*
+ * Project: ODDS & ENDS
+ * File: /models/furniture.php
+ * Purpose: model for the furniture controller.
+ * Author: Robert Dziuba
  */
 class FurnitureModel extends BaseModel
 {
     //data passed to the home index view
     public function index()
     {
-        $this->viewModel->set("pageTitle","Furniture");
+        $this->viewModel->set("pageTitle","Furniture - ODDS&ENDS");
         return $this->viewModel;
     }
 }

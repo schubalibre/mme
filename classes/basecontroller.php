@@ -1,9 +1,9 @@
 <?php
 /* 
- * Project: Nathan MVC
+ * Project: ODDS & ENDS
  * File: /classes/basecontroller.php
  * Purpose: abstract class from which controllers extend
- * Author: Nathan Davison
+ * Author: Robert Dziuba
  */
 
 abstract class BaseController {

@@ -1,9 +1,9 @@
 <?php
 /* 
- * Project: Nathan MVC
+ * Project: ODDS & ENDS
  * File: /classes/basemodel.php
  * Purpose: abstract class from which models extend.
- * Author: Nathan Davison
+ * Author: Robert Dziuba
  */
 
 class BaseModel {

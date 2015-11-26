@@ -1,9 +1,9 @@
 <?php
 /* 
- * Project: Nathan MVC
+ * Project: ODDS & ENDS
  * File: /controllers/home.php
  * Purpose: controller for the home of the app.
- * Author: Nathan Davison
+ * Author: Robert Dziuba
  */
 
 class HomeController extends BaseController

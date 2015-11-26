@@ -1,9 +1,9 @@
 <?php
 /* 
- * Project: Nathan MVC
+ * Project: ODDS & ENDS
  * File: /controllers/error.php
  * Purpose: controller for the URL access errors of the app.
- * Author: Nathan Davison
+ * Author: Robert Dziuba
  */
 
 class ErrorController extends BaseController

@@ -1,9 +1,9 @@
 <?php
 /* 
- * Project: Nathan MVC
+ * Project: ODDS & ENDS
  * File: /models/error.php
  * Purpose: model for the error controller.
- * Author: Nathan Davison
+ * Author: Robert Dziuba
  */
 
 class ErrorModel extends BaseModel

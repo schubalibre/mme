@@ -1,9 +1,9 @@
 <?php
 /* 
- * Project: Nathan MVC
+ * Project: ODDS & ENDS
  * File: /classes/loader.php
  * Purpose: class which maps URL requests to controller object creation
- * Author: Nathan Davison
+ * Author: Robert Dziuba
  */
 
 class Loader {

@@ -1,9 +1,9 @@
 <?php
 /* 
- * Project: Nathan MVC
+ * Project: ODDS & ENDS
  * File: /models/home.php
  * Purpose: model for the home controller.
- * Author: Nathan Davison
+ * Author: Robert Dziuba
  */
 
 class HomeModel extends BaseModel
@@ -11,7 +11,7 @@ class HomeModel extends BaseModel
     //data passed to the home index view
     public function index()
     {   
-        $this->viewModel->set("pageTitle","Nathan MVC");
+        $this->viewModel->set("pageTitle","Home - ODDS&ENDS");
         return $this->viewModel;
     }
 }

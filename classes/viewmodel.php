@@ -1,9 +1,9 @@
 <?php
 /* 
- * Project: Nathan MVC
+ * Project: ODDS & ENDS
  * File: /classes/viewmodel.php
  * Purpose: class for the optional data object returned by model methods which the controller sends to the view.
- * Author: Nathan Davison
+ * Author: Robert Dziuba
  */
 
 class ViewModel {    
