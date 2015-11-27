@@ -27,6 +27,11 @@ class AdminController extends BaseController
     protected function department()
     {
 
+        if($this->request->httpMethod() != "GET"){
+            var_dump($this->request);
+            exit();
+        }
+
         if($this->urlValues['rest'] == "new"){
 
             if($this->request->body()) {
