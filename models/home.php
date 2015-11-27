@@ -11,7 +11,7 @@ class HomeModel extends BaseModel
     //data passed to the home index view
     public function index()
     {   
-        $this->viewModel->set("pageTitle","Home - ODDS&ENDS");
+        $this->viewModel->set("pageTitle","Home - ODDS&amp;ENDS");
         return $this->viewModel;
     }
 }

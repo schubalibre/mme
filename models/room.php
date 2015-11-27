@@ -11,7 +11,7 @@ class RoomModel extends BaseModel
     //data passed to the home index view
     public function index()
     {
-        $this->viewModel->set("pageTitle","Room - ODDS&ENDS");
+        $this->viewModel->set("pageTitle","Room - ODDS&amp;ENDS");
         return $this->viewModel;
     }
 

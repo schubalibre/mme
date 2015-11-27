@@ -16,11 +16,16 @@
     <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
 <body>
+
+<?php require($viewModel->get("header")); ?>
+
 <div class="container">
     <div class="row">
         <?php require($this->viewFile); ?>
     </div>
 </div>
+
+<?php require($viewModel->get("footer")); ?>
 
 <!-- /container -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

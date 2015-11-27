@@ -23,15 +23,29 @@ class RoomController extends BaseController
         $this->view->output($this->model->index());
     }
 
-    protected function departments(){
+    protected function departments($id){
         $result = $this->model->departmentsName($this->request->uriValues()->action);
 
         $this->view->output($this->model->departments($result));
     }
 
-    //default method
-    protected function ajax()
-    {
-       return false;
+    protected function save(){
+        $result = $this->model->departmentsName($this->request->uriValues()->action);
+
+        $this->view->output($this->model->departments($result));
     }
+
+    protected function update(){
+        $result = $this->model->departmentsName($this->request->uriValues()->action);
+
+        $this->view->output($this->model->departments($result));
+    }
+
+    protected function delete(){
+        $result = $this->model->departmentsName($this->request->uriValues()->action);
+
+        $this->view->output($this->model->departments($result));
+    }
+
+
 }
