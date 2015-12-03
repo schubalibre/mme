@@ -29,7 +29,10 @@ $( document ).ready(function() {
                 });
             }
         }).fail(function(e) {
-            console.log("Error by ajax: " + e);
+            console.log(e);
+        }).always(function(){
+            $btn.addClass("btn-primary");
+            $span.remove();
         });
     });
 });
