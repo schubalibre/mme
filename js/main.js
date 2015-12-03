@@ -5,12 +5,12 @@ $( document ).ready(function() {
 
         $btn = $(this).removeClass("btn-primary");
 
-        $span = $("<span>").addClass("loader").append("<img src='../img/ajax-loader.gif' />")
+        $span = $("<span>").addClass("loader").append("<img src='img/ajax-loader.gif' />")
 
         $btn.before($span);
 
         $.ajax({
-            url: "article.php",
+            url: "includes/article.php",
             method: "POST",
             dataType: "json"
         }).done(function(json){
@@ -27,18 +27,9 @@ $( document ).ready(function() {
                         images: ".img-responsive"
                     });
                 });
-
-
-
             }
-
-        })  .fail(function() {
-            alert( "error" );
+        }).fail(function(e) {
+            console.log("Error by ajax: " + e);
         });
-
-
     });
-
-
-
 });
