@@ -3,9 +3,11 @@ $( document ).ready(function() {
     $("#loadArticle").click(function(e){
         e.preventDefault();
 
-        $btn = $(this).removeClass("btn-primary");
+        $btn = $(this).removeClass("btn-primary btn-danger");
 
-        $span = $("<span>").addClass("loader").append("<img src='img/ajax-loader.gif' />")
+        $("#article-load-error").remove();
+
+        $span = $("<span>").addClass("loader").append("<img src='img/ajax-loader.gif' />");
 
         $btn.before($span);
 
@@ -28,8 +30,13 @@ $( document ).ready(function() {
                     });
                 });
             }
-        }).fail(function(e) {
-            console.log(e);
+        }).fail(function(jqXHR, textStatus) {
+
+            $btn.addClass("btn-danger");
+            $btn.before($("<span id='article-load-error' class='label label-danger'>Request failed: " + textStatus + "</span>"));
+
+            console.log( "Request failed: " + textStatus );
+
         }).always(function(){
             $btn.addClass("btn-primary");
             $span.remove();
