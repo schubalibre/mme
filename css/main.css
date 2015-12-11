@@ -97,7 +97,7 @@ body {
 /* FORM CSS
 -------------------------------------------------- */
 
-form{
+.form-wrapper{
     margin-top:80px;
 }
 

@@ -1,7 +1,7 @@
 <?php require_once "header.php"; ?>
 
     <div class="container ">
-        <div class="row">
+        <div class="row form-wrapper">
             <div class="col-md-3">
                 <div class="list-group">
                     <a href="#" class="list-group-item active">Artikel</a>
@@ -21,13 +21,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="room">Kunde</label>
-                        <select id="room" class="form-control" name="room" required>
-                            <option></option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
                         <label for="room">Kategorie</label>
                         <select id="room" class="form-control" name="room" required>
                             <option></option>
@@ -41,13 +34,29 @@
                         <label for="articleTitle">Artikeltitel</label>
                         <input type="text" class="form-control" id="articleTitle" placeholder="Artikeltitel">
                     </div>
+
                     <div class="form-group">
                         <label for="articleDescription">Artikelbeschreibung</label>
-                        <textarea id="articleDescription" name="articleDescription"></textarea>
+                        <textarea id="articleDescription" class="form-control" rows="3" name="articleDescription"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="articleImage">Email address</label>
-                        <input type="file" class="form-control" id="articleImage">
+                        <label for="articleImage">Article Image</label>
+                        <input type="file" id="articleImage">
+                        <p class="help-block">Example block-level help text here.</p>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label for="articleTitle">Artikel Breite</label>
+                            <input type="text" class="form-control" id="articleTitle" placeholder="Artikeltitel">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="articleTitle">Artikel Höhe</label>
+                            <input type="text" class="form-control" id="articleTitle" placeholder="Artikeltitel">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="articleTitle">Artikel Tiefe</label>
+                            <input type="text" class="form-control" id="articleTitle" placeholder="Artikeltitel">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="shop_name">Shopname</label>

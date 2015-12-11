@@ -42,4 +42,33 @@ $( document ).ready(function() {
             $span.remove();
         });
     });
+
+console.log($(".form-validation"));
+    if($(".form-validation")){
+        // Alle Labels aus dem Formular in Variable speichern, um sie später zu durchlaufen
+        var labels = $('label');
+
+        // Alle Labels werden durchlaufen
+        for (var i = 0; i < labels.length; i++) {
+            if (labels[i].htmlFor != '') {// haben Labels ein for mit ID des Input Feldes?
+                var elem = $(labels[i].htmlFor);
+                // Wir holen uns das passende Input Feld
+                if (elem)// Gibt es Input Feld mit dieser ID?
+                    elem.label = labels[i];
+                // Wenn ja: Wir erfahren, welches Label zu welchem Input Feld gehört -> Verbindung
+            }
+
+            console.log(elem);
+        }
+
+        //wir holen uns unser Formular
+        var form = document.getElementById("article-form");
+        // Browser-eigene Validation ausschalten da diese vor dem submit ausgefürht werden - um unsere eigenen Kontrollen durchzuführen
+        form.noValidate = true;
+
+        // beim Abschicken des Formulares wird unsere Funktion validateForm ausgeführt - um die eigenen Kontrollen durchzuführen
+        form.addEventListener("submit", validateForm);
+    }
+
+
 });
