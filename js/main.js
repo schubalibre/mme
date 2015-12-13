@@ -43,7 +43,6 @@ $( document ).ready(function() {
         });
     });
 
-console.log($(".form-validation"));
     if($(".form-validation")){
         // Alle Labels aus dem Formular in Variable speichern, um sie später zu durchlaufen
         var labels = $('label');
@@ -57,17 +56,16 @@ console.log($(".form-validation"));
                     elem.label = labels[i];
                 // Wenn ja: Wir erfahren, welches Label zu welchem Input Feld gehört -> Verbindung
             }
-
-            console.log(elem);
         }
 
         //wir holen uns unser Formular
-        var form = document.getElementById("article-form");
+        var $form = $(".form-validation");
+
         // Browser-eigene Validation ausschalten da diese vor dem submit ausgefürht werden - um unsere eigenen Kontrollen durchzuführen
-        form.noValidate = true;
+        $form.noValidate = true;
 
         // beim Abschicken des Formulares wird unsere Funktion validateForm ausgeführt - um die eigenen Kontrollen durchzuführen
-        form.addEventListener("submit", validateForm);
+        $form.on("submit",validateForm);
     }
 
 

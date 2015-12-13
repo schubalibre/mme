@@ -1,19 +1,18 @@
-function validateForm(event) {
+function validateForm() {
+
+    console.log(event);
 	
-	var scrolling = false; // wurde schon zu einem Element gescrollt?
+	var scrolling = false;
 
-	// Zugriff auf das event für alle Browser
-	event = ( event ? event : window.event);
-
-	// Zugriff auf das form-Element für alle Browser
-	var form = (event.target ? event.target : event.srcElement), f, field, formvalid = true;
+	var form = event.target;
 
 	// Alle Input-Felder, Select, Textarea werden durchlaufen, für späteren Zugriff
 	// Elemente des Formulars
 	for ( f = 0; f < form.elements.length; f++) {
-
 		// Holt sich das Feld an Stelle f
 		field = form.elements[f];
+
+		var $form_group = $(field).parent(".form-group");
 
 		// Buttons etc. ignorieren
 		if (field.nodeName !== "INPUT" && field.nodeName !== "TEXTAREA" && field.nodeName !== "SELECT")
@@ -44,6 +43,7 @@ function validateForm(event) {
 			// Input-Feld / Select etc. bekommt class-name "error"
 			field.className = "error";
 
+			console.log(field.validity);
 
 			// Möglicher Fehler werden abgefangen und mit Fehlermeldung ans Label gehangen
 			// Span Element mit Klasse error wird mit Error-Nachricht befüllt
@@ -83,7 +83,7 @@ function validateForm(event) {
 		}
 
 		// Sobald zur Laufzeit erneut ins Feld geklickt wird, wird error-klasse und error-Nachricht gelöscht
-		field.addEventListener("focus", (function(event) {
+		field.addEventListener("keydown", (function(event) {
 			event.target.className = "";
 			event.target.label.getElementsByClassName("error")[0].innerHTML = "";
 		}), false);
