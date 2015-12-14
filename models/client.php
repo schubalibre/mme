@@ -44,13 +44,14 @@ class ClientModel extends BaseModel
                         name = :name,
                         lastname = :lastname,
                         email = :email,
-                        password = MD5(:password)';
+                        password = MD5(:password),
+                        update_at = now(),
+                        creat_at = now()';
             $s = $this->database->prepare($sql);
             $s->bindValue(':name', $data->name);
             $s->bindValue(':lastname', $data->lastname);
             $s->bindValue(':email', $data->email);
             $s->bindValue(':password', $data->password); //optional, not required
-
             $s->execute();
 
             return $this->database->lastInsertId();
@@ -60,6 +61,28 @@ class ClientModel extends BaseModel
             $error[] = 'Error adding client: '.$e->getMessage();
             $this->viewModel->set("errors",$error);
         }
+    }
+
+    public function getClient($data){
+        try
+        {
+            $sql = 'SELECT * FROM client WHERE id = :id';
+            $s = $this->database->prepare($sql);
+            $s->bindValue(':name', $data->id);
+            $s->execute();
+            $result = $s->fetchAll(PDO::FETCH_ASSOC);
+
+            $this->viewModel->set("client",$result);
+        }
+        catch (PDOException $e)
+        {
+            $error = 'Error getting departments: '.$e->getMessage();
+            $this->viewModel->set("dbError",$error);
+        }
+
+
+        $this->viewModel->set("pageTitle","Update client - ODDS&amp;ENDS");
+        return $this->viewModel;
     }
 }
 

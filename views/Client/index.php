@@ -7,7 +7,10 @@ if($errors){
 }
 ?>
 <table class="table">
-   <?php foreach($viewModel->get("clients") as $id => $client) {
+   <?php
+   $clients = $viewModel->get("clients");
+   if(isset($clients)){
+       foreach($clients as $id => $client) {
        echo "<tr>";
        echo "<td>".$client['name']."</td>";
        echo "<td>".$client['lastname']."</td>";
@@ -15,6 +18,7 @@ if($errors){
        echo "<td><a href='/client/update/".$id."/'/><san class='glyphicon glyphicon-edit' aria-hidden=\"true\"></san></a></td>";
        echo "<td><a href='/client/delete/".$id."/'/><span class='glyphicon glyphicon-remove' aria-hidden=\"true\"></span></a></td>";
        echo "</tr>";
+       }
    } ?>
 </table>
 

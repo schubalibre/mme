@@ -5,6 +5,9 @@ if($errors){
         echo "<div class=\"alert alert-danger\" role=\"alert\">$error</div>";
     }
 }
+
+var_dump($viewModel->get("client"));
+
 ?>
 
 <form class="form-horizontal validate" action="" method="POST">

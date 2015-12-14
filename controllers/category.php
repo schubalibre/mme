@@ -6,7 +6,7 @@
  * Author: Robert Dziuba
  */
 
-class ClientController extends BaseController
+class CategoryController extends BaseController
 {
     //add to the parent constructor
     public function __construct($action, $urlValues)
@@ -16,7 +16,7 @@ class ClientController extends BaseController
         //create the model object
         require("models/client.php");
         require("classes/FormValidator.php");
-        $this->model = new ClientModel();
+        $this->model = new CategoryModel();
     }
 
     //default method
@@ -43,8 +43,6 @@ class ClientController extends BaseController
             if($validator->validate($this->request->body())) {
                 $data = $validator->sanatize($this->request->body());
 
-
-
                 $id = $this->model->creatNewClient($data);
 
                 if($id !== null) {
@@ -55,38 +53,5 @@ class ClientController extends BaseController
         }
 
         $this->view->output($this->model->newClient());
-    }
-
-    protected function update()
-    {
-
-        if($this->request->httpMethod() === "POST"){
-
-            $validations = array(
-                'name' => 'anything',
-                'lastname' => 'anything',
-                'email' => 'email',
-                'password'=>'anything',
-                'confirm_password'=>'anything');
-
-            $required = array('name','lastname', 'email', 'password', 'confirm_password');
-
-            $validator = new FormValidator($validations, $required);
-
-            if($validator->validate($this->request->body())) {
-                $data = $validator->sanatize($this->request->body());
-
-                $id = $this->model->creatNewClient($data);
-
-                if($id !== null) {
-                    header('Location: ' . $this->url->generate("/client"));
-                    exit();
-                }
-            }
-        }
-
-        $this->view = new View(get_class($this), "newClient");
-
-        $this->view->output($this->model->getClient($this->request->uriValues()));
     }
 }
