@@ -13,6 +13,7 @@ abstract class BaseController {
     protected $model;
     protected $view;
     protected $request;
+    protected $url;
     
     public function __construct($action, $urlValues) {
         $this->action = $action;
@@ -23,6 +24,11 @@ abstract class BaseController {
                 
         //establish the view object
         $this->view = new View(get_class($this), $action);
+
+        //url redirection class
+        require('url.php');
+        $this->url = new Url('http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "{$_SERVER['HTTP_HOST']}/{$_SERVER['REQUEST_URI']}");
+
     }
         
     //executes the requested method
