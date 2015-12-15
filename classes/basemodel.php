@@ -15,7 +15,7 @@ class BaseModel {
     //create the base and utility objects available to all models on model creation
     public function __construct()
     {
-        $this->database = new PDO("mysql:host=localhost;dbname=mme", "root", "");
+        $this->database = new PDO("mysql:host=localhost;dbname=mme", "root", "qpal10");
         $this->database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->database->exec('SET NAMES "utf8"');
 

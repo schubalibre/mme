@@ -29,30 +29,15 @@ class ClientController extends BaseController
     {
         if($this->request->httpMethod() === "POST"){
 
-            $validations = array(
-                'name' => 'anything',
-                'lastname' => 'anything',
-                'email' => 'email',
-                'password'=>'anything',
-                'confirm_password'=>'anything');
+            $id = $this->model->creatNewClient($this->request->body());
 
-            $required = array('name','lastname', 'email', 'password', 'confirm_password');
-
-            $validator = new FormValidator($validations, $required);
-
-            if($validator->validate($this->request->body())) {
-                $data = $validator->sanatize($this->request->body());
-
-
-
-                $id = $this->model->creatNewClient($data);
-
-                if($id !== null) {
-                    header('Location: ' . $this->url->generate("/client"));
-                    exit();
-                }
+            if($id !== null) {
+                header('Location: ' . $this->url->generate("/client"));
+                exit();
             }
         }
+
+        $this->view = new View(get_class($this), "clientForm");
 
         $this->view->output($this->model->newClient());
     }
@@ -63,30 +48,68 @@ class ClientController extends BaseController
         if($this->request->httpMethod() === "POST"){
 
             $validations = array(
+                'id' => 'number',
                 'name' => 'anything',
                 'lastname' => 'anything',
                 'email' => 'email',
                 'password'=>'anything',
                 'confirm_password'=>'anything');
 
-            $required = array('name','lastname', 'email', 'password', 'confirm_password');
+            $required = array('id','name','lastname', 'email');
 
             $validator = new FormValidator($validations, $required);
 
             if($validator->validate($this->request->body())) {
                 $data = $validator->sanatize($this->request->body());
 
-                $id = $this->model->creatNewClient($data);
+                $rows = $this->model->updateClient($data);
 
-                if($id !== null) {
+                if($rows > 0) {
                     header('Location: ' . $this->url->generate("/client"));
                     exit();
                 }
             }
         }
 
-        $this->view = new View(get_class($this), "newClient");
 
-        $this->view->output($this->model->getClient($this->request->uriValues()));
+        if($this->request->uriValues()->id != 0){
+            $this->view = new View(get_class($this), "clientForm");
+            $this->view->output($this->model->getClient($this->request->uriValues()));
+            exit();
+        }
+
+        // if no id is set
+        require("controllers/error.php");
+        $controller = new ErrorController("badurl",$this->urlValues);
+        $controller->executeAction();
+    }
+
+    protected function delete()
+    {
+        if($this->request->httpMethod() === "GET"){
+
+            $validations = array(
+                'id' => 'number');
+
+            $required = array('id');
+
+            $validator = new FormValidator($validations, $required);
+
+            if($validator->validate($this->request->uriValues())) {
+                $data = $validator->sanatize($this->request->uriValues());
+
+                $rows = $this->model->deleteClient($data);
+
+                if($rows > 0) {
+                    header('Location: ' . $this->url->generate("/client"));
+                    exit();
+                }
+            }
+        }
+
+        // if no id is set
+        require("controllers/error.php");
+        $controller = new ErrorController("badurl",$this->urlValues);
+        $controller->executeAction();
     }
 }

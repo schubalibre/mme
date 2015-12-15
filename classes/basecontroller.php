@@ -19,14 +19,14 @@ abstract class BaseController {
         $this->action = $action;
         $this->urlValues = $urlValues;
 
-        require('request.php');
+        require_once('request.php');
         $this->request = new Request(__DIR__);
                 
         //establish the view object
         $this->view = new View(get_class($this), $action);
 
         //url redirection class
-        require('url.php');
+        require_once('url.php');
         $this->url = new Url('http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "{$_SERVER['HTTP_HOST']}/{$_SERVER['REQUEST_URI']}");
 
     }

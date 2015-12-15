@@ -87,6 +87,9 @@ class FormValidator
         return($output);
     }
 
+    public function getErrors(){
+            return $this->errors;
+    }
 
     /**
      *

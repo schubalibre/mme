@@ -10,13 +10,13 @@ if($errors){
    <?php
    $clients = $viewModel->get("clients");
    if(isset($clients)){
-       foreach($clients as $id => $client) {
+       foreach($clients as $client) {
        echo "<tr>";
        echo "<td>".$client['name']."</td>";
        echo "<td>".$client['lastname']."</td>";
        echo "<td>".$client['email']."</td>";
-       echo "<td><a href='/client/update/".$id."/'/><san class='glyphicon glyphicon-edit' aria-hidden=\"true\"></san></a></td>";
-       echo "<td><a href='/client/delete/".$id."/'/><span class='glyphicon glyphicon-remove' aria-hidden=\"true\"></span></a></td>";
+       echo "<td><a href='/client/update/".$client['id']."/'/><san class='glyphicon glyphicon-edit' aria-hidden=\"true\"></san></a></td>";
+       echo "<td><a href='/client/delete/".$client['id']."/'/><span class='glyphicon glyphicon-remove' aria-hidden=\"true\"></span></a></td>";
        echo "</tr>";
        }
    } ?>

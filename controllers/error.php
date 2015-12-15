@@ -13,7 +13,7 @@ class ErrorController extends BaseController
         parent::__construct($action, $urlValues);
         
         //create the model object
-        require("models/error.php");
+        require_once("models/error.php");
         $this->model = new ErrorModel();
     }
     
