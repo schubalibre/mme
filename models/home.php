@@ -3,7 +3,7 @@
  * Project: ODDS & ENDS
  * File: /models/home.php
  * Purpose: model for the home controller.
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  */
 
 class HomeModel extends BaseModel

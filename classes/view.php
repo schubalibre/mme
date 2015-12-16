@@ -3,7 +3,7 @@
  * Project: ODDS & ENDS
  * File: /classes/view.php
  * Purpose: class for the view object.
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  */
 
 class View {    

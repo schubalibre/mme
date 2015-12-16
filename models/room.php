@@ -3,7 +3,7 @@
  * Project: ODDS & ENDS
  * File: /models/room.php
  * Purpose: model for the room controller.
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  */
 
 class RoomModel extends BaseModel

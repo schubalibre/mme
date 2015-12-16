@@ -4,7 +4,7 @@
  * Project: ODDS & ENDS
  * File: /classes/url.php
  * Purpose: class for the url object.
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  */
 class Url
 {

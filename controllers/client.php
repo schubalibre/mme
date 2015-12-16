@@ -3,7 +3,7 @@
  * Project: ODDS & ENDS
  * File: /controllers/home.php
  * Purpose: controller for the home of the app.
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  */
 
 class ClientController extends BaseController
@@ -20,20 +20,37 @@ class ClientController extends BaseController
     }
 
     //default method
-    protected function index()
+    protected function indexAction()
     {
         $this->view->output($this->model->index());
     }
 
-    protected function newClient()
+    protected function newAction()
     {
-        if($this->request->httpMethod() === "POST"){
+        if($this->request->httpMethod() === "POST") {
 
-            $id = $this->model->creatNewClient($this->request->body());
+            $validations = array(
+                'id' => 'number',
+                'name' => 'anything',
+                'lastname' => 'anything',
+                'email' => 'email',
+                'password' => 'anything',
+                'confirm_password' => 'anything'
+            );
 
-            if($id !== null) {
-                header('Location: ' . $this->url->generate("/client"));
-                exit();
+            $required = array('id', 'name', 'lastname', 'email');
+
+            $validator = new FormValidator($validations, $required);
+
+            if ($validator->validate($this->request->body())) {
+                $data = $validator->sanatize($this->request->body());
+
+                $id = $this->model->creatNewClient($data);
+
+                if ($id !== null) {
+                    header('Location: '.$this->url->generate("/client"));
+                    exit();
+                }
             }
         }
 
@@ -42,7 +59,7 @@ class ClientController extends BaseController
         $this->view->output($this->model->newClient());
     }
 
-    protected function update()
+    protected function updateAction()
     {
 
         if($this->request->httpMethod() === "POST"){
@@ -84,7 +101,7 @@ class ClientController extends BaseController
         $controller->executeAction();
     }
 
-    protected function delete()
+    protected function deleteAction()
     {
         if($this->request->httpMethod() === "GET"){
 

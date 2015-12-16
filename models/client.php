@@ -3,7 +3,7 @@
  * Project: ODDS & ENDS
  * File: /models/client.php
  * Purpose: model for the client controller.
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  */
 
 class ClientModel extends BaseModel
@@ -39,48 +39,29 @@ class ClientModel extends BaseModel
 
     public function creatNewClient($data){
 
-        $validations = array(
-            'name' => 'anything',
-            'lastname' => 'anything',
-            'email' => 'email',
-            'password'=>'anything',
-            'confirm_password'=>'anything');
+        try
+        {
+            $sql = 'INSERT INTO client SET
+                    name = :name,
+                    lastname = :lastname,
+                    email = :email,
+                    password = MD5(:password),
+                    updated_at = now(),
+                    created_at = now()';
+            $s = $this->database->prepare($sql);
+            $s->bindValue(':name', $data->name);
+            $s->bindValue(':lastname', $data->lastname);
+            $s->bindValue(':email', $data->email);
+            $s->bindValue(':password', $data->password); //optional, not required
+            $s->execute();
 
-        $required = array('name','lastname', 'email', 'password', 'confirm_password');
-
-        $validator = new FormValidator($validations, $required);
-
-        if($validator->validate($data)) {
-            $data = $validator->sanatize($data);
-
-            try
-            {
-                $sql = 'INSERT INTO client SET
-                        name = :name,
-                        lastname = :lastname,
-                        email = :email,
-                        password = MD5(:password),
-                        update_at = now(),
-                        creat_at = now()';
-                $s = $this->database->prepare($sql);
-                $s->bindValue(':name', $data->name);
-                $s->bindValue(':lastname', $data->lastname);
-                $s->bindValue(':email', $data->email);
-                $s->bindValue(':password', $data->password); //optional, not required
-                $s->execute();
-
-                return $this->database->lastInsertId();
-            }
-            catch (PDOException $e)
-            {
-                $error[] = 'Error adding client: '.$e->getMessage();
-                $this->viewModel->set("errors",$error);
-            }
-        }else{
-            $this->viewModel->set("client",get_object_vars($data));
-            $this->viewModel->set("errors",$validator->getErrors());
+            return $this->database->lastInsertId();
         }
-
+        catch (PDOException $e)
+        {
+            $error[] = 'Error adding client: '.$e->getMessage();
+            $this->viewModel->set("errors",$error);
+        }
     }
 
     public function getClient($data){
@@ -120,7 +101,7 @@ class ClientModel extends BaseModel
                     lastname = :lastname,
                     email = :email,
                     password = COALESCE(NULLIF(MD5(:password), ""), password),
-                    update_at = now()
+                    updated_at = now()
                     WHERE id = :id';
             $s = $this->database->prepare($sql);
             $s->bindValue(':name', $data->name);

@@ -3,7 +3,7 @@
  * Project: ODDS & ENDS
  * File: /controllers/home.php
  * Purpose: controller for the home of the app.
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  */
 
 class HomeController extends BaseController
@@ -18,7 +18,7 @@ class HomeController extends BaseController
     }
     
     //default method
-    protected function index()
+    protected function indexAction()
     {
         $this->view->output($this->model->index());
     }

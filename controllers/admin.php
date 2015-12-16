@@ -3,7 +3,7 @@
  * Project: ODDS & ENDS
  * File: /controllers/admin.php
  * Purpose: controller for the admin of the app.
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  */
 
 class AdminController extends BaseController

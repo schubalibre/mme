@@ -4,7 +4,7 @@
  * Project: ODDS & ENDS
  * File: /models/furniture.php
  * Purpose: model for the furniture controller.
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  */
 class FurnitureModel extends BaseModel
 {

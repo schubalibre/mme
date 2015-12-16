@@ -1,57 +1,28 @@
-<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-    <div class="list-group">
-        <a href="#" class="list-group-item active">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-        <a href="#" class="list-group-item">Link</a>
-    </div>
-</div>
+<?php
+$errors = $viewModel->get("errors");
+if($errors){
+    foreach($errors as $error){
+        echo "<div class=\"alert alert-danger\" role=\"alert\">$error</div>";
+    }
+}
+?>
+<table class="table">
+    <?php
+    $rooms = $viewModel->get("rooms");
+    if(isset($clients)){
+        foreach($rooms as $room) {
 
-<div class="col-xs-12 col-sm-9">
-    <p class="pull-right visible-xs">
-        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-    </p>
-    <div class="jumbotron">
-        <h1>Hello, world!</h1>
-        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
-    </div>
-    <div class="row">
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-    </div><!--/row-->
-</div>
+            var_dump($room);
+           /* echo "<tr>";
+            echo "<td>".$client['name']."</td>";
+            echo "<td>".$client['lastname']."</td>";
+            echo "<td>".$client['email']."</td>";
+            echo "<td><a href='/client/update/".$client['id']."/'/><san class='glyphicon glyphicon-edit' aria-hidden=\"true\"></san></a></td>";
+            echo "<td><a href='/client/delete/".$client['id']."/'/><span class='glyphicon glyphicon-remove' aria-hidden=\"true\"></span></a></td>";
+            echo "</tr>";*/
+        }
+    } ?>
+</table>
+
+<a class="btn btn-default" href="/room/new/" role="button">neuen Raum erstellen</a>
 

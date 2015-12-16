@@ -3,7 +3,7 @@
  * Project: ODDS & ENDS
  * File: /classes/basemodel.php
  * Purpose: abstract class from which models extend.
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  */
 
 class BaseModel {

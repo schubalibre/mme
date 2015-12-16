@@ -3,7 +3,7 @@
  * Project: ODDS & ENDS
  * File: /models/error.php
  * Purpose: model for the error controller.
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  */
 
 class ErrorModel extends BaseModel

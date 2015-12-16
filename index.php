@@ -3,7 +3,7 @@
  * Project: ODDS & ENDS
  * File: index.php
  * Purpose: landing page which handles all requests
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  *
  * MVC ist ein Muster zur Strukturierung von Software-Entwicklung in die drei Einheiten Datenmodell (engl. model),
  * Präsentation (engl. view) und Programmsteuerung (engl. controller). Ziel des Musters ist ein flexibler Programmentwurf,

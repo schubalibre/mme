@@ -3,7 +3,7 @@
  * Project: ODDS & ENDS
  * File: /classes/loader.php
  * Purpose: class which maps URL requests to controller object creation
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  */
 
 class Loader {
@@ -27,13 +27,9 @@ class Loader {
         }
 
         if ($this->urlValues['action'] == "") {
-            $this->action = "index";
-        } elseif($this->controllerName == "room"){
-            $this->action = "departments";
-        } elseif($this->controllerName == "furniture"){
-            $this->action = "furniture";
+            $this->action = "indexAction";
         }else {
-            $this->action = $this->urlValues['action'];
+            $this->action = $this->urlValues['action'] . "Action";
         }
     }
 

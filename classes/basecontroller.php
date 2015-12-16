@@ -3,7 +3,7 @@
  * Project: ODDS & ENDS
  * File: /classes/basecontroller.php
  * Purpose: abstract class from which controllers extend
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  */
 
 abstract class BaseController {
@@ -23,7 +23,7 @@ abstract class BaseController {
         $this->request = new Request(__DIR__);
                 
         //establish the view object
-        $this->view = new View(get_class($this), $action);
+        $this->view = new View(get_class($this), str_replace("Action", "",$action));
 
         //url redirection class
         require_once('url.php');

@@ -18,30 +18,30 @@ class RoomController extends BaseController
     }
 
     //default method
-    protected function index()
+    protected function indexAction()
     {
         $this->view->output($this->model->index());
     }
 
-    protected function departments($id){
+    protected function newAction($id){
         $result = $this->model->departmentsName($this->request->uriValues()->action);
 
         $this->view->output($this->model->departments($result));
     }
 
-    protected function save(){
+    protected function saveAction(){
         $result = $this->model->departmentsName($this->request->uriValues()->action);
 
         $this->view->output($this->model->departments($result));
     }
 
-    protected function update(){
+    protected function updateAction(){
         $result = $this->model->departmentsName($this->request->uriValues()->action);
 
         $this->view->output($this->model->departments($result));
     }
 
-    protected function delete(){
+    protected function deleteAction(){
         $result = $this->model->departmentsName($this->request->uriValues()->action);
 
         $this->view->output($this->model->departments($result));

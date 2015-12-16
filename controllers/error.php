@@ -3,7 +3,7 @@
  * Project: ODDS & ENDS
  * File: /controllers/error.php
  * Purpose: controller for the URL access errors of the app.
- * Author: Robert Dziuba
+ * Author: Robert Dziuba & Inga Schwarze
  */
 
 class ErrorController extends BaseController
