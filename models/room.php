@@ -53,7 +53,6 @@ class RoomModel extends BaseModel
             $this->viewModel->set("validateError", $errors);
         }
 
-
         // wir holen uns alle departments aus dem department Model
         require_once "department.php";
 
@@ -118,6 +117,24 @@ class RoomModel extends BaseModel
         if($errors != null) {
             $this->viewModel->set("validateError", $errors);
         }
+
+        // wir holen uns alle departments aus dem department Model
+        require_once "department.php";
+
+        $department = new DepartmentModel();
+
+        $department->getAllDepartments();
+
+        $this->viewModel->set("departments", $department->viewModel->departments);
+
+        // wir holen uns alle Kunden aus dem client Model
+        require_once "client.php";
+
+        $department = new ClientModel();
+
+        $department->getAllClients();
+
+        $this->viewModel->set("clients", $department->viewModel->clients);
 
         $this->viewModel->set("pageTitle", "update Department - ODDS&amp;ENDS");
         return $this->viewModel;

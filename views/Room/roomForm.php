@@ -10,7 +10,6 @@ if($errors){
 $room = $viewModel->get("room");
 $departments = $viewModel->get("departments");
 $clients = $viewModel->get("clients");
-
 ?>
 
 <form class="form-horizontal validate" action="" method="POST">
@@ -22,7 +21,7 @@ $clients = $viewModel->get("clients");
             <select id="department_id" class="form-control" name="department_id" required>
                 <option>wähle ein Department aus</option>
                 <?php foreach($departments as $department){
-                    $selected = (isset($room['department_id']) && $department['id'] === (int) $room['department_id']) ? 'selected' : '';
+                    $selected = (isset($room['department_id']) && $department['id'] === $room['department_id']) ? 'selected' : '';
                     echo "<option  value='".$department['id']."' ".$selected." >".$department['name']."</option>";
                 }?>
             </select>
@@ -34,7 +33,7 @@ $clients = $viewModel->get("clients");
             <select id="department_id" class="form-control" name="client_id" required>
                 <option>wähle einen Kunden aus</option>
                 <?php foreach($clients as $client){
-                    $selected =  (isset($room['client_id']) && $client['id'] === (int) $room['client_id']) ? 'selected' : '';
+                    $selected =  (isset($room['client_id']) && $client['id'] === $room['client_id']) ? 'selected' : '';
                     echo "<option  value='".$client['id']."' ".$selected." >".$client['name']." ".$client['lastname']."</option>";
                 }?>
             </select>
