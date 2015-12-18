@@ -13,21 +13,6 @@ class RoomModel extends BaseModel
     {
         $this->viewModel->set("pageTitle", "Room - ODDS&amp;ENDS");
 
-        return $this->viewModel;
-    }
-
-    public function getAllRooms(){
-        try {
-            $sql = 'SELECT * FROM room';
-            $s = $this->database->prepare($sql);
-            $s->execute();
-            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
-            $this->viewModel->set("rooms", $result);
-        } catch (PDOException $e) {
-            $error = 'Error getting rooms: '.$e->getMessage();
-            $this->viewModel->set("dbError", $error);
-        }
-
         // wir holen uns alle departments aus dem department Model
         require_once "department.php";
 
@@ -45,6 +30,21 @@ class RoomModel extends BaseModel
         $department->getAllClients();
 
         $this->viewModel->set("clients", $department->viewModel->clients);
+
+        return $this->viewModel;
+    }
+
+    public function getAllRooms(){
+        try {
+            $sql = 'SELECT * FROM room';
+            $s = $this->database->prepare($sql);
+            $s->execute();
+            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $this->viewModel->set("rooms", $result);
+        } catch (PDOException $e) {
+            $error = 'Error getting rooms: '.$e->getMessage();
+            $this->viewModel->set("dbError", $error);
+        }
     }
 
     public function newModel($errors = null)

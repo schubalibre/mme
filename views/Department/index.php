@@ -14,7 +14,7 @@ if($errors){
             echo "<tr>";
             echo "<td>".$department['name']."</td>";
             echo "<td><a href='/department/update/".$department['id']."/'/><san class='glyphicon glyphicon-edit' aria-hidden=\"true\"></san></a></td>";
-            echo "<td><a href='/department/delete/".$department['id']."/'/><span class='glyphicon glyphicon-remove' aria-hidden=\"true\"></span></a></td>";
+            echo "<td><a class='delete' data-delete-element='dieses Department' href='/department/delete/".$department['id']."/'/><span class='glyphicon glyphicon-remove' aria-hidden=\"true\"></span></a></td>";
             echo "</tr>";
         }
     } ?>

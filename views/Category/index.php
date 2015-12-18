@@ -14,7 +14,7 @@ if($errors){
             echo "<tr>";
             echo "<td>".$category['name']."</td>";
             echo "<td><a href='/category/update/".$category['id']."/'/><san class='glyphicon glyphicon-edit' aria-hidden=\"true\"></san></a></td>";
-            echo "<td><a href='/category/delete/".$category['id']."/'/><span class='glyphicon glyphicon-remove' aria-hidden=\"true\"></span></a></td>";
+            echo "<td><a class='delete' data-delete-element='diese Kategorie' href='/category/delete/".$category['id']."/'/><span class='glyphicon glyphicon-remove' aria-hidden=\"true\"></span></a></td>";
             echo "</tr>";
         }
     } ?>

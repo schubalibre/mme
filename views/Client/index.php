@@ -16,7 +16,7 @@ if($errors){
        echo "<td>".$client['lastname']."</td>";
        echo "<td>".$client['email']."</td>";
        echo "<td><a href='/client/update/".$client['id']."/'/><san class='glyphicon glyphicon-edit' aria-hidden=\"true\"></san></a></td>";
-       echo "<td><a href='/client/delete/".$client['id']."/'/><span class='glyphicon glyphicon-remove' aria-hidden=\"true\"></span></a></td>";
+       echo "<td><a class='delete' data-delete-element='diesen Kunden' href='/client/delete/".$client['id']."/'/><span class='glyphicon glyphicon-remove' aria-hidden=\"true\"></span></a></td>";
        echo "</tr>";
        }
    } ?>

@@ -6,7 +6,7 @@
  * Author: Robert Dziuba & Inga Schwarze
  */
 
-class CategoryController extends BaseController
+class ArticleController extends BaseController
 {
     //add to the parent constructor
     public function __construct($action, $urlValues)
@@ -14,8 +14,8 @@ class CategoryController extends BaseController
         parent::__construct($action, $urlValues);
 
         //create the model object
-        require("models/category.php");
-        $this->model = new CategoryModel();
+        require("models/article.php");
+        $this->model = new ArticleModel();
 
         require("classes/FormValidator.php");
     }
@@ -34,10 +34,17 @@ class CategoryController extends BaseController
         if($this->request->httpMethod() === "POST"){
 
             $validations = array(
-                'name' => 'anything'
+                'room_id' => 'number',
+                'category_id' => 'number',
+                'name' => 'anything',
+                'title' => 'anything',
+                'description' => 'anything',
+                'img' => 'anything',
+                'shop' => 'anything',
+                'website' => 'anything'
             );
 
-            $required = array('name');
+            $required = array('room_id','category_id','name','title','description','img','shop','website');
 
             $validator = new FormValidator($validations, $required);
 
@@ -47,10 +54,10 @@ class CategoryController extends BaseController
 
                 $data = $validator->sanatize($data);
 
-                $id = $this->model->creatNewCategory($data);
+                $id = $this->model->insertArticle($data);
 
                 if ($id !== null) {
-                    header('Location: '.$this->url->generate("/category"));
+                    header('Location: '.$this->url->generate("/article"));
                     exit();
                 }
             }else{
@@ -58,7 +65,7 @@ class CategoryController extends BaseController
             }
         }
 
-        $this->view->output($this->model->newCategory($error));
+        $this->view->output($this->model->newArticle($error));
     }
 
     protected function updateAction()
@@ -71,7 +78,7 @@ class CategoryController extends BaseController
             $validations = array(
                 'id' => 'number',
                 'name' => 'anything'
-                );
+            );
 
             $required = array('id','name');
 
@@ -80,10 +87,10 @@ class CategoryController extends BaseController
             if($validator->validate($this->request->body())) {
                 $data = $validator->sanatize($this->request->body());
 
-                $rows = $this->model->updateCategory($data);
+                $rows = $this->model->updateArticle($data);
 
                 if($rows > 0) {
-                    header('Location: ' . $this->url->generate("/category"));
+                    header('Location: ' . $this->url->generate("/article"));
                     exit();
                 }
             }else{
@@ -92,7 +99,7 @@ class CategoryController extends BaseController
         }
 
         if($id != ""){
-            $this->model->getCategory($id);
+            $this->model->getArticle($id);
             $this->view->output($this->model->updateModel($error));
             exit();
         }
@@ -117,10 +124,10 @@ class CategoryController extends BaseController
             if($validator->validate($this->request->uriValues())) {
                 $data = $validator->sanatize($this->request->uriValues());
 
-                $rows = $this->model->deleteCategory($data);
+                $rows = $this->model->deleteArticle($data);
 
                 if($rows > 0) {
-                    header('Location: ' . $this->url->generate("/category"));
+                    header('Location: ' . $this->url->generate("/article"));
                     exit();
                 }
             }

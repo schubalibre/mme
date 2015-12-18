@@ -11,6 +11,13 @@ class CategoryModel extends BaseModel
     //data passed to the home index view
     public function index()
     {
+        $this->viewModel->set("pageTitle", "Category - ODDS&amp;ENDS");
+
+        return $this->viewModel;
+    }
+
+    public function getAllCategories()
+    {
         try {
             $sql = 'SELECT * FROM category';
             $s = $this->database->prepare($sql);
@@ -21,24 +28,21 @@ class CategoryModel extends BaseModel
             $error = 'Error getting departments: '.$e->getMessage();
             $this->viewModel->set("dbError", $error);
         }
-
-        $this->viewModel->set("pageTitle", "Category - ODDS&amp;ENDS");
-
-        return $this->viewModel;
     }
 
-    public function getCategory($data){
+    public function getCategory($id)
+    {
         try
         {
             $sql = 'SELECT * FROM category WHERE id = :id';
             $s = $this->database->prepare($sql);
-            $s->bindValue(':id', $data->id);
+            $s->bindValue(':id', $id);
             $s->execute();
             $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             if(!empty($result)){
-                $this->viewModel->set("category", $result[0]);
+                $this->viewModel->set("category", $result[$id]);
             }else {
-                $error[] = 'Category with id '.$data->id.' not found!';
+                $error[] = 'Category with id '.$id.' not found!';
                 $this->viewModel->set("errors", $error);
             }
         }
@@ -47,9 +51,14 @@ class CategoryModel extends BaseModel
             $error[] = 'Error getting category: '.$e->getMessage();
             $this->viewModel->set("errors",$error);
         }
+    }
 
+    public function updateModel($errors = null){
+        if($errors != null) {
+            $this->viewModel->set("validateError", $errors);
+        }
 
-        $this->viewModel->set("pageTitle","Update category - ODDS&amp;ENDS");
+        $this->viewModel->set("pageTitle", "update Category - ODDS&amp;ENDS");
         return $this->viewModel;
     }
 

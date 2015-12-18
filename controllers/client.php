@@ -93,8 +93,6 @@ class ClientController extends BaseController
             }
         }
 
-
-
         if($id != 0){
             $this->model->getClient($id);
             $this->view->output($this->model->updateModel($error));

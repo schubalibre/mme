@@ -1,0 +1,39 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: roberto
+ * Date: 18.12.15
+ * Time: 13:46
+ */
+
+$errors = $viewModel->get("errors");
+if($errors){
+    foreach($errors as $error){
+        echo "<div class=\"alert alert-danger\" role=\"alert\">$error</div>";
+    }
+}
+?>
+<table class="table">
+    <?php
+    $articles = $viewModel->get("articles");
+    $rooms = $viewModel->get("rooms");
+    $categories = $viewModel->get("categories");
+    if(isset($articles)){
+        foreach($articles as $article) {
+            echo "<tr>";
+            echo "<td>".$rooms[$article['room_id']]['name']."</td>";
+            echo "<td>".$categories[$article['category_id']]['name']."</td>";
+            echo "<td>".$article['name']."</td>";
+            echo "<td>".$article['title']."</td>";
+            echo "<td>".$article['description']."</td>";
+            echo "<td>".$article['img']."</td>";
+            echo "<td>".$article['shop']."</td>";
+            echo "<td>".$article['website']."</td>";
+            echo "<td><a href='/article/update/".$article['id']."/'/><san class='glyphicon glyphicon-edit' aria-hidden=\"true\"></san></a></td>";
+            echo "<td><a class='delete' data-delete-element='diesen Artikel' href='/article/delete/".$article['id']."/'/><span class='glyphicon glyphicon-remove' aria-hidden=\"true\"></span></a></td>";
+            echo "</tr>";
+        }
+    } ?>
+</table>
+
+<a class="btn btn-default" href="/article/new/" role="button">neuen Artikel erstellen</a>
