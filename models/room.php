@@ -146,10 +146,21 @@ class RoomModel extends BaseModel
         {
             $sql = 'UPDATE room SET
                     name = :name,
+                    department_id = :department_id,
+                    client_id = :client_id,
+                    name = :name,
+                    title = :title,
+                    description = :description,
+                    image = :image,
                     updated_at = now()
                     WHERE id = :id';
             $s = $this->database->prepare($sql);
+            $s->bindValue(':department_id', (int) $data->department_id);
+            $s->bindValue(':client_id', (int) $data->client_id);
             $s->bindValue(':name', $data->name);
+            $s->bindValue(':title', $data->title);
+            $s->bindValue(':description', $data->description);
+            $s->bindValue(':image', $data->image);
             $s->bindValue(':id', $data->id);
             $s->execute();
             return $s->rowCount();
