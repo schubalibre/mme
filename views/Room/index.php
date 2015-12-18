@@ -9,17 +9,20 @@ if($errors){
 <table class="table">
     <?php
     $rooms = $viewModel->get("rooms");
-    if(isset($clients)){
+    $clients = $viewModel->get("clients");
+    $departments = $viewModel->get("departments");
+    if(isset($rooms)){
         foreach($rooms as $room) {
-
-            var_dump($room);
-           /* echo "<tr>";
-            echo "<td>".$client['name']."</td>";
-            echo "<td>".$client['lastname']."</td>";
-            echo "<td>".$client['email']."</td>";
-            echo "<td><a href='/client/update/".$client['id']."/'/><san class='glyphicon glyphicon-edit' aria-hidden=\"true\"></san></a></td>";
-            echo "<td><a href='/client/delete/".$client['id']."/'/><span class='glyphicon glyphicon-remove' aria-hidden=\"true\"></span></a></td>";
-            echo "</tr>";*/
+            echo "<tr>";
+            echo "<td>".$departments[$room['department_id']]['name']."</td>";
+            echo "<td>".$clients[$room['client_id']]['name']." " .$clients[$room['client_id']]['lastname']."</td>";
+            echo "<td>".$room['name']."</td>";
+            echo "<td>".$room['title']."</td>";
+            echo "<td>".$room['description']."</td>";
+            echo "<td>".$room['image']."</td>";
+            echo "<td><a href='/room/update/".$room['id']."/'/><san class='glyphicon glyphicon-edit' aria-hidden=\"true\"></san></a></td>";
+            echo "<td><a href='/room/delete/".$room['id']."/'/><span class='glyphicon glyphicon-remove' aria-hidden=\"true\"></span></a></td>";
+            echo "</tr>";
         }
     } ?>
 </table>

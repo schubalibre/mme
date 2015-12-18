@@ -15,7 +15,7 @@ class CategoryModel extends BaseModel
             $sql = 'SELECT * FROM category';
             $s = $this->database->prepare($sql);
             $s->execute();
-            $result = $s->fetchAll(PDO::FETCH_ASSOC);
+            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("categories", $result);
         } catch (PDOException $e) {
             $error = 'Error getting departments: '.$e->getMessage();
@@ -34,7 +34,7 @@ class CategoryModel extends BaseModel
             $s = $this->database->prepare($sql);
             $s->bindValue(':id', $data->id);
             $s->execute();
-            $result = $s->fetchAll(PDO::FETCH_ASSOC);
+            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             if(!empty($result)){
                 $this->viewModel->set("category", $result[0]);
             }else {
@@ -113,5 +113,15 @@ class CategoryModel extends BaseModel
             $error[] = 'Error adding category: '.$e->getMessage();
             $this->viewModel->set("errors",$error);
         }
+    }
+
+    private function tableIdasArrayKey($data)
+    {
+        $myArray = null;
+        foreach ($data as $value) {
+            $myArray[$value['id']] = $value;
+        }
+
+        return $myArray;
     }
 }
