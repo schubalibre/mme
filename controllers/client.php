@@ -17,7 +17,7 @@ class ClientController extends BaseController
         require("models/client.php");
         $this->model = new ClientModel();
 
-        require("classes/FormValidator.php");
+        require("helpers/formValidator.php");
     }
 
     //default method

@@ -1,86 +1,102 @@
+<!-- Marketing messaging and featurettes
+================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
 
-<div class="col-xs-12">
-    <p class="pull-right visible-xs">
-        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-    </p>
-    <div class="jumbotron">
-        <h1>Hello, world!</h1>
-        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+<div class="container marketing">
+
+    <div class="page-header">
+        <h1>Räume
+            <small>wählen sie Ihren Raum</small>
+        </h1>
     </div>
-    <div class="row">
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-    </div><!--/row-->
-</div>
 
+    <ul class="nav nav-pills category-links">
+        <li role="presentation" class="active"><a href="#">Küche</a></li>
+        <li role="presentation"><a href="#">Wohnzimmer</a></li>
+        <li role="presentation"><a href="#">Schlafzimmer</a></li>
+        <li role="presentation"><a href="#">Bad</a></li>
+        <li role="presentation"><a href="#">Garten</a></li>
+    </ul>
 
+    <div id="article-row" class="row">
 
-<div class="col-xs-12">
-    <p class="pull-right visible-xs">
-        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-    </p>
-    <div class="jumbotron">
-        <h1>Hello, world!</h1>
-        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <a href=""><img class="img-responsive" src="/images/slider1.jpg" alt="article"></a>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <a href=""><img class="img-responsive" src="/images/slider2.jpg" alt="article"></a>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <a href=""><img class="img-responsive" src="/images/slider3.jpg" alt="article"></a>
+            </div>
+        </div>
     </div>
+    <div class="pull-right">
+        <button id="loadArticle" type="button" class="btn btn-primary btn-sm">show more</button>
+    </div>
+
+
+    <div class="page-header">
+        <h1>Artikel
+            <small>wählen Sie einen Artikel</small>
+        </h1>
+    </div>
+
+    <ul class="nav nav-pills category-links">
+        <li role="presentation" class="active"><a href="#">Stühle</a></li>
+        <li role="presentation"><a href="#">Tische</a></li>
+        <li role="presentation"><a href="#">Schränke</a></li>
+        <li role="presentation"><a href="#">Betten</a></li>
+        <li role="presentation"><a href="#">Accessoires</a></li>
+    </ul>
+
     <div class="row">
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-        <div class="col-xs-6 col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
-        </div><!--/.col-xs-6.col-lg-4-->
-    </div><!--/row-->
-</div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
+            </div>
+        </div>
+
+    </div>
+</div><!-- /.container -->

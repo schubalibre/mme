@@ -17,7 +17,7 @@ class ArticleController extends BaseController
         require("models/article.php");
         $this->model = new ArticleModel();
 
-        require("classes/FormValidator.php");
+        require("helpers/formValidator.php");
     }
 
     //default method

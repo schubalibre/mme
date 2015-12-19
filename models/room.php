@@ -35,6 +35,8 @@ class RoomModel extends BaseModel
     }
 
     public function getAllRooms(){
+
+        // TODO alle Bilder uber diese Query holen!
         try {
             $sql = 'SELECT * FROM room';
             $s = $this->database->prepare($sql);
@@ -76,11 +78,85 @@ class RoomModel extends BaseModel
         return $this->viewModel;
     }
 
+    public function getImage($id){
+
+        try
+        {
+            $sql = 'SELECT * FROM imagesRoom WHERE id = :id';
+            $s = $this->database->prepare($sql);
+            $s->bindValue(':id', $id);
+            $s->execute();
+            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            if(!empty($result)){
+                $this->viewModel->set("image", $result[$id]);
+            }else {
+                $error[] = 'Department with id '.$id.' not found!';
+                $this->viewModel->set("errors", $error);
+            }
+        }
+        catch (PDOException $e)
+        {
+            $error[] = 'Error getting category: '.$e->getMessage();
+            $this->viewModel->set("errors",$error);
+        }
+    }
+
+    public function getAllImages(){
+
+        try
+        {
+            $sql = 'SELECT * FROM imagesRoom';
+            $s = $this->database->prepare($sql);
+            $s->execute();
+            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $this->viewModel->set("images", $result);
+        } catch (PDOException $e) {
+            $error = 'Error getting images: '.$e->getMessage();
+            $this->viewModel->set("dbError", $error);
+        }
+    }
+
+    public function getAllByRoomImages(){
+        $this-> getAllImages();
+        $images = $this->viewModel->get("images");
+        $sorted = null;
+        if(sizeof($images) > 0) {
+            foreach ($images as $image) {
+                $sorted[$image['room_id']][] = $image;
+            }
+        }
+
+        $this->viewModel->set("images", $sorted);
+    }
+
+    public function insertImage($room_id,$data){
+
+        try
+        {
+            $sql = 'INSERT INTO imagesRoom SET
+                    room_id = :room_id,
+                    image = :image,
+                    thumbnail = :thumbnail,
+                    updated_at = now(),
+                    created_at = now()';
+            $s = $this->database->prepare($sql);
+            $s->bindValue(':room_id', (int) $room_id);
+            $s->bindValue(':image', $data['filename']);
+            $s->bindValue(':thumbnail', $data['thumbnail']['name']);
+            $s->execute();
+
+            return $this->database->lastInsertId();
+        }
+        catch (PDOException $e)
+        {
+            $error[] = 'Error adding image: '.$e->getMessage();
+            $this->viewModel->set("room",(array) $data);
+            $this->viewModel->set("errors",$error);
+        }
+    }
+
     public function insertRoom($data)
     {
-       echo "<pre>";
-        var_dump((int) $data->department_id);
-
         try
         {
             $sql = 'INSERT INTO room SET
@@ -89,7 +165,6 @@ class RoomModel extends BaseModel
                     name = :name,
                     title = :title,
                     description = :description,
-                    image = :image,
                     updated_at = now(),
                     created_at = now()';
             $s = $this->database->prepare($sql);
@@ -98,7 +173,6 @@ class RoomModel extends BaseModel
             $s->bindValue(':name', $data->name);
             $s->bindValue(':title', $data->title);
             $s->bindValue(':description', $data->description);
-            $s->bindValue(':image', $data->image);
             $s->execute();
 
             return $this->database->lastInsertId();

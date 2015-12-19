@@ -17,7 +17,7 @@ class CategoryController extends BaseController
         require("models/category.php");
         $this->model = new CategoryModel();
 
-        require("classes/FormValidator.php");
+        require("helpers/formValidator.php");
     }
 
     //default method

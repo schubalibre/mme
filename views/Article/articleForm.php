@@ -63,7 +63,7 @@ $categories = $viewModel->get("categories");
     <div class="form-group">
         <label for="article-img" class="col-sm-2 control-label">Artikelbild</label>
         <div class="col-sm-10">
-            <input type="file" name="img" value="<?php echo $article['img'];?>" id="article-img" placeholder="das Artikelbild" required>
+            <input type="file" name="img" value="<?php echo $article['img'];?>" id="article-img" placeholder="das Artikelbild" accept="image/*" required>
         </div>
     </div>
 

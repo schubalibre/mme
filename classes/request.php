@@ -63,11 +63,18 @@ class Request
 
         // Establish the body property
         $requestBody = file_get_contents('php://input', 'r');
+
         if ($requestBody !== false) {
-            // Try JSON first, and if this fails parse the input as a query
-            // string.
-            if (!$this->body = json_decode($requestBody)) {
-                parse_str($requestBody, $this->body);
+
+            if(!empty($requestBody)) {
+                // Try JSON first, and if this fails parse the input as a query
+                // string.
+                if (!$this->body = json_decode($requestBody)) {
+                    parse_str($requestBody, $this->body);
+                }
+
+            }else{
+                $this->body = $_POST;
             }
             $this->body = (object) $this->body;
         }

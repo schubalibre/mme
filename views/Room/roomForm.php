@@ -12,7 +12,7 @@ $departments = $viewModel->get("departments");
 $clients = $viewModel->get("clients");
 ?>
 
-<form class="form-horizontal validate" action="" method="POST">
+<form class="form-horizontal validate" action="" method="POST" enctype="multipart/form-data" >
     <input type="hidden" name="id" value="<?php echo $room['id'];?>">
 
     <div class="form-group">
@@ -60,7 +60,7 @@ $clients = $viewModel->get("clients");
     <div class="form-group">
         <label for="image" class="col-sm-2 control-label">Bild</label>
         <div class="col-sm-10">
-            <input type="file" name="image" value="<?php echo $room['image'];?>" id="image" placeholder="das Raumbild" required>
+            <input type="file" name="images[]" value="<?php echo $room['image'];?>" id="image" placeholder="das Raumbild" accept="image/*" multiple required>
         </div>
     </div>
 

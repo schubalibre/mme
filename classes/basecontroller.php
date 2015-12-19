@@ -26,7 +26,7 @@ abstract class BaseController {
         $this->view = new View(get_class($this), str_replace("Action", "",$action));
 
         //url redirection class
-        require_once('url.php');
+        require_once('helpers/url.php');
         $this->url = new Url('http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "{$_SERVER['HTTP_HOST']}/{$_SERVER['REQUEST_URI']}");
 
     }
