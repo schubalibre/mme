@@ -16,7 +16,7 @@
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
     <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
-<body>
+<body id="<?php echo $viewModel->get("site");?>">
 
 <?php require($viewModel->get("header")); ?>
 
@@ -33,6 +33,7 @@
 <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 <script src="/js/vendor/bootstrap.min.js"></script>
 <script src="/js/vendor/holder.min.js"></script>
+<script src="/js/vendor/masonry.pkgd.min.js"></script>
 <script src="/js/main.js"></script>
 
 </body>

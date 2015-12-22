@@ -19,7 +19,7 @@ $( document ).ready(function() {
 
     var scrollTop = $(document).scrollTop(); // Scrollposition des Users
     var height = $("#myCarousel").outerHeight(); // Höhe des Bildes holen
-    var $nav = $("#myNav"); // Header holen
+    var $nav = $("#home .navbar"); // Header holen
 
     $nav.addClass("navbar-fixed-bottom transparente")
 
@@ -42,10 +42,33 @@ $( document ).ready(function() {
         }
     });
 
+    $('#article-row').masonry({
+        // options
+        itemSelector: '.room-item',
+    });
+
+    $("#article-row a.thumbnail").click(function(e){
+        e.preventDefault();
+        $a = $(this);
+        $.ajax({
+            url : $a.attr("href"),
+            method: "GET",
+            dataType: "json"
+        }).done(function(ajax) {
+            console.log(ajax);
+        })  .fail(function() {
+            alert( "error" );
+        });
+    });
+
+
     /* Delete admin*/
     $(".delete").click(function(event){
         var element = $(this).data('deleteElement');
         return confirm('Willst du wirklich ' + element + ' löschen?' );
     });
+
+
+
 });
 

@@ -1,10 +1,16 @@
+<?php
+$rooms = $viewModel->get("rooms");
+
+?>
+
+
 <!-- Marketing messaging and featurettes
 ================================================== -->
 <!-- Wrap the rest of the page in another container to center all the content. -->
 
 <div class="container marketing">
 
-    <div class="page-header">
+    <div id="rooms" class="page-header">
         <h1>Räume
             <small>wählen sie Ihren Raum</small>
         </h1>
@@ -20,28 +26,20 @@
 
     <div id="article-row" class="row">
 
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <a href=""><img class="img-responsive" src="/images/slider1.jpg" alt="article"></a>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <a href=""><img class="img-responsive" src="/images/slider2.jpg" alt="article"></a>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <a href=""><img class="img-responsive" src="/images/slider3.jpg" alt="article"></a>
-            </div>
-        </div>
+        <?php if(!empty($rooms)){
+            foreach($rooms as $room){
+                echo "<div class='col-xs-6 col-md-4 room-item'>";
+                    echo "<a href='/room/ajax/".$room['id']."' class='thumbnail'><img src='/images/thumbnails/".$room['thumbnail']."' alt='article'></a>";
+                echo "</div>";
+            }
+        }?>
     </div>
     <div class="pull-right">
         <button id="loadArticle" type="button" class="btn btn-primary btn-sm">show more</button>
     </div>
 
 
-    <div class="page-header">
+    <div id="articles" class="page-header">
         <h1>Artikel
             <small>wählen Sie einen Artikel</small>
         </h1>

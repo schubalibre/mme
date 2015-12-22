@@ -105,8 +105,8 @@ class RoomController extends BaseController
 
     public function resizeImage($object)
     {
-        $max_width = 400;
-        $max_height = 300;
+        $max_width = 600;
+        $max_height = 400;
 
         list($orig_width, $orig_height) = getimagesize($object->file['tmp_name']);
 
@@ -253,8 +253,11 @@ class RoomController extends BaseController
 
             if($validator->validate($this->request->uriValues())) {
                 $data = $validator->sanatize($this->request->uriValues());
-
-                $rows = $this->model->deleteRoom($data);
+                $rows = -1;
+                if ($this->model->deleteImagesFromDisk($data)){
+                   $this->model->deleteImages($data);
+                   $rows = $this->model->deleteRoom($data);
+                }
 
                 if($rows > 0) {
                     header('Location: ' . $this->url->generate("/Room"));
@@ -268,4 +271,24 @@ class RoomController extends BaseController
         $controller = new ErrorController("badurl",$this->urlValues);
         $controller->executeAction();
     }
+
+    public function ajaxAction() {
+        if($this->request->httpMethod() === "GET") {
+
+            $validations = array(
+                'id' => 'number'
+            );
+
+            $required = array('id');
+
+            $validator = new FormValidator($validations, $required);
+
+            if ($validator->validate($this->request->uriValues())) {
+                $data = $validator->sanatize($this->request->uriValues());
+                $this->view->ajaxRespon($this->model->getRoom($data->id));
+
+            }
+        }
+    }
+
 }

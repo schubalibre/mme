@@ -14,10 +14,8 @@ if($errors){
     $images = $viewModel->get("images");
     if(isset($rooms)){
         foreach($rooms as $room) {
-            $src = (isset($images[$room['id']])) ? $images[$room['id']][0]['thumbnail'] : false;
-            $alt = (isset($images[$room['id']])) ? $room['name'] : 'image not found';
             echo "<tr>";
-            echo "<td><img width='100' src='images/thumbnails/".$src."' alt='".$alt."'></td>";
+            echo "<td><img width='100' src='images/thumbnails/".$room['thumbnail']."' alt='".$room['name']."'></td>";
             echo "<td>".$departments[$room['department_id']]['name']."</td>";
             echo "<td>".$clients[$room['client_id']]['name']." " .$clients[$room['client_id']]['lastname']."</td>";
             echo "<td>".$room['name']."</td>";

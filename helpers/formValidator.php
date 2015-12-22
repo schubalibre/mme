@@ -125,6 +125,8 @@ class FormValidator
      */
     public static function sanatizeItem($var, $type)
     {
+        $var = trim($var);
+
         $flags = NULL;
         switch($type)
         {

@@ -12,10 +12,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img class="img-responsive" class="first-slide"
-                 src="/images/slider1.jpg"
-                 alt="First slide">
-
+            <div class="img" style="background-image: url(/images/slider1.jpg);"></div>
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Example headline.</h1>
@@ -24,15 +21,12 @@
                         Glyphicon buttons on the left and right might not load/display properly due to web browser
                         security rules.</p>
 
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                    <p><a class="btn btn-lg btn-corporate" href="#" role="button">Sign up today</a></p>
                 </div>
             </div>
         </div>
         <div class="item">
-            <img class="img-responsive" class="second-slide"
-                 src="/images/slider2.jpg"
-                 alt="Second slide">
-
+            <div class="img" style="background-image: url(/images/slider2.jpg);"></div>
             <div class="container">
                 <div class="carousel-caption">
                     <h1>Another example headline.</h1>
@@ -41,15 +35,12 @@
                         gravida
                         at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                    <p><a class="btn btn-lg btn-corporate" href="#" role="button">Learn more</a></p>
                 </div>
             </div>
         </div>
         <div class="item">
-            <img class="img-responsive" class="third-slide"
-                 src="/images/slider3.jpg"
-                 alt="Third slide">
-
+            <div class="img" style="background-image: url(/images/slider3.jpg);"></div>
             <div class="container">
                 <div class="carousel-caption">
                     <h1>One more for good measure.</h1>
@@ -58,16 +49,14 @@
                         gravida
                         at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                    <p><a class="btn btn-lg btn-corporate" href="#" role="button">Browse gallery</a></p>
                 </div>
             </div>
         </div>
 
         <div class="item">
-            <img class="img-responsive" class="fourth-slide"
-                 src="/images/slider4.jpg"
-                 alt="Third slide">
 
+            <div class="img" style="background-image: url(/images/slider4.jpg);"></div>
             <div class="container">
                 <div class="carousel-caption">
                     <h1>One more for good measure.</h1>
@@ -76,16 +65,13 @@
                         gravida
                         at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                    <p><a class="btn btn-lg btn-corporate" href="#" role="button">Browse gallery</a></p>
                 </div>
             </div>
         </div>
 
         <div class="item">
-            <img class="img-responsive" class="fifth-slide"
-                 src="/images/slider5.jpg"
-                 alt="Third slide">
-
+            <div class="img" style="background-image: url(/images/slider5.jpg);"></div>
             <div class="container">
                 <div class="carousel-caption">
                     <h1>One more for good measure.</h1>
@@ -94,7 +80,7 @@
                         gravida
                         at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                    <p><a class="btn btn-lg btn-corporate" href="#" role="button">Browse gallery</a></p>
                 </div>
             </div>
         </div>

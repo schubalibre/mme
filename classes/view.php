@@ -36,7 +36,15 @@ class View {
         } else {
             require(__DIR__."/../views/Error/badview.php");
         }
+    }
 
+    public function ajaxRespon($viewModel) {
+        // Entfernung von unnötigen Informationen
+        unset($viewModel->header);
+        unset($viewModel->footer);
+
+        echo json_encode($viewModel);
+        exit();
     }
 }
 
