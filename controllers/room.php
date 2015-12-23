@@ -106,7 +106,7 @@ class RoomController extends BaseController
     public function resizeImage($object)
     {
         $max_width = 600;
-        $max_height = 400;
+        $max_height = 1000;
 
         list($orig_width, $orig_height) = getimagesize($object->file['tmp_name']);
 

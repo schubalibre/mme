@@ -364,20 +364,4 @@ class RoomModel extends BaseModel
         array_push($this->error,$error);
         $this->viewModel->set("errors",$this->error);
     }
-
-    public function getActiveDepartments()
-    {
-        try
-        {
-            $sql = 'SELECT d.id, d.name FROM room r, department d WHERE r.department_id = d.id';
-            $s = $this->database->prepare($sql);
-            $s->execute();
-            $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
-            $this->viewModel->set("activeDepartments", $result);
-        } catch (PDOException $e) {
-            $this->setError('Error getting activ departments: '.$e->getMessage());
-        }
-
-        return $this->viewModel;
-    }
 }

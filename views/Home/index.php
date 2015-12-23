@@ -26,7 +26,7 @@ $activeDepartments = $viewModel->get("activeDepartments");
     </div>
 
     <?php if(!empty($activeDepartments)){?>
-    <ul class="nav nav-pills category-links">
+    <ul class="nav nav-pills category-links" data-filter-for="article-row">
         <li role="presentation" class="active"><a href="#">Alle</a></li>
         <?php foreach($activeDepartments as $department){?>
             <li role="presentation" ><a href="#<?php echo $department['id'];?>"><?php echo $department['name'];?></a></li>
@@ -39,7 +39,10 @@ $activeDepartments = $viewModel->get("activeDepartments");
         <?php if(!empty($rooms)){
             foreach($rooms as $room){
                 echo "<div class='col-xs-6 col-md-4 room-item ".$room['department_id']."'>";
-                    echo "<a href='/room/ajax/".$room['id']."' class='thumbnail'><img src='/images/thumbnails/".$room['thumbnail']."' alt='article'></a>";
+                    echo "<a href='/room/ajax/".$room['id']."'>
+                    <img class='img-responsive' src='/images/thumbnails/".$room['thumbnail']."' alt='article'>
+                    <h1 class='roomTitle'>".$room['name']."</h1>
+                    </a>";
                 echo "</div>";
             }
         }?>

@@ -204,6 +204,42 @@ a{
     color: #3aa399;
 }
 
+#article-row .room-item a {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+}
+#article-row .room-item a img{
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    -ms-filter: grayscale(0%);
+    -o-filter: grayscale(0%);
+    filter: grayscale(0%);
+
+    transition: filter 0.8s ease;
+    -webkit-transition:  filter 0.5s ease;
+    -moz-transition:  filter 0.5s ease;
+    -ms-transition:  filter 0.5s ease;
+    -o-transition:  filter 0.5s ease;
+}
+
+#article-row .room-item a:hover img{
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+#article-row .room-item .roomTitle{
+    text-align: center;
+    width: 100%;
+    color: white;
+    position: absolute;
+    bottom: 25%;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */

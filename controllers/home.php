@@ -20,7 +20,11 @@ class HomeController extends BaseController
     //default method
     protected function indexAction()
     {
-        $this->view->output($this->model->index());
+        if($this->request->xmlhttprequest()){
+            $this->view->ajaxRespon($this->model->index());
+        }else{
+            $this->view->output($this->model->index());
+        }
     }
 }
 

@@ -22,13 +22,40 @@ class HomeModel extends BaseModel
         $room = new RoomModel();
 
         $room->getAllRooms();
-        $room->getActiveDepartments();
 
         $this->viewModel->set("rooms", $room->viewModel->rooms);
-        $this->viewModel->set("activeDepartments", $room->viewModel->activeDepartments);
+
+        $this->getActiveDepartments();
 
         return $this->viewModel;
     }
+
+    public function getActiveDepartments()
+    {
+        try
+        {
+            $sql = 'SELECT d.id, d.name FROM room r, department d WHERE r.department_id = d.id';
+            $s = $this->database->prepare($sql);
+            $s->execute();
+            $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $this->viewModel->set("activeDepartments", $result);
+        } catch (PDOException $e) {
+            $this->setError('Error getting activ departments: '.$e->getMessage());
+        }
+
+        return $this->viewModel;
+    }
+
+    private function tableIdAsArrayKey($data)
+    {
+        $myArray = null;
+        foreach ($data as $value) {
+            $myArray[$value['id']] = $value;
+        }
+
+        return $myArray;
+    }
+
 }
 
 ?>

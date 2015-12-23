@@ -139,6 +139,16 @@ class Request
     }
 
     /**
+     * if the request query was a xmlhttprequest.
+     *
+     * @return boolean
+     */
+    public function xmlhttprequest()
+    {
+        return $this->xmlhttprequest;
+    }
+
+    /**
      * Get the values that were in the request URI/route.
      *
      * @return array

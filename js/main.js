@@ -5,17 +5,6 @@
 
 
 $( document ).ready(function() {
-    /*$.ajax({
-     method : "post",
-     url: "http://mme.local/admin/department/",
-     context: { name: "John", location: "Boston" },
-     dataType: "html"
-     }).done(function(html) {
-     console.log(html);
-     }).fail(function( jqXHR, textStatus ) {
-     console.log(jqXHR);
-     alert( "Request failed: " + textStatus );
-     });*/
 
     var scrollTop = $(document).scrollTop(); // Scrollposition des Users
     var height = $("#myCarousel").outerHeight(); // Höhe des Bildes holen
@@ -42,12 +31,41 @@ $( document ).ready(function() {
         }
     });
 
-    $('#article-row').masonry({
+
+
+    $('.category-links a').click(function (event) {
+        event.preventDefault();
+
+        var $category = $(this),
+            $filterDiv = $("#" + $category.parents("ul").data("filterFor")),
+            link = $category.attr('href');
+
+        link = link.substr(1, link.length)
+
+        $('.nav-pills a').parent().removeClass("active");
+
+        $category.parent().addClass("active");
+
+        $filterDiv.find("div").each(function(index, element){
+            if(link == ""){
+                $(element).fadeTo(300, 1);
+                return true;
+            }
+
+            if($(element).hasClass(link)){
+                $(element).fadeTo(300, 1);
+            }else {
+                $(element).fadeTo(300, 0.3);
+            }
+        });
+    });
+
+    var $grid = $('#article-row').masonry({
         // options
         itemSelector: '.room-item',
     });
 
-    $("#article-row a.thumbnail").click(function(e){
+    $("#article-row a").click(function(e){
         e.preventDefault();
         $a = $(this);
         $.ajax({
@@ -55,7 +73,23 @@ $( document ).ready(function() {
             method: "GET",
             dataType: "json"
         }).done(function(ajax) {
-            console.log(ajax);
+            var room = ajax.room;
+
+            $(".modal-title").html(room.name);
+
+            $img = $("<img class='img-responsive' src='/images/" + room.image + "' alt=''>");
+            $title = $("<h3>" + room.title + "</h3>");
+            $description =  $("<p>" + room.description + "</p>");
+
+            $lft = $("<div class='col-sm-6'></div>").append($img);
+            $rht = $("<div class='col-sm-6'></div>").append($title).append($description);
+
+            $row = $("<div class='row'></div>").append($lft).append($rht);
+
+
+            $('.modal-body').html($row);
+            $('#myModal').modal({show:true});
+
         })  .fail(function() {
             alert( "error" );
         });
