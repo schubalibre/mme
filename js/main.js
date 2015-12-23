@@ -21,10 +21,10 @@ $( document ).ready(function() {
     var height = $("#myCarousel").outerHeight(); // Höhe des Bildes holen
     var $nav = $("#home .navbar"); // Header holen
 
-    $nav.addClass("navbar-fixed-bottom transparente")
+    $nav.addClass("navbar-fixed-bottom transparent")
 
     if (scrollTop > height) { // Scroll Position größer als das Bild -> small Klasse im CSS // wird beim Neuladen als erstes überprüft
-        $nav.removeClass("navbar-fixed-bottom transparente").addClass("navbar-fixed-top smaller");
+        $nav.removeClass("navbar-fixed-bottom transparent").addClass("navbar-fixed-top smaller");
     }else{
         $nav.css({bottom:$(document).scrollTop()});
     }
@@ -34,10 +34,10 @@ $( document ).ready(function() {
         scrollTop = $(document).scrollTop();
 
         if ((scrollTop + $nav.outerHeight()) > height) {
-            $nav.removeClass("navbar-fixed-bottom transparente").addClass("navbar-fixed-top smaller");
+            $nav.removeClass("navbar-fixed-bottom transparent").addClass("navbar-fixed-top smaller");
             $nav.css({bottom:""});
         } else {
-            $nav.removeClass("navbar-fixed-top smaller").addClass("navbar-fixed-bottom transparente");
+            $nav.removeClass("navbar-fixed-top smaller").addClass("navbar-fixed-bottom transparent");
             $nav.css({bottom:$(document).scrollTop()}); // falls User wieder über das Bild nach oben scrollt -> Header wieder groß
         }
     });

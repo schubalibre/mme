@@ -1,14 +1,23 @@
 <?php
 $rooms = $viewModel->get("rooms");
-
+$activeDepartments = $viewModel->get("activeDepartments");
 ?>
+
 
 
 <!-- Marketing messaging and featurettes
 ================================================== -->
 <!-- Wrap the rest of the page in another container to center all the content. -->
 
-<div class="container marketing">
+<div class="container">
+    <?php
+    $errors = $viewModel->get("errors");
+    if($errors){
+        foreach($errors as $error){
+            echo "<div class=\"alert alert-danger\" role=\"alert\">$error</div>";
+        }
+    }
+    ?>
 
     <div id="rooms" class="page-header">
         <h1>Räume
@@ -16,19 +25,20 @@ $rooms = $viewModel->get("rooms");
         </h1>
     </div>
 
+    <?php if(!empty($activeDepartments)){?>
     <ul class="nav nav-pills category-links">
-        <li role="presentation" class="active"><a href="#">Küche</a></li>
-        <li role="presentation"><a href="#">Wohnzimmer</a></li>
-        <li role="presentation"><a href="#">Schlafzimmer</a></li>
-        <li role="presentation"><a href="#">Bad</a></li>
-        <li role="presentation"><a href="#">Garten</a></li>
+        <li role="presentation" class="active"><a href="#">Alle</a></li>
+        <?php foreach($activeDepartments as $department){?>
+            <li role="presentation" ><a href="#<?php echo $department['id'];?>"><?php echo $department['name'];?></a></li>
+        <?php }?>
     </ul>
+    <?php }?>
 
     <div id="article-row" class="row">
 
         <?php if(!empty($rooms)){
             foreach($rooms as $room){
-                echo "<div class='col-xs-6 col-md-4 room-item'>";
+                echo "<div class='col-xs-6 col-md-4 room-item ".$room['department_id']."'>";
                     echo "<a href='/room/ajax/".$room['id']."' class='thumbnail'><img src='/images/thumbnails/".$room['thumbnail']."' alt='article'></a>";
                 echo "</div>";
             }

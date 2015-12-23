@@ -19,12 +19,13 @@ class HomeModel extends BaseModel
         // wir holen uns alle departments aus dem department Model
         require_once "room.php";
 
-        $department = new RoomModel();
+        $room = new RoomModel();
 
-        $department->getAllRooms();
+        $room->getAllRooms();
+        $room->getActiveDepartments();
 
-        $this->viewModel->set("rooms", $department->viewModel->rooms);
-
+        $this->viewModel->set("rooms", $room->viewModel->rooms);
+        $this->viewModel->set("activeDepartments", $room->viewModel->activeDepartments);
 
         return $this->viewModel;
     }
