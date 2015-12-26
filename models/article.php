@@ -8,6 +8,8 @@
 
 class ArticleModel extends BaseModel
 {
+    private $error = [];
+    
     //data passed to the home index view
     public function index()
     {
@@ -29,7 +31,6 @@ class ArticleModel extends BaseModel
 
         $this->viewModel->set("rooms", $department->viewModel->rooms);
 
-
         $this->viewModel->set("pageTitle", "Article - ODDS&amp;ENDS");
 
         return $this->viewModel;
@@ -41,12 +42,13 @@ class ArticleModel extends BaseModel
             $sql = 'SELECT * FROM article';
             $s = $this->database->prepare($sql);
             $s->execute();
-            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("articles", $result);
         } catch (PDOException $e) {
-            $error = 'Error getting departments: '.$e->getMessage();
-            $this->viewModel->set("dbError", $error);
+            $this->setError('Error getting departments: '.$e->getMessage());
         }
+
+        return $this->viewModel;
     }
 
     public function getArticle($id)
@@ -57,24 +59,24 @@ class ArticleModel extends BaseModel
             $s = $this->database->prepare($sql);
             $s->bindValue(':id', $id);
             $s->execute();
-            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             if(!empty($result)){
                 $this->viewModel->set("article", $result[$id]);
             }else {
-                $error[] = 'Article with id '.$id.' not found!';
-                $this->viewModel->set("errors", $error);
+                $this->setError('Article with id '.$id.' not found!');
             }
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error getting article: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error getting article: '.$e->getMessage());
         }
+
+        return $this->viewModel;
     }
 
     public function updateModel($errors = null){
         if($errors != null) {
-            $this->viewModel->set("validateError", $errors);
+            $this->setError("validateError", $errors);
         }
 
         // wir holen uns alle departments aus dem department Model
@@ -96,6 +98,7 @@ class ArticleModel extends BaseModel
         $this->viewModel->set("rooms", $department->viewModel->rooms);
 
         $this->viewModel->set("pageTitle", "update Article - ODDS&amp;ENDS");
+
         return $this->viewModel;
     }
 
@@ -128,9 +131,10 @@ class ArticleModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error updating article: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error updating article: '.$e->getMessage());
         }
+
+        return $this->viewModel;
     }
 
     public function deleteArticle($data){
@@ -144,9 +148,10 @@ class ArticleModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error deleting article: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error deleting article: '.$e->getMessage());
         }
+
+        return $this->viewModel;
     }
 
     public function newArticle()
@@ -170,6 +175,7 @@ class ArticleModel extends BaseModel
         $this->viewModel->set("rooms", $department->viewModel->rooms);
 
         $this->viewModel->set("pageTitle","New Article - ODDS&amp;ENDS");
+
         return $this->viewModel;
     }
 
@@ -185,8 +191,8 @@ class ArticleModel extends BaseModel
                     img = :img,
                     shop = :shop,
                     website = :website,
-                    updated_at = now(),
-                    created_at = now()';
+                    updated_on = now(),
+                    created_on = now()';
             $s = $this->database->prepare($sql);
             $s->bindValue(':room_id', $data->room_id);
             $s->bindValue(':category_id', $data->category_id);
@@ -202,13 +208,12 @@ class ArticleModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error adding article: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error adding article: '.$e->getMessage());
             $this->viewModel->set("article",(array) $data);
         }
     }
 
-    private function tableIdasArrayKey($data)
+    private function tableIdAsArrayKey($data)
     {
         $myArray = null;
         foreach ($data as $value) {
@@ -216,5 +221,49 @@ class ArticleModel extends BaseModel
         }
 
         return $myArray;
+    }
+
+    public function deleteImagesFromDisk($data)
+    {
+        $data = $this->getArticle($data->id);
+
+        $image = $data->article['img'];
+
+        $path = "images/";
+        $pathThumbnail = "images/thumbnails/";
+
+        if (file_exists($path.$image)) {
+            unlink($path.$image);
+        } else {
+            $this->setError('Could not delete '.$path.$image.', file does not exist');
+        }
+
+        if (file_exists($pathThumbnail."thumb_" . $image)) {
+            unlink($pathThumbnail."thumb_" . $image);
+        } else {
+            $this->setError('Could not delete '.$pathThumbnail."thumb_" . $image.', file does not exist');
+        }
+
+        return true;
+    }
+
+    private function setError($error){
+        array_push($this->error,$error);
+        $this->viewModel->set("errors",$this->error);
+    }
+
+    public function getAllArticles()
+    {
+        try {
+            $sql = 'SELECT * FROM article';
+            $s = $this->database->prepare($sql);
+            $s->execute();
+            $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $this->viewModel->set("articles", $result);
+        } catch (PDOException $e) {
+            $this->setError('Error getting rooms: '.$e->getMessage());
+        }
+
+        return $this->viewModel;
     }
 }

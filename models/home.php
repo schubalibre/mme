@@ -8,6 +8,8 @@
 
 class HomeModel extends BaseModel
 {
+    private $error = [];
+
     //data passed to the home index view
     public function index()
     {
@@ -27,6 +29,17 @@ class HomeModel extends BaseModel
 
         $this->getActiveDepartments();
 
+        // wir holen uns alle departments aus dem department Model
+        require_once "article.php";
+
+        $room = new ArticleModel();
+
+        $room->getAllArticles();
+
+        $this->viewModel->set("articles", $room->viewModel->articles);
+
+        $this->getActiveCategories();
+
         return $this->viewModel;
     }
 
@@ -34,14 +47,56 @@ class HomeModel extends BaseModel
     {
         try
         {
-            $sql = 'SELECT d.id, d.name FROM room r, department d WHERE r.department_id = d.id';
+            $sql = 'SELECT d.id, d.name FROM room r, department d WHERE r.department_id = d.id ORDER BY d.name';
             $s = $this->database->prepare($sql);
             $s->execute();
             $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("activeDepartments", $result);
         } catch (PDOException $e) {
-            $this->setError('Error getting activ departments: '.$e->getMessage());
+            $this->setError('Error getting active departments: '.$e->getMessage());
         }
+
+        return $this->viewModel;
+    }
+
+    public function getActiveCategories()
+    {
+        try
+        {
+            $sql = 'SELECT c.id, c.name FROM article a, category c WHERE a.category_id = c.id ORDER BY c.name';
+            $s = $this->database->prepare($sql);
+            $s->execute();
+            $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $this->viewModel->set("activeCategories", $result);
+        } catch (PDOException $e) {
+            $this->setError('Error getting active categories: '.$e->getMessage());
+        }
+
+        return $this->viewModel;
+    }
+
+    public function getRoom($id){
+        // wir holen uns alle departments aus dem department Model
+        require_once "room.php";
+
+        $room = new RoomModel();
+
+        $room->getRoom($id);
+
+        $this->viewModel->set("room", $room->viewModel->room);
+
+        return $this->viewModel;
+    }
+
+    public function getArticle($id){
+        // wir holen uns alle departments aus dem department Model
+        require_once "article.php";
+
+        $room = new ArticleModel();
+
+        $room->getArticle($id);
+
+        $this->viewModel->set("article", $room->viewModel->article);
 
         return $this->viewModel;
     }
@@ -54,6 +109,11 @@ class HomeModel extends BaseModel
         }
 
         return $myArray;
+    }
+
+    private function setError($error){
+        array_push($this->error,$error);
+        $this->viewModel->set("errors",$this->error);
     }
 
 }

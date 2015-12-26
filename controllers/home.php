@@ -15,6 +15,8 @@ class HomeController extends BaseController
         //create the model object
         require("models/home.php");
         $this->model = new HomeModel();
+
+        require("helpers/formValidator.php");
     }
     
     //default method
@@ -26,6 +28,46 @@ class HomeController extends BaseController
             $this->view->output($this->model->index());
         }
     }
+
+    public function roomAction() {
+        if($this->request->httpMethod() === "GET") {
+
+            $validations = array(
+                'id' => 'number'
+            );
+
+            $required = array('id');
+
+            $validator = new FormValidator($validations, $required);
+
+            if ($validator->validate($this->request->uriValues())) {
+                $data = $validator->sanatize($this->request->uriValues());
+
+                $this->view->ajaxRespon($this->model->getRoom($data->id));
+
+            }
+        }
+    }
+
+    public function articleAction() {
+        if($this->request->httpMethod() === "GET") {
+
+            $validations = array(
+                'id' => 'number'
+            );
+
+            $required = array('id');
+
+            $validator = new FormValidator($validations, $required);
+
+            if ($validator->validate($this->request->uriValues())) {
+                $data = $validator->sanatize($this->request->uriValues());
+
+                $this->view->ajaxRespon($this->model->getArticle($data->id));
+            }
+        }
+    }
+
 }
 
 ?>

@@ -1,6 +1,8 @@
 <?php
 $rooms = $viewModel->get("rooms");
 $activeDepartments = $viewModel->get("activeDepartments");
+$activeCategories = $viewModel->get("activeCategories");
+$articles = $viewModel->get("articles");
 ?>
 
 
@@ -26,7 +28,7 @@ $activeDepartments = $viewModel->get("activeDepartments");
     </div>
 
     <?php if(!empty($activeDepartments)){?>
-    <ul class="nav nav-pills category-links" data-filter-for="article-row">
+    <ul class="nav nav-pills category-links" data-filter-for="room-row">
         <li role="presentation" class="active"><a href="#">Alle</a></li>
         <?php foreach($activeDepartments as $department){?>
             <li role="presentation" ><a href="#<?php echo $department['id'];?>"><?php echo $department['name'];?></a></li>
@@ -34,21 +36,19 @@ $activeDepartments = $viewModel->get("activeDepartments");
     </ul>
     <?php }?>
 
-    <div id="article-row" class="row">
+    <div id="room-row" class="row product-items">
 
         <?php if(!empty($rooms)){
             foreach($rooms as $room){
-                echo "<div class='col-xs-6 col-md-4 room-item ".$room['department_id']."'>";
-                    echo "<a href='/room/ajax/".$room['id']."'>
-                    <img class='img-responsive' src='/images/thumbnails/".$room['thumbnail']."' alt='article'>
-                    <h1 class='roomTitle'>".$room['name']."</h1>
+                if($room['slider']) continue;
+                echo "<div class='col-xs-6 col-md-4 product-item ".$room['department_id']."'>";
+                    echo "<a href='/home/room/".$room['id']."'>
+                    <img class='img-responsive' src='/images/thumbnails/thumb_".$room['img']."' alt='room'>
+                    <h1 class='item-title'>".$room['name']."</h1>
                     </a>";
                 echo "</div>";
             }
         }?>
-    </div>
-    <div class="pull-right">
-        <button id="loadArticle" type="button" class="btn btn-primary btn-sm">show more</button>
     </div>
 
 
@@ -58,56 +58,26 @@ $activeDepartments = $viewModel->get("activeDepartments");
         </h1>
     </div>
 
-    <ul class="nav nav-pills category-links">
-        <li role="presentation" class="active"><a href="#">Stühle</a></li>
-        <li role="presentation"><a href="#">Tische</a></li>
-        <li role="presentation"><a href="#">Schränke</a></li>
-        <li role="presentation"><a href="#">Betten</a></li>
-        <li role="presentation"><a href="#">Accessoires</a></li>
-    </ul>
+    <?php if(!empty($activeCategories)){?>
+        <ul class="nav nav-pills category-links" data-filter-for="article-row">
+            <li role="presentation" class="active"><a href="#">Alle</a></li>
+            <?php foreach($activeCategories as $category){?>
+                <li role="presentation" ><a href="#<?php echo $category['id'];?>"><?php echo $category['name'];?></a></li>
+            <?php }?>
+        </ul>
+    <?php }?>
 
-    <div class="row">
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
-            </div>
-        </div>
+    <div id="article-row" class="row product-items">
 
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <a href=""><img class="img-responsive" src="holder.js/265x210" alt="article"></a>
-            </div>
-        </div>
-
+        <?php if(!empty($articles)){
+            foreach($articles as $article){
+                echo "<div class='col-sm-6 col-md-3 product-item ".$article['category_id']."'>";
+                echo "<a href='/home/article/".$article['id']."'>
+                    <img class='img-responsive' src='/images/thumbnails/thumb_".$article['img']."' alt='article'>
+                    <h3 class='item-title'>".$article['name']."</h3>
+                    </a>";
+                echo "</div>";
+            }
+        }?>
     </div>
 </div><!-- /.container -->

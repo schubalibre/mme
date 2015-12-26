@@ -40,15 +40,16 @@ class RoomModel extends BaseModel
     public function getAllRooms(){
 
         try {
-            $sql = 'SELECT r.*, i.image,  i.thumbnail FROM room r, imagesRoom i WHERE i.room_id = r.id';
+            $sql = 'SELECT * FROM room';
             $s = $this->database->prepare($sql);
             $s->execute();
             $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("rooms", $result);
         } catch (PDOException $e) {
-            $error = 'Error getting rooms: '.$e->getMessage();
-            $this->viewModel->set("dbError", $error);
+            $this->setError('Error getting rooms: '.$e->getMessage());
         }
+
+        return $this->viewModel;
     }
 
     public function newModel($errors = null)
@@ -80,83 +81,6 @@ class RoomModel extends BaseModel
         return $this->viewModel;
     }
 
-    public function getImage($id){
-
-        try
-        {
-            $sql = 'SELECT * FROM imagesRoom WHERE id = :id';
-            $s = $this->database->prepare($sql);
-            $s->bindValue(':id', $id);
-            $s->execute();
-            $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
-            if(!empty($result)){
-                $this->viewModel->set("image", $result[$id]);
-            }else {
-                $error[] = 'Department with id '.$id.' not found!';
-                $this->viewModel->set("errors", $error);
-            }
-        }
-        catch (PDOException $e)
-        {
-            $this->setError('Error getting category: '.$e->getMessage());
-            
-        }
-    }
-
-    public function getAllImages(){
-
-        try
-        {
-            $sql = 'SELECT * FROM imagesRoom';
-            $s = $this->database->prepare($sql);
-            $s->execute();
-            $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
-            $this->viewModel->set("images", $result);
-        } catch (PDOException $e) {
-            $this->setError('Error getting images: '.$e->getMessage());
-            
-        }
-    }
-
-    public function getAllByRoomImages(){
-        $this-> getAllImages();
-        $images = $this->viewModel->get("images");
-        $sorted = null;
-        if(sizeof($images) > 0) {
-            foreach ($images as $image) {
-                $sorted[$image['room_id']][] = $image;
-            }
-        }
-
-        $this->viewModel->set("images", $sorted);
-    }
-
-    public function insertImage($room_id,$data){
-
-        try
-        {
-            $sql = 'INSERT INTO imagesRoom SET
-                    room_id = :room_id,
-                    image = :image,
-                    thumbnail = :thumbnail,
-                    updated_at = now(),
-                    created_at = now()';
-            $s = $this->database->prepare($sql);
-            $s->bindValue(':room_id', (int) $room_id);
-            $s->bindValue(':image', $data['filename']);
-            $s->bindValue(':thumbnail', $data['thumbnail']['name']);
-            $s->execute();
-
-            return $this->database->lastInsertId();
-        }
-        catch (PDOException $e)
-        {
-            $this->setError('Error adding images: '.$e->getMessage());
-            
-            $this->viewModel->set("room",(array) $data);
-        }
-    }
-
     public function insertRoom($data)
     {
         try
@@ -167,6 +91,8 @@ class RoomModel extends BaseModel
                     name = :name,
                     title = :title,
                     description = :description,
+                    img = :image,
+                    slider = :slider,
                     updated_at = now(),
                     created_at = now()';
             $s = $this->database->prepare($sql);
@@ -175,6 +101,8 @@ class RoomModel extends BaseModel
             $s->bindValue(':name', $data->name);
             $s->bindValue(':title', $data->title);
             $s->bindValue(':description', $data->description);
+            $s->bindValue(':image', $data->img);
+            $s->bindValue(':slider', $data->slider ? 1 : 0);
             $s->execute();
 
             return $this->database->lastInsertId();
@@ -185,6 +113,8 @@ class RoomModel extends BaseModel
             
             $this->viewModel->set("room",(array) $data);
         }
+
+        return $this->viewModel;
     }
 
     public function updateModel($errors = null)
@@ -228,7 +158,8 @@ class RoomModel extends BaseModel
                     name = :name,
                     title = :title,
                     description = :description,
-                    image = :image,
+                    img = :image,
+                    slider = :slider,
                     updated_at = now()
                     WHERE id = :id';
             $s = $this->database->prepare($sql);
@@ -238,6 +169,7 @@ class RoomModel extends BaseModel
             $s->bindValue(':title', $data->title);
             $s->bindValue(':description', $data->description);
             $s->bindValue(':image', $data->image);
+            $s->bindValue(':slider', $data->slider ? 1 : 0);
             $s->bindValue(':id', $data->id);
             $s->execute();
             return $s->rowCount();
@@ -246,13 +178,15 @@ class RoomModel extends BaseModel
         {
             $this->setError('Error updating room: '.$e->getMessage());
         }
+
+        return $this->viewModel;
     }
 
     public function getRoom($id)
     {
         try
         {
-            $sql = 'SELECT r.*, i.image,  i.thumbnail FROM room r, imagesRoom i WHERE i.room_id = r.id AND r.id = :id';
+            $sql = 'SELECT * FROM room WHERE id = :id';
             $s = $this->database->prepare($sql);
             $s->bindValue(':id', $id);
             $s->execute();
@@ -300,66 +234,30 @@ class RoomModel extends BaseModel
         return $myArray;
     }
 
-    public function getImages($data)
-    {
-        try
-        {
-            $sql = 'SELECT * FROM imagesRoom WHERE room_id = :id';
-            $s = $this->database->prepare($sql);
-            $s->bindValue(':id', $data->id);
-            $s->execute();
-            $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
-            $this->viewModel->set("images", $result);
-        } catch (PDOException $e) {
-            $this->setError('Error getting images: '.$e->getMessage());
-        }
-
-        return $this->viewModel;
-    }
-
     public function deleteImagesFromDisk($data)
     {
+        $data = $this->getRoom($data->id);
+
+        $image = $data->room['img'];
+
         $path = "images/";
         $pathThumbnail = "images/thumbnails/";
 
-        $this->getImages($data);
+        if (file_exists($path.$image)) {
+            unlink($path.$image);
+        } else {
+            $this->setError('Could not delete '.$path.$image.', file does not exist');
+        }
 
-        foreach($this->viewModel->get("images") as $file) {
-
-            if (file_exists($path.$file['image'])) {
-                unlink($path.$file['image']);
-                echo 'File '.$path.$file['image'].' has been deleted';
-            } else {
-                $this->setError('Could not delete '.$path.$file['image'].', file does not exist');
-            }
-
-            if (file_exists($pathThumbnail.$file['thumbnail'])) {
-                unlink($pathThumbnail.$file['thumbnail']);
-                echo 'File '.$pathThumbnail.$file['thumbnail'].' has been deleted';
-            } else {
-                $this->setError('Could not delete '.$pathThumbnail.$file['thumbnail'].', file does not exist');
-            }
+        if (file_exists($pathThumbnail."thumb_" . $image)) {
+            unlink($pathThumbnail."thumb_" . $image);
+        } else {
+            $this->setError('Could not delete '.$pathThumbnail."thumb_" . $image.', file does not exist');
         }
 
         return true;
     }
 
-    public function deleteImages($data)
-    {
-        try
-        {
-            $sql = 'Delete FROM imagesRoom WHERE room_id = :id';
-            $s = $this->database->prepare($sql);
-            $s->bindValue(':id', $data->id);
-            $s->execute();
-            return $s->rowCount();
-        }
-        catch (PDOException $e)
-        {
-            $this->setError('Error deleting room: '.$e->getMessage());
-        }
-    }
-    
     private function setError($error){
         array_push($this->error,$error);
         $this->viewModel->set("errors",$this->error);

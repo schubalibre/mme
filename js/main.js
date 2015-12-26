@@ -60,12 +60,12 @@ $( document ).ready(function() {
         });
     });
 
-    var $grid = $('#article-row').masonry({
+    var $grid = $('.product-items').masonry({
         // options
-        itemSelector: '.room-item',
+        itemSelector: '.product-item',
     });
 
-    $("#article-row a").click(function(e){
+    $(".product-items a").click(function(e){
         e.preventDefault();
         $a = $(this);
         $.ajax({
@@ -73,23 +73,12 @@ $( document ).ready(function() {
             method: "GET",
             dataType: "json"
         }).done(function(ajax) {
-            var room = ajax.room;
-
-            $(".modal-title").html(room.name);
-
-            $img = $("<img class='img-responsive' src='/images/" + room.image + "' alt=''>");
-            $title = $("<h3>" + room.title + "</h3>");
-            $description =  $("<p>" + room.description + "</p>");
-
-            $lft = $("<div class='col-sm-6'></div>").append($img);
-            $rht = $("<div class='col-sm-6'></div>").append($title).append($description);
-
-            $row = $("<div class='row'></div>").append($lft).append($rht);
-
-
-            $('.modal-body').html($row);
-            $('#myModal').modal({show:true});
-
+            console.log(ajax);
+            if(ajax.room != undefined){
+                generateRoomModal(ajax.room);
+            }else if(ajax.article != undefined){
+                generateArticleModal(ajax.article);
+            }
         })  .fail(function() {
             alert( "error" );
         });
@@ -102,7 +91,43 @@ $( document ).ready(function() {
         return confirm('Willst du wirklich ' + element + ' löschen?' );
     });
 
-
-
 });
+
+function generateRoomModal(room){
+    $(".modal-title").html(room.name);
+
+    $img = $("<img class='img-responsive' src='/images/" + room.img + "' alt=''>");
+    $title = $("<h3>" + room.title + "</h3>");
+    $description =  $("<p>" + room.description + "</p>");
+
+    $lft = $("<div class='col-sm-6'></div>").append($img);
+    $rht = $("<div class='col-sm-6'></div>").append($title).append($description);
+
+    $row = $("<div class='row'></div>").append($lft).append($rht);
+
+    $('.modal-body').html($row);
+
+    $img.load(function(){
+        $('#myModal').modal({show:true});
+    });
+}
+
+function generateArticleModal(article){
+    $(".modal-title").html(article.name);
+
+    $img = $("<img class='img-responsive' src='/images/" + article.img + "' alt=''>");
+    $title = $("<h3>" + article.title + "</h3>");
+    $description =  $("<p>" + article.description + "</p>");
+
+    $lft = $("<div class='col-sm-6'></div>").append($img);
+    $rht = $("<div class='col-sm-6'></div>").append($title).append($description);
+
+    $row = $("<div class='row'></div>").append($lft).append($rht);
+
+    $('.modal-body').html($row);
+
+    $img.load(function(){
+        $('#myModal').modal({show:true});
+    });
+}
 

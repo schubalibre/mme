@@ -138,6 +138,15 @@ nav.smaller .navbar-brand > img{
 }
 
 
+
+/* BACKEND STYLES
+----------------------------------------------------*/
+
+.table .slider-item{
+    border: 3px solid #3e8f3e;
+}
+
+
 /* CUSTOMIZE THE corporate Button
 -------------------------------------------------- */
 
@@ -204,12 +213,12 @@ a{
     color: #3aa399;
 }
 
-#article-row .room-item a {
+.product-item a {
     position: relative;
     display: block;
     margin-bottom: 30px;
 }
-#article-row .room-item a img{
+.product-item a img{
     -webkit-filter: grayscale(0%);
     -moz-filter: grayscale(0%);
     -ms-filter: grayscale(0%);
@@ -223,7 +232,7 @@ a{
     -o-transition:  filter 0.5s ease;
 }
 
-#article-row .room-item a:hover img{
+.product-item a:hover img{
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
     -ms-filter: grayscale(100%);
@@ -231,7 +240,7 @@ a{
     filter: grayscale(100%);
 }
 
-#article-row .room-item .roomTitle{
+.product-item .item-title{
     text-align: center;
     width: 100%;
     color: white;

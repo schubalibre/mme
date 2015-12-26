@@ -18,12 +18,14 @@ class ArticleController extends BaseController
         $this->model = new ArticleModel();
 
         require("helpers/formValidator.php");
+
+        require("helpers/upload.php");
     }
 
     //default method
     protected function indexAction()
     {
-        $this->model->getAllCategories();
+        $this->model->getAllArticles();
         $this->view->output($this->model->index());
     }
 
@@ -54,12 +56,43 @@ class ArticleController extends BaseController
 
                 $data = $validator->sanatize($data);
 
-                $id = $this->model->insertArticle($data);
+                $handle = new upload($_FILES['image']);
 
-                if ($id !== null) {
-                    header('Location: '.$this->url->generate("/article"));
-                    exit();
+                if ($handle->uploaded) {
+
+                    $handle->allowed = array('image/*');
+                    $handle->process('images');
+                    if ($handle->processed) {
+
+                        $name = $handle->file_dst_name;
+
+                        $handle->file_name_body_pre   = 'thumb_';
+                        $handle->image_resize         = true;
+                        $handle->image_x              = 600;
+                        $handle->image_ratio_y        = true;
+                        $handle->process('images/thumbnails');
+
+                        if ($handle->processed) {
+
+                            $handle->clean();
+                            $data->img = $name;
+                            $id = $this->model->insertArticle($data);
+
+                            if ($id !== null) {
+                                header('Location: '.$this->url->generate("/article"));
+                                exit();
+                            }
+
+                        } else {
+                            echo 'error : ' . $handle->error;
+                        }
+
+                    } else {
+                        echo 'error : ' . $handle->error;
+                    }
+
                 }
+
             }else{
                 $error = $validator->getErrors();
             }
@@ -124,7 +157,10 @@ class ArticleController extends BaseController
             if($validator->validate($this->request->uriValues())) {
                 $data = $validator->sanatize($this->request->uriValues());
 
-                $rows = $this->model->deleteArticle($data);
+                $rows = -1;
+                if ($this->model->deleteImagesFromDisk($data)){
+                    $rows = $this->model->deleteArticle($data);
+                }
 
                 if($rows > 0) {
                     header('Location: ' . $this->url->generate("/article"));
