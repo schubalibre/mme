@@ -8,6 +8,12 @@ body {
     color: #5a5a5a;
     position: relative;
     min-height: 100%;
+    padding-top: 70px;
+    font-size: 16px;
+}
+
+body#home{
+    padding-top: 0;
 }
 
 
@@ -75,24 +81,24 @@ body {
 }
 
 
-.transparente.navbar-default {
+.transparent.navbar-default {
     background-image: none;
     background-color: transparent;
     border-color: transparent;
     box-shadow: none;
 }
 
-.transparente.navbar-default .navbar-nav > .active > a,
-.transparente.navbar-default .navbar-nav > .active > a:hover,
-.transparente.navbar-default .navbar-nav > .active > a:focus{
+.transparent.navbar-default .navbar-nav > .active > a,
+.transparent.navbar-default .navbar-nav > .active > a:hover,
+.transparent.navbar-default .navbar-nav > .active > a:focus{
     color: #48b7ac;
     background-image: none;
     background-color: transparent;
     box-shadow: none;
 }
 
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
+.transparent.navbar-default .navbar-nav > li > a:hover,
+.transparent.navbar-default .navbar-nav > li > a:focus {
     color: #48b7ac;
 }
 
@@ -100,7 +106,7 @@ nav.navbar{
     transition: height 0.8s ease;
 }
 
-nav.transparente.navbar{
+nav.transparent.navbar{
     height: 83px;
 }
 
@@ -108,7 +114,7 @@ nav .navbar-nav > li > a{
     transition: font-size 0.6s ease, line-height 0.6s ease;
 }
 
-nav.transparente.navbar .navbar-nav > li > a {
+nav.transparent.navbar .navbar-nav > li > a {
     font-size: 50px;
     line-height: 52px;
     text-transform: uppercase;
@@ -122,8 +128,125 @@ nav .navbar-brand > img{
     transition: width 0.6s ease;
 }
 
+nav.transparent .navbar-brand > img {
+    -webkit-filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.6)) !important;
+    filter:         drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.6)) !important;
+}
+
 nav.smaller .navbar-brand > img{
     width:60px;
+}
+
+
+
+/* BACKEND STYLES
+----------------------------------------------------*/
+
+.table .slider-item{
+    border: 3px solid #3e8f3e;
+}
+
+
+/* CUSTOMIZE THE corporate Button
+-------------------------------------------------- */
+
+.btn-corporate {
+    background-color: #49BFB4;
+    border-color: #49BFB4;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-color: #42b2a7;
+    background-image: -moz-linear-gradient(top,#49BFB4,#379e94);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#49BFB4),to(#379e94));
+    background-image: -webkit-linear-gradient(top,#49BFB4,#379e94);
+    background-image: -o-linear-gradient(top,#49BFB4,#379e94);
+    background-image: linear-gradient(to bottom,#49BFB4,#379e94);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff49bfb4', endColorstr='#ff379d94', GradientType=0);
+    border-color: #379e94 #379e94 #24655f;
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+}
+.btn-corporate:hover,
+.btn-corporate:focus {
+    text-decoration: none;
+    background-position: 0 -15px;
+    -webkit-transition: background-position .1s linear;
+    -moz-transition: background-position .1s linear;
+    -o-transition: background-position .1s linear;
+    transition: background-position .1s linear;
+}
+.btn-corporate:hover,
+.btn-corporate:focus {
+    background-color: #379e94;
+}
+.btn-corporate:active,
+.btn-corporate.active,
+.btn-corporate.active:hover {
+    background-color: #3eb0a6;
+    border-color: #379e94;
+}
+.btn-corporate.disabled:hover,
+.btn-corporate.disabled:focus,
+.btn-corporate.disabled:active,
+.btn-corporate.disabled.active,
+.btn-corporate[disabled] .btn-corporate:hover,
+.btn-corporate[disabled] .btn-corporate:focus,
+.btn-corporate[disabled] .btn-corporate:active,
+.btn-corporate[disabled] .btn-corporate.active {
+    background-color: #49BFB4;
+    border-color: #49BFB4;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+    color:#FFF;
+    background-color: #3eb0a6;
+}
+
+.nav > li > a:focus,
+.nav > li > a:hover {
+    color:#3eb0a6;
+}
+
+a{
+    color: #3aa399;
+}
+
+.product-item a {
+    position: relative;
+    display: block;
+    margin-bottom: 30px;
+}
+.product-item a img{
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    -ms-filter: grayscale(0%);
+    -o-filter: grayscale(0%);
+    filter: grayscale(0%);
+
+    transition: filter 0.8s ease;
+    -webkit-transition:  filter 0.5s ease;
+    -moz-transition:  filter 0.5s ease;
+    -ms-transition:  filter 0.5s ease;
+    -o-transition:  filter 0.5s ease;
+}
+
+.product-item a:hover img{
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+.product-item .item-title{
+    text-align: center;
+    width: 100%;
+    color: white;
+    position: absolute;
+    bottom: 25%;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 
@@ -138,7 +261,7 @@ nav.smaller .navbar-brand > img{
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
     z-index: 10;
-    padding-bottom: 35vh;
+    margin-bottom: 35vh;
 }
 
 .carousel-indicators{
@@ -155,48 +278,25 @@ nav.smaller .navbar-brand > img{
     top: 0;
     left: 0;
     min-width: 100%;
-
 }
 
+.carousel-inner > .item > .img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width:100%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+}
 
-/* MARKETING CONTENT
+/* HOME CSS
 -------------------------------------------------- */
 
-/* Center align the text within the three columns below the carousel */
-.marketing .col-lg-4 {
-    margin-bottom: 20px;
-    text-align: center;
+.room img{
+    width:100%;
 }
-.marketing h2 {
-    font-weight: normal;
-}
-.marketing .col-lg-4 p {
-    margin-right: 10px;
-    margin-left: 10px;
-}
-
-
-/* Featurettes
-------------------------- */
-
-.featurette-divider {
-    margin: 80px 0; /* Space out the Bootstrap <hr> more */
-}
-
-/* Thin out the marketing headings */
-.featurette-heading {
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: -1px;
-}
-
-/* FORM CSS
--------------------------------------------------- */
-
-.form-wrapper{
-    margin-top:80px;
-}
-
 
 /* FOOTER CSS
 -------------------------------------------------- */

@@ -1,4 +1,4 @@
-<nav id="myNav" class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default <?php echo ($viewModel->get("site") == "home") ? "navbar-fixed-bottom" : "navbar-fixed-top smaller"; ?> ">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
@@ -16,7 +16,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#rooms">Rooms</a></li>
-                <li><a href="#article">Articles</a></li>
+                <li><a href="#articles">Articles</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>

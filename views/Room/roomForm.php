@@ -54,13 +54,20 @@ $clients = $viewModel->get("clients");
     <div class="form-group">
         <label for="description" class="col-sm-2 control-label">Beschreibung</label>
         <div class="col-sm-10">
-            <textarea class="form-control" name="description" id="description" placeholder="die Raumbeschreibung" required><?php echo $room['description'];?></textarea>
+            <textarea class="form-control" name="description" id="description" placeholder="die Raumbeschreibung" required><?php echo ($room['description']) ? $room['description'] : "Für ein gemütliches und wohnliches Zuhause: Mit diesem Stil können Sie garantiert nichts falsch machen. Sorgen Sie für ein schönes Ambiente in Ihrer Wohnung und lassen Sie Ihr Zuhause in einem neuen Look erstrahlen.";?></textarea>
         </div>
     </div>
     <div class="form-group">
         <label for="image" class="col-sm-2 control-label">Bild</label>
         <div class="col-sm-10">
-            <input type="file" name="images[]" value="<?php echo $room['image'];?>" id="image" placeholder="das Raumbild" accept="image/*" multiple required>
+            <input type="file" name="image" value="<?php echo $room['image'];?>" id="image" placeholder="das Raumbild" accept="image/*" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="slider" class="col-sm-2 control-label">im Slider zeigen</label>
+        <div class="col-xs-1">
+            <input class="form-control" type="checkbox" name="slider" value="1" id="slider" <?php echo ($room['slider']) ? "checked": "";?>>
         </div>
     </div>
 

@@ -16,7 +16,7 @@
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
     <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
-<body>
+<body id="<?php echo $viewModel->get("site");?>">
 
 <?php require($viewModel->get("header")); ?>
 
@@ -28,11 +28,27 @@
 
 <?php require($viewModel->get("footer")); ?>
 
+<!-- modal -->
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <!-- /container -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 <script src="/js/vendor/bootstrap.min.js"></script>
 <script src="/js/vendor/holder.min.js"></script>
+<script src="/js/vendor/masonry.pkgd.min.js"></script>
 <script src="/js/main.js"></script>
 
 </body>

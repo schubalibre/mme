@@ -1,103 +1,30 @@
+<?php $rooms = $viewModel->get("rooms"); ?>
+
 <!-- Carousel
    ================================================== -->
+<?php if(!empty($rooms)) { ?>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-        <li data-target="#myCarousel" data-slide-to="4"></li>
-        <li data-target="#myCarousel" data-slide-to="5"></li>
+        <?php $class="active"; foreach($rooms as $i => $slider){
+            if(!$slider['slider']) continue; ?>
+            <li data-target="#myCarousel" data-slide-to="<?php echo $i;?>" class="<?php echo $class;?>"></li>
+        <?php $class=""; }?>
     </ol>
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img class="img-responsive" class="first-slide"
-                 src="/images/slider1.jpg"
-                 alt="First slide">
-
+        <?php  $class="active"; foreach($rooms as $i => $slider){
+            if(!$slider['slider']) continue; ?>
+        <div class="item <?php echo $class;?>">
+            <div class="img" style="background-image: url(/images/<?php echo $slider['img'];?>);"></div>
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>Example headline.</h1>
-
-                    <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous"
-                        Glyphicon buttons on the left and right might not load/display properly due to web browser
-                        security rules.</p>
-
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                    <h1><?php echo $slider['name'];?></h1>
+                    <p><?php echo $slider['title'];?></p>
+                    <p><a class="btn btn-lg btn-corporate" href="#" role="button">Raum ansehen</a></p>
                 </div>
             </div>
         </div>
-        <div class="item">
-            <img class="img-responsive" class="second-slide"
-                 src="/images/slider2.jpg"
-                 alt="Second slide">
-
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>Another example headline.</h1>
-
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida
-                        at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img class="img-responsive" class="third-slide"
-                 src="/images/slider3.jpg"
-                 alt="Third slide">
-
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>One more for good measure.</h1>
-
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida
-                        at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="item">
-            <img class="img-responsive" class="fourth-slide"
-                 src="/images/slider4.jpg"
-                 alt="Third slide">
-
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>One more for good measure.</h1>
-
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida
-                        at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="item">
-            <img class="img-responsive" class="fifth-slide"
-                 src="/images/slider5.jpg"
-                 alt="Third slide">
-
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>One more for good measure.</h1>
-
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta
-                        gravida
-                        at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-                </div>
-            </div>
-        </div>
+        <?php $class=""; }?>
     </div>
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -108,3 +35,4 @@
         <span class="sr-only">Next</span>
     </a>
 </div><!-- /.carousel -->
+<?php }?>

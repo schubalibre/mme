@@ -16,7 +16,7 @@ class DepartmentController extends BaseController
         require("models/department.php");
         $this->model = new DepartmentModel();
 
-        require("classes/formValidator.php");
+        require("helpers/formValidator.php");
     }
 
     public function indexAction()

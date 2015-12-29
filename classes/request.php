@@ -37,11 +37,19 @@ class Request
     protected $route;
 
     /**
-     * The HTTP method the request used.
+     * True if url ist called with ajax.
      *
      * @var string
      */
     protected $httpMethod;
+
+    /**
+     * The HTTP method the request used.
+     *
+     * @var boolean
+     */
+    protected $xmlhttprequest = false;
+
 
     /**
      * Populate the properties on object creation.
@@ -84,6 +92,10 @@ class Request
             parse_str($_SERVER['QUERY_STRING'], $this->uriValues);
             $this->uriValues = (object) $this->uriValues;
         }
+
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            $this->xmlhttprequest = true;
+        }
     }
 
     /**
@@ -124,6 +136,16 @@ class Request
     public function httpMethod()
     {
         return $this->httpMethod;
+    }
+
+    /**
+     * if the request query was a xmlhttprequest.
+     *
+     * @return boolean
+     */
+    public function xmlhttprequest()
+    {
+        return $this->xmlhttprequest;
     }
 
     /**

@@ -11,7 +11,7 @@ $rooms = $viewModel->get("rooms");
 $categories = $viewModel->get("categories");
 ?>
 
-<form class="form-horizontal validate" action="" method="POST">
+<form class="form-horizontal validate" action="" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo $article['id'];?>">
     <div class="form-group">
         <label for="category_id" class="col-sm-2 control-label">Kategorie</label>
@@ -56,28 +56,28 @@ $categories = $viewModel->get("categories");
     <div class="form-group">
         <label for="description" class="col-sm-2 control-label">Artikelbeschreibung</label>
         <div class="col-sm-10">
-            <textarea id="description" class="form-control" name="description" placeholder="die Artikelbeschriftung" required><?php echo $article['description'];?></textarea>
+            <textarea id="description" class="form-control" name="description" placeholder="die Artikelbeschriftung" required><?php echo $article['description'] ? $article['description'] : "Für ein gemütliches und wohnliches Zuhause: Mit diesem Stil können Sie garantiert nichts falsch machen. Sorgen Sie für ein schönes Ambiente in Ihrer Wohnung und lassen Sie Ihr Zuhause in einem neuen Look erstrahlen.";?></textarea>
         </div>
     </div>
 
     <div class="form-group">
-        <label for="article-img" class="col-sm-2 control-label">Artikelbild</label>
+        <label for="article-img" class="col-sm-2 control-label">Artikelbilder</label>
         <div class="col-sm-10">
-            <input type="file" name="img" value="<?php echo $article['img'];?>" id="article-img" placeholder="das Artikelbild" accept="image/*" required>
+            <input type="file" name="image" id="article-img" placeholder="die Artikelbilder" accept="image/*" required>
         </div>
     </div>
 
     <div class="form-group">
         <label for="shop" class="col-sm-2 control-label">Artikelshop</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="shop" value="<?php echo $article['shop'];?>" id="shop" placeholder="der Artikelshop" required>
+            <input type="text" class="form-control" name="shop" value="<?php echo $article['shop'] ? $article['shop'] : "IKEA";?>" id="shop" placeholder="der Artikelshop" required>
         </div>
     </div>
 
     <div class="form-group">
         <label for="website" class="col-sm-2 control-label">Artikel Website</label>
         <div class="col-sm-10">
-            <input type="url" class="form-control" name="website" value="<?php echo $article['website'];?>" id="website" placeholder="die Artikelwebpage" required>
+            <input type="url" class="form-control" name="website" value="<?php echo $article['website'] ? $article['website'] : "http://www.ikea.de";?>" id="website" placeholder="die Artikelwebpage" required>
         </div>
     </div>
     

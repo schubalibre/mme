@@ -26,7 +26,7 @@ if($errors){
             echo "<td>".$article['name']."</td>";
             echo "<td>".$article['title']."</td>";
             echo "<td>".$article['description']."</td>";
-            echo "<td>".$article['img']."</td>";
+            echo "<td><img width='100' src='/images/thumbnails/thumb_".$article['img']."' alt='".$article['img']."'></td>";
             echo "<td>".$article['shop']."</td>";
             echo "<td>".$article['website']."</td>";
             echo "<td><a href='/article/update/".$article['id']."/'/><san class='glyphicon glyphicon-edit' aria-hidden=\"true\"></san></a></td>";
