@@ -16,7 +16,7 @@
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
     <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
-<body id="<?php echo $viewModel->get("site");?>">
+<body id="<?php echo $viewModel->get("site"); ?>">
 
 <?php require($viewModel->get("header")); ?>
 
@@ -30,17 +30,20 @@
 
 <!-- modal -->
 <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Modal title</h4>
+    <div class="modal-conten">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <div class='row'>
+            <div class='col-sm-6 modal-img'> </div>
+            <div class='col-sm-6'>
+                <div class="modal-header">
+                    <h1 class="modal-title">Modal title</h1>
+                </div>
+                <div class="modal-body"></div>
             </div>
-            <div class="modal-body">
-                <p>One fine body&hellip;</p>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+
+        </div>
+    </div>
 </div><!-- /.modal -->
 
 <!-- /container -->

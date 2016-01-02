@@ -213,6 +213,10 @@ a{
     color: #3aa399;
 }
 
+
+/* CUSTOMIZE THE HOME PAGE
+-------------------------------------------------- */
+
 .product-item a {
     position: relative;
     display: block;
@@ -249,9 +253,33 @@ a{
     text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);
 }
 
+.modal-conten {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    background: #FFF;
+}
 
-/* CUSTOMIZE THE CAROUSEL
--------------------------------------------------- */
+
+.modal-conten .row{
+    height:100%;
+}
+
+.modal-conten .row > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height:100%;
+}
+
+.modal-conten  .modal-header{
+    border: none;
+    padding: 0 15px;
+}
+
+    /* CUSTOMIZE THE CAROUSEL
+    -------------------------------------------------- */
 
 /* Carousel base class */
 .carousel {

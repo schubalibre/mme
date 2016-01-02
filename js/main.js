@@ -100,12 +100,8 @@ function generateRoomModal(room){
     $title = $("<h3>" + room.title + "</h3>");
     $description =  $("<p>" + room.description + "</p>");
 
-    $lft = $("<div class='col-sm-6'></div>").append($img);
-    $rht = $("<div class='col-sm-6'></div>").append($title).append($description);
-
-    $row = $("<div class='row'></div>").append($lft).append($rht);
-
-    $('.modal-body').html($row);
+    $(".modal-img").empty().append($img);
+    $('.modal-body').empty().append($title).append($description);
 
     $img.load(function(){
         $('#myModal').modal({show:true});
@@ -119,12 +115,8 @@ function generateArticleModal(article){
     $title = $("<h3>" + article.title + "</h3>");
     $description =  $("<p>" + article.description + "</p>");
 
-    $lft = $("<div class='col-sm-6'></div>").append($img);
-    $rht = $("<div class='col-sm-6'></div>").append($title).append($description);
-
-    $row = $("<div class='row'></div>").append($lft).append($rht);
-
-    $('.modal-body').html($row);
+    $(".modal-img").empty().append($img);
+    $('.modal-body').empty().append($title).append($description);
 
     $img.load(function(){
         $('#myModal').modal({show:true});
