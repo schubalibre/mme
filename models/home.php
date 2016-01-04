@@ -83,7 +83,17 @@ class HomeModel extends BaseModel
 
         $room->getRoom($id);
 
-        $this->viewModel->set("room", $room->viewModel->room);
+        $room = $room->viewModel->room;
+
+        require_once "article.php";
+
+        $article = new ArticleModel();
+
+        $article->getAllArticlesFromRoom($id);
+
+        $room['articles'] = $article->viewModel->articles;
+
+        $this->viewModel->set("room", $room);
 
         return $this->viewModel;
     }
@@ -96,7 +106,18 @@ class HomeModel extends BaseModel
 
         $room->getArticle($id);
 
-        $this->viewModel->set("article", $room->viewModel->article);
+        $article = $room->viewModel->article;
+
+        // wir holen uns alle departments aus dem department Model
+        require_once "room.php";
+
+        $room = new RoomModel();
+
+        $room->getRoom($article['room_id']);
+
+        $article['room'] = $room->viewModel->room;
+
+        $this->viewModel->set("article", $article);
 
         return $this->viewModel;
     }

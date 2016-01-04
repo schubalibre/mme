@@ -1,10 +1,4 @@
-
-
-
-
-
-
-$( document ).ready(function() {
+$(document).ready(function () {
 
     var scrollTop = $(document).scrollTop(); // Scrollposition des Users
     var height = $("#myCarousel").outerHeight(); // Höhe des Bildes holen
@@ -14,23 +8,22 @@ $( document ).ready(function() {
 
     if (scrollTop > height) { // Scroll Position größer als das Bild -> small Klasse im CSS // wird beim Neuladen als erstes überprüft
         $nav.removeClass("navbar-fixed-bottom transparent").addClass("navbar-fixed-top smaller");
-    }else{
-        $nav.css({bottom:$(document).scrollTop()});
+    } else {
+        $nav.css({bottom: $(document).scrollTop()});
     }
 
-    $( window ).scroll(function() {
+    $(window).scroll(function () {
 
         scrollTop = $(document).scrollTop();
 
         if ((scrollTop + $nav.outerHeight()) > height) {
             $nav.removeClass("navbar-fixed-bottom transparent").addClass("navbar-fixed-top smaller");
-            $nav.css({bottom:""});
+            $nav.css({bottom: ""});
         } else {
             $nav.removeClass("navbar-fixed-top smaller").addClass("navbar-fixed-bottom transparent");
-            $nav.css({bottom:$(document).scrollTop()}); // falls User wieder über das Bild nach oben scrollt -> Header wieder groß
+            $nav.css({bottom: $(document).scrollTop()}); // falls User wieder über das Bild nach oben scrollt -> Header wieder groß
         }
     });
-
 
 
     $('.category-links a').click(function (event) {
@@ -46,15 +39,15 @@ $( document ).ready(function() {
 
         $category.parent().addClass("active");
 
-        $filterDiv.find("div").each(function(index, element){
-            if(link == ""){
+        $filterDiv.find("div").each(function (index, element) {
+            if (link == "") {
                 $(element).fadeTo(300, 1);
                 return true;
             }
 
-            if($(element).hasClass(link)){
+            if ($(element).hasClass(link)) {
                 $(element).fadeTo(300, 1);
-            }else {
+            } else {
                 $(element).fadeTo(300, 0.3);
             }
         });
@@ -65,61 +58,83 @@ $( document ).ready(function() {
         itemSelector: '.product-item',
     });
 
-    $(".product-items a").click(function(e){
+    $(document).on("click", "a.product-modal-link", function (e) {
         e.preventDefault();
         $a = $(this);
         $.ajax({
-            url : $a.attr("href"),
+            url: $a.attr("href"),
             method: "GET",
             dataType: "json"
-        }).done(function(ajax) {
+        }).done(function (ajax) {
             console.log(ajax);
-            if(ajax.room != undefined){
+            if (ajax.room != undefined) {
                 generateRoomModal(ajax.room);
-            }else if(ajax.article != undefined){
+            } else if (ajax.article != undefined) {
                 generateArticleModal(ajax.article);
             }
-        })  .fail(function() {
-            alert( "error" );
+        }).fail(function () {
+            alert("error");
         });
     });
 
 
     /* Delete admin*/
-    $(".delete").click(function(event){
+    $(".delete").click(function (event) {
         var element = $(this).data('deleteElement');
-        return confirm('Willst du wirklich ' + element + ' löschen?' );
+        return confirm('Willst du wirklich ' + element + ' löschen?');
     });
 
 });
 
-function generateRoomModal(room){
+function generateRoomModal(room) {
     $(".modal-title").html(room.name);
 
     $img = $("<img class='img-responsive' src='/images/" + room.img + "' alt=''>");
     $title = $("<h3>" + room.title + "</h3>");
-    $description =  $("<p>" + room.description + "</p>");
+    $description = $("<p>" + room.description + "</p>");
+
+    $ul = $("<ul class='article-ul'>");
+
+    if (room.articles != null) {
+
+        $.each(room.articles, function (index, article) {
+            $li = $("<li>");
+            $li.append();
+
+            $articleImg = $("<img class='img-responsive' src='/images/thumbnails/thumb_" + article.img + "' alt=''>");
+
+            $li.append($("<a class='product-modal-link' href='/home/article/" + article.id + "'>").append($articleImg));
+
+            $ul.append($li);
+        });
+    }
 
     $(".modal-img").empty().append($img);
-    $('.modal-body').empty().append($title).append($description);
+    $('.modal-body').empty().append($title).append($description).append($ul);
 
-    $img.load(function(){
-        $('#myModal').modal({show:true});
+    $img.load(function () {
+        $('#myModal').modal({show: true});
     });
 }
 
-function generateArticleModal(article){
+function generateArticleModal(article) {
     $(".modal-title").html(article.name);
 
     $img = $("<img class='img-responsive' src='/images/" + article.img + "' alt=''>");
     $title = $("<h3>" + article.title + "</h3>");
-    $description =  $("<p>" + article.description + "</p>");
+    $description = $("<p>" + article.description + "</p>");
+
+    $roomImg = $("<img class='img-responsive' src='/images/thumbnails/thumb_" + article.room.img + "' alt=''>");
+
+    var $ul = $("<ul class='article-ul'>")
+        .append($("<li>").append("Raum: ").append($("<a class='product-modal-link' href='/home/room/" + article.room.id + "'>").append($roomImg)))
+        .append("<li>gefunden bei: <a href='" + article.website + "'>" + article.shop + "</a></li>");
 
     $(".modal-img").empty().append($img);
-    $('.modal-body').empty().append($title).append($description);
+    $('.modal-body').empty().append($title).append($description).append($ul);
 
-    $img.load(function(){
-        $('#myModal').modal({show:true});
+    $img.load(function () {
+        $('#myModal').modal({show: true});
     });
 }
 

@@ -266,4 +266,20 @@ class ArticleModel extends BaseModel
 
         return $this->viewModel;
     }
+
+    public function getAllArticlesFromRoom($room_id)
+    {
+        try {
+            $sql = 'SELECT * FROM article WHERE room_id = :room_id';
+            $s = $this->database->prepare($sql);
+            $s->bindValue(':room_id', $room_id);
+            $s->execute();
+            $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $this->viewModel->set("articles", $result);
+        } catch (PDOException $e) {
+            $this->setError('Error getting rooms: '.$e->getMessage());
+        }
+
+        return $this->viewModel;
+    }
 }

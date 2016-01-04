@@ -115,7 +115,7 @@ nav .navbar-nav > li > a{
 }
 
 nav.transparent.navbar .navbar-nav > li > a {
-    font-size: 50px;
+    font-size: 45px;
     line-height: 52px;
     text-transform: uppercase;
     padding-left:38px !important;
@@ -260,6 +260,11 @@ a{
     background: #FFF;
 }
 
+.modal-conten .close{
+    font-size: 40px;
+    line-height: 0.8;
+}
+
 
 .modal-conten .row{
     height:100%;
@@ -276,6 +281,28 @@ a{
 .modal-conten  .modal-header{
     border: none;
     padding: 0 15px;
+}
+
+.article-ul, .article-ul li{
+    list-style: none;
+}
+
+.article-ul{
+    clear: both;
+}
+
+.article-ul li{
+    float:left;
+    margin:0 10px;
+}
+
+.article-ul img{
+    width:80px;
+    border: 2px solid #dedede;
+}
+
+.article-ul img:hover{
+    border-color: #666;
 }
 
     /* CUSTOMIZE THE CAROUSEL
