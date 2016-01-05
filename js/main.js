@@ -68,9 +68,9 @@ $(document).ready(function () {
         }).done(function (ajax) {
             console.log(ajax);
             if (ajax.room != undefined) {
-                generateRoomModal(ajax.room);
+                $('#myModal').modal({show: generateRoomModal(ajax.room)});
             } else if (ajax.article != undefined) {
-                generateArticleModal(ajax.article);
+                $('#myModal').modal({show: generateArticleModal(ajax.article)});
             }
         }).fail(function () {
             alert("error");
@@ -96,15 +96,11 @@ function generateRoomModal(room) {
     $ul = $("<ul class='article-ul'>");
 
     if (room.articles != null) {
-
         $.each(room.articles, function (index, article) {
             $li = $("<li>");
             $li.append();
-
             $articleImg = $("<img class='img-responsive' src='/images/thumbnails/thumb_" + article.img + "' alt=''>");
-
             $li.append($("<a class='product-modal-link' href='/home/article/" + article.id + "'>").append($articleImg));
-
             $ul.append($li);
         });
     }
@@ -113,11 +109,12 @@ function generateRoomModal(room) {
     $('.modal-body').empty().append($title).append($description).append($ul);
 
     $img.load(function () {
-        $('#myModal').modal({show: true});
+        return true;
     });
 }
 
 function generateArticleModal(article) {
+
     $(".modal-title").html(article.name);
 
     $img = $("<img class='img-responsive' src='/images/" + article.img + "' alt=''>");
@@ -133,8 +130,23 @@ function generateArticleModal(article) {
     $(".modal-img").empty().append($img);
     $('.modal-body').empty().append($title).append($description).append($ul);
 
+
     $img.load(function () {
-        $('#myModal').modal({show: true});
+        return true;
     });
 }
 
+$(function() {
+    $('a[href*=#]:not([href=#]):not(.carousel-control)').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+            if (target.length) {
+                $('html,body').animate({
+                    scrollTop: target.offset().top - $(".navbar").outerHeight()
+                }, 1000);
+                return false;
+            }
+        }
+    });
+});
