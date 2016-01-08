@@ -13,12 +13,12 @@ function fillProductForm(data){
         $('#title').val(room.title);
         $('#description').val(room.description);
         if (room.img != "") {
-            $("#img").prop('required', false)
+            $("#img").prop('required', false);
             $(".updated-img").html('<img src="/images/thumbnails/thumb_' + room.img + '" alt="' + room.img + '"/><input type="hidden" name="img" value="' + room.img + '">');
         }
         $('#shop').val(room.shop);
         $('#website').val(room.website);
-        $('#slider').prop('checked', room.slider == "1" ? true : false);
+        $('#slider').prop('checked', room.slider == "1");
     }
 
     return true;

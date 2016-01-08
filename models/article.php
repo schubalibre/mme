@@ -8,7 +8,6 @@
 
 class ArticleModel extends BaseModel
 {
-    private $error = [];
 
     /**
      * ArticleModel constructor.

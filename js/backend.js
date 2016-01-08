@@ -17,7 +17,7 @@ $(document).ready(function () {
         });
     });
 
-    $("#productFormModal form").submit(function(e){
+    $("#productFormModal").find("form").submit(function(e){
 
         var $self = $(this);
         var url = $self.attr("action");

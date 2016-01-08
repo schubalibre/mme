@@ -9,10 +9,8 @@
 class RoomModel extends BaseModel
 {
 
-    private $error = [];
-
     /**
-     * ArticleModel constructor.
+     * RoomModel constructor.
      */
     public function __construct()
     {

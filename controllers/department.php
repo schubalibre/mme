@@ -82,16 +82,24 @@ class DepartmentController extends BaseController
 
                 $rows = $this->model->updateDepartment($data);
 
-                if($rows > 0) {
-                    header('Location: ' . $this->url->generate("/department"));
+                if(is_int($rows) && $rows > 0) {
+                    if($this->request->xmlhttprequest()){
+                        $this->view->ajaxRespon($this->model->ajaxMSG("Update OK"));
+                    }else{
+                        header('Location: ' . $this->url->generate("/department"));
+                    }
                     exit();
                 }
             }
         }
 
-        if($id != 0){
+        if($id != ""){
             $this->model->getDepartment($id);
-            $this->view->output($this->model->updateModel($error));
+            if($this->request->xmlhttprequest()){
+                $this->view->ajaxRespon($this->model->updateModel($error));
+            }else{
+                $this->view->output($this->model->updateModel($error));
+            }
             exit();
         }
 

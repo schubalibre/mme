@@ -8,10 +8,24 @@
 
 class DepartmentModel extends BaseModel
 {
+    /**
+     * DepartmentModel constructor.
+     */
+    public function __construct()
+    {
+
+        parent::__construct();
+
+        $this->viewModel->set("javascripts", array("backend.js","department.js"));
+    }
+
+
     //data passed to the home index view
     public function index()
     {
         $this->viewModel->set("pageTitle", "Department - ODDS&amp;ENDS");
+        //Modals
+        $this->viewModel->set("modals", array("Department/departmentFormModal.php"));
         return $this->viewModel;
     }
 
@@ -98,7 +112,7 @@ class DepartmentModel extends BaseModel
             $s = $this->database->prepare($sql);
             $s->bindValue(':id', $id);
             $s->execute();
-            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $result = $s->fetchAll(PDO::FETCH_ASSOC);
             if(!empty($result)){
                 $this->viewModel->set("department", $result[0]);
             }else {
@@ -125,5 +139,11 @@ class DepartmentModel extends BaseModel
         {
             $this->setError('Error deleting department: '.$e->getMessage());
         }
+    }
+
+    public function ajaxMSG($msg)
+    {
+        $this->viewModel->set("msg", $msg);
+        return $this->viewModel;
     }
 }

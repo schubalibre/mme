@@ -2,9 +2,9 @@ $(document).ready(function () {
 
     var scrollTop = $(document).scrollTop(); // Scrollposition des Users
     var height = $("#myCarousel").outerHeight(); // Höhe des Bildes holen
-    var $nav = $("#home .navbar"); // Header holen
+    var $nav = $("#home").find(".navbar"); // Header holen
 
-    $nav.addClass("navbar-fixed-bottom transparent")
+    $nav.addClass("navbar-fixed-bottom transparent");
 
     if (scrollTop > height) { // Scroll Position größer als das Bild -> small Klasse im CSS // wird beim Neuladen als erstes überprüft
         $nav.removeClass("navbar-fixed-bottom transparent").addClass("navbar-fixed-top smaller");

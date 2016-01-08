@@ -8,11 +8,24 @@
 
 class CategoryModel extends BaseModel
 {
+
+    /**
+     * CategoryModel constructor.
+     */
+    public function __construct()
+    {
+
+        parent::__construct();
+
+        $this->viewModel->set("javascripts", array("backend.js","category.js"));
+    }
+
     //data passed to the home index view
     public function index()
     {
         $this->viewModel->set("pageTitle", "Category - ODDS&amp;ENDS");
-
+        //Modals
+        $this->viewModel->set("modals", array("Category/categoryFormModal.php"));
         return $this->viewModel;
     }
 
@@ -116,5 +129,11 @@ class CategoryModel extends BaseModel
         {
             $this->setError('Error adding category: '.$e->getMessage());
         }
+    }
+
+    public function ajaxMSG($msg)
+    {
+        $this->viewModel->set("msg", $msg);
+        return $this->viewModel;
     }
 }
