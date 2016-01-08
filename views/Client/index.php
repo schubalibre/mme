@@ -1,3 +1,6 @@
+<div class="page-header">
+    <h1>Clients <small>Subtext for header</small></h1>
+</div>
 <?php
 $errors = $viewModel->get("errors");
 if($errors){
@@ -7,6 +10,16 @@ if($errors){
 }
 ?>
 <table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Lastname</th>
+        <th>E-Mail</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
    <?php
    $clients = $viewModel->get("clients");
    if(isset($clients)){
@@ -20,6 +33,7 @@ if($errors){
        echo "</tr>";
        }
    } ?>
+    </tbody>
 </table>
 
 <a class="btn btn-corporate" href="/client/new/" role="button">neuen Kunden erstellen</a>

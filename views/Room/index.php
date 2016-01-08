@@ -1,3 +1,6 @@
+<div class="page-header">
+    <h1>Rooms <small>Subtext for header</small></h1>
+</div>
 <?php
 $errors = $viewModel->get("errors");
 if($errors){
@@ -7,6 +10,16 @@ if($errors){
 }
 ?>
 <table class="table">
+    <thead>
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
     <?php
     $rooms = $viewModel->get("rooms");
     $clients = $viewModel->get("clients");
@@ -27,7 +40,8 @@ if($errors){
             echo "</tr>";
         }
     } ?>
+    </tbody>
 </table>
 
-<a class="btn btn-corporate" href="/room/new/" role="button">neuen Raum erstellen</a>
+<a id="new" class="btn btn-corporate" href="/room/new/" role="button">neuen Raum erstellen</a>
 

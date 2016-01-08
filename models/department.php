@@ -50,6 +50,7 @@ class DepartmentModel extends BaseModel
         }
 
         $this->viewModel->set("pageTitle", "new Department - ODDS&amp;ENDS");
+
         return $this->viewModel;
     }
 
@@ -71,6 +72,8 @@ class DepartmentModel extends BaseModel
         {
             $this->setError('Error adding client: '.$e->getMessage());
         }
+
+        return $this->viewModel;
     }
 
     public function updateModel($errors = null)
@@ -81,6 +84,7 @@ class DepartmentModel extends BaseModel
         }
 
         $this->viewModel->set("pageTitle", "update Department - ODDS&amp;ENDS");
+
         return $this->viewModel;
     }
 

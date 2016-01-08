@@ -64,7 +64,7 @@ class RoomModel extends BaseModel
         return $this->viewModel;
     }
 
-    public function newModel($errors = null)
+    public function newRoom($errors = null)
     {
         if($errors != null) {
             $this->viewModel->set("validateError", $errors);

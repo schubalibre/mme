@@ -78,8 +78,12 @@ class RoomController extends BaseController
                             $data->img = $name;
                             $id = $this->model->insertRoom($data);
 
-                            if ($id !== null) {
-                                header('Location: '.$this->url->generate("/room"));
+                            if(is_numeric($id) && $id > 0) {
+                                if($this->request->xmlhttprequest()){
+                                    $this->view->ajaxRespon($this->model->ajaxMSG("Insert OK"));
+                                }else{
+                                    header('Location: ' . $this->url->generate("/room"));
+                                }
                                 exit();
                             }
                         } else {
@@ -95,7 +99,11 @@ class RoomController extends BaseController
             }
         }
 
-        $this->view->output($this->model->newModel($error));
+        if($this->request->xmlhttprequest()){
+            $this->view->ajaxRespon($this->model->newRoom($error));
+        }else{
+            $this->view->output($this->model->newRoom($error));
+        }
     }
 
     public function updateAction()
@@ -106,6 +114,7 @@ class RoomController extends BaseController
         if($this->request->httpMethod() === "POST"){
 
             $validations = array(
+                'id' => 'number',
                 'department_id' => 'number',
                 'client_id' => 'number',
                 'name' => 'anything',
@@ -115,7 +124,7 @@ class RoomController extends BaseController
                 'slider' => 'number'
             );
 
-            $required = array('department_id', 'client_id', 'name', 'title', 'description','img');
+            $required = array('id','department_id', 'client_id', 'name', 'title', 'description','img');
 
             $validator = new FormValidator($validations, $required);
 

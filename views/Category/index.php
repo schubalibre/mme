@@ -1,3 +1,7 @@
+<div class="page-header">
+    <h1>Categories <small>Subtext for header</small></h1>
+</div>
+
 <?php
 $errors = $viewModel->get("errors");
 if($errors){
@@ -7,6 +11,14 @@ if($errors){
 }
 ?>
 <table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
     <?php
     $categories = $viewModel->get("categories");
     if(isset($categories)){
@@ -18,6 +30,7 @@ if($errors){
             echo "</tr>";
         }
     } ?>
+    </tbody>
 </table>
 
-<a class="btn btn-corporate" href="/category/new/" role="button">neue Kategorie erstellen</a>
+<a id="new" class="btn btn-corporate" href="/category/new/" role="button">neue Kategorie erstellen</a>

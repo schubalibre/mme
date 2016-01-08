@@ -83,7 +83,7 @@ class ArticleController extends BaseController
                             $data->img = $name;
                             $id = $this->model->insertArticle($data);
 
-                            if ($id !== null) {
+                            if(is_numeric($id) && $id > 0) {
                                 if($this->request->xmlhttprequest()){
                                     $this->view->ajaxRespon($this->model->ajaxMSG("Insert OK"));
                                 }else{
@@ -107,7 +107,11 @@ class ArticleController extends BaseController
             }
         }
 
-        $this->view->output($this->model->newArticle($error));
+        if($this->request->xmlhttprequest()){
+            $this->view->ajaxRespon($this->model->newArticle($error));
+        }else{
+            $this->view->output($this->model->newArticle($error));
+        }
     }
 
     protected function updateAction()
@@ -118,6 +122,7 @@ class ArticleController extends BaseController
         if($this->request->httpMethod() === "POST"){
 
             $validations = array(
+                'id' => 'number',
                 'room_id' => 'number',
                 'category_id' => 'number',
                 'name' => 'anything',
@@ -128,7 +133,7 @@ class ArticleController extends BaseController
                 'website' => 'anything'
             );
 
-            $required = array('room_id','category_id','name','title','description','img','shop','website');
+            $required = array('id','room_id','category_id','name','title','description','img','shop','website');
 
             $validator = new FormValidator($validations, $required);
 

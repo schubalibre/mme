@@ -226,6 +226,8 @@ class ArticleModel extends BaseModel
             $this->setError('Error adding article: '.$e->getMessage());
             $this->viewModel->set("article",(array) $data);
         }
+
+        return $this->viewModel;
     }
     
     public function deleteImagesFromDisk($data)

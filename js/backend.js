@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("a[href*='/update/']").on("click",function(e){
+    $("a[href*='/update/'], #new").on("click",function(e){
         e.preventDefault();
         var url = $(this).attr("href");
         $.ajax({

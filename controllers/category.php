@@ -54,8 +54,12 @@ class CategoryController extends BaseController
 
                 $id = $this->model->creatNewCategory($data);
 
-                if ($id !== null) {
-                    header('Location: '.$this->url->generate("/category"));
+                if(is_numeric($id) && $id > 0) {
+                    if($this->request->xmlhttprequest()){
+                        $this->view->ajaxRespon($this->model->ajaxMSG("Insert OK"));
+                    }else{
+                        header('Location: '.$this->url->generate("/category"));
+                    }
                     exit();
                 }
             }else{
@@ -63,7 +67,11 @@ class CategoryController extends BaseController
             }
         }
 
-        $this->view->output($this->model->newCategory($error));
+        if($this->request->xmlhttprequest()){
+            $this->view->ajaxRespon($this->model->newCategory($error));
+        }else{
+            $this->view->output($this->model->newCategory($error));
+        }
     }
 
     protected function updateAction()

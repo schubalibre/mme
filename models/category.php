@@ -129,6 +129,8 @@ class CategoryModel extends BaseModel
         {
             $this->setError('Error adding category: '.$e->getMessage());
         }
+
+        return $this->viewModel;
     }
 
     public function ajaxMSG($msg)

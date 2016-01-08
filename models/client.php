@@ -72,7 +72,7 @@ class ClientModel extends BaseModel
             $s = $this->database->prepare($sql);
             $s->bindValue(':id', $id);
             $s->execute();
-            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $result = $s->fetchAll(PDO::FETCH_ASSOC);
             if(!empty($result)){
                 $this->viewModel->set("client", $result[0]);
             }else {

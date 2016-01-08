@@ -1,3 +1,7 @@
+<div class="page-header">
+    <h1>Articles <small>Subtext for header</small></h1>
+</div>
+
 <?php
 /**
  * Created by PhpStorm.
@@ -14,6 +18,16 @@ if($errors){
 }
 ?>
 <table class="table">
+    <thead>
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
     <?php
     $articles = $viewModel->get("articles");
     $rooms = $viewModel->get("rooms");
@@ -34,6 +48,7 @@ if($errors){
             echo "</tr>";
         }
     } ?>
+    </tbody>
 </table>
 
-<a class="btn btn-corporate" href="/article/new/" role="button">neuen Artikel erstellen</a>
+<a id="new" class="btn btn-corporate" href="/article/new/" role="button">neuen Artikel erstellen</a>
