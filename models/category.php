@@ -25,8 +25,7 @@ class CategoryModel extends BaseModel
             $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("categories", $result);
         } catch (PDOException $e) {
-            $error = 'Error getting departments: '.$e->getMessage();
-            $this->viewModel->set("dbError", $error);
+            $this->setError('Error getting departments: '.$e->getMessage());
         }
     }
 
@@ -42,20 +41,18 @@ class CategoryModel extends BaseModel
             if(!empty($result)){
                 $this->viewModel->set("category", $result[$id]);
             }else {
-                $error[] = 'Category with id '.$id.' not found!';
-                $this->viewModel->set("errors", $error);
+                $this->setError('Category with id '.$id.' not found!');
             }
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error getting category: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error getting category: '.$e->getMessage());
         }
     }
 
     public function updateModel($errors = null){
         if($errors != null) {
-            $this->viewModel->set("validateError", $errors);
+            $this->setError("validateError", $errors);
         }
 
         $this->viewModel->set("pageTitle", "update Category - ODDS&amp;ENDS");
@@ -77,8 +74,7 @@ class CategoryModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error updating category: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error updating category: '.$e->getMessage());
         }
     }
 
@@ -93,8 +89,7 @@ class CategoryModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error deleting category: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error deleting category: '.$e->getMessage());
         }
     }
 
@@ -119,18 +114,7 @@ class CategoryModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error adding category: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error adding category: '.$e->getMessage());
         }
-    }
-
-    private function tableIdasArrayKey($data)
-    {
-        $myArray = null;
-        foreach ($data as $value) {
-            $myArray[$value['id']] = $value;
-        }
-
-        return $myArray;
     }
 }

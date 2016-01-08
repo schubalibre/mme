@@ -12,6 +12,8 @@ class BaseModel {
 
     protected $database;
 
+    private $error = [];
+
     //create the base and utility objects available to all models on model creation
     public function __construct()
     {
@@ -34,6 +36,22 @@ class BaseModel {
 
         //e.g. $this->viewModel->set("mainMenu",array("Home" => "/home", "Help" => "/help"));
     }
+
+    protected function setError($error){
+        array_push($this->error,$error);
+        $this->viewModel->set("errors",$this->error);
+    }
+
+    protected function tableIdAsArrayKey($data)
+    {
+        $myArray = null;
+        foreach ($data as $value) {
+            $myArray[$value['id']] = $value;
+        }
+
+        return $myArray;
+    }
+
 }
 
 ?>

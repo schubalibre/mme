@@ -208,30 +208,18 @@ class RoomModel extends BaseModel
 
     public function deleteRoom($data)
     {
-        try
-        {
-            $sql = 'Delete FROM room WHERE id = :id';
+        try {
+            $sql = 'DELETE FROM room WHERE id = :id';
             $s = $this->database->prepare($sql);
             $s->bindValue(':id', $data->id);
             $s->execute();
+
             return $s->rowCount();
-        }
-        catch (PDOException $e)
-        {
+        } catch (PDOException $e) {
             $this->setError('Error deleting room: '.$e->getMessage());
         }
 
         return $this->viewModel;
-    }
-
-    private function tableIdAsArrayKey($data)
-    {
-        $myArray = null;
-        foreach ($data as $value) {
-            $myArray[$value['id']] = $value;
-        }
-
-        return $myArray;
     }
 
     public function deleteImagesFromDisk($data)
@@ -256,10 +244,5 @@ class RoomModel extends BaseModel
         }
 
         return true;
-    }
-
-    private function setError($error){
-        array_push($this->error,$error);
-        $this->viewModel->set("errors",$this->error);
     }
 }

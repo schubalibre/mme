@@ -60,8 +60,7 @@ class ClientModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error adding client: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error adding client: '.$e->getMessage());
         }
     }
 
@@ -77,14 +76,12 @@ class ClientModel extends BaseModel
             if(!empty($result)){
                 $this->viewModel->set("client", $result[0]);
             }else {
-                $error[] = 'Client with id '.$id.' not found!';
-                $this->viewModel->set("errors", $error);
+                $this->setError('Client with id '.$id.' not found!');
             }
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error getting client: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error getting client: '.$e->getMessage());
         }
     }
 
@@ -122,8 +119,7 @@ class ClientModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error getting client: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error getting client: '.$e->getMessage());
         }
     }
 
@@ -139,19 +135,8 @@ class ClientModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error getting client: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error getting client: '.$e->getMessage());
         }
-    }
-
-    private function tableIdasArrayKey($data)
-    {
-        $myArray = null;
-        foreach ($data as $value) {
-            $myArray[$value['id']] = $value;
-        }
-
-        return $myArray;
     }
 }
 

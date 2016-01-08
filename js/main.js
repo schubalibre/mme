@@ -77,12 +77,59 @@ $(document).ready(function () {
         });
     });
 
+    $("#login").on("click",function(e){
+        e.preventDefault();
+        $('#loginModal').modal({show: true});
+    });
+
+
+    $("#loginForm").submit(function(e){
+
+        var $self = $(this);
+
+        var url = $self.attr("action");
+        console.log(url);
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $self.serialize(), // serializes the form's elements.
+            dataType: "json"
+        }).done(function(ajax) {
+            if(ajax.client.authentication){
+                window.location.href = "/backend";
+            }else{
+                alert(ajax);
+            }
+
+        }).fail(function () {
+                alert("error");
+        });
+
+        e.preventDefault();
+    });
+
 
     /* Delete admin*/
     $(".delete").click(function (event) {
         var element = $(this).data('deleteElement');
         return confirm('Willst du wirklich ' + element + ' löschen?');
     });
+
+    /* smooth slide */
+
+    $('a[href*=#]:not([href=#]):not(.carousel-control)').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+            if (target.length) {
+                $('html,body').animate({
+                    scrollTop: target.offset().top - $(".navbar").outerHeight()
+                }, 1000);
+                return false;
+            }
+        }
+    });
+
 
 });
 
@@ -135,18 +182,3 @@ function generateArticleModal(article) {
         return true;
     });
 }
-
-$(function() {
-    $('a[href*=#]:not([href=#]):not(.carousel-control)').click(function() {
-        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-            var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-            if (target.length) {
-                $('html,body').animate({
-                    scrollTop: target.offset().top - $(".navbar").outerHeight()
-                }, 1000);
-                return false;
-            }
-        }
-    });
-});

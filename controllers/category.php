@@ -18,6 +18,11 @@ class CategoryController extends BaseController
         $this->model = new CategoryModel();
 
         require("helpers/formValidator.php");
+
+        if($_SESSION['HTTP_USER_AGENT'] != sha1($_SERVER['HTTP_USER_AGENT'])) {
+            header('Location: ' . $this->url->generate("/backend/login"));
+            exit();
+        }
     }
 
     //default method

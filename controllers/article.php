@@ -20,6 +20,11 @@ class ArticleController extends BaseController
         require("helpers/formValidator.php");
 
         require("helpers/upload.php");
+
+        if($_SESSION['HTTP_USER_AGENT'] != sha1($_SERVER['HTTP_USER_AGENT'])) {
+            header('Location: ' . $this->url->generate("/backend/login"));
+            exit();
+        }
     }
 
     //default method

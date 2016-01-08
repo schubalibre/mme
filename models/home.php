@@ -121,22 +121,6 @@ class HomeModel extends BaseModel
 
         return $this->viewModel;
     }
-
-    private function tableIdAsArrayKey($data)
-    {
-        $myArray = null;
-        foreach ($data as $value) {
-            $myArray[$value['id']] = $value;
-        }
-
-        return $myArray;
-    }
-
-    private function setError($error){
-        array_push($this->error,$error);
-        $this->viewModel->set("errors",$this->error);
-    }
-
 }
 
 ?>

@@ -1,4 +1,6 @@
 <?php
+session_start();
+ini_set("session.cookie_lifetime","3600");
 /* 
  * Project: ODDS & ENDS
  * File: index.php

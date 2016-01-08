@@ -2,6 +2,10 @@
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 
+html{
+    height:100%;
+}
+
 body {
     font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
     padding-bottom: 80px;
@@ -383,7 +387,7 @@ a {
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
-    /* height: 60px;*/
+    height: 85px;
     background-image: linear-gradient(to bottom, #4ccbc0 0%, #48b7ac 100%);
 }
 
@@ -396,6 +400,70 @@ a {
 .container .text-muted {
     margin: 20px 0;
 }
+
+.footer .footer-img-wrapper{
+    text-align: center;
+}
+
+.footer .footer-img-wrapper img{
+    width:60px
+}
+
+.footer ul,
+.footer li{
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+
+.footer ul{
+    clear:left;
+    float:left;
+    list-style:none;
+    margin:0;
+    padding:0;
+    position:relative;
+    left:50%;
+    text-align:center;
+}
+
+.footer li{
+    margin: 0 10px;
+    float: left;
+    display: inline-block;
+    position:relative;
+    right:50%;
+}
+
+.footer li a{
+    position: relative;
+    color: #FFF;
+    padding:5px 10px;
+    width:33%;
+    -webkit-transition: background-color .1s linear;
+    -moz-transition: background-color .1s linear;
+    -o-transition: background-color .1s linear;
+    transition: background-color .1s linear;
+}
+
+.footer li a:before {
+    content: "/";
+    position: absolute;
+    left: -16px;
+    text-align: center;
+    width: 16px;
+}
+
+.footer li:first-child a:before{
+    content: "";
+}
+
+.footer li a:hover{
+    text-decoration: none;
+    border-radius: 3px;
+    background-color: #41a398;
+}
+
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
@@ -431,6 +499,23 @@ a {
     .featurette-heading {
         font-size: 50px;
     }
+
+    .footer {
+        height: 60px;
+    }
+
+    .footer .footer-img-wrapper{
+        text-align: left;
+    }
+
+    .footer ul{
+        float: right;
+        left:0;
+    }
+
+    .footer li{
+        right:0%;
+    }
 }
 
 @media (min-width: 992px) {
@@ -442,51 +527,3 @@ a {
 .category-links {
     margin: 0 0 20px;
 }
-
-/*
-
-
-/* Sticky footer styles
---------------------------------------------------
-html {
-    position: relative;
-    min-height: 100%;
-}
-body {
-    /* Margin bottom by footer height
-    margin-bottom: 60px;
-}
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here
-    height: 60px;
-    background-color: #f5f5f5;
-}
-
-
-/* Custom page CSS
---------------------------------------------------
-/* Not required for template or sticky footer method.
-
-body > .container {
-    padding: 60px 15px 0;
-}
-.container .text-muted {
-    margin: 20px 0;
-}
-
-.footer > .container {
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-code {
-    font-size: 80%;
-}
-
-pre{
-    margin-top:60px;
-}
-*/
