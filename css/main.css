@@ -154,13 +154,6 @@ nav.smaller .navbar-brand > img {
     width: 60px;
 }
 
-/* BACKEND STYLES
-----------------------------------------------------*/
-
-.table .slider-item {
-    border: 3px solid #3e8f3e;
-}
-
 /* CUSTOMIZE THE corporate Button
 -------------------------------------------------- */
 
@@ -493,10 +486,20 @@ a {
     margin: 0 0 20px;
 }
 
-/* BACKEND */
+/* BACKEND STYLES
+----------------------------------------------------*/
+
+.table .slider-item,
+.thumbnail .slider-item{
+    border: 3px solid #3e8f3e;
+}
 
 form img {
     width: 180px;
     border: 2px solid #dedede;
     margin-bottom: 10px;
+}
+
+.thumbnail img{
+    width: 80%;
 }
