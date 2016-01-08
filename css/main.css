@@ -492,3 +492,11 @@ a {
 .category-links {
     margin: 0 0 20px;
 }
+
+/* BACKEND */
+
+form img {
+    width: 180px;
+    border: 2px solid #dedede;
+    margin-bottom: 10px;
+}

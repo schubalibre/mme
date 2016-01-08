@@ -9,6 +9,17 @@
 class ArticleModel extends BaseModel
 {
     private $error = [];
+
+    /**
+     * ArticleModel constructor.
+     */
+    public function __construct()
+    {
+
+        parent::__construct();
+
+        $this->viewModel->set("javascripts", array("backend.js","article.js"));
+    }
     
     //data passed to the home index view
     public function index()
@@ -106,6 +117,7 @@ class ArticleModel extends BaseModel
     }
 
     public function updateArticle($data){
+
         try
         {
             $sql = 'UPDATE article SET
@@ -117,7 +129,7 @@ class ArticleModel extends BaseModel
                     img = :img,
                     shop = :shop,
                     website = :website,
-                    updated_at = now()
+                    updated_on = now()
                     WHERE id = :id';
             $s = $this->database->prepare($sql);
             $s->bindValue(':room_id', $data->room_id);
@@ -130,6 +142,7 @@ class ArticleModel extends BaseModel
             $s->bindValue(':website', $data->website);
             $s->bindValue(':id', $data->id);
             $s->execute();
+
             return $s->rowCount();
         }
         catch (PDOException $e)
@@ -268,6 +281,12 @@ class ArticleModel extends BaseModel
             $this->setError('Error getting rooms: '.$e->getMessage());
         }
 
+        return $this->viewModel;
+    }
+
+    public function ajaxMSG($msg)
+    {
+        $this->viewModel->set("msg", $msg);
         return $this->viewModel;
     }
 }

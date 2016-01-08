@@ -69,6 +69,30 @@ class HomeController extends BaseController
         }
     }
 
+    public function contactAction(){
+        if($this->request->xmlhttprequest()){
+            $this->view->ajaxRespon($this->model->staticPage("Kontact"));
+        }else{
+            $this->view->output($this->model->staticPage("Kontact"));
+        }
+    }
+
+    public function impressumAction(){
+        if($this->request->xmlhttprequest()){
+            $this->view->ajaxRespon($this->model->staticPage("Impressum"));
+        }else{
+            $this->view->output($this->model->staticPage("Impressum"));
+        }
+    }
+
+    public function termsConditionsAction(){
+        if($this->request->xmlhttprequest()){
+            $this->view->ajaxRespon($this->model->staticPage("AGB"));
+        }else{
+            $this->view->output($this->model->staticPage("AGB"));
+        }
+    }
+
 }
 
 ?>

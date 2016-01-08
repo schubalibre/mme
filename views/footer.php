@@ -9,13 +9,13 @@
             <div class="col-sm-6">
                 <ul>
                     <li>
-                        <a href="#">Kontakt</a>
+                        <a href="/home/contact/">Kontakt</a>
                     </li>
                     <li>
-                        <a href="#">Impressum</a>
+                        <a href="/home/impressum/">Impressum</a>
                     </li>
                     <li>
-                        <a href="#">AGB's</a>
+                        <a href="/home/termsConditions/">AGB</a>
                     </li>
                 </ul>
             </div>

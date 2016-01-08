@@ -29,5 +29,5 @@ if($errors){
     } ?>
 </table>
 
-<a class="btn btn-default" href="/room/new/" role="button">neuen Raum erstellen</a>
+<a class="btn btn-corporate" href="/room/new/" role="button">neuen Raum erstellen</a>
 

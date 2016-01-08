@@ -11,6 +11,17 @@ class RoomModel extends BaseModel
 
     private $error = [];
 
+    /**
+     * ArticleModel constructor.
+     */
+    public function __construct()
+    {
+
+        parent::__construct();
+
+        $this->viewModel->set("javascripts", array("backend.js","room.js"));
+    }
+
     //data passed to the home index view
     public function index()
     {
@@ -161,7 +172,7 @@ class RoomModel extends BaseModel
                     name = :name,
                     title = :title,
                     description = :description,
-                    img = :image,
+                    img = :img,
                     slider = :slider,
                     updated_at = now()
                     WHERE id = :id';
@@ -171,7 +182,7 @@ class RoomModel extends BaseModel
             $s->bindValue(':name', $data->name);
             $s->bindValue(':title', $data->title);
             $s->bindValue(':description', $data->description);
-            $s->bindValue(':image', $data->image);
+            $s->bindValue(':img', $data->img);
             $s->bindValue(':slider', $data->slider ? 1 : 0);
             $s->bindValue(':id', $data->id);
             $s->execute();
@@ -247,5 +258,11 @@ class RoomModel extends BaseModel
         }
 
         return true;
+    }
+
+    public function ajaxMSG($msg)
+    {
+        $this->viewModel->set("msg", $msg);
+        return $this->viewModel;
     }
 }

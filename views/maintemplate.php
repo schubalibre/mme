@@ -43,5 +43,12 @@
 <script src="/js/vendor/masonry.pkgd.min.js"></script>
 <script src="/js/main.js"></script>
 
+<?php if($viewModel->get("javascripts")){
+    foreach($viewModel->get("javascripts") as $javascript ){
+        echo '<script src="/js/'.$javascript.'"></script>';
+    }
+}
+?>
+
 </body>
 </html>

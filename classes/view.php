@@ -40,6 +40,9 @@ class View {
 
     public function ajaxRespon($viewModel) {
         // Entfernung von unnötigen Informationen
+        unset($viewModel->mainMenu);
+        unset($viewModel->javascripts);
+        unset($viewModel->pageTitle);
         unset($viewModel->header);
         unset($viewModel->footer);
 

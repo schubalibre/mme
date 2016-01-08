@@ -6,7 +6,7 @@
                         aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Update</h4>
             </div>
-            <?php require_once "articleForm.php";?>
+            <?php require_once "roomForm.php";?>
         </div>
     </div>
 </div>
