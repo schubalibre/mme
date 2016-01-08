@@ -63,6 +63,12 @@ $categories = $viewModel->get("categories");
     <div class="form-group">
         <label for="article-img" class="col-sm-2 control-label">Artikelbilder</label>
         <div class="col-sm-10">
+            <?php
+            if(!empty($article['img'])){
+                echo '<img src="/images/thumbnails/thumb_'.$article['img'].'" alt="'.$room['img'].'"/>';
+                echo '<input type="hidden" name="image" value="'.$article['img'].'">';
+            }
+            ?>
             <input type="file" name="image" id="article-img" placeholder="die Artikelbilder" accept="image/*" required>
         </div>
     </div>
@@ -83,7 +89,7 @@ $categories = $viewModel->get("categories");
     
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-success">Artikel speichern</button>
+            <button type="submit" class="btn btn-corporate">Artikel speichern</button>
         </div>
     </div>
 </form>

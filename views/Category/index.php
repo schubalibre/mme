@@ -20,4 +20,4 @@ if($errors){
     } ?>
 </table>
 
-<a class="btn btn-default" href="/category/new/" role="button">neue Kategorie erstellen</a>
+<a class="btn btn-corporate" href="/category/new/" role="button">neue Kategorie erstellen</a>

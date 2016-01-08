@@ -28,51 +28,12 @@
 
 <?php require($viewModel->get("footer")); ?>
 
-<!-- modal -->
-<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-conten">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-        <div class='row'>
-            <div class='col-sm-6 modal-img'> </div>
-            <div class='col-sm-6'>
-                <div class="modal-header">
-                    <h1 class="modal-title">Modal title</h1>
-                </div>
-                <div class="modal-body"></div>
-            </div>
-
-        </div>
-    </div>
-</div><!-- /.modal -->
-
-<!-- login modal -->
-<div id="loginModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Login</h4>
-            </div>
-            <form id="loginForm" action="/backend/login" method="post">
-                <div class="modal-body">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" name="email"  id="exampleInputEmail1" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-corporate">Save changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+<?php if($viewModel->get("modals")){
+    foreach($viewModel->get("modals") as $modal ){
+        require($modal);
+    }
+}
+?>
 
 <!-- /container -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

@@ -16,11 +16,11 @@ if($errors){
         foreach($rooms as $room) {
             $class = $room['slider'] ? "slider-item" : "";
             echo "<tr>";
-            echo "<td><img width='100' class='".$class."' src='images/thumbnails/thumb_".$room['img']."' alt='".$room['name']."'></td>";
-            echo "<td>".$departments[$room['department_id']]['name']."</td>";
-            echo "<td>".$clients[$room['client_id']]['name']." " .$clients[$room['client_id']]['lastname']."</td>";
+            echo "<td><img width='100' class='".$class."' src='/images/thumbnails/thumb_".$room['img']."' alt='".$room['name']."'></td>";
+            //echo "<td>".$departments[$room['department_id']]['name']."</td>";
+            //echo "<td>".$clients[$room['client_id']]['name']." " .$clients[$room['client_id']]['lastname']."</td>";
             echo "<td>".$room['name']."</td>";
-            echo "<td>".$room['title']."</td>";
+            //echo "<td>".$room['title']."</td>";
             echo "<td>".$room['description']."</td>";
             echo "<td><a href='/room/update/".$room['id']."/'/><san class='glyphicon glyphicon-edit' aria-hidden=\"true\"></san></a></td>";
             echo "<td><a class='delete' data-delete-element='diesen Raum' href='/room/delete/".$room['id']."/'/><span class='glyphicon glyphicon-remove' aria-hidden=\"true\"></span></a></td>";

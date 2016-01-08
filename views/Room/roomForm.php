@@ -60,7 +60,13 @@ $clients = $viewModel->get("clients");
     <div class="form-group">
         <label for="image" class="col-sm-2 control-label">Bild</label>
         <div class="col-sm-10">
-            <input type="file" name="image" value="<?php echo $room['image'];?>" id="image" placeholder="das Raumbild" accept="image/*" required>
+            <?php
+            if(!empty($room['img'])){
+                echo '<img src="/images/thumbnails/thumb_'.$room['img'].'" alt="'.$room['img'].'"/>';
+                echo '<input type="hidden" name="image" value="'.$room['img'].'">';
+            }
+            ?>
+            <input type="file" name="image" value="" id="image" placeholder="das Raumbild" accept="image/*" required>
         </div>
     </div>
 

@@ -85,4 +85,10 @@ class BackendController extends BaseController
             $this->view->output($this->model->login($error));
         }
     }
+
+    public function logoutAction(){
+        session_destroy();
+        header('Location: '.$this->url->generate("/backend"));
+        exit();
+    }
 }

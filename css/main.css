@@ -277,47 +277,12 @@ a {
 
 /* CUSTOMIZE THE HOME Modal
 -------------------------------------------------- */
-
-.modal-conten {
-    width: 80vw;
-    height: 90vh;
-    margin: 5vh auto;
-    background: #FFF;
+#productModal ul{
+    padding:0 0 0 0;
+    margin:0 0 0 0;
 }
-
-.modal-conten .close {
-    font-size: 40px;
-    line-height: 0.8;
-}
-
-.modal-conten .row {
-    height: 100%;
-}
-
-.modal-conten .row > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100%;
-}
-
-.modal-conten .modal-header {
-    border: none;
-    padding: 0 15px;
-}
-
-.article-ul, .article-ul li {
+#productModal li{
     list-style: none;
-}
-
-.article-ul {
-    clear: both;
-}
-
-.article-ul li {
-    float: left;
-    margin: 0 10px;
 }
 
 .article-ul img {

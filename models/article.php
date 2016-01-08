@@ -33,6 +33,9 @@ class ArticleModel extends BaseModel
 
         $this->viewModel->set("pageTitle", "Article - ODDS&amp;ENDS");
 
+        //Modals
+        $this->viewModel->set("modals", array("Article/articleFormModal.php"));
+
         return $this->viewModel;
     }
 

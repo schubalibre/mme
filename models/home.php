@@ -10,13 +10,30 @@ class HomeModel extends BaseModel
 {
     private $error = [];
 
+    /**
+     * HomeModel constructor.
+     */
+    public function __construct()
+    {
+
+        parent::__construct();
+
+        $this->viewModel->set("mainMenu",array(
+                "home" => "#home",
+                "rooms" => "#rooms<",
+                "articles" => "#articles",
+                "login" => "/backend/login")
+        );
+    }
+
     //data passed to the home index view
     public function index()
     {
         $this->viewModel->set("slider","Home/slider.php");
         $this->viewModel->set("site","home");
         $this->viewModel->set("pageTitle","Home - ODDS&amp;ENDS");
-
+        //Modals
+        $this->viewModel->set("modals", array("Home/loginModal.php","Home/productModal.php"));
 
         // wir holen uns alle departments aus dem department Model
         require_once "room.php";

@@ -16,6 +16,9 @@ class RoomModel extends BaseModel
     {
         $this->viewModel->set("pageTitle", "Room - ODDS&amp;ENDS");
 
+        //Modals
+        $this->viewModel->set("modals", array("Room/roomFormModal.php"));
+
         // wir holen uns alle departments aus dem department Model
         require_once "department.php";
 

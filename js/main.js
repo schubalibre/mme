@@ -66,39 +66,35 @@ $(document).ready(function () {
             method: "GET",
             dataType: "json"
         }).done(function (ajax) {
-            console.log(ajax);
             if (ajax.room != undefined) {
-                $('#myModal').modal({show: generateRoomModal(ajax.room)});
+                $('#productModal').modal({show: generateRoomModal(ajax.room)});
             } else if (ajax.article != undefined) {
-                $('#myModal').modal({show: generateArticleModal(ajax.article)});
+                $('#productModal').modal({show: generateArticleModal(ajax.article)});
             }
         }).fail(function () {
             alert("error");
         });
     });
 
-    $("#login").on("click",function(e){
+    $("a[href='/backend/login']").on("click",function(e){
         e.preventDefault();
         $('#loginModal').modal({show: true});
     });
 
 
     $("#loginForm").submit(function(e){
-
         var $self = $(this);
-
         var url = $self.attr("action");
-        console.log(url);
         $.ajax({
             type: "POST",
             url: url,
             data: $self.serialize(), // serializes the form's elements.
             dataType: "json"
-        }).done(function(ajax) {
-            if(ajax.client.authentication){
+        }).done(function(json) {
+            if(json.client.authentication){
                 window.location.href = "/backend";
             }else{
-                alert(ajax);
+                alert(json);
             }
 
         }).fail(function () {
@@ -109,7 +105,29 @@ $(document).ready(function () {
     });
 
 
-    /* Delete admin*/
+    /* BACKEND */
+
+    /* UPDATE BUTTON*/
+
+    $("a[href*='/update/']").on("click",function(e){
+        e.preventDefault();
+        var url = $(this).attr("href");
+        $.ajax({
+            type: "POST",
+            url: url,
+            dataType: "json"
+        }).done(function(json){
+            alert(json);
+        }).fail(function () {
+            alert("error");
+            $('#articleFormModal').modal({show: true});
+        });
+    });
+
+
+
+    /* Delete button*/
+
     $(".delete").click(function (event) {
         var element = $(this).data('deleteElement');
         return confirm('Willst du wirklich ' + element + ' löschen?');
@@ -134,17 +152,20 @@ $(document).ready(function () {
 });
 
 function generateRoomModal(room) {
-    $(".modal-title").html(room.name);
+
+    var $myModal =  $('#productModal');
+
+    $(".modal-title", $myModal).html(room.name);
 
     $img = $("<img class='img-responsive' src='/images/" + room.img + "' alt=''>");
-    $title = $("<h3>" + room.title + "</h3>");
+    $title = $("<h4>" + room.title + "</h4>");
     $description = $("<p>" + room.description + "</p>");
 
-    $ul = $("<ul class='article-ul'>");
+    $ul = $("<ul class='row'>");
 
     if (room.articles != null) {
         $.each(room.articles, function (index, article) {
-            $li = $("<li>");
+            $li = $("<li class='col-lg-4 col-md-4 col-sm-6 col-xs-6'>");
             $li.append();
             $articleImg = $("<img class='img-responsive' src='/images/thumbnails/thumb_" + article.img + "' alt=''>");
             $li.append($("<a class='product-modal-link' href='/home/article/" + article.id + "'>").append($articleImg));
@@ -152,8 +173,8 @@ function generateRoomModal(room) {
         });
     }
 
-    $(".modal-img").empty().append($img);
-    $('.modal-body').empty().append($title).append($description).append($ul);
+    $("#img-content", $myModal).empty().append($img);
+    $('#product-content', $myModal).empty().append($title).append($description).append($ul);
 
     $img.load(function () {
         return true;
@@ -162,21 +183,22 @@ function generateRoomModal(room) {
 
 function generateArticleModal(article) {
 
-    $(".modal-title").html(article.name);
+    var $myModal =  $('#productModal');
+
+    $(".modal-title", $myModal).html(article.name);
 
     $img = $("<img class='img-responsive' src='/images/" + article.img + "' alt=''>");
-    $title = $("<h3>" + article.title + "</h3>");
+    $title = $("<h4>" + article.title + "</h4>");
     $description = $("<p>" + article.description + "</p>");
 
     $roomImg = $("<img class='img-responsive' src='/images/thumbnails/thumb_" + article.room.img + "' alt=''>");
 
-    var $ul = $("<ul class='article-ul'>")
-        .append($("<li>").append("Raum: ").append($("<a class='product-modal-link' href='/home/room/" + article.room.id + "'>").append($roomImg)))
-        .append("<li>gefunden bei: <a href='" + article.website + "'>" + article.shop + "</a></li>");
+    var $ul = $("<ul class='row'>")
+        .append($("<li class='col-lg-4 col-md-4 col-sm-6 col-xs-6'>").append("Raum: ").append($("<a class='product-modal-link' href='/home/room/" + article.room.id + "'>").append($roomImg)))
+        .append("<li class='col-lg-4 col-md-4 col-sm-6 col-xs-6'> gefunden bei: <a href='" + article.website + "'>" + article.shop + "</a></li>");
 
-    $(".modal-img").empty().append($img);
-    $('.modal-body').empty().append($title).append($description).append($ul);
-
+    $("#img-content", $myModal).empty().append($img);
+    $('#product-content', $myModal).empty().append($title).append($description).append($ul);
 
     $img.load(function () {
         return true;

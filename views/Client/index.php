@@ -22,4 +22,4 @@ if($errors){
    } ?>
 </table>
 
-<a class="btn btn-default" href="/client/new/" role="button">neuen Kunden erstellen</a>
+<a class="btn btn-corporate" href="/client/new/" role="button">neuen Kunden erstellen</a>

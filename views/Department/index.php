@@ -20,4 +20,4 @@ if($errors){
     } ?>
 </table>
 
-<a class="btn btn-default" href="/department/new/" role="button">neues Department erstellen</a>
+<a class="btn btn-corporate" href="/department/new/" role="button">neues Department erstellen</a>
