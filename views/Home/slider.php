@@ -20,7 +20,7 @@
                 <div class="carousel-caption">
                     <h1><?php echo $slider['name'];?></h1>
                     <p><?php echo $slider['title'];?></p>
-                    <p><a class="btn btn-lg btn-corporate product-modal-link" href="<?php echo "/home/room/".$slider['id'];?>" role="button">Raum ansehen</a></p>
+                    <p><a class="btn btn-lg btn-default product-modal-link" href="<?php echo "/home/room/".$slider['id'];?>" role="button">Raum ansehen</a></p>
                 </div>
             </div>
         </div>

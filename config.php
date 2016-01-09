@@ -7,7 +7,7 @@
  */
 
 
-define('DB_HOST', 'localhost');
+define('DB_HOST', '127.0.0.1');
 define('DB_DB', 'mme');
 define('DB_USER', 'root');
-define('DB_PASSWORD', 'qpal10');
+define('DB_PASSWORD', '');

@@ -18,7 +18,7 @@ $categories = $viewModel->get("categories");
             <label for="category_id" class="col-sm-2 control-label">Kategorie</label>
             <div class="col-sm-10">
                 <select id="category_id" class="form-control" name="category_id" required>
-                    <option value="">wähle eine Kategorie aus</option>
+                    <option value="">wählen Sie eine Kategorie aus</option>
                     <?php foreach ($categories as $category) {
                         $selected = (isset($article['category_id']) && $category['id'] === $article['category_id']) ? 'selected' : '';
                         echo "<option  value='".$category['id']."' ".$selected." >".$category['name']."</option>";
@@ -31,7 +31,7 @@ $categories = $viewModel->get("categories");
             <label for="room_id" class="col-sm-2 control-label">Raum</label>
             <div class="col-sm-10">
                 <select id="room_id" class="form-control" name="room_id" required>
-                    <option value="">wähle einen Raum aus</option>
+                    <option value="">wählen Sie einen Raum aus</option>
                     <?php foreach ($rooms as $room) {
                         $selected = (isset($article['room_id']) && $room['id'] === $article['room_id']) ? 'selected' : '';
                         echo "<option  value='".$room['id']."' ".$selected." >".$room['name']."</option>";

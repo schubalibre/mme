@@ -9,7 +9,7 @@
     ?>
 
     <h1 class="page-header">Herzlich Willkommen bei Odds & Ends</h1>
-    <p>Wählen Sie eine Kategorie um neue Elemente hinzuzufügen, zu editieren oder zu löschen</p>
+    <p>Wählen Sie eine Kategorie um neue Elemente hinzuzufügen, zu editieren oder zu löschen.</p>
 
     <div class="list-group">
         <a href="/article" class="list-group-item">Artikel</a>
