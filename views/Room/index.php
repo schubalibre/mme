@@ -2,6 +2,7 @@
     <div class="page-header">
         <h1>Räume
             <small>Editieren, Hinzufügen und Löschen von Räumen</small>
+            <small class="pull-right"><a id="new" class="btn btn-link" href="/room/new/">neuen Raum erstellen</a></small>
         </h1>
     </div>
     <?php

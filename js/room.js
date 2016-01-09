@@ -4,6 +4,8 @@ function fillProductForm(data){
 
     if(room != undefined || room != null) {
 
+        $("#productFormModal").find(".modal-title").html("Raum aktualisieren");
+
         $("#productFormModal").find("form").attr("action", "/room/update/" + room.id);
 
         $('#id').val(room.id);
@@ -16,9 +18,18 @@ function fillProductForm(data){
             $("#img").prop('required', false);
             $(".updated-img").html('<img src="/images/thumbnails/thumb_' + room.img + '" alt="' + room.img + '"/><input type="hidden" name="img" value="' + room.img + '">');
         }
-        $('#shop').val(room.shop);
-        $('#website').val(room.website);
         $('#slider').prop('checked', room.slider == "1");
+    }else{
+        $("#productFormModal").find(".modal-title").html("neuer Raum");
+
+        $('#id').val("");
+        $('#department_id').find('option:selected').prop("selected", false);
+        $('#client_id').find('option:selected').prop("selected", false);
+        $('#name').val("");
+        $('#title').val("");
+        $('#description').val("");
+        $(".updated-img").html("");
+        $('#slider').prop('checked',false);
     }
 
     return true;

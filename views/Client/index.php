@@ -1,7 +1,8 @@
 <div class="col-xs-12">
     <div class="page-header">
-        <h1>Clients
+        <h1>Kunden
             <small>Subtext for header</small>
+            <small class="pull-right"><a id="new" class="btn btn-link" href="/client/new/">neuen Kunden erstellen</a></small>
         </h1>
     </div>
     <?php
