@@ -21,14 +21,17 @@ $(document).ready(function () {
 
         var $self = $(this);
         var url = $self.attr("action");
-
-        var values = $self.serialize();
-        values = values.concat($self.find('input[type=checkbox]:not(:checked)').map(function(){return "&" + this.name + "=0"}).get());
-
+        e.preventDefault();
+        //var values = $self.serialize();
+        //values = values.concat($self.find('input[type=checkbox]:not(:checked)').map(function(){return "&" + this.name + "=0"}).get());
+        var formData  = new FormData(this);
+        formData.append("slider",$("#slider").is(':checked') ? 1 : 0);
         $.ajax({
             type: "POST",
             url: url,
-            data: values, // serializes the form's elements.
+            data: formData, // serializes the form's elements.
+            processData: false,
+            contentType: false,
             dataType: "json"
         }).done(function(json) {
             $self.html("<div class='modal-body'><div class='alert alert-success' role='alert'><h2 class='text-center'>" + json.msg + "</h2></div></div>");

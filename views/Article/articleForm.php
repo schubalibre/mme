@@ -11,7 +11,7 @@ $rooms = $viewModel->get("rooms");
 $categories = $viewModel->get("categories");
 ?>
 
-<form class="form-horizontal validate" action="<?php echo isset($article['id']) ?  "/article/update/".$article['id'] : "/article/new/";?>" method="POST" enctype="multipart/form-data">
+<form id="form-id" class="form-horizontal validate" action="<?php echo isset($article['id']) ?  "/article/update/".$article['id'] : "/article/new/";?>" method="POST" enctype="multipart/form-data">
     <div class="modal-body">
         <input id="id" type="hidden" name="id" value="<?php echo $article['id']; ?>">
         <div class="form-group">

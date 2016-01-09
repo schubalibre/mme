@@ -8,8 +8,6 @@
 
 class HomeModel extends BaseModel
 {
-    private $error = [];
-
     /**
      * HomeModel constructor.
      */

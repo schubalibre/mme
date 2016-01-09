@@ -128,9 +128,11 @@ class RoomController extends BaseController
 
             $validator = new FormValidator($validations, $required);
 
-            if($validator->validate($this->request->body())) {
+            $data = $this->request->body();
 
-                $data = $validator->sanatize($this->request->body());
+            if($validator->validate($data)) {
+
+                $data = $validator->sanatize($data);
 
                 $rows = 0;
 
