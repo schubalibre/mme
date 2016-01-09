@@ -9,12 +9,24 @@
 class RoomModel extends BaseModel
 {
 
-    private $error = [];
+    /**
+     * RoomModel constructor.
+     */
+    public function __construct()
+    {
+
+        parent::__construct();
+
+        $this->viewModel->set("javascripts", array("backend.js","room.js"));
+    }
 
     //data passed to the home index view
     public function index()
     {
         $this->viewModel->set("pageTitle", "Room - ODDS&amp;ENDS");
+
+        //Modals
+        $this->viewModel->set("modals", array("Room/roomFormModal.php"));
 
         // wir holen uns alle departments aus dem department Model
         require_once "department.php";
@@ -52,7 +64,7 @@ class RoomModel extends BaseModel
         return $this->viewModel;
     }
 
-    public function newModel($errors = null)
+    public function newRoom($errors = null)
     {
         if($errors != null) {
             $this->viewModel->set("validateError", $errors);
@@ -158,7 +170,7 @@ class RoomModel extends BaseModel
                     name = :name,
                     title = :title,
                     description = :description,
-                    img = :image,
+                    img = :img,
                     slider = :slider,
                     updated_at = now()
                     WHERE id = :id';
@@ -168,7 +180,7 @@ class RoomModel extends BaseModel
             $s->bindValue(':name', $data->name);
             $s->bindValue(':title', $data->title);
             $s->bindValue(':description', $data->description);
-            $s->bindValue(':image', $data->image);
+            $s->bindValue(':img', $data->img);
             $s->bindValue(':slider', $data->slider ? 1 : 0);
             $s->bindValue(':id', $data->id);
             $s->execute();
@@ -208,30 +220,18 @@ class RoomModel extends BaseModel
 
     public function deleteRoom($data)
     {
-        try
-        {
-            $sql = 'Delete FROM room WHERE id = :id';
+        try {
+            $sql = 'DELETE FROM room WHERE id = :id';
             $s = $this->database->prepare($sql);
             $s->bindValue(':id', $data->id);
             $s->execute();
+
             return $s->rowCount();
-        }
-        catch (PDOException $e)
-        {
+        } catch (PDOException $e) {
             $this->setError('Error deleting room: '.$e->getMessage());
         }
 
         return $this->viewModel;
-    }
-
-    private function tableIdAsArrayKey($data)
-    {
-        $myArray = null;
-        foreach ($data as $value) {
-            $myArray[$value['id']] = $value;
-        }
-
-        return $myArray;
     }
 
     public function deleteImagesFromDisk($data)
@@ -258,8 +258,9 @@ class RoomModel extends BaseModel
         return true;
     }
 
-    private function setError($error){
-        array_push($this->error,$error);
-        $this->viewModel->set("errors",$this->error);
+    public function ajaxMSG($msg)
+    {
+        $this->viewModel->set("msg", $msg);
+        return $this->viewModel;
     }
 }

@@ -45,7 +45,7 @@ $client = $viewModel->get("client");
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-success">Kunden speichern</button>
+            <button type="submit" class="btn btn-corporate">Kunden speichern</button>
         </div>
     </div>
 </form>

@@ -18,6 +18,11 @@ class CategoryController extends BaseController
         $this->model = new CategoryModel();
 
         require("helpers/formValidator.php");
+
+        if($_SESSION['HTTP_USER_AGENT'] != sha1($_SERVER['HTTP_USER_AGENT'])) {
+            header('Location: ' . $this->url->generate("/backend/login"));
+            exit();
+        }
     }
 
     //default method
@@ -49,8 +54,12 @@ class CategoryController extends BaseController
 
                 $id = $this->model->creatNewCategory($data);
 
-                if ($id !== null) {
-                    header('Location: '.$this->url->generate("/category"));
+                if(is_numeric($id) && $id > 0) {
+                    if($this->request->xmlhttprequest()){
+                        $this->view->ajaxRespon($this->model->ajaxMSG("Insert OK"));
+                    }else{
+                        header('Location: '.$this->url->generate("/category"));
+                    }
                     exit();
                 }
             }else{
@@ -58,7 +67,11 @@ class CategoryController extends BaseController
             }
         }
 
-        $this->view->output($this->model->newCategory($error));
+        if($this->request->xmlhttprequest()){
+            $this->view->ajaxRespon($this->model->newCategory($error));
+        }else{
+            $this->view->output($this->model->newCategory($error));
+        }
     }
 
     protected function updateAction()
@@ -82,8 +95,12 @@ class CategoryController extends BaseController
 
                 $rows = $this->model->updateCategory($data);
 
-                if($rows > 0) {
-                    header('Location: ' . $this->url->generate("/category"));
+                if(is_int($rows) && $rows > 0) {
+                    if($this->request->xmlhttprequest()){
+                        $this->view->ajaxRespon($this->model->ajaxMSG("Update OK"));
+                    }else{
+                        header('Location: ' . $this->url->generate("/category"));
+                    }
                     exit();
                 }
             }else{
@@ -93,7 +110,11 @@ class CategoryController extends BaseController
 
         if($id != ""){
             $this->model->getCategory($id);
-            $this->view->output($this->model->updateModel($error));
+            if($this->request->xmlhttprequest()){
+                $this->view->ajaxRespon($this->model->updateModel($error));
+            }else{
+                $this->view->output($this->model->updateModel($error));
+            }
             exit();
         }
 

@@ -8,7 +8,17 @@
 
 class ArticleModel extends BaseModel
 {
-    private $error = [];
+
+    /**
+     * ArticleModel constructor.
+     */
+    public function __construct()
+    {
+
+        parent::__construct();
+
+        $this->viewModel->set("javascripts", array("backend.js","article.js"));
+    }
     
     //data passed to the home index view
     public function index()
@@ -33,6 +43,9 @@ class ArticleModel extends BaseModel
 
         $this->viewModel->set("pageTitle", "Article - ODDS&amp;ENDS");
 
+        //Modals
+        $this->viewModel->set("modals", array("Article/articleFormModal.php"));
+
         return $this->viewModel;
     }
 
@@ -42,7 +55,7 @@ class ArticleModel extends BaseModel
             $sql = 'SELECT * FROM article';
             $s = $this->database->prepare($sql);
             $s->execute();
-            $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("articles", $result);
         } catch (PDOException $e) {
             $this->setError('Error getting departments: '.$e->getMessage());
@@ -59,7 +72,7 @@ class ArticleModel extends BaseModel
             $s = $this->database->prepare($sql);
             $s->bindValue(':id', $id);
             $s->execute();
-            $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             if(!empty($result)){
                 $this->viewModel->set("article", $result[$id]);
             }else {
@@ -103,6 +116,7 @@ class ArticleModel extends BaseModel
     }
 
     public function updateArticle($data){
+
         try
         {
             $sql = 'UPDATE article SET
@@ -114,7 +128,7 @@ class ArticleModel extends BaseModel
                     img = :img,
                     shop = :shop,
                     website = :website,
-                    updated_at = now()
+                    updated_on = now()
                     WHERE id = :id';
             $s = $this->database->prepare($sql);
             $s->bindValue(':room_id', $data->room_id);
@@ -127,6 +141,7 @@ class ArticleModel extends BaseModel
             $s->bindValue(':website', $data->website);
             $s->bindValue(':id', $data->id);
             $s->execute();
+
             return $s->rowCount();
         }
         catch (PDOException $e)
@@ -211,18 +226,10 @@ class ArticleModel extends BaseModel
             $this->setError('Error adding article: '.$e->getMessage());
             $this->viewModel->set("article",(array) $data);
         }
+
+        return $this->viewModel;
     }
-
-    private function tableIdAsArrayKey($data)
-    {
-        $myArray = null;
-        foreach ($data as $value) {
-            $myArray[$value['id']] = $value;
-        }
-
-        return $myArray;
-    }
-
+    
     public function deleteImagesFromDisk($data)
     {
         $data = $this->getArticle($data->id);
@@ -246,24 +253,41 @@ class ArticleModel extends BaseModel
 
         return true;
     }
-
-    private function setError($error){
-        array_push($this->error,$error);
-        $this->viewModel->set("errors",$this->error);
-    }
-
+    
     public function getAllArticles()
     {
         try {
             $sql = 'SELECT * FROM article';
             $s = $this->database->prepare($sql);
             $s->execute();
-            $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("articles", $result);
         } catch (PDOException $e) {
             $this->setError('Error getting rooms: '.$e->getMessage());
         }
 
+        return $this->viewModel;
+    }
+
+    public function getAllArticlesFromRoom($room_id)
+    {
+        try {
+            $sql = 'SELECT * FROM article WHERE room_id = :room_id';
+            $s = $this->database->prepare($sql);
+            $s->bindValue(':room_id', $room_id);
+            $s->execute();
+            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $this->viewModel->set("articles", $result);
+        } catch (PDOException $e) {
+            $this->setError('Error getting rooms: '.$e->getMessage());
+        }
+
+        return $this->viewModel;
+    }
+
+    public function ajaxMSG($msg)
+    {
+        $this->viewModel->set("msg", $msg);
         return $this->viewModel;
     }
 }

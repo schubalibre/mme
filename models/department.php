@@ -8,10 +8,24 @@
 
 class DepartmentModel extends BaseModel
 {
+    /**
+     * DepartmentModel constructor.
+     */
+    public function __construct()
+    {
+
+        parent::__construct();
+
+        $this->viewModel->set("javascripts", array("backend.js","department.js"));
+    }
+
+
     //data passed to the home index view
     public function index()
     {
         $this->viewModel->set("pageTitle", "Department - ODDS&amp;ENDS");
+        //Modals
+        $this->viewModel->set("modals", array("Department/departmentFormModal.php"));
         return $this->viewModel;
     }
 
@@ -24,8 +38,7 @@ class DepartmentModel extends BaseModel
             $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("departments", $result);
         } catch (PDOException $e) {
-            $error = 'Error getting departments: '.$e->getMessage();
-            $this->viewModel->set("dbError", $error);
+            $this->setError('Error getting departments: '.$e->getMessage());
         }
     }
 
@@ -33,10 +46,11 @@ class DepartmentModel extends BaseModel
     {
 
         if($errors != null) {
-            $this->viewModel->set("validateError", $errors);
+            $this->setError("validateError", $errors);
         }
 
         $this->viewModel->set("pageTitle", "new Department - ODDS&amp;ENDS");
+
         return $this->viewModel;
     }
 
@@ -56,19 +70,21 @@ class DepartmentModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error adding client: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error adding client: '.$e->getMessage());
         }
+
+        return $this->viewModel;
     }
 
     public function updateModel($errors = null)
     {
 
         if($errors != null) {
-            $this->viewModel->set("validateError", $errors);
+            $this->setError("validateError", $errors);
         }
 
         $this->viewModel->set("pageTitle", "update Department - ODDS&amp;ENDS");
+
         return $this->viewModel;
     }
 
@@ -88,8 +104,7 @@ class DepartmentModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error updating department: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error updating department: '.$e->getMessage());
         }
     }
 
@@ -101,18 +116,16 @@ class DepartmentModel extends BaseModel
             $s = $this->database->prepare($sql);
             $s->bindValue(':id', $id);
             $s->execute();
-            $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
+            $result = $s->fetchAll(PDO::FETCH_ASSOC);
             if(!empty($result)){
                 $this->viewModel->set("department", $result[0]);
             }else {
-                $error[] = 'Department with id '.$id.' not found!';
-                $this->viewModel->set("errors", $error);
+                $this->setError('Department with id '.$id.' not found!');
             }
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error getting category: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error getting category: '.$e->getMessage());
         }
     }
 
@@ -128,18 +141,13 @@ class DepartmentModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error deleting department: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('Error deleting department: '.$e->getMessage());
         }
     }
 
-    private function tableIdasArrayKey($data)
+    public function ajaxMSG($msg)
     {
-        $myArray = null;
-        foreach ($data as $value) {
-            $myArray[$value['id']] = $value;
-        }
-
-        return $myArray;
+        $this->viewModel->set("msg", $msg);
+        return $this->viewModel;
     }
 }

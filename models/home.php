@@ -10,13 +10,32 @@ class HomeModel extends BaseModel
 {
     private $error = [];
 
+    /**
+     * HomeModel constructor.
+     */
+    public function __construct()
+    {
+
+        parent::__construct();
+
+        $this->viewModel->set("mainMenu",array(
+                "home" => "#home",
+                "rooms" => "#rooms",
+                "articles" => "#articles",
+                "login" => "/backend/login")
+        );
+
+        $this->viewModel->set("modals", array("home.php"));
+        $this->viewModel->set("javascripts", array("home.js"));
+        $this->viewModel->set("slider","Home/slider.php");
+        $this->viewModel->set("modals", array("Home/loginModal.php","Home/productModal.php"));
+    }
+
     //data passed to the home index view
     public function index()
     {
-        $this->viewModel->set("slider","Home/slider.php");
         $this->viewModel->set("site","home");
         $this->viewModel->set("pageTitle","Home - ODDS&amp;ENDS");
-
 
         // wir holen uns alle departments aus dem department Model
         require_once "room.php";
@@ -83,7 +102,17 @@ class HomeModel extends BaseModel
 
         $room->getRoom($id);
 
-        $this->viewModel->set("room", $room->viewModel->room);
+        $room = $room->viewModel->room;
+
+        require_once "article.php";
+
+        $article = new ArticleModel();
+
+        $article->getAllArticlesFromRoom($id);
+
+        $room['articles'] = $article->viewModel->articles;
+
+        $this->viewModel->set("room", $room);
 
         return $this->viewModel;
     }
@@ -96,26 +125,35 @@ class HomeModel extends BaseModel
 
         $room->getArticle($id);
 
-        $this->viewModel->set("article", $room->viewModel->article);
+        $article = $room->viewModel->article;
+
+        // wir holen uns alle departments aus dem department Model
+        require_once "room.php";
+
+        $room = new RoomModel();
+
+        $room->getRoom($article['room_id']);
+
+        $article['room'] = $room->viewModel->room;
+
+        $this->viewModel->set("article", $article);
 
         return $this->viewModel;
     }
 
-    private function tableIdAsArrayKey($data)
+    public function staticPage($string)
     {
-        $myArray = null;
-        foreach ($data as $value) {
-            $myArray[$value['id']] = $value;
-        }
 
-        return $myArray;
+        $this->viewModel->set("mainMenu",array(
+                "home" => "/#home",
+                "rooms" => "/#rooms",
+                "articles" => "/#articles",
+                "login" => "/backend/login")
+        );
+
+        $this->viewModel->set("pageTitle",ucfirst($string)." - ODDS&amp;ENDS");
+        return $this->viewModel;
     }
-
-    private function setError($error){
-        array_push($this->error,$error);
-        $this->viewModel->set("errors",$this->error);
-    }
-
 }
 
 ?>

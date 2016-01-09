@@ -41,8 +41,8 @@ $articles = $viewModel->get("articles");
         <?php if(!empty($rooms)){
             foreach($rooms as $room){
                 if($room['slider']) continue;
-                echo "<div class='col-xs-6 col-md-4 product-item ".$room['department_id']."'>";
-                    echo "<a href='/home/room/".$room['id']."'>
+                echo "<div class='col-xs-12 col-sm-6 col-md-4 product-item ".$room['department_id']."'>";
+                    echo "<a class='product-modal-link' href='/home/room/".$room['id']."'>
                     <img class='img-responsive' src='/images/thumbnails/thumb_".$room['img']."' alt='room'>
                     <h1 class='item-title'>".$room['name']."</h1>
                     </a>";
@@ -71,8 +71,8 @@ $articles = $viewModel->get("articles");
 
         <?php if(!empty($articles)){
             foreach($articles as $article){
-                echo "<div class='col-sm-6 col-md-3 product-item ".$article['category_id']."'>";
-                echo "<a href='/home/article/".$article['id']."'>
+                echo "<div class='col-xs-12 col-sm-4 col-md-3 product-item ".$article['category_id']."'>";
+                echo "<a class='product-modal-link' href='/home/article/".$article['id']."'>
                     <img class='img-responsive' src='/images/thumbnails/thumb_".$article['img']."' alt='article'>
                     <h3 class='item-title'>".$article['name']."</h3>
                     </a>";

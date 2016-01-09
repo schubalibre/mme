@@ -8,16 +8,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/home">
                 <img src="/images/logoneu.png" alt="logo">
             </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#rooms">Rooms</a></li>
-                <li><a href="#articles">Articles</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <?php
+                    foreach($viewModel->get("mainMenu")  as $name => $url){
+                        echo "<li><a href='".$url."'>".ucfirst($name)."</a></li>";
+                    }
+                ?>
             </ul>
         </div>
     </div>

@@ -2,6 +2,10 @@
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 
+html{
+    height:100%;
+}
+
 body {
     font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
     padding-bottom: 80px;
@@ -12,10 +16,9 @@ body {
     font-size: 16px;
 }
 
-body#home{
+body#home {
     padding-top: 0;
 }
-
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
@@ -24,45 +27,58 @@ body#home{
     background-image: linear-gradient(to bottom, #4ccbc0 0%, #48b7ac 100%);
     border-color: #41a398;
 }
+
 .navbar-default .navbar-brand {
     color: #ffffff;
 }
+
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
     color: #dedede;
 }
+
 .navbar-default .navbar-text {
     color: #ffffff;
 }
+
 .navbar-default .navbar-nav > li > a {
     color: #ffffff;
 }
+
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     color: #dedede;
 }
+
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     color: #efefef;
     background-image: linear-gradient(to bottom, #48a89d 0%, #398075 100%);
 }
+
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     color: #dedede;
     background-color: #398075;
 }
+
 .navbar-default .navbar-toggle {
     border-color: #398075 !important;
 }
+
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
     background-color: #398075 !important;
 }
+
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #ffffff;
 }
+
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
     border-color: #ffffff;
 }
+
 .navbar-default .navbar-link {
     color: #ffffff;
 }
+
 .navbar-default .navbar-link:hover {
     color: #dedede;
 }
@@ -71,15 +87,16 @@ body#home{
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
         color: #ffffff;
     }
+
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
         color: #dedede;
     }
+
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
         color: #dedede;
         background-color: #398075 !important;
     }
 }
-
 
 .transparent.navbar-default {
     background-image: none;
@@ -90,7 +107,7 @@ body#home{
 
 .transparent.navbar-default .navbar-nav > .active > a,
 .transparent.navbar-default .navbar-nav > .active > a:hover,
-.transparent.navbar-default .navbar-nav > .active > a:focus{
+.transparent.navbar-default .navbar-nav > .active > a:focus {
     color: #48b7ac;
     background-image: none;
     background-color: transparent;
@@ -102,50 +119,40 @@ body#home{
     color: #48b7ac;
 }
 
-nav.navbar{
+nav.navbar {
     transition: height 0.8s ease;
 }
 
-nav.transparent.navbar{
+nav.transparent.navbar {
     height: 83px;
 }
 
-nav .navbar-nav > li > a{
+nav .navbar-nav > li > a {
     transition: font-size 0.6s ease, line-height 0.6s ease;
 }
 
 nav.transparent.navbar .navbar-nav > li > a {
-    font-size: 50px;
+    font-size: 45px;
     line-height: 52px;
     text-transform: uppercase;
-    padding-left:38px !important;
-    padding-right:38px !important;
+    padding-left: 38px !important;
+    padding-right: 38px !important;
     text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-nav .navbar-brand > img{
-    width:146px;
+nav .navbar-brand > img {
+    width: 146px;
     transition: width 0.6s ease;
 }
 
 nav.transparent .navbar-brand > img {
     -webkit-filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.6)) !important;
-    filter:         drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.6)) !important;
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.6)) !important;
 }
 
-nav.smaller .navbar-brand > img{
-    width:60px;
+nav.smaller .navbar-brand > img {
+    width: 60px;
 }
-
-
-
-/* BACKEND STYLES
-----------------------------------------------------*/
-
-.table .slider-item{
-    border: 3px solid #3e8f3e;
-}
-
 
 /* CUSTOMIZE THE corporate Button
 -------------------------------------------------- */
@@ -154,18 +161,19 @@ nav.smaller .navbar-brand > img{
     background-color: #49BFB4;
     border-color: #49BFB4;
     color: #fff;
-    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     background-color: #42b2a7;
-    background-image: -moz-linear-gradient(top,#49BFB4,#379e94);
-    background-image: -webkit-gradient(linear,0 0,0 100%,from(#49BFB4),to(#379e94));
-    background-image: -webkit-linear-gradient(top,#49BFB4,#379e94);
-    background-image: -o-linear-gradient(top,#49BFB4,#379e94);
-    background-image: linear-gradient(to bottom,#49BFB4,#379e94);
+    background-image: -moz-linear-gradient(top, #49BFB4, #379e94);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#49BFB4), to(#379e94));
+    background-image: -webkit-linear-gradient(top, #49BFB4, #379e94);
+    background-image: -o-linear-gradient(top, #49BFB4, #379e94);
+    background-image: linear-gradient(to bottom, #49BFB4, #379e94);
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff49bfb4', endColorstr='#ff379d94', GradientType=0);
     border-color: #379e94 #379e94 #24655f;
-    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 }
+
 .btn-corporate:hover,
 .btn-corporate:focus {
     text-decoration: none;
@@ -175,16 +183,19 @@ nav.smaller .navbar-brand > img{
     -o-transition: background-position .1s linear;
     transition: background-position .1s linear;
 }
+
 .btn-corporate:hover,
 .btn-corporate:focus {
     background-color: #379e94;
 }
+
 .btn-corporate:active,
 .btn-corporate.active,
 .btn-corporate.active:hover {
     background-color: #3eb0a6;
     border-color: #379e94;
 }
+
 .btn-corporate.disabled:hover,
 .btn-corporate.disabled:focus,
 .btn-corporate.disabled:active,
@@ -197,28 +208,35 @@ nav.smaller .navbar-brand > img{
     border-color: #49BFB4;
 }
 
+/* CUSTOMIZE THE corporate Pills
+-------------------------------------------------- */
+
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:focus,
 .nav-pills > li.active > a:hover {
-    color:#FFF;
+    color: #FFF;
     background-color: #3eb0a6;
 }
 
 .nav > li > a:focus,
 .nav > li > a:hover {
-    color:#3eb0a6;
+    color: #3eb0a6;
 }
 
-a{
+a {
     color: #3aa399;
 }
+
+/* CUSTOMIZE THE HOME PAGE
+-------------------------------------------------- */
 
 .product-item a {
     position: relative;
     display: block;
     margin-bottom: 30px;
 }
-.product-item a img{
+
+.product-item a img {
     -webkit-filter: grayscale(0%);
     -moz-filter: grayscale(0%);
     -ms-filter: grayscale(0%);
@@ -226,13 +244,13 @@ a{
     filter: grayscale(0%);
 
     transition: filter 0.8s ease;
-    -webkit-transition:  filter 0.5s ease;
-    -moz-transition:  filter 0.5s ease;
-    -ms-transition:  filter 0.5s ease;
-    -o-transition:  filter 0.5s ease;
+    -webkit-transition: filter 0.5s ease;
+    -moz-transition: filter 0.5s ease;
+    -ms-transition: filter 0.5s ease;
+    -o-transition: filter 0.5s ease;
 }
 
-.product-item a:hover img{
+.product-item a:hover img {
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
     -ms-filter: grayscale(100%);
@@ -240,7 +258,7 @@ a{
     filter: grayscale(100%);
 }
 
-.product-item .item-title{
+.product-item .item-title {
     text-align: center;
     width: 100%;
     color: white;
@@ -250,6 +268,25 @@ a{
 }
 
 
+/* CUSTOMIZE THE HOME Modal
+-------------------------------------------------- */
+#productModal ul{
+    padding:0 0 0 0;
+    margin:0 0 0 0;
+}
+#productModal li{
+    list-style: none;
+}
+
+.article-ul img {
+    width: 80px;
+    border: 2px solid #dedede;
+}
+
+.article-ul img:hover {
+    border-color: #666;
+}
+
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
@@ -258,13 +295,14 @@ a{
     height: 100vh;
     margin-bottom: 60px;
 }
+
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
     z-index: 10;
     margin-bottom: 35vh;
 }
 
-.carousel-indicators{
+.carousel-indicators {
     bottom: 30vh;
 }
 
@@ -273,6 +311,7 @@ a{
     height: 100vh;
     background-color: #777;
 }
+
 .carousel-inner > .item > img {
     position: absolute;
     top: 0;
@@ -285,7 +324,7 @@ a{
     top: 0;
     left: 0;
     height: 100%;
-    width:100%;
+    width: 100%;
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: cover;
@@ -294,8 +333,8 @@ a{
 /* HOME CSS
 -------------------------------------------------- */
 
-.room img{
-    width:100%;
+.room img {
+    width: 100%;
 }
 
 /* FOOTER CSS
@@ -306,17 +345,81 @@ a{
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
-    height: 60px;
-    background-color: #f5f5f5;
+    height: 85px;
+    background-image: linear-gradient(to bottom, #4ccbc0 0%, #48b7ac 100%);
 }
 
 .footer > .container {
     padding-right: 15px;
     padding-left: 15px;
+    margin-top: 20px;
 }
 
 .container .text-muted {
     margin: 20px 0;
+}
+
+.footer .footer-img-wrapper{
+    text-align: center;
+}
+
+.footer .footer-img-wrapper img{
+    width:60px
+}
+
+.footer ul,
+.footer li{
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+
+.footer ul{
+    clear:left;
+    float:left;
+    list-style:none;
+    margin:0;
+    padding:0;
+    position:relative;
+    left:50%;
+    text-align:center;
+}
+
+.footer li{
+    margin: 0 10px;
+    float: left;
+    display: inline-block;
+    position:relative;
+    right:50%;
+}
+
+.footer li a{
+    position: relative;
+    color: #FFF;
+    padding:5px 10px;
+    width:33%;
+    -webkit-transition: background-color .1s linear;
+    -moz-transition: background-color .1s linear;
+    -o-transition: background-color .1s linear;
+    transition: background-color .1s linear;
+}
+
+.footer li a:before {
+    content: "/";
+    position: absolute;
+    left: -16px;
+    text-align: center;
+    width: 16px;
+}
+
+.footer li:first-child a:before{
+    content: "";
+}
+
+.footer li a:hover{
+    text-decoration: none;
+    border-radius: 3px;
+    background-color: #41a398;
 }
 
 
@@ -328,10 +431,12 @@ a{
     .navbar-wrapper {
         margin-top: 20px;
     }
+
     .navbar-wrapper .container {
         padding-right: 15px;
         padding-left: 15px;
     }
+
     .navbar-wrapper .navbar {
         padding-right: 0;
         padding-left: 0;
@@ -352,6 +457,23 @@ a{
     .featurette-heading {
         font-size: 50px;
     }
+
+    .footer {
+        height: 60px;
+    }
+
+    .footer .footer-img-wrapper{
+        text-align: left;
+    }
+
+    .footer ul{
+        float: right;
+        left:0;
+    }
+
+    .footer li{
+        right:0%;
+    }
 }
 
 @media (min-width: 992px) {
@@ -360,58 +482,24 @@ a{
     }
 }
 
-.category-links{
+.category-links {
     margin: 0 0 20px;
 }
 
+/* BACKEND STYLES
+----------------------------------------------------*/
 
-
-
-
-/*
-
-
-/* Sticky footer styles
---------------------------------------------------
-html {
-    position: relative;
-    min-height: 100%;
-}
-body {
-    /* Margin bottom by footer height
-    margin-bottom: 60px;
-}
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here
-    height: 60px;
-    background-color: #f5f5f5;
+.table .slider-item,
+.thumbnail .slider-item{
+    border: 3px solid #3e8f3e;
 }
 
-
-/* Custom page CSS
---------------------------------------------------
-/* Not required for template or sticky footer method.
-
-body > .container {
-    padding: 60px 15px 0;
-}
-.container .text-muted {
-    margin: 20px 0;
+form img {
+    width: 180px;
+    border: 2px solid #dedede;
+    margin-bottom: 10px;
 }
 
-.footer > .container {
-    padding-right: 15px;
-    padding-left: 15px;
+.thumbnail img{
+    width: 80%;
 }
-
-code {
-    font-size: 80%;
-}
-
-pre{
-    margin-top:60px;
-}
-*/

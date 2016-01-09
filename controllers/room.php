@@ -18,6 +18,11 @@ class RoomController extends BaseController
 
         require("helpers/formValidator.php");
         require("helpers/upload.php");
+
+        if($_SESSION['HTTP_USER_AGENT'] != sha1($_SERVER['HTTP_USER_AGENT'])) {
+            header('Location: ' . $this->url->generate("/backend/login"));
+            exit();
+        }
     }
 
     public function indexAction()
@@ -73,8 +78,12 @@ class RoomController extends BaseController
                             $data->img = $name;
                             $id = $this->model->insertRoom($data);
 
-                            if ($id !== null) {
-                                header('Location: '.$this->url->generate("/room"));
+                            if(is_numeric($id) && $id > 0) {
+                                if($this->request->xmlhttprequest()){
+                                    $this->view->ajaxRespon($this->model->ajaxMSG("Insert OK"));
+                                }else{
+                                    header('Location: ' . $this->url->generate("/room"));
+                                }
                                 exit();
                             }
                         } else {
@@ -90,7 +99,11 @@ class RoomController extends BaseController
             }
         }
 
-        $this->view->output($this->model->newModel($error));
+        if($this->request->xmlhttprequest()){
+            $this->view->ajaxRespon($this->model->newRoom($error));
+        }else{
+            $this->view->output($this->model->newRoom($error));
+        }
     }
 
     public function updateAction()
@@ -102,28 +115,80 @@ class RoomController extends BaseController
 
             $validations = array(
                 'id' => 'number',
-                'name' => 'anything'
+                'department_id' => 'number',
+                'client_id' => 'number',
+                'name' => 'anything',
+                'title' => 'anything',
+                'description' => 'anything',
+                'img' => 'anything',
+                'slider' => 'number'
             );
 
-            $required = array('id','name');
+            $required = array('id','department_id', 'client_id', 'name', 'title', 'description','img');
 
             $validator = new FormValidator($validations, $required);
 
             if($validator->validate($this->request->body())) {
+
                 $data = $validator->sanatize($this->request->body());
 
-                $rows = $this->model->updateRoom($data);
+                $rows = 0;
 
-                if($rows > 0) {
-                    header('Location: ' . $this->url->generate("/Room"));
+                if (isset($_FILES['img']) && $_FILES['img']['size'] > 0) {
+
+                    $handle = new upload($_FILES['img']);
+
+                    if ($handle->uploaded) {
+
+                        $handle->allowed = array('image/*');
+                        $handle->process('images');
+
+                        if ($handle->processed) {
+
+                            $name = $handle->file_dst_name;
+
+                            $handle->file_name_body_pre = 'thumb_';
+                            $handle->image_resize = true;
+                            $handle->image_x = 600;
+                            $handle->image_ratio_y = true;
+                            $handle->process('images/thumbnails');
+
+                            if ($handle->processed) {
+
+                                $handle->clean();
+                                $data->img = $name;
+                                $rows = $this->model->updateRoom($data);
+
+                            } else {
+                                echo 'error : '.$handle->error;
+                            }
+
+                        } else {
+                            echo 'error : '.$handle->error;
+                        }
+                    }
+                }else{
+                    $rows = $this->model->updateRoom($data);
+                }
+
+                if(is_int($rows) && $rows > 0) {
+                    if($this->request->xmlhttprequest()){
+                        $this->view->ajaxRespon($this->model->ajaxMSG("Update OK"));
+                    }else{
+                        header('Location: ' . $this->url->generate("/article"));
+                    }
                     exit();
                 }
             }
         }
 
-        if($id != 0){
+        if($id != ""){
             $this->model->getRoom($id);
-            $this->view->output($this->model->updateModel($error));
+            if($this->request->xmlhttprequest()){
+                $this->view->ajaxRespon($this->model->updateModel($error));
+            }else{
+                $this->view->output($this->model->updateModel($error));
+            }
             exit();
         }
 

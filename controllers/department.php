@@ -17,6 +17,11 @@ class DepartmentController extends BaseController
         $this->model = new DepartmentModel();
 
         require("helpers/formValidator.php");
+
+        if($_SESSION['HTTP_USER_AGENT'] != sha1($_SERVER['HTTP_USER_AGENT'])) {
+            header('Location: ' . $this->url->generate("/backend/login"));
+            exit();
+        }
     }
 
     public function indexAction()
@@ -44,8 +49,12 @@ class DepartmentController extends BaseController
 
                 $id = $this->model->insertDepartment($data);
 
-                if ($id !== null) {
-                    header('Location: '.$this->url->generate("/department"));
+                if(is_numeric($id) && $id > 0) {
+                    if($this->request->xmlhttprequest()){
+                        $this->view->ajaxRespon($this->model->ajaxMSG("Insert OK"));
+                    }else{
+                        header('Location: '.$this->url->generate("/department"));
+                    }
                     exit();
                 }
             }else{
@@ -53,7 +62,11 @@ class DepartmentController extends BaseController
             }
         }
 
-        $this->view->output($this->model->newModel($error));
+        if($this->request->xmlhttprequest()){
+            $this->view->ajaxRespon($this->model->newModel($error));
+        }else{
+            $this->view->output($this->model->newModel($error));
+        }
     }
 
     public function updateAction()
@@ -77,16 +90,24 @@ class DepartmentController extends BaseController
 
                 $rows = $this->model->updateDepartment($data);
 
-                if($rows > 0) {
-                    header('Location: ' . $this->url->generate("/department"));
+                if(is_int($rows) && $rows > 0) {
+                    if($this->request->xmlhttprequest()){
+                        $this->view->ajaxRespon($this->model->ajaxMSG("Update OK"));
+                    }else{
+                        header('Location: ' . $this->url->generate("/department"));
+                    }
                     exit();
                 }
             }
         }
 
-        if($id != 0){
+        if($id != ""){
             $this->model->getDepartment($id);
-            $this->view->output($this->model->updateModel($error));
+            if($this->request->xmlhttprequest()){
+                $this->view->ajaxRespon($this->model->updateModel($error));
+            }else{
+                $this->view->output($this->model->updateModel($error));
+            }
             exit();
         }
 

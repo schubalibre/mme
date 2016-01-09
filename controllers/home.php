@@ -9,16 +9,17 @@
 class HomeController extends BaseController
 {
     //add to the parent constructor
-    public function __construct($action, $urlValues) {
+    public function __construct($action, $urlValues)
+    {
         parent::__construct($action, $urlValues);
-        
+
         //create the model object
         require("models/home.php");
         $this->model = new HomeModel();
 
         require("helpers/formValidator.php");
     }
-    
+
     //default method
     protected function indexAction()
     {
@@ -65,6 +66,30 @@ class HomeController extends BaseController
 
                 $this->view->ajaxRespon($this->model->getArticle($data->id));
             }
+        }
+    }
+
+    public function contactAction(){
+        if($this->request->xmlhttprequest()){
+            $this->view->ajaxRespon($this->model->staticPage("Kontact"));
+        }else{
+            $this->view->output($this->model->staticPage("Kontact"));
+        }
+    }
+
+    public function impressumAction(){
+        if($this->request->xmlhttprequest()){
+            $this->view->ajaxRespon($this->model->staticPage("Impressum"));
+        }else{
+            $this->view->output($this->model->staticPage("Impressum"));
+        }
+    }
+
+    public function termsConditionsAction(){
+        if($this->request->xmlhttprequest()){
+            $this->view->ajaxRespon($this->model->staticPage("AGB"));
+        }else{
+            $this->view->output($this->model->staticPage("AGB"));
         }
     }
 
