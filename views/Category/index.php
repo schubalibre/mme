@@ -1,7 +1,7 @@
 <div class="col-xs-12">
     <div class="page-header">
         <h1>Kategorie
-            <small>Editieren, hinzufügen oder löschen von Kategorien</small>
+            <small>Editieren, Hinzufügen oder löschen von Kategorien</small>
         </h1>
     </div>
 
@@ -17,8 +17,8 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Bearbeiten</th>
+            <th>Löschen</th>
         </tr>
         </thead>
         <tbody>

@@ -1,7 +1,7 @@
 <div class="col-xs-12">
     <div class="page-header">
         <h1>Artikel
-            <small>Editieren, hinzufügen und Löschen von Artikeln</small>
+            <small>Editieren, Hinzufügen und Löschen von Artikeln</small>
         </h1>
     </div>
 
@@ -26,11 +26,11 @@
     <table class="table hidden-xs">
         <thead>
         <tr>
-            <th>Image</th>
+            <th>Bild</th>
             <th>Name</th>
-            <th>Description</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Beschreibung</th>
+            <th>Bearbeiten</th>
+            <th>Löschen</th>
         </tr>
         </thead>
         <tbody>

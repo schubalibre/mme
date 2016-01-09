@@ -1,7 +1,7 @@
 <div class="col-xs-12">
     <div class="page-header">
-        <h1>Rooms
-            <small>Subtext for header</small>
+        <h1>Räume
+            <small>Editieren, Hinzufügen und Löschen von Räumen</small>
         </h1>
     </div>
     <?php
@@ -19,11 +19,11 @@
     <table class="table hidden-xs">
         <thead>
         <tr>
-            <th>Image</th>
+            <th>Bild</th>
             <th>Name</th>
-            <th>Description</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Beschreibung</th>
+            <th>Bearbeiten</th>
+            <th>Löschen</th>
         </tr>
         </thead>
         <tbody>

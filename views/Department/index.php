@@ -1,7 +1,7 @@
 <div class="col-xs-12">
     <div class="page-header">
         <h1>Departments
-            <small>Subtext for header</small>
+            <small>Editieren, Hinzufügen und Löschen von Departments</small>
         </h1>
     </div>
     <?php
@@ -16,8 +16,8 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Bearbeiten</th>
+            <th>Löschen</th>
         </tr>
         </thead>
         <tbody>

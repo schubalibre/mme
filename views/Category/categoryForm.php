@@ -10,12 +10,12 @@ $category = $viewModel->get("category");
 
 ?>
 
-<form class="form-horizontal validate" action="" method="POST">
+<form class="form-horizontal validate" action="<?php echo isset($category['id']) ?  "/category/update/".$category['id'] : "/category/new/";?>" method="POST">
     <div class="modal-body">
     <input id="id" type="hidden" name="id" value="<?php echo $category['id'];?>">
     <div class="form-group">
-        <label for="category-name" class="col-sm-2 control-label">Kategoriename</label>
-        <div class="col-sm-10">
+        <label for="category-name" class="col-md-2 control-label">Kategoriename</label>
+        <div class="col-md-10">
             <input id="name" type="text" class="form-control" name="name" value="<?php echo $category['name'];?>" id="category-name" placeholder="der Kategoriename" required>
         </div>
     </div>

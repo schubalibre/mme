@@ -85,7 +85,7 @@ function generateRoomModal(room) {
 
     $img = $("<img class='img-responsive' src='/images/" + room.img + "' alt=''>");
     $title = $("<h4>" + room.title + "</h4>");
-    $description = $("<p>" + room.description + "</p>");
+    $description = $("<p>" + room.description + "</p><p>Dazugehörige Artikel:</p>");
 
     $ul = $("<ul class='row'>");
 
@@ -120,8 +120,8 @@ function generateArticleModal(article) {
     $roomImg = $("<img class='img-responsive' src='/images/thumbnails/thumb_" + article.room.img + "' alt=''>");
 
     var $ul = $("<ul class='row'>")
-        .append($("<li class='col-lg-4 col-md-4 col-sm-6 col-xs-6'>").append("Raum: ").append($("<a class='product-modal-link' href='/home/room/" + article.room.id + "'>").append($roomImg)))
-        .append("<li class='col-lg-4 col-md-4 col-sm-6 col-xs-6'> gefunden bei: <a href='" + article.website + "'>" + article.shop + "</a></li>");
+        .append($("<li class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>").append("Raum: ").append($("<a class='product-modal-link' href='/home/room/" + article.room.id + "'>").append($roomImg)))
+        .append("<li class='col-lg-6 col-md-6 col-sm-6 col-xs-6'> gefunden bei: <a href='" + article.website + "'>" + article.shop + "</a></li>");
 
     $("#img-content", $myModal).empty().append($img);
     $('#product-content', $myModal).empty().append($title).append($description).append($ul);

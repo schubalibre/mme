@@ -47,10 +47,12 @@ body#home {
 
 .navbar-default .navbar-nav > li > a {
     color: #ffffff;
+    border: none;
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     color: #dedede;
+    border: none;
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
@@ -217,16 +219,24 @@ nav.smaller .navbar-brand > img {
 /* CUSTOMIZE THE corporate Pills
 -------------------------------------------------- */
 
+.nav-pills > li > a{
+    border: 1px solid  transparent;
+}
+
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:focus,
 .nav-pills > li.active > a:hover {
-    color: #FFF;
-    background-color: #3eb0a6;
+    color: #3eb0a6;
+    background-color: transparent;
+    border: 1px solid  #3eb0a6;
+    border-radius: 0;
 }
 
 .nav > li > a:focus,
 .nav > li > a:hover {
     color: #3eb0a6;
+    border: 1px solid  #EEE;
+    border-radius: 0;
 }
 
 a {
@@ -278,13 +288,24 @@ a {
 }
 
 .product-item.article .item-title {
-	bottom: 20%;
+	bottom: 50%;
+    margin-bottom: -23px;
 	background: none;
+    font-weight: 700;
+    opacity: 0;
+    -webkit-transition: opacity .2s linear;
+    -moz-transition: opacity .2s linear;
+    -o-transition: opacity .2s linear;
+    transition: opacity .2s linear;
+}
+
+.product-item.article:hover .item-title{
+    opacity:1;
 }
 
 
-/* CUSTOMIZE THE HOME Modal
--------------------------------------------------- */
+    /* CUSTOMIZE THE HOME Modal
+    -------------------------------------------------- */
 #productModal ul{
     padding:0 0 0 0;
     margin:0 0 0 0;

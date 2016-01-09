@@ -74,7 +74,7 @@ $articles = $viewModel->get("articles");
                 echo "<div class='col-xs-12 col-sm-4 col-md-3 article product-item ".$article['category_id']."'>";
                 echo "<a class='product-modal-link' href='/home/article/".$article['id']."'>
                     <img class='img-responsive' src='/images/thumbnails/thumb_".$article['img']."' alt='article'>
-                    <h3 class='item-title'>".$article['name']."</h3>
+                    <h2 class='item-title'>".$article['name']."</h2>
                     </a>";
                 echo "</div>";
             }
