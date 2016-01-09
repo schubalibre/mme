@@ -20,8 +20,8 @@ class HomeModel extends BaseModel
 
         $this->viewModel->set("mainMenu",array(
                 "home" => "#home",
-                "rooms" => "#rooms",
-                "articles" => "#articles",
+                "räume" => "#rooms",
+                "artikel" => "#articles",
                 "login" => "/backend/login")
         );
 

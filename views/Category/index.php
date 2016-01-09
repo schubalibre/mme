@@ -1,7 +1,7 @@
 <div class="col-xs-12">
     <div class="page-header">
-        <h1>Categories
-            <small>Subtext for header</small>
+        <h1>Kategorie
+            <small>Editieren, hinzufügen oder löschen von Kategorien</small>
         </h1>
     </div>
 
@@ -36,5 +36,5 @@
         </tbody>
     </table>
 
-    <a id="new" class="btn btn-corporate" href="/category/new/" role="button">neue Kategorie erstellen</a>
+    <a id="new" class="btn btn-corporate" href="/category/new/" role="button">neue Kategorie hinzufügen</a>
 </div>

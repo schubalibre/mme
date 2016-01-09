@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.css">
     <link rel="stylesheet" href="/css/main.css">
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
     <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
 <body id="<?php echo $viewModel->get("site"); ?>">

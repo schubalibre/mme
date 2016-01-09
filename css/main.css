@@ -14,10 +14,15 @@ body {
     min-height: 100%;
     padding-top: 70px;
     font-size: 16px;
+    font-weight: 300;
 }
 
 body#home {
     padding-top: 0;
+}
+
+.page-header h1 small {
+	margin-left: 10px;
 }
 
 /* CUSTOMIZE THE NAVBAR
@@ -138,6 +143,7 @@ nav.transparent.navbar .navbar-nav > li > a {
     padding-left: 38px !important;
     padding-right: 38px !important;
     text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);
+    font-weight: 400;
 }
 
 nav .navbar-brand > img {
@@ -259,12 +265,21 @@ a {
 }
 
 .product-item .item-title {
+	background: rgba(55, 158, 148, 0.6);
+	margin: 0;
+	padding: 10px 0;
     text-align: center;
     width: 100%;
     color: white;
     position: absolute;
-    bottom: 25%;
+    bottom: 0%;
     text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.6);
+    font-weight: 400;
+}
+
+.product-item.article .item-title {
+	bottom: 20%;
+	background: none;
 }
 
 
@@ -300,6 +315,17 @@ a {
 .carousel-caption {
     z-index: 10;
     margin-bottom: 35vh;
+    background: rgba(255, 255, 255, 0.6);
+    color: #41a398;
+    text-shadow: none;
+}
+
+.carousel-caption h1 {
+	font-weight: 700;
+}
+
+.carousel-caption p {
+	color: black;
 }
 
 .carousel-indicators {
@@ -328,6 +354,16 @@ a {
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: cover;
+}
+
+
+.carousel-caption .btn {
+	background: transparent;
+	border-radius: 0;
+	border-color: black;
+	color: black;
+	font-weight: 300;
+	
 }
 
 /* HOME CSS

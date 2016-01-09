@@ -32,11 +32,11 @@ class BaseModel {
     protected function commonViewData() {
         $this->viewModel->set("mainMenu",array(
             "backend" => "/backend",
-            "categories" => "/category",
-            "departments" => "/department",
-            "rooms" => "/room",
-            "articles" => "/article",
-            "logout" => "/backend/logout")
+            "Kategorien" => "/category",
+            "Artikel" => "/article",
+            "Departments" => "/department",
+            "Räume" => "/room",
+            "Logout" => "/backend/logout")
         );
 
         $this->viewModel->set("header", "header.php");

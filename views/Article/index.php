@@ -1,7 +1,7 @@
 <div class="col-xs-12">
     <div class="page-header">
-        <h1>Articles
-            <small>Subtext for header</small>
+        <h1>Artikel
+            <small>Editieren, hinzufügen und Löschen von Artikeln</small>
         </h1>
     </div>
 
