@@ -1,9 +1,8 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: roberto
- * Date: 17/12/15
- * Time: 21:10
- */
-
-require_once "roomForm.php";
+<div class="col-xs-12">
+    <div class="page-header">
+        <h1>Neuer Raum
+            <small>Fügen Sie einen neuen Raum hinzu</small>
+        </h1>
+    </div>
+    <?php require_once "roomForm.php"; ?>
+</div>

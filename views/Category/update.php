@@ -4,5 +4,5 @@
             <small>Nehmen Sie Anpassungen für bereits bestehende Kategorien vor</small>
         </h1>
     </div>
-<?php require_once "categoryForm.php"; ?>
+    <?php require_once "categoryForm.php"; ?>
 </div>

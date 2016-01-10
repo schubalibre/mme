@@ -58,7 +58,7 @@ class ArticleModel extends BaseModel
             $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("articles", $result);
         } catch (PDOException $e) {
-            $this->setError('Error getting departments: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting departments: '.$e->getMessage());
         }
 
         return $this->viewModel;
@@ -76,18 +76,19 @@ class ArticleModel extends BaseModel
             if(!empty($result)){
                 $this->viewModel->set("article", $result[$id]);
             }else {
-                $this->setError('Article with id '.$id.' not found!');
+                $this->setError('DatabaseError','Article with id '.$id.' not found!');
             }
         }
         catch (PDOException $e)
         {
-            $this->setError('Error getting article: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting article: '.$e->getMessage());
         }
 
         return $this->viewModel;
     }
 
     public function updateModel($errors = null){
+
         if($errors != null) {
             $this->setError("validateError", $errors);
         }
@@ -146,7 +147,7 @@ class ArticleModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $this->setError('Error updating article: '.$e->getMessage());
+            $this->setError('DatabaseError','Error updating article: '.$e->getMessage());
         }
 
         return $this->viewModel;
@@ -163,14 +164,18 @@ class ArticleModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $this->setError('Error deleting article: '.$e->getMessage());
+            $this->setError('DatabaseError','Error deleting article: '.$e->getMessage());
         }
 
         return $this->viewModel;
     }
 
-    public function newArticle()
+    public function newArticle($errors = null)
     {
+        if($errors != null) {
+            $this->setError("validationErrors", $errors);
+        }
+
         // wir holen uns alle departments aus dem department Model
         require_once "category.php";
 
@@ -223,7 +228,7 @@ class ArticleModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $this->setError('Error adding article: '.$e->getMessage());
+            $this->setError('DatabaseError','Error adding article: '.$e->getMessage());
             $this->viewModel->set("article",(array) $data);
         }
 
@@ -242,13 +247,13 @@ class ArticleModel extends BaseModel
         if (file_exists($path.$image)) {
             unlink($path.$image);
         } else {
-            $this->setError('Could not delete '.$path.$image.', file does not exist');
+            $this->setError('DatabaseError','Could not delete '.$path.$image.', file does not exist');
         }
 
         if (file_exists($pathThumbnail."thumb_" . $image)) {
             unlink($pathThumbnail."thumb_" . $image);
         } else {
-            $this->setError('Could not delete '.$pathThumbnail."thumb_" . $image.', file does not exist');
+            $this->setError('DatabaseError','Could not delete '.$pathThumbnail."thumb_" . $image.', file does not exist');
         }
 
         return true;
@@ -263,7 +268,7 @@ class ArticleModel extends BaseModel
             $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("articles", $result);
         } catch (PDOException $e) {
-            $this->setError('Error getting rooms: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting rooms: '.$e->getMessage());
         }
 
         return $this->viewModel;
@@ -279,7 +284,7 @@ class ArticleModel extends BaseModel
             $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("articles", $result);
         } catch (PDOException $e) {
-            $this->setError('Error getting rooms: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting rooms: '.$e->getMessage());
         }
 
         return $this->viewModel;

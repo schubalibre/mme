@@ -1,9 +1,8 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: roberto
- * Date: 17/12/15
- * Time: 21:50
- */
-
-require_once "departmentForm.php";
+<div class="col-xs-12">
+    <div class="page-header">
+        <h1>Neues Department
+            <small>Fügen Sie eine neues Department hinzu</small>
+        </h1>
+    </div>
+    <?php require_once "departmentForm.php"; ?>
+</div>

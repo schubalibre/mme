@@ -4,5 +4,5 @@
             <small>Fügen Sie eine neue Kategorie hinzu</small>
         </h1>
     </div>
-<?php require_once "categoryForm.php"; ?>
+    <?php require_once "categoryForm.php"; ?>
 </div>

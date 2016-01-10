@@ -58,7 +58,7 @@ class RoomModel extends BaseModel
             $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("rooms", $result);
         } catch (PDOException $e) {
-            $this->setError('Error getting rooms: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting rooms: '.$e->getMessage());
         }
 
         return $this->viewModel;
@@ -121,7 +121,7 @@ class RoomModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $this->setError('Error adding room: '.$e->getMessage());
+            $this->setError('DatabaseError','Error adding room: '.$e->getMessage());
             
             $this->viewModel->set("room",(array) $data);
         }
@@ -188,7 +188,7 @@ class RoomModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $this->setError('Error updating room: '.$e->getMessage());
+            $this->setError('DatabaseError','Error updating room: '.$e->getMessage());
         }
 
         return $this->viewModel;
@@ -206,12 +206,12 @@ class RoomModel extends BaseModel
             if(!empty($result)){
                 $this->viewModel->set("room", $result[$id]);
             }else {
-                $this->setError( 'Room with id '.$id.' not found!');
+                $this->setError('DatabaseError','Room with id '.$id.' not found!');
             }
         }
         catch (PDOException $e)
         {
-            $this->setError('Error getting room: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting room: '.$e->getMessage());
             
         }
 
@@ -228,7 +228,7 @@ class RoomModel extends BaseModel
 
             return $s->rowCount();
         } catch (PDOException $e) {
-            $this->setError('Error deleting room: '.$e->getMessage());
+            $this->setError('DatabaseError','Error deleting room: '.$e->getMessage());
         }
 
         return $this->viewModel;
@@ -246,13 +246,13 @@ class RoomModel extends BaseModel
         if (file_exists($path.$image)) {
             unlink($path.$image);
         } else {
-            $this->setError('Could not delete '.$path.$image.', file does not exist');
+            $this->setError('DatabaseError','Could not delete '.$path.$image.', file does not exist');
         }
 
         if (file_exists($pathThumbnail."thumb_" . $image)) {
             unlink($pathThumbnail."thumb_" . $image);
         } else {
-            $this->setError('Could not delete '.$pathThumbnail."thumb_" . $image.', file does not exist');
+            $this->setError('DatabaseError','Could not delete '.$pathThumbnail."thumb_" . $image.', file does not exist');
         }
 
         return true;

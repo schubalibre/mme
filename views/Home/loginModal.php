@@ -10,11 +10,14 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" class="form-control" name="email"  id="exampleInputEmail1" placeholder="Email">
+                        <span class="help-block text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <span class="help-block text-danger"></span>
                     </div>
+                    <div class="error"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>

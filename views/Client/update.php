@@ -1,9 +1,8 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: roberto
- * Date: 17/12/15
- * Time: 23:47
- */
-
-require_once "clientForm.php";
+<div class="col-xs-12">
+    <div class="page-header">
+        <h1>Kunden editieren
+            <small>Nehmen Sie Anpassungen für bereits bestehende Kunden vor</small>
+        </h1>
+    </div>
+    <?php require_once "clientForm.php"; ?>
+</div>

@@ -38,7 +38,7 @@ class CategoryModel extends BaseModel
             $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("categories", $result);
         } catch (PDOException $e) {
-            $this->setError('Error getting departments: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting departments: '.$e->getMessage());
         }
     }
 
@@ -54,18 +54,18 @@ class CategoryModel extends BaseModel
             if(!empty($result)){
                 $this->viewModel->set("category", $result[$id]);
             }else {
-                $this->setError('Category with id '.$id.' not found!');
+                $this->setError('DatabaseError','Category with id '.$id.' not found!');
             }
         }
         catch (PDOException $e)
         {
-            $this->setError('Error getting category: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting category: '.$e->getMessage());
         }
     }
 
     public function updateModel($errors = null){
         if($errors != null) {
-            $this->setError("validateError", $errors);
+            $this->setError("validationErrors", $errors);
         }
 
         $this->viewModel->set("pageTitle", "update Category - ODDS&amp;ENDS");
@@ -87,7 +87,7 @@ class CategoryModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $this->setError('Error updating category: '.$e->getMessage());
+            $this->setError('DatabaseError','Error updating category: '.$e->getMessage());
         }
     }
 
@@ -102,12 +102,16 @@ class CategoryModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $this->setError('Error deleting category: '.$e->getMessage());
+            $this->setError('DatabaseError','Error deleting category: '.$e->getMessage());
         }
     }
 
-    public function newCategory()
+    public function newCategory($errors = null)
     {
+        if($errors != null) {
+            $this->setError("validationErrors", $errors);
+        }
+
         $this->viewModel->set("pageTitle","New Category - ODDS&amp;ENDS");
         return $this->viewModel;
     }
@@ -127,7 +131,7 @@ class CategoryModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $this->setError('Error adding category: '.$e->getMessage());
+            $this->setError('DatabaseError','Error adding category: '.$e->getMessage());
         }
 
         return $this->viewModel;

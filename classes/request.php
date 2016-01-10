@@ -69,7 +69,7 @@ class Request
         // Establish the httpMethod property
         $this->httpMethod = $_SERVER['REQUEST_METHOD'];
 
-        // Establish the body property
+        // Establish the body propertyº
         $requestBody = file_get_contents('php://input', 'r');
 
         if ($requestBody !== false) {

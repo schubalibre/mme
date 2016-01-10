@@ -34,16 +34,15 @@ $(document).ready(function () {
             console.log(json);
 
             // Validation rausnehmen
-            $form = $("#productFormModal").find("form")
-            $form.find(".form-group").removeClass("has-error");
-            $form.find("span.help-block").empty();
+            $self.find(".form-group").removeClass("has-error");
+            $self.find("span.help-block").empty();
 
             if(json.errors){
                 if(json.errors.validationErrors){
 
                     $.each(json.errors.validationErrors,function($field,$error){
 
-                        $formGroup = $("input[name='" + $field + "'], textarea[name='" + $field + "']").parents(".form-group");
+                        var $formGroup = $("input[name='" + $field + "'], select[name='" + $field + "'], textarea[name='" + $field + "']").parents(".form-group");
 
                         $formGroup.addClass("has-error");
 

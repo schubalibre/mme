@@ -37,7 +37,7 @@ class RoomController extends BaseController
 
         if($this->request->httpMethod() === "POST") {
 
-            $this->request->body()->slider = $this->request->body()->slider === "true" ? true : false;
+            $this->request->body()->slider = (isset($this->request->body()->slider) && $this->request->body()->slider === "true") ? true : false;
 
             /*** a new validation instance ***/
             $val = new FormValidator();
@@ -52,7 +52,6 @@ class RoomController extends BaseController
                 'name'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
                 'title'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
                 'description'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
-                'img'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
                 'slider'=>array('type'=>'bool', 'required'=>false, false, false, false)
             );
 
@@ -228,15 +227,29 @@ class RoomController extends BaseController
     {
         if($this->request->httpMethod() === "GET"){
 
-            $validations = array(
-                'id' => 'number');
+            /*** a new validation instance ***/
+            $val = new FormValidator();
 
-            $required = array('id');
+            /*** use POST as the source ***/
+            $val->addSource($this->request->uriValues());
 
-            $validator = new FormValidator($validations, $required);
+            /*** an array of rules ***/
+            $rules_array = array(
+                'id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true)
+            );
 
-            if($validator->validate($this->request->uriValues())) {
-                $data = $validator->sanatize($this->request->uriValues());
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
+
+            /*** run the validation rules ***/
+            $val->run();
+
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else {
+
+                $data = $val->getSanitized();
                 $rows = -1;
                 if ($this->model->deleteImagesFromDisk($data)){
                    $rows = $this->model->deleteRoom($data);

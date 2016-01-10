@@ -1,18 +1,10 @@
 <div class="col-xs-12">
     <div class="page-header">
-        <div class="row">
-            <div class="col-md-9">
-                <h1>Kunden
-                    <small>Editieren, Hinzufügen oder löschen von Kunden</small>
-                </h1>
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-default" href="/client/new/" role="button">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    neuen Kunden erstellen
-                </a>
-            </div>
-        </div>
+        <h1>Kunden
+            <small>Editieren, Hinzufügen oder löschen von Kunden</small>
+            <small class="pull-right"><a id="new" class="btn btn-link" href="/room/new/">neuen Raum erstellen</a>
+            </small>
+        </h1>
     </div>
 
     <?php
@@ -50,8 +42,5 @@
         </tbody>
     </table>
 
-    <a class="btn btn-default pull-right" href="/client/new/" role="button">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        neuen Kunden erstellen
-    </a>
+    <a id="new" class="btn btn-corporate" href="/room/new/" role="button">neuen Raum erstellen</a>
 </div>

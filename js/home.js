@@ -46,17 +46,18 @@ $(document).ready(function () {
                 $('#productModal').modal({show: generateArticleModal(ajax.article)});
             }
         }).fail(function () {
-            alert("error");
+            alert("Ein Problem ist aufgetreten. Dies Funktion ist leider zur Zeit nicht möglich");
         });
     });
 
     $("a[href='/backend/login']").on("click",function(e){
         e.preventDefault();
-        $('#loginModal').modal({show: true});
 
-        console.log($('#loginModal form').find("input:text"));
+        var $modal = $('#loginModal');
 
-        $('#loginModal').find("input:text").first().focus();
+        $modal.modal({show: true});
+
+        $modal.find('form').find("input").first().focus();
     });
 
     $("#loginForm").submit(function(e){
@@ -68,14 +69,44 @@ $(document).ready(function () {
             data: $self.serialize(), // serializes the form's elements.
             dataType: "json"
         }).done(function(json) {
-            if(json.client.authentication){
+
+            $self.find(".form-group").removeClass("has-error");
+            $self.find("span.help-block").empty();
+            $self.find(".error").empty();
+
+            if(json.errors != undefined){
+
+
+                if(json.errors.validationErrors != undefined){
+                    $.each(json.errors.validationErrors,function($field,$error){
+
+                        var $formGroup = $("input[name='" + $field + "'], select[name='" + $field + "'], textarea[name='" + $field + "']").parents(".form-group");
+
+                        $formGroup.addClass("has-error");
+
+                        $formGroup.find("span.help-block").html($error);
+
+                    });
+                    delete json.errors.validationErrors;
+                }else{
+                    var str =json.errors[0];
+
+                    $self.find(".error").html('<div class="alert alert-danger" role="alert">' + str + '</div>');
+                }
+            }else if(json.client != undefined && json.client.authentication){
                 window.location.href = "/backend";
             }else{
-                alert(json);
+                alert("Ein Problem ist aufgetreten. Dies Funktion ist leider zur Zeit nicht möglich");
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
             }
 
         }).fail(function () {
-            alert("error");
+            alert("Ein Problem ist aufgetreten. Dies Funktion ist leider zur Zeit nicht möglich");
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
         });
 
         e.preventDefault();

@@ -36,30 +36,39 @@ class ArticleController extends BaseController
 
     protected function newAction()
     {
-        $error = null;
+        $errors = null;
 
         if($this->request->httpMethod() === "POST"){
 
-            $validations = array(
-                'room_id' => 'number',
-                'category_id' => 'number',
-                'name' => 'anything',
-                'title' => 'anything',
-                'description' => 'anything',
-                'img' => 'anything',
-                'shop' => 'anything',
-                'website' => 'anything'
+            /*** a new validation instance ***/
+            $val = new FormValidator();
+
+            /*** use POST as the source ***/
+            $val->addSource($this->request->body());
+
+            /*** an array of rules ***/
+            $rules_array = array(
+                'room_id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'category_id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'name'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'title'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'description'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'shop'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'website'=>array('type'=>'url', 'required'=>true, 'min'=>8, 'max'=>255, 'trim'=>true)
             );
 
-            $required = array('room_id','category_id','name','title','description','img','shop','website');
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
 
-            $validator = new FormValidator($validations, $required);
+            /*** run the validation rules ***/
+            $val->run();
 
-            $data = $this->request->body();
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else {
 
-            if ($validator->validate($data)) {
-
-                $data = $validator->sanatize($data);
+                $data = $val->getSanitized();
 
                 $handle = new upload($_FILES['img']);
 
@@ -71,10 +80,10 @@ class ArticleController extends BaseController
 
                         $name = $handle->file_dst_name;
 
-                        $handle->file_name_body_pre   = 'thumb_';
-                        $handle->image_resize         = true;
-                        $handle->image_x              = 600;
-                        $handle->image_ratio_y        = true;
+                        $handle->file_name_body_pre = 'thumb_';
+                        $handle->image_resize = true;
+                        $handle->image_x = 600;
+                        $handle->image_ratio_y = true;
                         $handle->process('images/thumbnails');
 
                         if ($handle->processed) {
@@ -83,64 +92,75 @@ class ArticleController extends BaseController
                             $data->img = $name;
                             $id = $this->model->insertArticle($data);
 
-                            if(is_numeric($id) && $id > 0) {
-                                if($this->request->xmlhttprequest()){
-                                    $this->view->ajaxRespon($this->model->ajaxMSG("Der Artikel wurde erfolgreich erstellt."));
-                                }else{
-                                    header('Location: ' . $this->url->generate("/article"));
+                            if (is_numeric($id) && $id > 0) {
+                                if ($this->request->xmlhttprequest()) {
+                                    $this->view->ajaxRespon(
+                                        $this->model->ajaxMSG("Der Artikel wurde erfolgreich erstellt.")
+                                    );
+                                } else {
+                                    header('Location: '.$this->url->generate("/article"));
                                 }
                                 exit();
                             }
 
                         } else {
-                            echo 'error : ' . $handle->error;
+                            $errors = $handle->error;
                         }
 
                     } else {
-                        echo 'error : ' . $handle->error;
+                        $errors = $handle->error;
                     }
 
                 }
-
-            }else{
-                $error = $validator->getErrors();
             }
         }
 
         if($this->request->xmlhttprequest()){
-            $this->view->ajaxRespon($this->model->newArticle($error));
+            $this->view->ajaxRespon($this->model->newArticle($errors));
         }else{
-            $this->view->output($this->model->newArticle($error));
+            $this->view->output($this->model->newArticle($errors));
         }
     }
 
     protected function updateAction()
     {
-        $error = null;
+        $errors = null;
+
         $id = $this->request->uriValues()->id;
 
         if($this->request->httpMethod() === "POST"){
 
-            $validations = array(
-                'id' => 'number',
-                'room_id' => 'number',
-                'category_id' => 'number',
-                'name' => 'anything',
-                'title' => 'anything',
-                'description' => 'anything',
-                'img' => 'anything',
-                'shop' => 'anything',
-                'website' => 'anything'
+            /*** a new validation instance ***/
+            $val = new FormValidator();
+
+            /*** use POST as the source ***/
+            $val->addSource($this->request->body());
+
+            /*** an array of rules ***/
+            $rules_array = array(
+                'id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'room_id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'category_id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'name'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'title'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'description'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'shop'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'website'=>array('type'=>'url', 'required'=>true, 'min'=>8, 'max'=>255, 'trim'=>true),
+                'img'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
             );
 
-            $required = array('id','room_id','category_id','name','title','description','img','shop','website');
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
 
-            $validator = new FormValidator($validations, $required);
+            /*** run the validation rules ***/
+            $val->run();
 
-            if($validator->validate($this->request->body())) {
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else {
 
-                $data = $validator->sanatize($this->request->body());
-
+                $data = $val->getSanitized();
                 $rows = 0;
 
                 if(isset($_FILES['img']) && $_FILES['img']['size'] > 0) {
@@ -168,11 +188,11 @@ class ArticleController extends BaseController
                                 $rows = $this->model->updateArticle($data);
 
                             } else {
-                                echo 'error : '.$handle->error;
+                                $errors = $handle->error;
                             }
 
                         } else {
-                            echo 'error : '.$handle->error;
+                            $errors = $handle->error;
                         }
 
                     }
@@ -188,8 +208,6 @@ class ArticleController extends BaseController
                     }
                     exit();
                 }
-            }else{
-                $error = $validator->getErrors();
             }
         }
 
@@ -198,9 +216,9 @@ class ArticleController extends BaseController
             $this->model->getArticle($id);
 
             if($this->request->xmlhttprequest()){
-                $this->view->ajaxRespon($this->model->updateModel($error));
+                $this->view->ajaxRespon($this->model->updateModel($errors));
             }else{
-                $this->view->output($this->model->updateModel($error));
+                $this->view->output($this->model->updateModel($errors));
             }
             exit();
         }
@@ -215,15 +233,29 @@ class ArticleController extends BaseController
     {
         if($this->request->httpMethod() === "GET"){
 
-            $validations = array(
-                'id' => 'number');
+            /*** a new validation instance ***/
+            $val = new FormValidator();
 
-            $required = array('id');
+            /*** use POST as the source ***/
+            $val->addSource($this->request->uriValues());
 
-            $validator = new FormValidator($validations, $required);
+            /*** an array of rules ***/
+            $rules_array = array(
+                'id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true)
+            );
 
-            if($validator->validate($this->request->uriValues())) {
-                $data = $validator->sanatize($this->request->uriValues());
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
+
+            /*** run the validation rules ***/
+            $val->run();
+
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else {
+
+                $data = $val->getSanitized();
                 $rows = -1;
                 if ($this->model->deleteImagesFromDisk($data)){
                     $rows = $this->model->deleteArticle($data);

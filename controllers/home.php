@@ -66,18 +66,33 @@ class HomeController extends BaseController
     }
 
     public function articleAction() {
+        $errors = null;
+
         if($this->request->httpMethod() === "GET") {
 
-            $validations = array(
-                'id' => 'number'
+            /*** a new validation instance ***/
+            $val = new FormValidator();
+
+            /*** use POST as the source ***/
+            $val->addSource($this->request->uriValues());
+
+            /*** an array of rules ***/
+            $rules_array = array(
+                'id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true)
             );
 
-            $required = array('id');
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
 
-            $validator = new FormValidator($validations, $required);
+            /*** run the validation rules ***/
+            $val->run();
 
-            if ($validator->validate($this->request->uriValues())) {
-                $data = $validator->sanatize($this->request->uriValues());
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else{
+
+                $data = $val->getSanitized();
 
                 $this->view->ajaxRespon($this->model->getArticle($data->id));
             }

@@ -1,6 +1,6 @@
 <?php
 $errors = $viewModel->get("errors");
-$validationErrors = isset($errors['validationErrors']) ? $errors['validationErrors'] :false;
+$validationErrors = isset($errors['validationErrors']) ? $errors['validationErrors'] : false;
 unset($errors['validationErrors']);
 if ($errors) {
     foreach ($errors as $error) {
@@ -13,10 +13,13 @@ $rooms = $viewModel->get("rooms");
 $categories = $viewModel->get("categories");
 ?>
 
-<form id="form-id" class="form-horizontal validate" action="<?php echo isset($article['id']) ?  "/article/update/".$article['id'] : "/article/new/";?>" method="POST" enctype="multipart/form-data">
+<form id="form-id" class="form-horizontal validate"
+      action="<?php echo isset($article['id']) ? "/article/update/".$article['id'] : "/article/new/"; ?>" method="POST"
+      enctype="multipart/form-data">
     <div class="modal-body">
         <input id="id" type="hidden" name="id" value="<?php echo $article['id']; ?>">
-        <div class="form-group">
+
+        <div class="form-group <?php echo isset($validationErrors['category_id']) ? "has-error" : false;?>">
             <label for="category_id" class="col-sm-2 control-label">Kategorie</label>
             <div class="col-sm-10">
                 <select id="category_id" class="form-control" name="category_id">
@@ -26,10 +29,12 @@ $categories = $viewModel->get("categories");
                         echo "<option  value='".$category['id']."' ".$selected." >".$category['name']."</option>";
                     } ?>
                 </select>
+                <span
+                    class="help-block text-danger"><?php echo isset($validationErrors['category_id']) ? $validationErrors['category_id'] : false; ?></span>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group <?php echo isset($validationErrors['room_id']) ? "has-error" : false;?>">
             <label for="room_id" class="col-sm-2 control-label">Raum</label>
             <div class="col-sm-10">
                 <select id="room_id" class="form-control" name="room_id">
@@ -39,64 +44,79 @@ $categories = $viewModel->get("categories");
                         echo "<option  value='".$room['id']."' ".$selected." >".$room['name']."</option>";
                     } ?>
                 </select>
+                <span
+                    class="help-block text-danger"><?php echo isset($validationErrors['room_id']) ? $validationErrors['room_id'] : false; ?></span>
+
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group <?php echo isset($validationErrors['name']) ? "has-error" : false;?>">
             <label for="name" class="col-sm-2 control-label">Artikelname</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="name" value="<?php echo $article['name']; ?>" id="name"
                        placeholder="der Artikelname">
+                <span
+                    class="help-block text-danger"><?php echo isset($validationErrors['name']) ? $validationErrors['name'] : false; ?></span>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group <?php echo isset($validationErrors['title']) ? "has-error" : false;?>">
             <label for="title" class="col-sm-2 control-label">Artikeltitel</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="title" value="<?php echo $article['title']; ?>"
                        id="title" placeholder="der Artikeltitle">
+                <span
+                    class="help-block text-danger"><?php echo isset($validationErrors['title']) ? $validationErrors['title'] : false; ?></span>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group <?php echo isset($validationErrors['description']) ? "has-error" : false;?>">
             <label for="description" class="col-sm-2 control-label">Artikelbeschreibung</label>
             <div class="col-sm-10">
                 <textarea id="description" class="form-control" name="description" placeholder="die Artikelbeschriftung"
-                          ><?php echo $article['description'] ? $article['description'] : "Für ein gemütliches und wohnliches Zuhause: Mit diesem Stil können Sie garantiert nichts falsch machen. Sorgen Sie für ein schönes Ambiente in Ihrer Wohnung und lassen Sie Ihr Zuhause in einem neuen Look erstrahlen."; ?></textarea>
+                ><?php echo $article['description'] ? $article['description'] : "Für ein gemütliches und wohnliches Zuhause: Mit diesem Stil können Sie garantiert nichts falsch machen. Sorgen Sie für ein schönes Ambiente in Ihrer Wohnung und lassen Sie Ihr Zuhause in einem neuen Look erstrahlen."; ?></textarea>
+                <span
+                    class="help-block text-danger"><?php echo isset($validationErrors['description']) ? $validationErrors['description'] : false; ?></span>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group <?php echo isset($validationErrors['img']) ? "has-error" : false;?>">
             <label for="image" class="col-sm-2 control-label">Artikelbilder</label>
             <div class="col-sm-10">
                 <div class="updated-img">
-                <?php
-                if (!empty($article['img'])) {
-                    echo '<img src="/images/thumbnails/thumb_'.$article['img'].'" alt="'.$room['img'].'"/>';
-                    echo '<input type="hidden" name="img" value="'.$article['img'].'">';
-                }
-                ?>
+                    <?php
+                    if (!empty($article['img'])) {
+                        echo '<img src="/images/thumbnails/thumb_'.$article['img'].'" alt="'.$room['img'].'"/>';
+                        echo '<input type="hidden" name="img" value="'.$article['img'].'">';
+                    }
+                    ?>
                 </div>
                 <input type="file" name="img" id="img" placeholder="die Artikelbilder"
                        accept="image/*" <?php echo !empty($article['img']) ? "" : "required"; ?>>
+                <span
+                    class="help-block text-danger"><?php echo isset($validationErrors['img']) ? $validationErrors['img'] : false; ?></span>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group <?php echo isset($validationErrors['shop']) ? "has-error" : false;?>">
             <label for="shop" class="col-sm-2 control-label">Artikelshop</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="shop"
                        value="<?php echo $article['shop'] ? $article['shop'] : "IKEA"; ?>" id="shop"
-                       placeholder="der Artikelshop" >
+                       placeholder="der Artikelshop">
+                <span
+                    class="help-block text-danger"><?php echo isset($validationErrors['shop']) ? $validationErrors['shop'] : false; ?></span>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group <?php echo isset($validationErrors['website']) ? "has-error" : false;?>">
             <label for="website" class="col-sm-2 control-label">Artikel Website</label>
             <div class="col-sm-10">
                 <input type="url" class="form-control" name="website"
                        value="<?php echo $article['website'] ? $article['website'] : "http://www.ikea.de"; ?>"
-                       id="website" placeholder="die Artikelwebpage" >
+                       id="website" placeholder="die Artikelwebpage">
+                <span
+                    class="help-block text-danger"><?php echo isset($validationErrors['website']) ? $validationErrors['website'] : false; ?></span>
             </div>
         </div>
     </div>

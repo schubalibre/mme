@@ -70,7 +70,7 @@ class HomeModel extends BaseModel
             $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("activeDepartments", $result);
         } catch (PDOException $e) {
-            $this->setError('Error getting active departments: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting active departments: '.$e->getMessage());
         }
 
         return $this->viewModel;
@@ -86,7 +86,7 @@ class HomeModel extends BaseModel
             $result = $this->tableIdAsArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("activeCategories", $result);
         } catch (PDOException $e) {
-            $this->setError('Error getting active categories: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting active categories: '.$e->getMessage());
         }
 
         return $this->viewModel;

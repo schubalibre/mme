@@ -56,7 +56,10 @@ class DepartmentController extends BaseController
             if(sizeof($val->errors) > 0) {
                 $errors = $val->errors;
             }else{
-                $id = $this->model->insertDepartment($val->getSanitized());
+
+                $data = $val->getSanitized();
+
+                $id = $this->model->insertDepartment($data);
 
                 if(is_numeric($id) && $id > 0) {
                     if($this->request->xmlhttprequest()){
@@ -84,7 +87,6 @@ class DepartmentController extends BaseController
 
         if($this->request->httpMethod() === "POST"){
 
-
             /*** a new validation instance ***/
             $val = new FormValidator();
 
@@ -108,7 +110,9 @@ class DepartmentController extends BaseController
                 $errors = $val->errors;
             }else{
 
-                $rows = $this->model->updateDepartment($val->getSanitized());
+                $data = $val->getSanitized();
+
+                $rows = $this->model->updateDepartment($data);
 
                 if(is_int($rows) && $rows > 0) {
                     if($this->request->xmlhttprequest()){
@@ -162,7 +166,10 @@ class DepartmentController extends BaseController
             if(sizeof($val->errors) > 0) {
                 $errors = $val->errors;
             }else {
-                $rows = $this->model->deleteDepartment($val->getSanitized());
+
+                $data = $val->getSanitized();
+
+                $rows = $this->model->deleteDepartment($data);
 
                 if ($rows > 0) {
                     header('Location: '.$this->url->generate("/department"));

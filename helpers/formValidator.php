@@ -81,7 +81,7 @@ class FormValidator{
                     break;
 
                 case 'url':
-                    $this->validateUrl($var);
+                    $this->validateUrl($var, $opt['min'], $opt['max'], $opt['required']);
                     if(!array_key_exists($var, $this->errors))
                     {
                         $this->sanitizeUrl($var);
@@ -221,7 +221,7 @@ class FormValidator{
         }
         if(filter_var($this->source->{$var}, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) === FALSE)
         {
-            $this->errors[$var] = $var . ' is not a valid IPv4';
+            $this->errors[$var] = $var . ' ist keine valide IPv4';
         }
     }
 
@@ -246,7 +246,7 @@ class FormValidator{
 
         if(filter_var($this->source->{$var}, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) === FALSE)
         {
-            $this->errors[$var] = $var . ' is not a valid IPv6';
+            $this->errors[$var] = $var . ' ist keine valide IPv6';
         }
     }
 
@@ -271,7 +271,7 @@ class FormValidator{
         }
         if(filter_var($this->source->{$var}, FILTER_VALIDATE_FLOAT) === false)
         {
-            $this->errors[$var] = $var . ' is an invalid float';
+            $this->errors[$var] = $var . ' ist kein valides float';
         }
     }
 
@@ -303,15 +303,15 @@ class FormValidator{
         {
             if(strlen($this->source->{$var}) < $min)
             {
-                $this->errors[$var] = $var . ' is too short';
+                $this->errors[$var] = $var . ' ist zu kurz';
             }
             elseif(strlen($this->source->{$var}) > $max)
             {
-                $this->errors[$var] = $var . ' is too long';
+                $this->errors[$var] = $var . ' ist zu lang';
             }
             elseif(!is_string($this->source->{$var}))
             {
-                $this->errors[$var] = $var . ' is invalid';
+                $this->errors[$var] = $var . ' ist invalide';
             }
         }
     }
@@ -341,7 +341,7 @@ class FormValidator{
         }
         if(filter_var($this->source->{$var}, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max)))===FALSE)
         {
-            $this->errors[$var] = $var . ' is an invalid number';
+            $this->errors[$var] = $var . ' ist eine invalide Nummer';
         }
     }
 
@@ -366,7 +366,7 @@ class FormValidator{
         }
         if(filter_var($this->source->{$var}, FILTER_VALIDATE_URL) === FALSE)
         {
-            $this->errors[$var] = $var . ' is not a valid URL';
+            $this->errors[$var] = $var . ' ist keine valide URL';
         }
     }
 
@@ -391,7 +391,7 @@ class FormValidator{
         }
         if(filter_var($this->source->{$var}, FILTER_VALIDATE_EMAIL) === FALSE)
         {
-            $this->errors[$var] = $var . ' is not a valid email address';
+            $this->errors[$var] = $var . ' ist keine valide EMail Adresse';
         }
     }
 
@@ -416,7 +416,7 @@ class FormValidator{
         }
         filter_var($this->source->{$var}, FILTER_VALIDATE_BOOLEAN);
         {
-            $this->errors[$var] = $var . ' is Invalid';
+            $this->errors[$var] = $var . ' ist invalide';
         }
     }
 

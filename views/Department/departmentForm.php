@@ -20,13 +20,14 @@ $department = $viewModel->get("department");
 <form class="form-horizontal validate" action="<?php echo isset($department['id']) ?  "/department/update/".$department['id'] : "/department/new/";?>" method="POST">
     <div class="modal-body">
         <input id="id" type="hidden" name="id" value="<?php echo $department['id']; ?>">
-        <div class="form-group <?php echo $validationErrors['name'] ? "has-error" : false;?>">
+
+        <div class="form-group <?php echo isset($validationErrors['name']) ? "has-error" : false;?>">
             <label for="department-name" class="col-sm-2 control-label">Name</label>
 
             <div class="col-sm-10">
                 <input id="name" type="text" class="form-control" name="name" value="<?php echo $department['name']; ?>"
                        id="department-name" placeholder="der Departmentname" >
-                <span class="help-block text-danger"><?php echo $validationErrors['name'] ? $validationErrors['name'] : false;?></span>
+                <span class="help-block text-danger"><?php echo isset($validationErrors['name']) ? $validationErrors['name'] : false;?></span>
             </div>
         </div>
     </div>

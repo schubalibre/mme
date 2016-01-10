@@ -34,23 +34,32 @@ class CategoryController extends BaseController
 
     protected function newAction()
     {
-        $error = null;
+        $errors = null;
 
         if($this->request->httpMethod() === "POST"){
 
-            $validations = array(
-                'name' => 'anything'
-            );
+            /*** a new validation instance ***/
+            $val = new FormValidator();
 
-            $required = array('name');
+            /*** use POST as the source ***/
+            $val->addSource($this->request->body());
 
-            $validator = new FormValidator($validations, $required);
+            /*** an array of rules ***/
+            $rules_array = array(
+                'name'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true));
 
-            $data = $this->request->body();
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
 
-            if ($validator->validate($data)) {
+            /*** run the validation rules ***/
+            $val->run();
 
-                $data = $validator->sanatize($data);
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else{
+
+                $data = $val->getSanitized();
 
                 $id = $this->model->creatNewCategory($data);
 
@@ -62,15 +71,13 @@ class CategoryController extends BaseController
                     }
                     exit();
                 }
-            }else{
-                $error = $validator->getErrors();
             }
         }
 
         if($this->request->xmlhttprequest()){
-            $this->view->ajaxRespon($this->model->newCategory($error));
+            $this->view->ajaxRespon($this->model->newCategory($errors));
         }else{
-            $this->view->output($this->model->newCategory($error));
+            $this->view->output($this->model->newCategory($errors));
         }
     }
 
@@ -81,17 +88,30 @@ class CategoryController extends BaseController
 
         if($this->request->httpMethod() === "POST"){
 
-            $validations = array(
-                'id' => 'number',
-                'name' => 'anything'
-                );
+            /*** a new validation instance ***/
+            $val = new FormValidator();
 
-            $required = array('id','name');
+            /*** use POST as the source ***/
+            $val->addSource($this->request->body());
 
-            $validator = new FormValidator($validations, $required);
+            /*** an array of rules ***/
+            $rules_array = array(
+                'id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'name'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true)
+            );
 
-            if($validator->validate($this->request->body())) {
-                $data = $validator->sanatize($this->request->body());
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
+
+            /*** run the validation rules ***/
+            $val->run();
+
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else{
+
+                $data = $val->getSanitized();
 
                 $rows = $this->model->updateCategory($data);
 
@@ -103,8 +123,6 @@ class CategoryController extends BaseController
                     }
                     exit();
                 }
-            }else{
-                $error = $validator->getErrors();
             }
         }
 
@@ -128,15 +146,29 @@ class CategoryController extends BaseController
     {
         if($this->request->httpMethod() === "GET"){
 
-            $validations = array(
-                'id' => 'number');
+            /*** a new validation instance ***/
+            $val = new FormValidator();
 
-            $required = array('id');
+            /*** use POST as the source ***/
+            $val->addSource($this->request->uriValues());
 
-            $validator = new FormValidator($validations, $required);
+            /*** an array of rules ***/
+            $rules_array = array(
+                'id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true)
+            );
 
-            if($validator->validate($this->request->uriValues())) {
-                $data = $validator->sanatize($this->request->uriValues());
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
+
+            /*** run the validation rules ***/
+            $val->run();
+
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else {
+
+                $data = $val->getSanitized();
 
                 $rows = $this->model->deleteCategory($data);
 

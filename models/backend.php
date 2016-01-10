@@ -8,9 +8,6 @@
 
 class BackendModel extends BaseModel
 {
-
-
-
     //data passed to the home index view
     /**
      * BackendModel constructor.
@@ -66,8 +63,7 @@ class BackendModel extends BaseModel
             if(!empty($result)){
                 return $result;
             }else {
-                $error[] = 'Client with email '.$data->email.' or Password not found!';
-                $this->viewModel->set("errors", $error);
+                $this->setError('DatabaseError','Der Kunde mit der EMail: '.$data->email.' oder diesem Password wurde nicht gefunden!');
             }
         }
         catch (PDOException $e)
