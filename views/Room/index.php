@@ -6,6 +6,8 @@
         </h1>
     </div>
     <?php
+    // Auf errors untersuchen und an den Client weitergeben
+    // php befüllt diese HTML Seite mit Daten, ohne php wären keine Daten zu sehen
     $errors = $viewModel->get("errors");
     if ($errors) {
         foreach ($errors as $error) {

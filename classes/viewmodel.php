@@ -4,6 +4,9 @@
  * File: /classes/viewmodel.php
  * Purpose: class for the optional data object returned by model methods which the controller sends to the view.
  * Author: Robert Dziuba & Inga Schwarze
+ * 
+ * 
+ * Behälter, indem Daten vom Model in die View gegeben werden
  */
 
 class ViewModel {    

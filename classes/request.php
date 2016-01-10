@@ -1,6 +1,9 @@
 <?php
 
 /**
+ * 
+ * Aufbereitung der übergebenen Daten des Users -> Sicherheit
+ * 
  * Contains information about the request.
  */
 class Request

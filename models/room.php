@@ -4,6 +4,11 @@
  * File: /models/room.php
  * Purpose: model for the room controller.
  * Author: Robert Dziuba & Inga Schwarze
+ * 
+ * 
+ * 
+ * Alle Methoden, die vom Controller aufgerufen werden
+ * Daten aus der Datenbank werden geholt
  */
 
 class RoomModel extends BaseModel

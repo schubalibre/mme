@@ -5,6 +5,13 @@
  * Purpose: controller for the home of the app.
  * Author: Robert Dziuba & Inga Schwarze
  */
+ // HOME: KEIN BACKEND; die eigentliche Webseite
+ // Control: Schnittstelle zwischen Model und View, bestimmt, welche Daten für welche View bestimmt sind
+ // Design funktioniert mit den Daten, Control ist Brücke zwischen Daten und View.
+ // Home-Controller: Bei mme.local/home wird dieser Controller aufgerufen
+ // Jede dieser Methoden führt Model und View zusammen, wenn der User z.B. /home eingibt, wird indexAction aufgerufen
+ // Link-Klick oder Ajax Request? 
+ // Control bekommt Anfrage, sucht sich passend Model und View und gibt Daten aus Model an View zurück
 
 class HomeController extends BaseController
 {
