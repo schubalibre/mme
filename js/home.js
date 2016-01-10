@@ -7,7 +7,7 @@ $(document).ready(function () {
             $filterDiv = $("#" + $category.parents("ul").data("filterFor")),
             link = $category.attr('href');
 
-        link = link.substr(1, link.length)
+        link = link.substr(1, link.length);
 
         $ul.find("li.active").removeClass("active");
 
