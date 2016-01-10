@@ -1,193 +1,535 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: roberto
- * Date: 14/12/15
- * Time: 00:13
- */
-class FormValidator
-{
-    public static $regexes = Array(
-        'date' => "^[0-9]{4}[-/][0-9]{1,2}[-/][0-9]{1,2}\$",
-        'amount' => "^[-]?[0-9]+\$",
-        'number' => "^[-]?[0-9,]+\$",
-        'alfanum' => "^[0-9a-zA-Z ,.-_\\s\?\!]+\$",
-        'not_empty' => "[a-z0-9A-Z]+",
-        'words' => "^[A-Za-z]+[A-Za-z \\s]*\$",
-        'phone' => "^[0-9]{10,11}\$",
-        'zipcode' => "^[1-9][0-9]{3}[a-zA-Z]{2}\$",
-        'plate' => "^([0-9a-zA-Z]{2}[-]){2}[0-9a-zA-Z]{2}\$",
-        'price' => "^[0-9.,]*(([.,][-])|([.,][0-9]{2}))?\$",
-        '2digitopt' => "^\d+(\,\d{2})?\$",
-        '2digitforce' => "^\d+\,\d\d\$",
-        'anything' => "^[\d\D]{1,}\$"
-    );
-    private $validations, $sanatations, $mandatories, $errors, $corrects, $fields;
+class FormValidator{
+
+    /*
+    * @errors array
+    */
+    public $errors = array();
+
+    /*
+    * @the validation rules array
+    */
+    private $validation_rules = array();
+
+    /*
+     * @the sanitized values array
+     */
+    private $sanitized = array();
+
+    /*
+     * @the source
+     */
+    private $source = array();
 
 
-    public function __construct($validations=array(), $mandatories = array(), $sanatations = array())
+    /**
+     *
+     * @the constructor, duh!
+     *
+     */
+    public function __construct()
     {
-        $this->validations = $validations;
-        $this->sanatations = $sanatations;
-        $this->mandatories = $mandatories;
-        $this->errors = array();
-        $this->corrects = array();
     }
 
     /**
-     * Validates an array of items (if needed) and returns true or false
+     *
+     * @add the source
+     *
+     * @paccess public
+     *
+     * @param object $source
      *
      */
-    public function validate($items)
+    public function addSource($source, $trim=false)
     {
-        $this->fields = $items;
-        $havefailures = false;
-        foreach($items as $key=>$val)
+        $this->source = $source;
+    }
+
+
+    /**
+     *
+     * @run the validation rules
+     *
+     * @access public
+     *
+     */
+    public function run()
+    {
+        /*** set the vars ***/
+        foreach( new ArrayIterator($this->validation_rules) as $var=>$opt)
         {
-            if((strlen($val) == 0 || array_search($key, $this->validations) === false) && array_search($key, $this->mandatories) === false)
+            if($opt['required'] == true)
             {
-                $this->corrects[] = $key;
-                continue;
+                $this->is_set($var);
             }
-            $result = self::validateItem($val, $this->validations[$key]);
-            if($result === false) {
-                $havefailures = true;
-                $this->addError($key, $this->validations[$key]);
-            }
-            else
+
+            /*** Trim whitespace from beginning and end of variable ***/
+            if( array_key_exists('trim', $opt) && $opt['trim'] == true )
             {
-                $this->corrects[] = $key;
+                $this->source->{$var} = trim( $this->source->{$var} );
+            }
+
+            switch($opt['type'])
+            {
+                case 'email':
+                    $this->validateEmail($var, $opt['required']);
+                    if(!array_key_exists($var, $this->errors))
+                    {
+                        $this->sanitizeEmail($var);
+                    }
+                    break;
+
+                case 'url':
+                    $this->validateUrl($var);
+                    if(!array_key_exists($var, $this->errors))
+                    {
+                        $this->sanitizeUrl($var);
+                    }
+                    break;
+
+                case 'numeric':
+                    $this->validateNumeric($var, $opt['min'], $opt['max'], $opt['required']);
+                    if(!array_key_exists($var, $this->errors))
+                    {
+                        $this->sanitizeNumeric($var);
+                    }
+                    break;
+
+                case 'string':
+                    $this->validateString($var, $opt['min'], $opt['max'], $opt['required']);
+                    if(!array_key_exists($var, $this->errors))
+                    {
+                        $this->sanitizeString($var);
+                    }
+                    break;
+
+                case 'float':
+                    $this->validateFloat($var, $opt['required']);
+                    if(!array_key_exists($var, $this->errors))
+                    {
+                        $this->sanitizeFloat($var);
+                    }
+                    break;
+
+                case 'ipv4':
+                    $this->validateIpv4($var, $opt['required']);
+                    if(!array_key_exists($var, $this->errors))
+                    {
+                        $this->sanitizeIpv4($var);
+                    }
+                    break;
+
+                case 'ipv6':
+                    $this->validateIpv6($var, $opt['required']);
+                    if(!array_key_exists($var, $this->errors))
+                    {
+                        $this->sanitizeIpv6($var);
+                    }
+                    break;
+
+                case 'bool':
+                    $this->validateBool($var, $opt['required']);
+                    if(!array_key_exists($var, $this->errors))
+                    {
+                        $this->sanitized[$var] = (bool) $this->source->{$var};
+                    }
+                    break;
             }
         }
-
-        return(!$havefailures);
     }
+
 
     /**
      *
-     *	Adds unvalidated class to thos elements that are not validated. Removes them from classes that are.
-     */
-    public function getScript() {
-        if(!empty($this->errors))
-        {
-            $errors = array();
-            foreach($this->errors as $key=>$val) { $errors[] = "'INPUT[name={$key}]'"; }
-
-            $output = '$$('.implode(',', $errors).').addClass("unvalidated");';
-            $output .= "alert('there are errors in the form');"; // or your nice validation here
-        }
-        if(!empty($this->corrects))
-        {
-            $corrects = array();
-            foreach($this->corrects as $key) { $corrects[] = "'INPUT[name={$key}]'"; }
-            $output .= '$$('.implode(',', $corrects).').removeClass("unvalidated");';
-        }
-        $output = "<script type='text/javascript'>{$output} </script>";
-        return($output);
-    }
-
-    public function getErrors(){
-            return $this->errors;
-    }
-
-    /**
+     * @add a rule to the validation rules array
      *
-     * Sanatizes an array of items according to the $this->sanatations
-     * sanatations will be standard of type string, but can also be specified.
-     * For ease of use, this syntax is accepted:
-     * $sanatations = array('fieldname', 'otherfieldname'=>'float');
+     * @access public
+     *
+     * @param string $varname The variable name
+     *
+     * @param string $type The type of variable
+     *
+     * @param bool $required If the field is required
+     *
+     * @param int $min The minimum length or range
+     *
+     * @param int $max the maximum length or range
+     *
+     * @return $this
+     *
      */
-    public function sanatize($items)
+    public function addRule($varname, $type, $required=false, $min=0, $max=0, $trim=false)
     {
-        foreach($items as $key=>$val)
-        {
-            if(array_search($key, $this->sanatations) === false && !array_key_exists($key, $this->sanatations)) continue;
-            $items[$key] = self::sanatizeItem($val, $this->validations[$key]);
-        }
-        return($items);
+        $this->validation_rules[$varname] = array('type'=>$type, 'required'=>$required, 'min'=>$min, 'max'=>$max, 'trim'=>$trim);
+        /*** allow chaining ***/
+        return $this;
     }
 
 
     /**
      *
-     * Adds an error to the errors array.
+     * @add multiple rules to teh validation rules array
+     *
+     * @access public
+     *
+     * @param array $rules_array The array of rules to add
+     *
      */
-    private function addError($field, $type='string')
+    public function AddRules(array $rules_array)
     {
-        $this->errors[$field] = $type;
+        $this->validation_rules = array_merge($this->validation_rules, $rules_array);
     }
 
     /**
      *
-     * Sanatize a single var according to $type.
-     * Allows for static calling to allow simple sanatization
+     * @Check if POST variable is set
+     *
+     * @access private
+     *
+     * @param string $var The POST variable to check
+     *
      */
-    public static function sanatizeItem($var, $type)
+    private function is_set($var)
     {
-        $var = trim($var);
-
-        $flags = NULL;
-        switch($type)
+        if(!isset($this->source->{$var}))
         {
-            case 'url':
-                $filter = FILTER_SANITIZE_URL;
-                break;
-            case 'int':
-                $filter = FILTER_SANITIZE_NUMBER_INT;
-                break;
-            case 'float':
-                $filter = FILTER_SANITIZE_NUMBER_FLOAT;
-                $flags = FILTER_FLAG_ALLOW_FRACTION | FILTER_FLAG_ALLOW_THOUSAND;
-                break;
-            case 'email':
-                $var = substr($var, 0, 254);
-                $filter = FILTER_SANITIZE_EMAIL;
-                break;
-            case 'string':
-            default:
-                $filter = FILTER_SANITIZE_STRING;
-                $flags = FILTER_FLAG_NO_ENCODE_QUOTES;
-                break;
-
+            $this->errors[$var] = $var . ' is not set';
         }
-        $output = filter_var($var, $filter, $flags);
-        return($output);
+    }
+
+
+
+    /**
+     *
+     * @validate an ipv4 IP address
+     *
+     * @access private
+     *
+     * @param string $var The variable name
+     *
+     * @param bool $required
+     *
+     * @return boolean
+     *
+     */
+    private function validateIpv4($var, $required=false)
+    {
+        if($required==false && strlen($this->source->{$var}) == 0)
+        {
+            return true;
+        }
+        if(filter_var($this->source->{$var}, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) === FALSE)
+        {
+            $this->errors[$var] = $var . ' is not a valid IPv4';
+        }
     }
 
     /**
      *
-     * Validates a single var according to $type.
-     * Allows for static calling to allow simple validation.
+     * @validate an ipv6 IP address
+     *
+     * @access private
+     *
+     * @param string $var The variable name
+     *
+     * @param bool $required
+     *
+     * @return boolean
+     */
+    public function validateIpv6($var, $required=false)
+    {
+        if($required==false && strlen($this->source->{$var}) == 0)
+        {
+            return true;
+        }
+
+        if(filter_var($this->source->{$var}, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) === FALSE)
+        {
+            $this->errors[$var] = $var . ' is not a valid IPv6';
+        }
+    }
+
+    /**
+     *
+     * @validate a floating point number
+     *
+     * @access private
+     *
+     * @param $var The variable name
+     *
+     * @param bool $required
+     *
+     * @return boolean
      *
      */
-    public static function validateItem($var, $type)
+    private function validateFloat($var, $required=false)
     {
-        if(array_key_exists($type, self::$regexes))
+        if($required==false && strlen($this->source->{$var}) == 0)
         {
-            $returnval =  filter_var($var, FILTER_VALIDATE_REGEXP, array("options"=> array("regexp"=>'!'.self::$regexes[$type].'!i'))) !== false;
-            return($returnval);
+            return true;
         }
-        $filter = false;
-        switch($type)
+        if(filter_var($this->source->{$var}, FILTER_VALIDATE_FLOAT) === false)
         {
-            case 'email':
-                $var = substr($var, 0, 254);
-                $filter = FILTER_VALIDATE_EMAIL;
-                break;
-            case 'int':
-                $filter = FILTER_VALIDATE_INT;
-                break;
-            case 'boolean':
-                $filter = FILTER_VALIDATE_BOOLEAN;
-                break;
-            case 'ip':
-                $filter = FILTER_VALIDATE_IP;
-                break;
-            case 'url':
-                $filter = FILTER_VALIDATE_URL;
-                break;
+            $this->errors[$var] = $var . ' is an invalid float';
         }
-        return ($filter === false) ? false : filter_var($var, $filter) !== false ? true : false;
     }
-}
+
+    /**
+     *
+     * @validate a string
+     *
+     * @access private
+     *
+     * @param string $var The variable name
+     *
+     * @param int $min the minimum string length
+     *
+     * @param int $max The maximum string length
+     *
+     * @param bool $required
+     *
+     * @return boolean
+     *
+     */
+    private function validateString($var, $min=0, $max=0, $required=false)
+    {
+        if($required==false && strlen($this->source->{$var}) == 0)
+        {
+            return true;
+        }
+
+        if(isset($this->source->{$var}))
+        {
+            if(strlen($this->source->{$var}) < $min)
+            {
+                $this->errors[$var] = $var . ' is too short';
+            }
+            elseif(strlen($this->source->{$var}) > $max)
+            {
+                $this->errors[$var] = $var . ' is too long';
+            }
+            elseif(!is_string($this->source->{$var}))
+            {
+                $this->errors[$var] = $var . ' is invalid';
+            }
+        }
+    }
+
+    /**
+     *
+     * @validate an number
+     *
+     * @access private
+     *
+     * @param string $var the variable name
+     *
+     * @param int $min The minimum number range
+     *
+     * @param int $max The maximum number range
+     *
+     * @param bool $required
+     *
+     * @return boolean
+     *
+     */
+    private function validateNumeric($var, $min=0, $max=0, $required=false)
+    {
+        if($required==false && strlen($this->source->{$var}) == 0)
+        {
+            return true;
+        }
+        if(filter_var($this->source->{$var}, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max)))===FALSE)
+        {
+            $this->errors[$var] = $var . ' is an invalid number';
+        }
+    }
+
+    /**
+     *
+     * @validate a url
+     *
+     * @access private
+     *
+     * @param string $var The variable name
+     *
+     * @param bool $required
+     *
+     * @return boolean
+     *
+     */
+    private function validateUrl($var, $required=false)
+    {
+        if($required==false && strlen($this->source->{$var}) == 0)
+        {
+            return true;
+        }
+        if(filter_var($this->source->{$var}, FILTER_VALIDATE_URL) === FALSE)
+        {
+            $this->errors[$var] = $var . ' is not a valid URL';
+        }
+    }
+
+
+    /**
+     *
+     * @validate an email address
+     *
+     * @access private
+     *
+     * @param string $var The variable name
+     *
+     * @param bool $required
+     *
+     * @return boolean
+     */
+    private function validateEmail($var, $required=false)
+    {
+        if($required==false && strlen($this->source->{$var}) == 0)
+        {
+            return true;
+        }
+        if(filter_var($this->source->{$var}, FILTER_VALIDATE_EMAIL) === FALSE)
+        {
+            $this->errors[$var] = $var . ' is not a valid email address';
+        }
+    }
+
+
+    /**
+     * @validate a boolean
+     *
+     * @access private
+     *
+     * @param string $var the variable name
+     *
+     * @param bool $required
+     *
+     * @return boolean
+     *
+     */
+    private function validateBool($var, $required=false)
+    {
+        if($required==false && strlen($this->source->{$var}) == 0)
+        {
+            return true;
+        }
+        filter_var($this->source->{$var}, FILTER_VALIDATE_BOOLEAN);
+        {
+            $this->errors[$var] = $var . ' is Invalid';
+        }
+    }
+
+    ########## SANITIZING METHODS ############
+
+
+    /**
+     *
+     * @santize and email
+     *
+     * @access private
+     *
+     * @param string $var The variable name
+     *
+     * @return string
+     *
+     */
+    public function sanitizeEmail($var)
+    {
+        $email = preg_replace( '((?:\n|\r|\t|%0A|%0D|%08|%09)+)i' , '', $this->source->{$var} );
+        $this->sanitized[$var] = (string) filter_var($email, FILTER_SANITIZE_EMAIL);
+    }
+
+
+    /**
+     *
+     * @sanitize a url
+     *
+     * @access private
+     *
+     * @param string $var The variable name
+     *
+     */
+    private function sanitizeUrl($var)
+    {
+        $this->sanitized[$var] = (string) filter_var($this->source->{$var},  FILTER_SANITIZE_URL);
+    }
+
+    /**
+     *
+     * @sanitize a numeric value
+     *
+     * @access private
+     *
+     * @param string $var The variable name
+     *
+     */
+    private function sanitizeNumeric($var)
+    {
+        $this->sanitized[$var] = (int) filter_var($this->source->{$var}, FILTER_SANITIZE_NUMBER_INT);
+    }
+
+    /**
+     *
+     * @sanitize a string
+     *
+     * @access private
+     *
+     * @param string $var The variable name
+     *
+     */
+    private function sanitizeString($var)
+    {
+        $this->sanitized[$var] = (string) filter_var($this->source->{$var}, FILTER_SANITIZE_STRING);
+    }
+
+    /**
+     *
+     * @sanitize a Float
+     *
+     * @access private
+     *
+     * @param string $var The variable name
+     *
+     */
+    private function sanitizeFloat($var)
+    {
+        $this->sanitized[$var] = (string) filter_var($this->source->{$var}, FILTER_VALIDATE_FLOAT);
+    }
+
+    /**
+     *
+     * @sanitize a Ipv4
+     *
+     * @access private
+     *
+     * @param string $var The variable name
+     *
+     */
+    private function sanitizeIpv4($var)
+    {
+        $this->sanitized[$var] = (string) filter_var($this->source->{$var}, FILTER_VALIDATE_IP);
+    }
+
+    /**
+     *
+     * @sanitize a Ipv6
+     *
+     * @access private
+     *
+     * @param string $var The variable name
+     *
+     */
+    private function sanitizeIpv6($var)
+    {
+        $this->sanitized[$var] = (string) filter_var($this->source->{$var}, FILTER_VALIDATE_IP);
+    }
+
+    public function getSanitized(){
+        return json_decode(json_encode($this->sanitized), FALSE);
+    }
+
+
+} /*** end of class ***/
+
+?>

@@ -38,15 +38,14 @@ class DepartmentModel extends BaseModel
             $result = $this->tableIdasArrayKey($s->fetchAll(PDO::FETCH_ASSOC));
             $this->viewModel->set("departments", $result);
         } catch (PDOException $e) {
-            $this->setError('Error getting departments: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting departments: '.$e->getMessage());
         }
     }
 
     public function newModel($errors = null)
     {
-
         if($errors != null) {
-            $this->setError("validateError", $errors);
+            $this->setError("validationErrors", $errors);
         }
 
         $this->viewModel->set("pageTitle", "new Department - ODDS&amp;ENDS");
@@ -70,7 +69,7 @@ class DepartmentModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $this->setError('Error adding client: '.$e->getMessage());
+            $this->setError('DatabaseError','Error adding client: '.$e->getMessage());
         }
 
         return $this->viewModel;
@@ -80,7 +79,7 @@ class DepartmentModel extends BaseModel
     {
 
         if($errors != null) {
-            $this->setError("validateError", $errors);
+            $this->setError("validationErrors", $errors);
         }
 
         $this->viewModel->set("pageTitle", "update Department - ODDS&amp;ENDS");
@@ -104,7 +103,7 @@ class DepartmentModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $this->setError('Error updating department: '.$e->getMessage());
+            $this->setError('DatabaseError','Error updating department: '.$e->getMessage());
         }
     }
 
@@ -120,12 +119,12 @@ class DepartmentModel extends BaseModel
             if(!empty($result)){
                 $this->viewModel->set("department", $result[0]);
             }else {
-                $this->setError('Department with id '.$id.' not found!');
+                $this->setError('DatabaseError','Department with id '.$id.' not found!');
             }
         }
         catch (PDOException $e)
         {
-            $this->setError('Error getting category: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting category: '.$e->getMessage());
         }
     }
 
@@ -141,7 +140,7 @@ class DepartmentModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $this->setError('Error deleting department: '.$e->getMessage());
+            $this->setError('DatabaseError','Error deleting department: '.$e->getMessage());
         }
     }
 

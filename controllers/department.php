@@ -32,22 +32,31 @@ class DepartmentController extends BaseController
 
     public function newAction()
     {
-        $error = null;
+        $errors = null;
 
         if($this->request->httpMethod() === "POST") {
 
-            $validations = array(
-                'name' => 'anything'
-            );
+            /*** a new validation instance ***/
+            $val = new FormValidator();
 
-            $required = array('name');
+            /*** use POST as the source ***/
+            $val->addSource($this->request->body());
 
-            $validator = new FormValidator($validations, $required);
+            /*** an array of rules ***/
+            $rules_array = array(
+                'name'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true));
 
-            if ($validator->validate($this->request->body())) {
-                $data = $validator->sanatize($this->request->body());
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
 
-                $id = $this->model->insertDepartment($data);
+            /*** run the validation rules ***/
+            $val->run();
+
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else{
+                $id = $this->model->insertDepartment($val->getSanitized());
 
                 if(is_numeric($id) && $id > 0) {
                     if($this->request->xmlhttprequest()){
@@ -57,38 +66,49 @@ class DepartmentController extends BaseController
                     }
                     exit();
                 }
-            }else{
-                $error = $validator->getErrors();
             }
         }
 
         if($this->request->xmlhttprequest()){
-            $this->view->ajaxRespon($this->model->newModel($error));
+            $this->view->ajaxRespon($this->model->newModel($errors));
         }else{
-            $this->view->output($this->model->newModel($error));
+            $this->view->output($this->model->newModel($errors));
         }
     }
 
     public function updateAction()
     {
-        $error = null;
+        $errors = null;
+
         $id = $this->request->uriValues()->id;
 
         if($this->request->httpMethod() === "POST"){
 
-            $validations = array(
-                'id' => 'number',
-                'name' => 'anything'
+
+            /*** a new validation instance ***/
+            $val = new FormValidator();
+
+            /*** use POST as the source ***/
+            $val->addSource($this->request->body());
+
+            /*** an array of rules ***/
+            $rules_array = array(
+                'id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'name'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true)
             );
 
-            $required = array('id','name');
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
 
-            $validator = new FormValidator($validations, $required);
+            /*** run the validation rules ***/
+            $val->run();
 
-            if($validator->validate($this->request->body())) {
-                $data = $validator->sanatize($this->request->body());
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else{
 
-                $rows = $this->model->updateDepartment($data);
+                $rows = $this->model->updateDepartment($val->getSanitized());
 
                 if(is_int($rows) && $rows > 0) {
                     if($this->request->xmlhttprequest()){
@@ -104,9 +124,9 @@ class DepartmentController extends BaseController
         if($id != ""){
             $this->model->getDepartment($id);
             if($this->request->xmlhttprequest()){
-                $this->view->ajaxRespon($this->model->updateModel($error));
+                $this->view->ajaxRespon($this->model->updateModel($errors));
             }else{
-                $this->view->output($this->model->updateModel($error));
+                $this->view->output($this->model->updateModel($errors));
             }
             exit();
         }
@@ -121,22 +141,34 @@ class DepartmentController extends BaseController
     {
         if($this->request->httpMethod() === "GET"){
 
-            $validations = array(
-                'id' => 'number');
+            /*** a new validation instance ***/
+            $val = new FormValidator();
 
-            $required = array('id');
+            /*** use POST as the source ***/
+            $val->addSource($this->request->uriValues());
 
-            $validator = new FormValidator($validations, $required);
+            /*** an array of rules ***/
+            $rules_array = array(
+                'id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true)
+            );
 
-            if($validator->validate($this->request->uriValues())) {
-                $data = $validator->sanatize($this->request->uriValues());
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
 
-                $rows = $this->model->deleteDepartment($data);
+            /*** run the validation rules ***/
+            $val->run();
 
-                if($rows > 0) {
-                    header('Location: ' . $this->url->generate("/department"));
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else {
+                $rows = $this->model->deleteDepartment($val->getSanitized());
+
+                if ($rows > 0) {
+                    header('Location: '.$this->url->generate("/department"));
                     exit();
                 }
+
             }
         }
 

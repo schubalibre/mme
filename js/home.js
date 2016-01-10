@@ -53,6 +53,10 @@ $(document).ready(function () {
     $("a[href='/backend/login']").on("click",function(e){
         e.preventDefault();
         $('#loginModal').modal({show: true});
+
+        console.log($('#loginModal form').find("input:text"));
+
+        $('#loginModal').find("input:text").first().focus();
     });
 
     $("#loginForm").submit(function(e){

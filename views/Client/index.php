@@ -1,10 +1,20 @@
 <div class="col-xs-12">
     <div class="page-header">
-        <h1>Kunden
-            <small>Subtext for header</small>
-            <small class="pull-right"><a id="new" class="btn btn-link" href="/client/new/">neuen Kunden erstellen</a></small>
-        </h1>
+        <div class="row">
+            <div class="col-md-9">
+                <h1>Kunden
+                    <small>Editieren, Hinzufügen oder löschen von Kunden</small>
+                </h1>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-default" href="/client/new/" role="button">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    neuen Kunden erstellen
+                </a>
+            </div>
+        </div>
     </div>
+
     <?php
     $errors = $viewModel->get("errors");
     if ($errors) {
@@ -17,10 +27,10 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Lastname</th>
+            <th>NAchname</th>
             <th>E-Mail</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Bearbeiten</th>
+            <th>Löschen</th>
         </tr>
         </thead>
         <tbody>
@@ -40,5 +50,8 @@
         </tbody>
     </table>
 
-    <a class="btn btn-corporate" href="/client/new/" role="button">neuen Kunden erstellen</a>
+    <a class="btn btn-default pull-right" href="/client/new/" role="button">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        neuen Kunden erstellen
+    </a>
 </div>

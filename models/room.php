@@ -67,7 +67,7 @@ class RoomModel extends BaseModel
     public function newRoom($errors = null)
     {
         if($errors != null) {
-            $this->viewModel->set("validateError", $errors);
+            $this->setError("validationErrors", $errors);
         }
 
         // wir holen uns alle departments aus dem department Model
@@ -133,7 +133,7 @@ class RoomModel extends BaseModel
     {
 
         if($errors != null) {
-            $this->viewModel->set("validateError", $errors);
+            $this->setError("validationErrors", $errors);
         }
 
         // wir holen uns alle departments aus dem department Model

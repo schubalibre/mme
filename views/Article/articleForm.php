@@ -1,5 +1,7 @@
 <?php
 $errors = $viewModel->get("errors");
+$validationErrors = isset($errors['validationErrors']) ? $errors['validationErrors'] :false;
+unset($errors['validationErrors']);
 if ($errors) {
     foreach ($errors as $error) {
         echo "<div class=\"alert alert-danger\" role=\"alert\">$error</div>";
@@ -17,7 +19,7 @@ $categories = $viewModel->get("categories");
         <div class="form-group">
             <label for="category_id" class="col-sm-2 control-label">Kategorie</label>
             <div class="col-sm-10">
-                <select id="category_id" class="form-control" name="category_id" required>
+                <select id="category_id" class="form-control" name="category_id">
                     <option value="">wählen Sie eine Kategorie aus</option>
                     <?php foreach ($categories as $category) {
                         $selected = (isset($article['category_id']) && $category['id'] === $article['category_id']) ? 'selected' : '';
@@ -30,7 +32,7 @@ $categories = $viewModel->get("categories");
         <div class="form-group">
             <label for="room_id" class="col-sm-2 control-label">Raum</label>
             <div class="col-sm-10">
-                <select id="room_id" class="form-control" name="room_id" required>
+                <select id="room_id" class="form-control" name="room_id">
                     <option value="">wählen Sie einen Raum aus</option>
                     <?php foreach ($rooms as $room) {
                         $selected = (isset($article['room_id']) && $room['id'] === $article['room_id']) ? 'selected' : '';
@@ -44,7 +46,7 @@ $categories = $viewModel->get("categories");
             <label for="name" class="col-sm-2 control-label">Artikelname</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="name" value="<?php echo $article['name']; ?>" id="name"
-                       placeholder="der Artikelname" required>
+                       placeholder="der Artikelname">
             </div>
         </div>
 
@@ -52,7 +54,7 @@ $categories = $viewModel->get("categories");
             <label for="title" class="col-sm-2 control-label">Artikeltitel</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="title" value="<?php echo $article['title']; ?>"
-                       id="title" placeholder="der Artikeltitle" required>
+                       id="title" placeholder="der Artikeltitle">
             </div>
         </div>
 
@@ -60,7 +62,7 @@ $categories = $viewModel->get("categories");
             <label for="description" class="col-sm-2 control-label">Artikelbeschreibung</label>
             <div class="col-sm-10">
                 <textarea id="description" class="form-control" name="description" placeholder="die Artikelbeschriftung"
-                          required><?php echo $article['description'] ? $article['description'] : "Für ein gemütliches und wohnliches Zuhause: Mit diesem Stil können Sie garantiert nichts falsch machen. Sorgen Sie für ein schönes Ambiente in Ihrer Wohnung und lassen Sie Ihr Zuhause in einem neuen Look erstrahlen."; ?></textarea>
+                          ><?php echo $article['description'] ? $article['description'] : "Für ein gemütliches und wohnliches Zuhause: Mit diesem Stil können Sie garantiert nichts falsch machen. Sorgen Sie für ein schönes Ambiente in Ihrer Wohnung und lassen Sie Ihr Zuhause in einem neuen Look erstrahlen."; ?></textarea>
             </div>
         </div>
 
@@ -85,7 +87,7 @@ $categories = $viewModel->get("categories");
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="shop"
                        value="<?php echo $article['shop'] ? $article['shop'] : "IKEA"; ?>" id="shop"
-                       placeholder="der Artikelshop" required>
+                       placeholder="der Artikelshop" >
             </div>
         </div>
 
@@ -94,7 +96,7 @@ $categories = $viewModel->get("categories");
             <div class="col-sm-10">
                 <input type="url" class="form-control" name="website"
                        value="<?php echo $article['website'] ? $article['website'] : "http://www.ikea.de"; ?>"
-                       id="website" placeholder="die Artikelwebpage" required>
+                       id="website" placeholder="die Artikelwebpage" >
             </div>
         </div>
     </div>

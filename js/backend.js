@@ -8,7 +8,6 @@ $(document).ready(function () {
             url: url,
             dataType: "json"
         }).done(function(json){
-            console.log(json);
             $('#productFormModal').modal({show: fillProductForm(json)});
         }).fail(function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -21,11 +20,9 @@ $(document).ready(function () {
 
         var $self = $(this);
         var url = $self.attr("action");
-        e.preventDefault();
-        //var values = $self.serialize();
-        //values = values.concat($self.find('input[type=checkbox]:not(:checked)').map(function(){return "&" + this.name + "=0"}).get());
         var formData  = new FormData(this);
-        formData.append("slider",$("#slider").is(':checked') ? 1 : 0);
+
+        formData.append("slider",$("#slider").is(':checked') ? true : false);
         $.ajax({
             type: "POST",
             url: url,
@@ -34,15 +31,43 @@ $(document).ready(function () {
             contentType: false,
             dataType: "json"
         }).done(function(json) {
-            $self.replaceWith("<div class='modal-body'><h2 class='text-center text-success'><span class='glyphicon glyphicon-ok-circle' aria-hidden='true'></span>" + json.msg + "</h2></div>");
-            $('#productFormModal').on('hidden.bs.modal', function (e) {
-                location.reload()
-            });
+            console.log(json);
+
+            // Validation rausnehmen
+            $form = $("#productFormModal").find("form")
+            $form.find(".form-group").removeClass("has-error");
+            $form.find("span.help-block").empty();
+
+            if(json.errors){
+                if(json.errors.validationErrors){
+
+                    $.each(json.errors.validationErrors,function($field,$error){
+
+                        $formGroup = $("input[name='" + $field + "'], textarea[name='" + $field + "']").parents(".form-group");
+
+                        $formGroup.addClass("has-error");
+
+                        $formGroup.find("span.help-block").html($error);
+
+                    });
+
+                    delete json.errors.validationErrors;
+                }
+                $.each(json.errors,function($error,$msg){
+                    alert($msg);
+                });
+            }else{
+                $self.replaceWith("<div class='modal-body'><h2 class='text-center text-success'><span class='glyphicon glyphicon-ok-circle' aria-hidden='true'></span>" + json.msg + "</h2></div>");
+            }
         }).fail(function (jqXHR, textStatus, errorThrown) {
             $self.html("<div class='modal-body'><h2 class='text-center text-danger'><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span>Ein Fehler ist aufgetreten!</h2></div>");
             console.log(jqXHR);
             console.log(textStatus);
             console.log(errorThrown);
+        });
+
+        $('#productFormModal').on('hidden.bs.modal', function (e) {
+            location.reload()
         });
 
         e.preventDefault();

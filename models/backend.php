@@ -8,7 +8,32 @@
 
 class BackendModel extends BaseModel
 {
+
+
+
     //data passed to the home index view
+    /**
+     * BackendModel constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        if(!isset($_SESSION['HTTP_USER_AGENT']) || $_SESSION['HTTP_USER_AGENT'] != sha1($_SERVER['HTTP_USER_AGENT'])) {
+            $this->viewModel->set(
+                "mainMenu",
+                array(
+                    "backend" => "/backend",
+                    "kategorien" => "/category",
+                    "artikel" => "/article",
+                    "departments" => "/department",
+                    "räume" => "/room",
+                    "login" => "/backend/login"
+                )
+            );
+        }
+    }
+
     public function index()
     {
         $this->viewModel->set("pageTitle", "Backend - ODDS&amp;ENDS");

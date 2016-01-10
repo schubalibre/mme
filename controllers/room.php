@@ -33,27 +33,41 @@ class RoomController extends BaseController
 
     public function newAction()
     {
-        $error = null;
+        $errors = null;
 
         if($this->request->httpMethod() === "POST") {
 
-            $validations = array(
-                'department_id' => 'number',
-                'client_id' => 'number',
-                'name' => 'anything',
-                'title' => 'anything',
-                'description' => 'anything',
-                'image' => 'anything',
-                'slider' => 'number'
+            $this->request->body()->slider = $this->request->body()->slider === "true" ? true : false;
+
+            /*** a new validation instance ***/
+            $val = new FormValidator();
+
+            /*** use POST as the source ***/
+            $val->addSource($this->request->body());
+
+            /*** an array of rules ***/
+            $rules_array = array(
+                'department_id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'client_id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'name'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'title'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'description'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'img'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'slider'=>array('type'=>'bool', 'required'=>false, false, false, false)
             );
 
-            $required = array('department_id', 'client_id', 'name', 'title', 'description','image');
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
 
-            $validator = new FormValidator($validations, $required);
+            /*** run the validation rules ***/
+            $val->run();
 
-            if ($validator->validate($this->request->body())) {
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else{
 
-                $data = $validator->sanatize($this->request->body());
+                $data = $val->getSanitized();
 
                 $handle = new upload($_FILES['image']);
 
@@ -87,52 +101,62 @@ class RoomController extends BaseController
                                 exit();
                             }
                         } else {
-                            echo 'error : ' . $handle->error;
+                            $errors = $handle->error;
                         }
-
                     } else {
-                        echo 'error : ' . $handle->error;
+                        $errors = $handle->error;
                     }
                 }
-            }else{
-                $error = $validator->getErrors();
             }
         }
 
         if($this->request->xmlhttprequest()){
-            $this->view->ajaxRespon($this->model->newRoom($error));
+            $this->view->ajaxRespon($this->model->newRoom($errors));
         }else{
-            $this->view->output($this->model->newRoom($error));
+            $this->view->output($this->model->newRoom($errors));
         }
     }
 
     public function updateAction()
     {
-        $error = null;
+        $errors = null;
+
         $id = $this->request->uriValues()->id;
 
         if($this->request->httpMethod() === "POST"){
 
-            $validations = array(
-                'id' => 'number',
-                'department_id' => 'number',
-                'client_id' => 'number',
-                'name' => 'anything',
-                'title' => 'anything',
-                'description' => 'anything',
-                'img' => 'anything',
-                'slider' => 'number'
+            $this->request->body()->slider = $this->request->body()->slider === "true" ? true : false;
+
+            /*** a new validation instance ***/
+            $val = new FormValidator();
+
+            /*** use POST as the source ***/
+            $val->addSource($this->request->body());
+
+            /*** an array of rules ***/
+            $rules_array = array(
+                'id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'department_id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'client_id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'name'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'title'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'description'=>array('type'=>'string', 'required'=>true, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'img'=>array('type'=>'string', 'required'=>false, 'min'=>3, 'max'=>255, 'trim'=>true),
+                'slider'=>array('type'=>'bool', 'required'=>false, false, false, false)
             );
 
-            $required = array('id','department_id', 'client_id', 'name', 'title', 'description','img');
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
 
-            $validator = new FormValidator($validations, $required);
+            /*** run the validation rules ***/
+            $val->run();
 
-            $data = $this->request->body();
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else{
 
-            if($validator->validate($data)) {
-
-                $data = $validator->sanatize($data);
+                $data = $val->getSanitized();
 
                 $rows = 0;
 
@@ -162,11 +186,11 @@ class RoomController extends BaseController
                                 $rows = $this->model->updateRoom($data);
 
                             } else {
-                                echo 'error : '.$handle->error;
+                                $errors = $handle->error;
                             }
 
                         } else {
-                            echo 'error : '.$handle->error;
+                            $errors = $handle->error;
                         }
                     }
                 }else{
@@ -187,9 +211,9 @@ class RoomController extends BaseController
         if($id != ""){
             $this->model->getRoom($id);
             if($this->request->xmlhttprequest()){
-                $this->view->ajaxRespon($this->model->updateModel($error));
+                $this->view->ajaxRespon($this->model->updateModel($errors));
             }else{
-                $this->view->output($this->model->updateModel($error));
+                $this->view->output($this->model->updateModel($errors));
             }
             exit();
         }

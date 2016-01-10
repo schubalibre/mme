@@ -30,21 +30,25 @@ class BaseModel {
 
     //establish viewModel data that is required for all views in this method (i.e. the main template)
     protected function commonViewData() {
-        $this->viewModel->set("mainMenu",array(
-            "backend" => "/backend",
-            "Kategorien" => "/category",
-            "Artikel" => "/article",
-            "Departments" => "/department",
-            "Räume" => "/room",
-            "Logout" => "/backend/logout")
-        );
 
+        $this->viewModel->set("mainMenu",array(
+                "backend" => "/backend",
+                "kategorien" => "/category",
+                "artikel" => "/article",
+                "departments" => "/department",
+                "räume" => "/room",
+                "logout" => "/backend/logout")
+        );
         $this->viewModel->set("header", "header.php");
         $this->viewModel->set("footer", "footer.php");
     }
 
-    protected function setError($error){
-        array_push($this->error,$error);
+    /**
+     * @param $errorKey
+     * @param $errorValue
+     */
+    protected function setError($errorKey,$errorValue){
+        $this->error = array_merge_recursive($this->error,array($errorKey => $errorValue));
         $this->viewModel->set("errors",$this->error);
     }
 

@@ -1,5 +1,7 @@
 <?php
 $errors = $viewModel->get("errors");
+$validationErrors = isset($errors['validationErrors']) ? $errors['validationErrors'] :false;
+unset($errors['validationErrors']);
 if($errors){
     foreach($errors as $error){
         echo "<div class=\"alert alert-danger\" role=\"alert\">$error</div>";
@@ -11,6 +13,7 @@ $client = $viewModel->get("client");
 ?>
 
 <form class="form-horizontal validate" action="" method="POST">
+    <div class="modal-body">
     <input type="hidden" name="id" value="<?php echo $client['id'];?>">
     <div class="form-group">
         <label for="client-name" class="col-sm-2 control-label">Name</label>
@@ -42,10 +45,9 @@ $client = $viewModel->get("client");
             <input type="password" class="form-control" name="confirm_password" value="" id="client-confirm-password" placeholder="bestätige dein Password">
         </div>
     </div>
-
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-corporate">Kunden speichern</button>
-        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+        <button type="submit" class="btn btn-corporate">Kunden speichern</button>
     </div>
 </form>
