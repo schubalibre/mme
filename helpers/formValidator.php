@@ -414,8 +414,7 @@ class FormValidator{
         {
             return true;
         }
-        filter_var($this->source->{$var}, FILTER_VALIDATE_BOOLEAN);
-        {
+        if(filter_var($this->source->{$var}, FILTER_VALIDATE_BOOLEAN) === null){
             $this->errors[$var] = $var . ' ist invalide';
         }
     }

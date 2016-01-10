@@ -22,7 +22,7 @@ $(document).ready(function () {
         var url = $self.attr("action");
         var formData  = new FormData(this);
 
-        formData.append("slider",$("#slider").is(':checked') ? true : false);
+        formData.append("slider",$("#slider").is(':checked') ? "1" : "0");
         $.ajax({
             type: "POST",
             url: url,

@@ -119,7 +119,7 @@ class RoomModel extends BaseModel
             $s->bindValue(':title', $data->title);
             $s->bindValue(':description', $data->description);
             $s->bindValue(':image', $data->img);
-            $s->bindValue(':slider', $data->slider ? 1 : 0);
+            $s->bindValue(':slider', $data->slider);
             $s->execute();
 
             return $this->database->lastInsertId();
@@ -186,7 +186,7 @@ class RoomModel extends BaseModel
             $s->bindValue(':title', $data->title);
             $s->bindValue(':description', $data->description);
             $s->bindValue(':img', $data->img);
-            $s->bindValue(':slider', $data->slider ? 1 : 0);
+            $s->bindValue(':slider', $data->slider);
             $s->bindValue(':id', $data->id);
             $s->execute();
             return $s->rowCount();

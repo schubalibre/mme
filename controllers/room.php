@@ -39,7 +39,7 @@ class RoomController extends BaseController
 
         if($this->request->httpMethod() === "POST") {
 
-            $this->request->body()->slider = (isset($this->request->body()->slider) && $this->request->body()->slider === "true") ? true : false;
+            $this->request->body()->slider = (isset($this->request->body()->slider) && $this->request->body()->slider === "1") ? 1 : 0;
 
             /*** a new validation instance ***/
             $val = new FormValidator();
@@ -70,7 +70,7 @@ class RoomController extends BaseController
 
                 $data = $val->getSanitized();
 
-                $handle = new upload($_FILES['image']);
+                $handle = new upload($_FILES['img']);
 
                 if ($handle->uploaded) {
 
@@ -126,7 +126,7 @@ class RoomController extends BaseController
 
         if($this->request->httpMethod() === "POST"){
 
-            $this->request->body()->slider = $this->request->body()->slider === "true" ? true : false;
+            $this->request->body()->slider = (isset($this->request->body()->slider) && $this->request->body()->slider === "1") ? 1 : 0;
 
             /*** a new validation instance ***/
             $val = new FormValidator();
