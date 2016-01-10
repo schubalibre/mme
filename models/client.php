@@ -60,7 +60,7 @@ class ClientModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $this->setError('Error adding client: '.$e->getMessage());
+            $this->setError('DatabaseError','Error adding client: '.$e->getMessage());
         }
     }
 
@@ -76,12 +76,12 @@ class ClientModel extends BaseModel
             if(!empty($result)){
                 $this->viewModel->set("client", $result[0]);
             }else {
-                $this->setError('Client with id '.$id.' not found!');
+                $this->setError('DatabaseError','Client with id '.$id.' not found!');
             }
         }
         catch (PDOException $e)
         {
-            $this->setError('Error getting client: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting client: '.$e->getMessage());
         }
     }
 
@@ -89,7 +89,7 @@ class ClientModel extends BaseModel
     {
 
         if($errors != null) {
-            $this->viewModel->set("validateError", $errors);
+            $this->setError("validationErrors", $errors);
         }
 
         $this->viewModel->set("pageTitle", "update Client - ODDS&amp;ENDS");
@@ -119,7 +119,7 @@ class ClientModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $this->setError('Error getting client: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting client: '.$e->getMessage());
         }
     }
 
@@ -135,7 +135,7 @@ class ClientModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $this->setError('Error getting client: '.$e->getMessage());
+            $this->setError('DatabaseError','Error getting client: '.$e->getMessage());
         }
     }
 }

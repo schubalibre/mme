@@ -46,7 +46,7 @@ class BackendModel extends BaseModel
     {
 
         if($errors != null) {
-            $this->setError("validateError", $errors);
+            $this->setError("validationErrors", $errors);
         }
 
         $this->viewModel->set("pageTitle", "LOGIN - ODDS&amp;ENDS");
@@ -72,8 +72,7 @@ class BackendModel extends BaseModel
         }
         catch (PDOException $e)
         {
-            $error[] = 'Error getting Client: '.$e->getMessage();
-            $this->viewModel->set("errors",$error);
+            $this->setError('DatabaseError','Error getting Client: '.$e->getMessage());
         }
     }
 

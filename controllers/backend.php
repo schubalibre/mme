@@ -36,24 +36,34 @@ class BackendController extends BaseController
     protected function loginAction()
     {
 
-        $error = null;
+        $errors = null;
 
         if($this->request->httpMethod() === "POST"){
 
-            $validations = array(
-                'email' => 'email',
-                'password' => 'anything'
+            /*** a new validation instance ***/
+            $val = new FormValidator();
+
+            /*** use POST as the source ***/
+            $val->addSource($this->request->body());
+
+            /*** an array of rules ***/
+            $rules_array = array(
+                'email'=>array('type'=>'email', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'password'=>array('type'=>'string', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true)
             );
 
-            $required = array('email','password');
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
 
-            $validator = new FormValidator($validations, $required);
+            /*** run the validation rules ***/
+            $val->run();
 
-            $data = $this->request->body();
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else{
 
-            if ($validator->validate($data)) {
-
-                $data = $validator->sanatize($data);
+                $data = $val->getSanitized();
 
                 $client = $this->model->makeLogin($data);
 
@@ -75,14 +85,12 @@ class BackendController extends BaseController
                         exit();
                     }
                 }
-            }else{
-                $error = $validator->getErrors();
             }
         }
         if($this->request->xmlhttprequest()) {
-            $this->view->ajaxRespon($this->model->login($error));
+            $this->view->ajaxRespon($this->model->login($errors));
         }else{
-            $this->view->output($this->model->login($error));
+            $this->view->output($this->model->login($errors));
         }
     }
 

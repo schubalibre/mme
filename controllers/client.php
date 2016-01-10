@@ -34,24 +34,37 @@ class ClientController extends BaseController
 
     protected function newAction()
     {
-        $error = null;
+        $errors = null;
 
         if($this->request->httpMethod() === "POST") {
 
-            $validations = array(
-                'name' => 'anything',
-                'lastname' => 'anything',
-                'email' => 'email',
-                'password' => 'anything',
-                'confirm_password' => 'anything'
+            /*** a new validation instance ***/
+            $val = new FormValidator();
+
+            /*** use POST as the source ***/
+            $val->addSource($this->request->body());
+
+            /*** an array of rules ***/
+            $rules_array = array(
+                'name'=>array('type'=>'string', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'lastname'=>array('type'=>'string', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'email'=>array('type'=>'email', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'password'=>array('type'=>'string', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'confirm_password'=>array('type'=>'string', 'required'=>false, 'min'=>1, 'max'=>999999, 'trim'=>true)
             );
 
-            $required = array('name', 'lastname', 'email');
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
 
-            $validator = new FormValidator($validations, $required);
+            /*** run the validation rules ***/
+            $val->run();
 
-            if ($validator->validate($this->request->body())) {
-                $data = $validator->sanatize($this->request->body());
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else{
+
+                $data = $val->getSanitized();
 
                 $id = $this->model->insertClient($data);
 
@@ -59,35 +72,48 @@ class ClientController extends BaseController
                     header('Location: '.$this->url->generate("/client"));
                     exit();
                 }
-            }else{
-                $error = $validator->getErrors();
             }
         }
 
-        $this->view->output($this->model->newModel($error));
+        $this->view->output($this->model->newModel($errors));
     }
 
     protected function updateAction()
     {
-        $error = null;
+        $errors = null;
+
         $id = $this->request->uriValues()->id;
 
         if($this->request->httpMethod() === "POST"){
 
-            $validations = array(
-                'id' => 'number',
-                'name' => 'anything',
-                'lastname' => 'anything',
-                'email' => 'email',
-                'password'=>'anything',
-                'confirm_password'=>'anything');
+            /*** a new validation instance ***/
+            $val = new FormValidator();
 
-            $required = array('id','name','lastname', 'email');
+            /*** use POST as the source ***/
+            $val->addSource($this->request->body());
 
-            $validator = new FormValidator($validations, $required);
+            /*** an array of rules ***/
+            $rules_array = array(
+                'id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'name'=>array('type'=>'string', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'lastname'=>array('type'=>'string', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'email'=>array('type'=>'email', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'password'=>array('type'=>'string', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true),
+                'confirm_password'=>array('type'=>'string', 'required'=>false, 'min'=>1, 'max'=>999999, 'trim'=>true)
+            );
 
-            if($validator->validate($this->request->body())) {
-                $data = $validator->sanatize($this->request->body());
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
+
+            /*** run the validation rules ***/
+            $val->run();
+
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else{
+
+                $data = $val->getSanitized();
 
                 $rows = $this->model->updateClient($data);
 
@@ -100,7 +126,7 @@ class ClientController extends BaseController
 
         if($id != 0){
             $this->model->getClient($id);
-            $this->view->output($this->model->updateModel($error));
+            $this->view->output($this->model->updateModel($errors));
             exit();
         }
 
@@ -114,15 +140,29 @@ class ClientController extends BaseController
     {
         if($this->request->httpMethod() === "GET"){
 
-            $validations = array(
-                'id' => 'number');
+            /*** a new validation instance ***/
+            $val = new FormValidator();
 
-            $required = array('id');
+            /*** use POST as the source ***/
+            $val->addSource($this->request->body());
 
-            $validator = new FormValidator($validations, $required);
+            /*** an array of rules ***/
+            $rules_array = array(
+                'id'=>array('type'=>'numeric', 'required'=>true, 'min'=>1, 'max'=>999999, 'trim'=>true)
+            );
 
-            if($validator->validate($this->request->uriValues())) {
-                $data = $validator->sanatize($this->request->uriValues());
+            /*** add an array of rules ***/
+            $val->addRules($rules_array);
+
+            /*** run the validation rules ***/
+            $val->run();
+
+            /*** if there are errors show them ***/
+            if(sizeof($val->errors) > 0) {
+                $errors = $val->errors;
+            }else{
+
+                $data = $val->getSanitized();
 
                 $rows = $this->model->deleteClient($data);
 
