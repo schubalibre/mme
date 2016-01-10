@@ -215,7 +215,7 @@ function generateRoomModal(room) {
 
     $(".modal-title", $myModal).html(room.name);
 
-    $img = $("<span class='vertical-helper'></span><img class='img-responsive' src='/images/" + room.img + "' alt=''>");
+    $img = $("<img class='img-responsive' src='/images/" + room.img + "' alt=''>");
     $title = $("<h4>" + room.title + "</h4>");
     $description = $("<p>" + room.description + "</p><p>Dazugehörige Artikel:</p>");
 
@@ -245,7 +245,7 @@ function generateArticleModal(article) {
 
     $(".modal-title", $myModal).html(article.name);
 
-    $img = $("<span class='vertical-helper'></span><img class='img-responsive' src='/images/" + article.img + "' alt=''>");
+    $img = $("<img class='img-responsive' src='/images/" + article.img + "' alt=''>");
     $title = $("<h4>" + article.title + "</h4>");
     $description = $("<p>" + article.description + "</p>");
 
