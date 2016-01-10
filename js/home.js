@@ -95,67 +95,67 @@ $(document).ready(function () {
 	        "strokepath": [
 	            {
 	                "path": "M 0.722 444.169 L 444.17 0.722",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 444.537 0.354 L 888.723 444.547",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 888.723 444.555 L 444.546 888.731",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 444.546 888.731 L 0.354 444.539",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 0.354 444.539 L 282.284 281.652",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 282.284 281.652 L 444.546 0.362",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 444.546 0.362 L 539.529 348.762",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 888.723 444.547 L 539.529 348.762",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 444.546 888.731 L 608.23 607.589",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 888.723 444.555 L 608.23 607.589",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 444.546 888.731 L 351.808 538.082",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 1.089 443.801 L 351.808 538.082",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 282.284 281.652 L 351.808 538.082",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 282.284 281.652 L 539.529 348.762",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 539.529 348.762 L 608.23 607.589",
-	                "duration": 400
+	                "duration": 600
 	            },
 	            {
 	                "path": "M 351.808 538.082 L 608.23 607.589",
-	                "duration": 400
+	                "duration": 600
 	            }
 	        ],
 	        "dimensions": {

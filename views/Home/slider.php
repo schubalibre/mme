@@ -3,7 +3,7 @@
     <!-- Carousel
        ================================================== -->
 <?php if (!empty($rooms)) { ?>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="8000">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
