@@ -355,7 +355,8 @@ a {
     text-shadow: none;
 }
 
-.carousel-caption#lazyline-caption {
+#lazyline-caption {
+    margin-bottom: 25vh;
 	background: transparent;
 }
 
