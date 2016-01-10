@@ -361,7 +361,7 @@ a {
 
 #lazy-line-painter {
 	width: 300px;
-	margin: 10% auto 10% auto;
+    margin: auto;
 }
 
 .carousel-caption h1 {
@@ -373,12 +373,24 @@ a {
 	color: black;
 }
 
+.carousel-caption .btn {
+    background: transparent;
+    border-radius: 0;
+    border-color: black;
+    color: black;
+    font-weight: 300;
+}
+
+.carousel-caption .btn:hover {
+    border-color: #41a398;
+    color: #41a398;
+}
+
 .carousel-indicators {
     bottom: 15vh;
 }
 
 .carousel-indicators li {
-	border-color: #41a398;
 	width: 16px;
 	height: 16px; 
 	border: 2px solid #41a398;
@@ -413,21 +425,6 @@ a {
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: cover;
-}
-
-
-.carousel-caption .btn {
-	background: transparent;
-	border-radius: 0;
-	border-color: black;
-	color: black;
-	font-weight: 300;
-}
-
-.carousel-caption .btn:hover {
-	background: #41a398;
-	border-color: transparent;
-	background: #EEE;
 }
 
 /* HOME CSS
