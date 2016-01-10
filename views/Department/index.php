@@ -2,6 +2,7 @@
     <div class="page-header">
         <h1>Departments
             <small>Editieren, Hinzufügen und Löschen von Departments</small>
+            <small class="pull-right"><a id="new" class="btn btn-link" href="/department/new/">neues Department erstellen</a></small>
         </h1>
     </div>
     <?php

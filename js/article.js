@@ -4,6 +4,8 @@ function fillProductForm(data){
 
     if(article != undefined || article != null) {
 
+        $("#productFormModal").find(".modal-title").html("Artikel aktualisieren");
+
         $("#productFormModal").find("form").attr("action", "/article/update/" + article.id);
 
         $('#id').val(article.id);
@@ -18,6 +20,18 @@ function fillProductForm(data){
         }
         $('#shop').val(article.shop);
         $('#website').val(article.website);
+    }else{
+        $("#productFormModal").find(".modal-title").html("neuer Artikel");
+
+        $('#id').val("");
+        $('#category_id').find('option:selected').prop("selected", false);
+        $('#room_id').find('option:selected').prop("selected", false);
+        $('#name').val("");
+        $('#title').val("");
+        $('#description').val("");
+        $(".updated-img").html("");
+        $('#shop').val("");
+        $('#website').val("");
     }
 
     return true;

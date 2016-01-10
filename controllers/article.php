@@ -85,7 +85,7 @@ class ArticleController extends BaseController
 
                             if(is_numeric($id) && $id > 0) {
                                 if($this->request->xmlhttprequest()){
-                                    $this->view->ajaxRespon($this->model->ajaxMSG("Insert OK"));
+                                    $this->view->ajaxRespon($this->model->ajaxMSG("Der Artikel wurde erfolgreich erstellt."));
                                 }else{
                                     header('Location: ' . $this->url->generate("/article"));
                                 }
@@ -182,7 +182,7 @@ class ArticleController extends BaseController
 
                 if(is_int($rows) && $rows > 0) {
                     if($this->request->xmlhttprequest()){
-                        $this->view->ajaxRespon($this->model->ajaxMSG("Update OK"));
+                        $this->view->ajaxRespon($this->model->ajaxMSG("Der Artikel wurde erfolgreich bearbeitet."));
                     }else{
                         header('Location: ' . $this->url->generate("/article"));
                     }

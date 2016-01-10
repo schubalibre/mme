@@ -3,12 +3,13 @@ $(document).ready(function () {
         event.preventDefault();
 
         var $category = $(this),
+            $ul = $category.parent().parent(),
             $filterDiv = $("#" + $category.parents("ul").data("filterFor")),
             link = $category.attr('href');
 
         link = link.substr(1, link.length)
 
-        $('.nav-pills a').parent().removeClass("active");
+        $ul.find("li.active").removeClass("active");
 
         $category.parent().addClass("active");
 

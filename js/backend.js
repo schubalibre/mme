@@ -34,9 +34,12 @@ $(document).ready(function () {
             contentType: false,
             dataType: "json"
         }).done(function(json) {
-            $self.html("<div class='modal-body'><div class='alert alert-success' role='alert'><h2 class='text-center'>" + json.msg + "</h2></div></div>");
-            window.setTimeout(function(){location.reload()},1000);
+            $self.replaceWith("<div class='modal-body'><h2 class='text-center text-success'><span class='glyphicon glyphicon-ok-circle' aria-hidden='true'></span>" + json.msg + "</h2></div>");
+            $('#productFormModal').on('hidden.bs.modal', function (e) {
+                location.reload()
+            });
         }).fail(function (jqXHR, textStatus, errorThrown) {
+            $self.html("<div class='modal-body'><h2 class='text-center text-danger'><span class='glyphicon glyphicon-remove-circle' aria-hidden='true'></span>Ein Fehler ist aufgetreten!</h2></div>");
             console.log(jqXHR);
             console.log(textStatus);
             console.log(errorThrown);

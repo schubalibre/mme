@@ -56,7 +56,7 @@ class CategoryController extends BaseController
 
                 if(is_numeric($id) && $id > 0) {
                     if($this->request->xmlhttprequest()){
-                        $this->view->ajaxRespon($this->model->ajaxMSG("Insert OK"));
+                        $this->view->ajaxRespon($this->model->ajaxMSG("Die Kategorie wurde erfolgreich erstellt."));
                     }else{
                         header('Location: '.$this->url->generate("/category"));
                     }
@@ -97,7 +97,7 @@ class CategoryController extends BaseController
 
                 if(is_int($rows) && $rows > 0) {
                     if($this->request->xmlhttprequest()){
-                        $this->view->ajaxRespon($this->model->ajaxMSG("Update OK"));
+                        $this->view->ajaxRespon($this->model->ajaxMSG("Die Kategorie wurde erfolgreich bearbeitet."));
                     }else{
                         header('Location: ' . $this->url->generate("/category"));
                     }

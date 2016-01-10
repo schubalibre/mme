@@ -2,6 +2,7 @@
     <div class="page-header">
         <h1>Kategorie
             <small>Editieren, Hinzufügen oder löschen von Kategorien</small>
+            <small class="pull-right"><a id="new" class="btn btn-link" href="/category/new/">neue Kategorie erstellen</a></small>
         </h1>
     </div>
 
