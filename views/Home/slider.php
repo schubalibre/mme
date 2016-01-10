@@ -6,15 +6,27 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        <?php $class="active"; foreach($rooms as $i => $slider){
+    	<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <?php $sliderNum = 1; 
+        foreach($rooms as $i => $slider){
             if(!$slider['slider']) continue; ?>
-            <li data-target="#myCarousel" data-slide-to="<?php echo $i;?>" class="<?php echo $class;?>"></li>
-        <?php $class=""; }?>
+            <li data-target="#myCarousel" data-slide-to="<?php echo $sliderNum++;?>"></li>
+        <?php }?>
     </ol>
     <div class="carousel-inner" role="listbox">
-        <?php  $class="active"; foreach($rooms as $i => $slider){
+        <div class="item active">
+            <div class="img"></div>
+            <div class="container">
+            	<div id="lazy-line-painter"></div>
+                <div id="lazyline-caption" class="carousel-caption">
+                	<h1>Willkommen bei Odds & Ends!</h1>
+                	<p>Die Inspirationsquelle für dein individuelles Zuhause!</p>
+                </div>
+            </div>
+        </div>
+        <?php foreach($rooms as $i => $slider){
             if(!$slider['slider']) continue; ?>
-        <div class="item <?php echo $class;?>">
+        <div class="item">
             <div class="img" style="background-image: url(/images/<?php echo $slider['img'];?>);"></div>
             <div class="container">
                 <div class="carousel-caption">
@@ -24,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <?php $class=""; }?>
+        <?php }?>
     </div>
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

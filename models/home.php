@@ -24,7 +24,7 @@ class HomeModel extends BaseModel
         );
 
         $this->viewModel->set("modals", array("home.php"));
-        $this->viewModel->set("javascripts", array("home.js"));
+        $this->viewModel->set("javascripts", array("vendor/jquery.lazylinepainter-1.7.0.js","home.js"));
         $this->viewModel->set("slider","Home/slider.php");
         $this->viewModel->set("modals", array("Home/loginModal.php","Home/productModal.php"));
     }
