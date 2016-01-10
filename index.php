@@ -17,6 +17,11 @@ ini_set("session.cookie_lifetime","3600");
 /*
  * PHP Erros werden angezeigt
  * Sollte nur Debug Modus sichtbar sein!
+ * 
+ * 
+ * 
+ * Diese Datei startet alle nötigen Klassen für die MVC-Struktur.
+ * 
  */
 
 ini_set("display_errors", true);

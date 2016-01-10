@@ -14,6 +14,7 @@ class Loader {
     private $urlValues;
 
     //store the URL request values on object creation
+    // Konstruktor: checkt das Eingabefeld und versucht, eingegebene Seite aufzurufen.
     public function __construct() {
 
         $this->urlValues = $_GET;
@@ -33,6 +34,9 @@ class Loader {
         }
     }
 
+
+	// Wenn es die gesuchten Klassen wirklich gibt, werden sie geladen
+	// Wenn es die Klasse nicht gibt, wird Error aufgerufen
     //factory method which establishes the requested controller as an object
     public function createController() {
         //check our requested controller's class file exists and require it if so
@@ -43,6 +47,7 @@ class Loader {
             return new ErrorController("badurl",$this->urlValues);
         }
 
+		// Sicherheitsmaßnahmen, um zu gewährleisten, ob eine Klasse existiert und ausführbar ist
         //does the class exist?
         if (class_exists($this->controllerClass)) {
             $parents = class_parents($this->controllerClass);

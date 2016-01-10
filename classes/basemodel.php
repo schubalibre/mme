@@ -5,6 +5,9 @@
  * Purpose: abstract class from which models extend.
  * Author: Robert Dziuba & Inga Schwarze
  */
+ 
+ // Interface: Anmeldevorgang für die Datenbank, alle Models erben von Basemodels.
+ // Holt sich die Daten von der Datenbank
 
 class BaseModel {
     

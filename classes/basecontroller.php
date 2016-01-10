@@ -5,6 +5,9 @@
  * Purpose: abstract class from which controllers extend
  * Author: Robert Dziuba & Inga Schwarze
  */
+ 
+ // Alle Controller erben von BaseController
+ // Interface: Starten in abstrakten Klassen
 
 abstract class BaseController {
     

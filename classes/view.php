@@ -4,6 +4,8 @@
  * File: /classes/view.php
  * Purpose: class for the view object.
  * Author: Robert Dziuba & Inga Schwarze
+ * 
+ * LÄD die HTML Dateien ODER gibt Antwort als JSON weiter. JSON: Server kann PHP, JS kann Javascript -> Kommunikation: JSON
  */
 
 class View {    

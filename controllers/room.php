@@ -4,6 +4,8 @@
  * User: roberto
  * Date: 25.11.15
  * Time: 15:07
+ * 
+ * BACKEND: Rooms werden angezeigt
  */
 
 class RoomController extends BaseController
