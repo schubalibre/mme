@@ -7,14 +7,14 @@
                 </p>
             </div>
             <div class="col-sm-6">
-                <ul>
-                    <li>
+                <ul class="row">
+                    <li class="col-xs-4">
                         <a href="/home/contact/">Kontakt</a>
                     </li>
-                    <li>
+                    <li class="col-xs-4">
                         <a href="/home/impressum/">Impressum</a>
                     </li>
-                    <li>
+                    <li class="col-xs-4">
                         <a href="/home/termsConditions/">AGB</a>
                     </li>
                 </ul>
